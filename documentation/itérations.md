@@ -13,9 +13,11 @@ ___
 
 ### *Iteration 2* : 
 >
-> - Le client aura la possibilité de choisir une des deux matières obligatoires du semestre 1.
+> 
+- Le client aura la possibilité de choisir une des deux matières obligatoires du semestre 1.
 >
-> - Le serveur enregistre son choix
+> 
+- Le serveur enregistre son choix
 >
 >  
 ---
