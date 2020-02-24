@@ -8,14 +8,16 @@ ___
 - Première tentative de lier le client et le serveur .
 
 
----
+
 ___
 
 ### *Iteration 2* : 
 >
-> - Le client aura la possibilité de choisir une des deux matières obligatoires du semestre 1.
+> 
+- Le client aura la possibilité de choisir une des deux matières obligatoires du semestre 1.
 >
-> - Le serveur enregistre son choix
+> 
+- Le serveur enregistre son choix
 >
 >  
 ---
@@ -35,41 +37,30 @@ ___
 ___
 ### *Iteration 4* : 
 
-> - Ajout de l'ensemble des matières du semestre 2 + UE Transversales.
->
-> - Le client pourra choisir 4 matières du semestre 2 + Son UE Transversale.
->
 > - Le client aura la possiblité de modifier les choix du 1er semestre si il décide de changer d'avis.
->
-> - le client aura a sa disposition une barre latéral qui dispose d'un bouton qui permettra au client d'avoir accès ses choix.
->
+> - le client aura à sa disposition une barre latérale qui dispose d'un bouton qui permettra au client d'avoir accès ses choix.
+> - le client aura accès à une barre de recherche (pour pouvoir chercher une UE particulière)
+> - Ajout de l'ensemble des matières du semestre 2 + UE Transversales.
+> - Le client pourra choisir 4 matières du semestre 2 + Son UE Transversale.
 ---
 ___
 
 ### *Iteration 5* : 
 
 
-> - Ajout de l'ensemble des matières du semestre 3 + UET.
->
+> - Le client devra  s'identifier au lancement de l'application ( Nom et prénom ) .
+> - Le client aura accès à ses infos (son profil) dans la barre latérale.
+> - (Ajout de l'ensemble des matières du semestre 3 + UET.)
 > - Le client pourra choisir ses matières du semestre 3 + Son UET 
-> 
-> - le client aura accès a une barre de recherche (pour pouvoir chercher une UE particulière)
-> 
-> -
 ---
 ___
 	
 ### *Iteration 6* : 
 
-> 
-> - Ajout de l'ensemble des matières du semestre 4 + UET.
->
-> - Le client pourra choisir ses matières du semestre 4 + UET.
->
 > - Le client pourra modifer ses anciens choix
->
-> - Le client devra  s'identifier au lancement de l'application ( Nom et prénom ) .
->
+> - Le client pourra reprendre les choix deja effectués de son parcours pour une prochaine session (Après avoir quitté l'application).
+> - (Ajout de l'ensemble des matières du semestre 4 + UET.)
+> - Le client pourra choisir ses matières du semestre 4 + UET.
 
 ---
 ___
@@ -91,8 +82,8 @@ ___
 
 > - `/*(Le client pourra choisir ses matières du s6??; le server enregistre ses choix)*/`
 > - L'application proposera au client des listes prédéfinies
->
-> - L'application indiquera au client quelles sont les matières à choisir en fonction de la license qu'il souhaite obtenir.
+> 
+> - L'application indiquera au client quelles sont les matières à choisir en fonction de la licence qu'il souhaite obtenir.
 > 
 > - le client aura accés a une nouvelle page 'partage' via la barre latéral (avec un bouton a l'intérieur de la barre latéral)
 >
@@ -100,11 +91,9 @@ ___
 ---
 ___
 ### *Iteration 9* :
->
+> - Le client pourra publier au server son parcours (uniquement parcours complet, dans l'onglet "partage")
+> - 
 > - Optimistion de l'interface graphique (Rendre l'application facile à utiliser). 
->
-> - Le client pourra publier au server son parcours (uniquement parcours complet)
----
 ___
 ### *Iteration 10* :
 > - Le client aura accès dans la page de partage au publication des autres parcours.
