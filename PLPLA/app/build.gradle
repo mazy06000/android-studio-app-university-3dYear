@@ -40,12 +40,15 @@ dependencies {
 // Set this dependency to build and run Espresso tests
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha03'
 
-    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0' // pas changé depuis 2018
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    // pas changé depuis 2018
 
-    androidTestImplementation 'com.android.support:support-annotations:28+' // pas changé depuis 2018
+    androidTestImplementation 'com.android.support:support-annotations:28+'
+    // pas changé depuis 2018
 
 
 // mockito v2
     testImplementation 'org.mockito:mockito-core:2.+'
     androidTestImplementation 'org.mockito:mockito-android:2.+'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 }

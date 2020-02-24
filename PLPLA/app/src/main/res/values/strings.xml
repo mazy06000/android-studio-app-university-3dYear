@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PLPLA</string>
     <string name="welcome">Licence Sciences et technologies</string>
+    <string name="semestre">Semestre 1</string>
 </resources>
