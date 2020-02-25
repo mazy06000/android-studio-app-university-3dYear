@@ -35,16 +35,15 @@ public class Serveur {
 
     public static final void main(String[] args) {
         Configuration configuration = new Configuration();
-        configuration.setHostname("127.0.0.1");
+        configuration.setHostname("localhost");
         configuration.setPort(4444);
 
         /*Création du serveur*/
         SocketIOServer server = new SocketIOServer(configuration);
+        ArrayList<UE> listeUE = Serveur.initListeUE();
 
-        Serveur serveur = new Serveur(server, Serveur.initListeUE());
+        Serveur serveur = new Serveur(server, listeUE);
         server.start();
-
-
     }
 
     /*initialisation des matières et de la liste des matières*/
