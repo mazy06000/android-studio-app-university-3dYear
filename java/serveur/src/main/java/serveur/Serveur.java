@@ -5,6 +5,7 @@ import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
+import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import matière.UE;
 
@@ -19,6 +20,14 @@ public class Serveur {
     public Serveur(SocketIOServer server, ArrayList<UE> listUE) {
         this.server = server;
         this.listUE = listUE;
+
+        // on accept une connexion
+        this.server.addConnectListener(new ConnectListener() {
+            public void onConnect(SocketIOClient socketIOClient) {
+                System.out.println("connexion de "+socketIOClient.getRemoteAddress());
+
+            }
+        });
 
         this.server.addEventListener("touche", String.class, new DataListener<String>() {
             @Override

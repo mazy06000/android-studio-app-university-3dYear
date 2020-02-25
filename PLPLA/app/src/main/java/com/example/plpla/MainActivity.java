@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
      * Splash screen, le message d'acceuil au lancement de l'app
      * 1000 millisecondes par défaut (1 seconde)
      * */
-    private static int TEMPS_MESSAGE_ACCEUIL = 1000;
+    private static int TEMPS_MESSAGE_ACCEUIL = 600;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
