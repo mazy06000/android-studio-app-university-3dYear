@@ -1,4 +1,10 @@
+**/out/
+**/target/
+**/build/
+**/bin/
 
+**/*.iml
+**/.idea/
 ### Eclipse ###
 .metadata
 bin/
