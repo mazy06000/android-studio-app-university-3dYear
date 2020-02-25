@@ -3,6 +3,7 @@ package com.example.plpla.controleur;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 
 import com.example.plpla.HomeActivity;
 import com.example.plpla.R;
@@ -33,15 +34,8 @@ public class ListenerButton implements View.OnClickListener{
                 /*Le serveur ne semble pas recevoir l'event*/
                 socket.emit("touche");
                 break;
-
-
-            case R.id.checkBoxEmplacement1:
-
-                break;
-
-
-            case R.id.checkBoxEmplacement2 :
-                break;
         }
     }
+
+
 }

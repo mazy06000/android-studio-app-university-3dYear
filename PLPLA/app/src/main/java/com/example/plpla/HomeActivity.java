@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.plpla.controleur.ListenerButton;
+import com.example.plpla.controleur.ListenerCheckBox;
 import com.example.plpla.vue.Vue;
 
 import java.net.URISyntaxException;
@@ -47,7 +48,10 @@ public class HomeActivity extends Activity implements Vue {
             textView1 = findViewById(R.id.emplacement1S1);
             textView2 = findViewById(R.id.emplacement2S1);
             ListenerButton listenerButton = new ListenerButton(socket,this);
+            ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
             bouton.setOnClickListener(listenerButton);
+            checkBox1.setOnClickListener(listenerCheckBox);
+            checkBox2.setOnClickListener(listenerCheckBox);
             socket.connect();
 
         } catch (URISyntaxException e) {
