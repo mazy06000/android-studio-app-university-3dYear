@@ -86,8 +86,6 @@ public class HomeActivityTest {
 
 
     }
-
-    /*
     @Test
     public void testToucheEnregistrer(){
         Intent startIntent = new Intent();
@@ -96,19 +94,23 @@ public class HomeActivityTest {
 
 
         /*Le Bouton est normalent invisible avant le clique sur une checkbox
+         */
         onView(withId(R.id.Enregistrer)).check(matches(not(isDisplayed())));
 
         /*On clique sur le bouton semestre 1
+         */
+
         onView(withId(R.id.BoutonSemestre)).perform(click());
 
 
         // on Vérifie que le bouton enregistrer visible et non clickable
         onView(withId(R.id.Enregistrer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
         onView(withId(R.id.Enregistrer)).check(matches(not(isClickable())));
-        //onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
+        onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
 
         /*Selection de la première checkbox
+         */
         onView(withId(R.id.checkBoxEmplacement1)).perform(click());
 
 
@@ -150,7 +152,7 @@ public class HomeActivityTest {
 
 
 
-    }*/
+    }
 
 
 
