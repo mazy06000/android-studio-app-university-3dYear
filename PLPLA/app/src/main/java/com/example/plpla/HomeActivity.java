@@ -24,11 +24,14 @@ public class HomeActivity extends Activity implements Vue {
     private Button bouton;
     private String serverAdress;
     private CheckBox checkBox1;
+
+
     private CheckBox checkBox2;
     private TextView textView1;
     private TextView textView2;
     private TextView accordeon;
     private Socket socket;
+    private Button Enregistrer ;
 
 
 
@@ -54,6 +57,7 @@ public class HomeActivity extends Activity implements Vue {
             textView1 = findViewById(R.id.emplacement1S1);
             textView2 = findViewById(R.id.emplacement2S1);
             accordeon = findViewById(R.id.accordeonsPlus);
+            Enregistrer = findViewById(R.id.Enregistrer);
             ListenerButton listenerButton = new ListenerButton(socket,this);
             ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
             bouton.setOnClickListener(listenerButton);
@@ -84,6 +88,10 @@ public class HomeActivity extends Activity implements Vue {
 
     public TextView getAccordeon() {
         return accordeon;
+    }
+
+    public Button getEnregistrer() {
+        return Enregistrer;
     }
 
 //    @Override

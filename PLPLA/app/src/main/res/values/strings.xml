@@ -9,4 +9,6 @@
     <string name="deroulementPlus">+</string>
     <string name="deroulementMoins">-</string>
     <string name="parcours">Mon parcours</string>
+    <string name="Enregistrer">Enregistrer</string>
+
 </resources>
