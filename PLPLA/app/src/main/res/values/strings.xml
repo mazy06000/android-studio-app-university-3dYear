@@ -8,6 +8,7 @@
     <string name="ip_address">ip du serveur (10.0.2.2 si vous utilisez l\'émulateur)</string>
     <string name="deroulementPlus">+</string>
     <string name="deroulementMoins">-</string>
+    <string name="parcours">Mon parcours</string>
     <string name="Enregistrer">Enregistrer</string>
 
 </resources>
