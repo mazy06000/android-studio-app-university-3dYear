@@ -34,11 +34,13 @@ public class ListenerCheckBox implements View.OnClickListener {
                     Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextView1().getText());
                     //activity.getCheckBox2().setClickable(false);
                     activity.getCheckBox2().setEnabled(false);
+                    activity.getEnregistrer().setEnabled(true);
                 }
                 else {
                     Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextView1().getText());
                     //activity.getCheckBox2().setClickable(true);
                     activity.getCheckBox2().setEnabled(true);
+                    activity.getEnregistrer().setEnabled(false);
                 }
                 break;
 
@@ -47,11 +49,13 @@ public class ListenerCheckBox implements View.OnClickListener {
                     Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextView2().getText());
                     //activity.getCheckBox1().setClickable(false);
                     activity.getCheckBox1().setEnabled(false);
+                    activity.getEnregistrer().setEnabled(true);
                 }
                 else {
                     Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextView2().getText());
                     //activity.getCheckBox1().setClickable(true);
                     activity.getCheckBox1().setEnabled(true);
+                    activity.getEnregistrer().setEnabled(false);
                 }
                 break;
         }
