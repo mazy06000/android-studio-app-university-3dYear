@@ -1,7 +1,11 @@
 package com.example.plpla;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.view.MenuItem;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +23,7 @@ import java.net.URISyntaxException;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
-public class HomeActivity extends Activity implements Vue {
+public class HomeActivity extends AppCompatActivity implements Vue {
 
     private Button bouton;
     private String serverAdress;
@@ -32,6 +36,12 @@ public class HomeActivity extends Activity implements Vue {
     private TextView accordeon;
     private Socket socket;
     private Button Enregistrer ;
+
+    /*
+    private DrawerLayout mrDrawerLayout ;
+    private ActionBarDrawerToggle mToggle ;
+    private Toolbar mToolbar ;
+     */
 
 
 
@@ -58,6 +68,22 @@ public class HomeActivity extends Activity implements Vue {
             textView2 = findViewById(R.id.emplacement2S1);
             accordeon = findViewById(R.id.accordeonsPlus);
             Enregistrer = findViewById(R.id.Enregistrer);
+
+
+            // Toolbar marche pas encore :
+            /*
+            mToolbar = findViewById(R.id.nav_action);
+            setSupportActionBar(mToolbar);
+            mrDrawerLayout = findViewById(R.id.drawerLayout);
+            mToggle = new ActionBarDrawerToggle(this, mrDrawerLayout, R.string.open , R.string.close);
+
+            mrDrawerLayout.addDrawerListener(mToggle);
+            mToggle.syncState();
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+             */
+
+
             ListenerButton listenerButton = new ListenerButton(socket,this);
             ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
             bouton.setOnClickListener(listenerButton);
@@ -69,6 +95,23 @@ public class HomeActivity extends Activity implements Vue {
             e.printStackTrace();
         }
     }
+
+
+
+
+/*    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mToggle.onOptionsItemSelected(item)){
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }*/
+
+
+
+
 
     public CheckBox getCheckBox1() {
         return checkBox1;
