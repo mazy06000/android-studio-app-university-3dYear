@@ -32,22 +32,26 @@ public class ListenerCheckBox implements View.OnClickListener {
             case R.id.checkBoxEmplacement1:
                 if (checked) {
                     Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextView1().getText());
-                    activity.getCheckBox2().setClickable(false);
+                    //activity.getCheckBox2().setClickable(false);
+                    activity.getCheckBox2().setEnabled(false);
                 }
                 else {
                     Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextView1().getText());
-                    activity.getCheckBox2().setClickable(true);
+                    //activity.getCheckBox2().setClickable(true);
+                    activity.getCheckBox2().setEnabled(true);
                 }
                 break;
 
             case R.id.checkBoxEmplacement2:
                 if (checked){
                     Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextView2().getText());
-                    activity.getCheckBox1().setClickable(false);
+                    //activity.getCheckBox1().setClickable(false);
+                    activity.getCheckBox1().setEnabled(false);
                 }
                 else {
                     Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextView2().getText());
-                    activity.getCheckBox1().setClickable(true);
+                    //activity.getCheckBox1().setClickable(true);
+                    activity.getCheckBox1().setEnabled(true);
                 }
                 break;
         }

@@ -22,6 +22,7 @@ import io.socket.client.Socket;
 public class HomeActivity extends Activity implements Vue {
 
     private Button bouton;
+    private String serverAdress;
     private CheckBox checkBox1;
     private CheckBox checkBox2;
     private TextView textView1;
@@ -33,15 +34,18 @@ public class HomeActivity extends Activity implements Vue {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Bundle extras = getIntent().getExtras();
 
-
-
+        /*Get the value of the ipAddress from the mainActivity*/
+        serverAdress = extras.getString("url");
+        Log.d("SERVEUR", "Adresse du serveur :"+serverAdress);
         socket = null;
         try {
             /*Si vous utilisez l'emulateur, utilisez la ligne suivante*/
-            //socket = IO.socket("http://10.0.2.2:4444");
+            socket = IO.socket("http://10.0.2.2:4444");
             /*Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)*/
-            socket = IO.socket("http://192.168.0.23:4444");
+            //socket = IO.socket("http://192.168.0.23:4444");
+            //socket = IO.socket(serverAdress);
             bouton = findViewById(R.id.BoutonSemestre);
             checkBox1 = findViewById(R.id.checkBoxEmplacement1);
             checkBox2 = findViewById(R.id.checkBoxEmplacement2);

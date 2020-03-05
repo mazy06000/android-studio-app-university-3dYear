@@ -2,6 +2,8 @@
     <string name="app_name">PLPLA</string>
     <string name="welcome">Licence Sciences et technologies</string>
     <string name="semestre">Semestre 1</string>
+    <string name="Suivant">Suivant</string>
     <string name="emplacement1S1">Maths Fondement : Semestre 1</string>
     <string name="emplacement2S1">Maths méthode : approche continue</string>
+    <string name="ip_address">ip du serveur (10.0.2.2 si vous utilisez l\'émulateur)</string>
 </resources>
