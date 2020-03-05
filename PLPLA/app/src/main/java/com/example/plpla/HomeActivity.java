@@ -27,7 +27,9 @@ public class HomeActivity extends Activity implements Vue {
     private CheckBox checkBox2;
     private TextView textView1;
     private TextView textView2;
+    private TextView accordeon;
     private Socket socket;
+
 
 
     @Override
@@ -51,6 +53,7 @@ public class HomeActivity extends Activity implements Vue {
             checkBox2 = findViewById(R.id.checkBoxEmplacement2);
             textView1 = findViewById(R.id.emplacement1S1);
             textView2 = findViewById(R.id.emplacement2S1);
+            accordeon = findViewById(R.id.accordeonsPlus);
             ListenerButton listenerButton = new ListenerButton(socket,this);
             ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
             bouton.setOnClickListener(listenerButton);
@@ -77,6 +80,10 @@ public class HomeActivity extends Activity implements Vue {
 
     public TextView getTextView2() {
         return textView2;
+    }
+
+    public TextView getAccordeon() {
+        return accordeon;
     }
 
 //    @Override

@@ -25,6 +25,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095" />
 
+    <TextView
+        android:id="@+id/accordeonsPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2in"
+        android:text="@string/deroulementPlus"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/BoutonSemestre"
+        app:layout_constraintEnd_toEndOf="@+id/BoutonSemestre"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="@+id/BoutonSemestre"
+        app:layout_constraintTop_toTopOf="@+id/BoutonSemestre" />
 
     <TextView
         android:id="@+id/emplacement2S1"
