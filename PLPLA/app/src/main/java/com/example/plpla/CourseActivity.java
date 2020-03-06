@@ -63,7 +63,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
 
             final_text = (TextView) findViewById(R.id.parcours_final);
             String final_selection = "";
-            for (String selections : HomeActivity.getSelectionItem()) {
+            for (String selections : HomeActivity.getSelectionItem()){
                 final_selection += selections + "\n";
             }
             final_text.setText(final_selection);
