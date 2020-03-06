@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 
 import androidx.annotation.StringRes;
 
+import com.example.plpla.CourseActivity;
 import com.example.plpla.HomeActivity;
 import com.example.plpla.R;
 import com.example.plpla.vue.Vue;
@@ -51,6 +52,10 @@ public class ListenerButton implements View.OnClickListener{
                     activity.getAccordeon().setText(R.string.deroulementPlus);
                 }
                 break;
+            case R.id.Enregistrer:
+                Log.d("Bouton enregistrer", "Parcours enregistre");
+
+
         }
     }
 

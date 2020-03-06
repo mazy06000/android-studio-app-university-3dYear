@@ -1,7 +1,12 @@
 package com.example.plpla;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
+import android.view.MenuItem;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +20,7 @@ import com.example.plpla.controleur.ListenerCheckBox;
 import com.example.plpla.vue.Vue;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -25,13 +31,20 @@ public class HomeActivity extends Activity implements Vue {
     private String serverAdress;
     private CheckBox checkBox1;
 
-
+    private Button parcours;
     private CheckBox checkBox2;
     private TextView textView1;
     private TextView textView2;
     private TextView accordeon;
     private Socket socket;
     private Button Enregistrer ;
+
+    public static ArrayList<String> getSelectionItem() {
+        return selectionItem;
+    }
+
+    private static ArrayList<String> selectionItem = new ArrayList<>();
+
 
 
 
@@ -58,11 +71,23 @@ public class HomeActivity extends Activity implements Vue {
             textView2 = findViewById(R.id.emplacement2S1);
             accordeon = findViewById(R.id.accordeonsPlus);
             Enregistrer = findViewById(R.id.Enregistrer);
+            //parcours = findViewById(R.id.parcours_button);
+
+
+
             ListenerButton listenerButton = new ListenerButton(socket,this);
             ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
             bouton.setOnClickListener(listenerButton);
             checkBox1.setOnClickListener(listenerCheckBox);
             checkBox2.setOnClickListener(listenerCheckBox);
+            Enregistrer.setOnClickListener(listenerButton);
+            /*parcours.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent homeIntent = new Intent(HomeActivity.this, CourseActivity.class);
+                    startActivity(homeIntent);
+                }
+            });*/
             socket.connect();
 
         } catch (URISyntaxException e) {

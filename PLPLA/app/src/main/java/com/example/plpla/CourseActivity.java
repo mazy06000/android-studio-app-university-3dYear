@@ -8,22 +8,38 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.plpla.controleur.ListenerButton;
 import com.example.plpla.controleur.ListenerCheckBox;
 import com.example.plpla.vue.Vue;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
-public class CourseActivity extends Activity implements Vue {
+public class CourseActivity extends AppCompatActivity implements Vue {
+
 
     private String serverAdress;
-    private TextView parcours;
+
+    private TextView monParcours;
     private Socket socket;
+    private static final String FILE_NAME = "parcours.txt";
+    TextView final_text;
+
 
 
 
@@ -43,18 +59,25 @@ public class CourseActivity extends Activity implements Vue {
             /*Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)*/
             //socket = IO.socket("http://192.168.0.23:4444");
             //socket = IO.socket(serverAdress);
+            monParcours = findViewById(R.id.monParcours);
 
-            parcours = findViewById(R.id.monParcours);
+            final_text = (TextView) findViewById(R.id.parcours_final);
+            String final_selection = "";
+            for (String selections : HomeActivity.getSelectionItem()){
+                final_selection += selections + "\n";
+            }
+            final_text.setText(final_selection);
             socket.connect();
+
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
     }
 
-    public TextView getParcours() {
-        return parcours;
-    }
+
+
+
 
 
 //    @Override
