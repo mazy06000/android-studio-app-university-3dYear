@@ -1,11 +1,15 @@
 package com.example.plpla;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputFilter;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button nextActivity;
     private EditText ipAddressUsr;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +34,12 @@ public class MainActivity extends AppCompatActivity {
         ipAddressUsr = findViewById(R.id.editText);
 
         ipAddressUsr.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
+
+
         /*Passe à l'activity Home*/
         passeAHome();
     }
+
 
     private void passeAHome(){
 

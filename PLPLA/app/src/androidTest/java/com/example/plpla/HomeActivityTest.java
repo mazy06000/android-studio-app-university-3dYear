@@ -20,6 +20,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.core.IsNot.not;
@@ -41,6 +42,11 @@ public class HomeActivityTest {
         Intent startIntent = new Intent();
         mActivityRule.launchActivity(startIntent);
         MockitoAnnotations.initMocks(this);
+
+
+        onView(withId(R.id.button)).perform(click());
+
+
 
         /*Les checkbox sont normalent invisible avant le clique sur le bouton semestre*/
         onView(withId(R.id.checkBoxEmplacement1)).check(matches(not(isDisplayed())));
@@ -80,6 +86,74 @@ public class HomeActivityTest {
 
 
     }
+    @Test
+    public void testToucheEnregistrer(){
+        Intent startIntent = new Intent();
+        mActivityRule.launchActivity(startIntent);
+        MockitoAnnotations.initMocks(this);
+
+
+        /*Le Bouton est normalent invisible avant le clique sur une checkbox
+         */
+        onView(withId(R.id.Enregistrer)).check(matches(not(isDisplayed())));
+
+        /*On clique sur le bouton semestre 1
+         */
+
+        onView(withId(R.id.BoutonSemestre)).perform(click());
+
+
+        // on Vérifie que le bouton enregistrer visible et non clickable
+        onView(withId(R.id.Enregistrer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+        onView(withId(R.id.Enregistrer)).check(matches(not(isClickable())));
+        onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
+
+
+        /*Selection de la première checkbox
+         */
+        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
+
+
+        onView(withId(R.id.Enregistrer)).check(matches(not(isEnabled())));
+        onView(withId(R.id.Enregistrer)).check(matches(isClickable()));
+
+
+        // On déselectionne la première checkbox
+        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
+
+
+
+        // on revérifie si le bouton enregistrer et non cliclable :
+        onView(withId(R.id.Enregistrer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+        onView(withId(R.id.Enregistrer)).check(matches(not(isClickable())));
+        //onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
+
+
+        // on sélectionne la deuxième checkbox :
+        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
+
+
+       // on vérifie que c'est clickable et not enabled :
+        onView(withId(R.id.Enregistrer)).check(matches(not(isEnabled())));
+        onView(withId(R.id.Enregistrer)).check(matches(isClickable()));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
 
 
 }

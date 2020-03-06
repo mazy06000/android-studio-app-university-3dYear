@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
-public class HomeActivity extends Activity implements Vue {
+public class HomeActivity extends AppCompatActivity implements Vue {
 
     private Button bouton;
     private String serverAdress;
@@ -45,6 +45,12 @@ public class HomeActivity extends Activity implements Vue {
 
     private static ArrayList<String> selectionItem = new ArrayList<>();
 
+
+    /*
+    private DrawerLayout mrDrawerLayout ;
+    private ActionBarDrawerToggle mToggle ;
+    private Toolbar mToolbar ;
+     */
 
 
 
@@ -75,6 +81,22 @@ public class HomeActivity extends Activity implements Vue {
 
 
 
+
+
+            // Toolbar marche pas encore :
+            /*
+            mToolbar = findViewById(R.id.nav_action);
+            setSupportActionBar(mToolbar);
+            mrDrawerLayout = findViewById(R.id.drawerLayout);
+            mToggle = new ActionBarDrawerToggle(this, mrDrawerLayout, R.string.open , R.string.close);
+
+            mrDrawerLayout.addDrawerListener(mToggle);
+            mToggle.syncState();
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+             */
+
+
             ListenerButton listenerButton = new ListenerButton(socket,this);
             ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
             bouton.setOnClickListener(listenerButton);
@@ -94,6 +116,23 @@ public class HomeActivity extends Activity implements Vue {
             e.printStackTrace();
         }
     }
+
+
+
+
+/*    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mToggle.onOptionsItemSelected(item)){
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }*/
+
+
+
+
 
     public CheckBox getCheckBox1() {
         return checkBox1;
