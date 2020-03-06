@@ -8,11 +8,11 @@
 >
   * [x] Rendre le boutton enregistrer cliquable lorsque l'on coche une UE.
 >
-  * [x] Le "+" devient "-" lorsqu'on appuie dessus.
+  * [x] Le "+" devient "-" lorsque l'on appuie dessus.
 >
-  * [x] Cretion d'une nouvelle activiteé (mon parcours).
+  * [x] Cretion d'une nouvelle activitée (mon parcours).
 >
-  * [x] Suppretion du splashScreen.
+  * [x] suppression du splash Screen.
 >
 
 
@@ -20,9 +20,9 @@
 ---
   ### *les objectifs non atteints de cette itération*
 >
-  * [ ] Le client aura acces a sa barre de menu.
+  * [ ] Le client aura accès a sa barre de menu.
 >
-  * [ ] client peut reinisialiser son choix de parcours.
+  * [ ] client peut réinisialiser son choix de parcours.
 
 
 
