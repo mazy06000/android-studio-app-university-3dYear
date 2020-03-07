@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity implements Vue {
             textView2 = findViewById(R.id.emplacement2S1);
             accordeon = findViewById(R.id.accordeonsPlus);
             Enregistrer = findViewById(R.id.Enregistrer);
-            //parcours = findViewById(R.id.parcours_button);
+            parcours = findViewById(R.id.parcours_button);
 
 
 
@@ -103,13 +103,14 @@ public class HomeActivity extends AppCompatActivity implements Vue {
             checkBox1.setOnClickListener(listenerCheckBox);
             checkBox2.setOnClickListener(listenerCheckBox);
             Enregistrer.setOnClickListener(listenerButton);
-            /*parcours.setOnClickListener(new View.OnClickListener() {
+            parcours.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent homeIntent = new Intent(HomeActivity.this, CourseActivity.class);
+                    homeIntent.putExtra("url", "http://10.0.2.2:4444");
                     startActivity(homeIntent);
                 }
-            });*/
+            });
             socket.connect();
 
         } catch (URISyntaxException e) {
