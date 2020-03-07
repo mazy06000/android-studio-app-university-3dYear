@@ -12,6 +12,9 @@
     <string name="Enregistrer">Enregistrer</string>
     <string name="close">Close</string>
     <string name="open">Open</string>
+    <string name="reinitialiser">Réinitialiser</string>
+    <string name="parcoursvide">Aucun parcours enregistré</string>
+
 
 
 </resources>

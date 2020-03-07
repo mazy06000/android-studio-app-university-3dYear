@@ -37,8 +37,10 @@ public class CourseActivity extends AppCompatActivity implements Vue {
 
     private TextView monParcours;
     private Socket socket;
+    private Button reinitialiser;
     private static final String FILE_NAME = "parcours.txt";
-    TextView final_text;
+    private TextView finalText;
+    private TextView parcoursVide;
 
 
 
@@ -59,14 +61,38 @@ public class CourseActivity extends AppCompatActivity implements Vue {
             /*Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)*/
             //socket = IO.socket("http://192.168.0.23:4444");
             //socket = IO.socket(serverAdress);
-            monParcours = findViewById(R.id.monParcours);
 
-            final_text = (TextView) findViewById(R.id.parcours_final);
-            String final_selection = "";
-            for (String selections : HomeActivity.getSelectionItem()){
-                final_selection += selections + "\n";
+            monParcours = findViewById(R.id.monParcours);
+            parcoursVide = findViewById(R.id.parcours_vide);
+            finalText = (TextView) findViewById(R.id.parcours_final);
+            reinitialiser = findViewById(R.id.reinitialiser_button);
+
+            //VISIBILITE PAR DEFAUT
+            finalText.setVisibility(View.INVISIBLE);
+            parcoursVide.setVisibility(View.VISIBLE);
+
+            //Afficher le parcours enregistré
+            if (!HomeActivity.getSelectionItem().isEmpty()) {
+                parcoursVide.setVisibility(View.INVISIBLE);
+                String final_selection = "";
+                for (String selections : HomeActivity.getSelectionItem()){
+                    final_selection += selections + "\n";
+                }
+                finalText.setText(final_selection);
+                finalText.setVisibility(View.VISIBLE);
             }
-            final_text.setText(final_selection);
+
+            reinitialiser.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finalText.setVisibility(View.INVISIBLE);
+                    parcoursVide.setVisibility(View.VISIBLE);
+                    finalText.setText("");
+                    HomeActivity.getSelectionItem().clear();
+                }
+            });
+
+
             socket.connect();
 
 
