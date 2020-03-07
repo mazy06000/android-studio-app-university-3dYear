@@ -70,9 +70,11 @@ public class CourseActivity extends AppCompatActivity implements Vue {
             //VISIBILITE PAR DEFAUT
             finalText.setVisibility(View.INVISIBLE);
             parcoursVide.setVisibility(View.VISIBLE);
+            reinitialiser.setEnabled(false);
 
             //Afficher le parcours enregistré
             if (!HomeActivity.getSelectionItem().isEmpty()) {
+                reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
                 String final_selection = "";
                 for (String selections : HomeActivity.getSelectionItem()){
@@ -82,7 +84,9 @@ public class CourseActivity extends AppCompatActivity implements Vue {
                 finalText.setVisibility(View.VISIBLE);
             }
 
+            //LORSQUE JE CLIQUE SUR ENREGISTRER
             reinitialiser.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     finalText.setVisibility(View.INVISIBLE);
@@ -90,6 +94,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
                     finalText.setText("");
                     HomeActivity.getSelectionItem().clear();
                     Toast.makeText(CourseActivity.this, "Parcours réinitialisé", Toast.LENGTH_LONG).show();
+                    reinitialiser.setEnabled(false);
                 }
             });
 
