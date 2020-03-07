@@ -89,6 +89,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
                     parcoursVide.setVisibility(View.VISIBLE);
                     finalText.setText("");
                     HomeActivity.getSelectionItem().clear();
+                    Toast.makeText(CourseActivity.this, "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                 }
             });
 

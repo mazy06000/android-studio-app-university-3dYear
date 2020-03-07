@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.StringRes;
 
@@ -54,6 +56,7 @@ public class ListenerButton implements View.OnClickListener{
                 break;
             case R.id.Enregistrer:
                 Log.d("Bouton enregistrer", "Parcours enregistre");
+                Toast.makeText(activity, "Parcours enregistré", Toast.LENGTH_LONG).show();
 
 
         }
