@@ -76,15 +76,23 @@ public class CourseActivity extends AppCompatActivity implements Vue {
             if (!HomeActivity.getSelectionItem().isEmpty()) {
                 reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
-                String final_selection = "";
-                for (String selections : HomeActivity.getSelectionItem()){
-                    final_selection += selections + "\n";
+
+                //Lecture du fichier enregistré
+                String parcours;
+                FileInputStream fichierLecture = openFileInput("mon_parcours");
+                InputStreamReader lecteur = new InputStreamReader(fichierLecture);
+                BufferedReader bfr = new BufferedReader(lecteur);
+                StringBuffer stringBuffer = new StringBuffer();
+                while ((parcours = bfr.readLine()) != null){
+                    stringBuffer.append(parcours + "\n");
                 }
-                finalText.setText(final_selection);
+
+                //On affiche la lecture
+                finalText.setText(stringBuffer.toString());
                 finalText.setVisibility(View.VISIBLE);
             }
 
-            //LORSQUE JE CLIQUE SUR ENREGISTRER
+            //LORSQUE JE CLIQUE SUR REINITIALISER
             reinitialiser.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -103,6 +111,10 @@ public class CourseActivity extends AppCompatActivity implements Vue {
 
 
         } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -14,7 +14,13 @@ import com.example.plpla.HomeActivity;
 import com.example.plpla.R;
 import com.example.plpla.vue.Vue;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import io.socket.client.Socket;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ListenerButton implements View.OnClickListener{
 
@@ -56,7 +62,22 @@ public class ListenerButton implements View.OnClickListener{
                 break;
             case R.id.Enregistrer:
                 Log.d("Bouton enregistrer", "Parcours enregistre");
-                Toast.makeText(activity, "Parcours enregistré", Toast.LENGTH_LONG).show();
+                String fileName = "mon_parcours";
+                String final_selection = "";
+                for (String selections : HomeActivity.getSelectionItem()){
+                    final_selection += selections + "\n";
+                }
+                try {
+                    FileOutputStream ecriture = activity.openFileOutput(fileName, MODE_PRIVATE);
+                    ecriture.write(final_selection.getBytes());
+                    ecriture.close();
+                    Toast.makeText(activity, "Parcours enregistré", Toast.LENGTH_LONG).show();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
 
         }
