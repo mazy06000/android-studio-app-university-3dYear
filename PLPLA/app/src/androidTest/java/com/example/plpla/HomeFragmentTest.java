@@ -30,9 +30,6 @@ public class HomeFragmentTest {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
 
-
-
-
     @Test
     public void afficheCheckBox(){
 
