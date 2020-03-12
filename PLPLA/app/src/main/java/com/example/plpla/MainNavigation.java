@@ -2,6 +2,7 @@ package com.example.plpla;
 
 import android.os.Bundle;
 
+import com.example.plpla.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -33,6 +34,10 @@ public class MainNavigation extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        Bundle extras = getIntent().getExtras();
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setArguments(extras);
+
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +51,6 @@ public class MainNavigation extends AppCompatActivity {
          */
 
 
-        
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

@@ -4,18 +4,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
-import com.example.plpla.HomeActivity;
+import com.example.plpla.MainNavigation;
 import com.example.plpla.R;
+import com.example.plpla.ui.home.HomeFragment;
 
 import io.socket.client.Socket;
 
 public class ListenerCheckBox implements View.OnClickListener {
 
     private final Socket socket;
-    private HomeActivity activity;
+    private HomeFragment activity;
 
 
-    public ListenerCheckBox(Socket socket, HomeActivity activity) {
+    public ListenerCheckBox(Socket socket, HomeFragment activity) {
         this.socket = socket;
         this.activity = activity;
     }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.plpla.controleur.ListenerButton;
 import com.example.plpla.controleur.ListenerCheckBox;
+import com.example.plpla.ui.home.HomeFragment;
 import com.example.plpla.vue.Vue;
 
 import java.io.BufferedInputStream;
@@ -73,7 +74,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
             reinitialiser.setEnabled(false);
 
             //Afficher le parcours enregistré
-            if (!HomeActivity.getSelectionItem().isEmpty()) {
+            if (!HomeFragment.getSelectionItem().isEmpty()) {
                 reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
 
@@ -100,7 +101,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
                     finalText.setVisibility(View.INVISIBLE);
                     parcoursVide.setVisibility(View.VISIBLE);
                     finalText.setText("");
-                    HomeActivity.getSelectionItem().clear();
+                    HomeFragment.getSelectionItem().clear();
                     Toast.makeText(CourseActivity.this, "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     reinitialiser.setEnabled(false);
                 }
