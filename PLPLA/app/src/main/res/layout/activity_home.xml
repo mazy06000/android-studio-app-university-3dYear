@@ -199,5 +199,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="464dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

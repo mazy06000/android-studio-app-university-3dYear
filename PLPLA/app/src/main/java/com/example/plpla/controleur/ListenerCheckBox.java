@@ -27,6 +27,9 @@ public class ListenerCheckBox implements View.OnClickListener {
         // vérifie que la checkbox est cochée
         boolean checked = ((CheckBox) v).isChecked();
 
+        boolean choixMatiereDansModule1 =false ;
+        boolean
+
         // vérifie quelle checkbox a été cliquée.
         switch(v.getId()) {
             case R.id.checkBoxEmplacement1:
@@ -80,8 +83,6 @@ public class ListenerCheckBox implements View.OnClickListener {
         }
 
 
-
-        if (R.id.checkBoxChimieStructMicro == v.getId())
 
     }
 }
