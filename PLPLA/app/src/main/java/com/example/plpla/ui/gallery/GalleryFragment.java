@@ -1,39 +1,37 @@
-package com.example.plpla;
+package com.example.plpla.ui.gallery;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.plpla.controleur.ListenerButton;
-import com.example.plpla.controleur.ListenerCheckBox;
-import com.example.plpla.ui.home.HomeFragment;
-import com.example.plpla.vue.Vue;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
-import java.io.BufferedInputStream;
+import com.example.plpla.CourseActivity;
+import com.example.plpla.R;
+import com.example.plpla.ui.home.HomeFragment;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
-import java.util.HashMap;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
-public class CourseActivity extends AppCompatActivity implements Vue {
+public class GalleryFragment extends Fragment {
 
-
+    private GalleryViewModel galleryViewModel;
     private String serverAdress;
 
     private TextView monParcours;
@@ -45,15 +43,12 @@ public class CourseActivity extends AppCompatActivity implements Vue {
 
 
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course);
-        Bundle extras = getIntent().getExtras();
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.activity_course, container, false);
 
         /*Get the value of the ipAddress from the mainActivity*/
-        serverAdress = extras.getString("url");
+        //serverAdress = getArguments().getString("url");
         Log.d("SERVEUR", "Adresse du serveur :"+serverAdress);
         socket = null;
         try {
@@ -63,10 +58,10 @@ public class CourseActivity extends AppCompatActivity implements Vue {
             //socket = IO.socket("http://192.168.0.23:4444");
             //socket = IO.socket(serverAdress);
 
-            monParcours = findViewById(R.id.monParcours);
-            parcoursVide = findViewById(R.id.parcours_vide);
-            finalText = (TextView) findViewById(R.id.parcours_final);
-            reinitialiser = findViewById(R.id.reinitialiser_button);
+            monParcours = root.findViewById(R.id.monParcours);
+            parcoursVide = root.findViewById(R.id.parcours_vide);
+            finalText = root.findViewById(R.id.parcours_final);
+            reinitialiser = root.findViewById(R.id.reinitialiser_button);
 
             //VISIBILITE PAR DEFAUT
             finalText.setVisibility(View.INVISIBLE);
@@ -80,7 +75,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
 
                 //Lecture du fichier enregistré
                 String parcours;
-                FileInputStream fichierLecture = openFileInput("mon_parcours");
+                FileInputStream fichierLecture = getActivity().openFileInput("mon_parcours");
                 InputStreamReader lecteur = new InputStreamReader(fichierLecture);
                 BufferedReader bfr = new BufferedReader(lecteur);
                 StringBuffer stringBuffer = new StringBuffer();
@@ -102,7 +97,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
                     parcoursVide.setVisibility(View.VISIBLE);
                     finalText.setText("");
                     HomeFragment.getSelectionItem().clear();
-                    Toast.makeText(CourseActivity.this, "Parcours réinitialisé", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     reinitialiser.setEnabled(false);
                 }
             });
@@ -118,21 +113,9 @@ public class CourseActivity extends AppCompatActivity implements Vue {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+        return root;
     }
-
-
-
-
-
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_home);
-//        bouton = findViewById(R.id.BoutonSemestre);
-//        socket = null;
-//        final ListenerButton listenerButton = new ListenerButton(socket, this);
-//        bouton.setOnClickListener(listenerButton);
-//    }
-
 }

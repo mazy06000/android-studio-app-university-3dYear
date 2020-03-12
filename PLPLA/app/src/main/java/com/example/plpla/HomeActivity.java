@@ -1,3 +1,4 @@
+/*
 package com.example.plpla;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
+
 
 public class HomeActivity extends AppCompatActivity implements Vue {
 
@@ -54,11 +56,11 @@ public class HomeActivity extends AppCompatActivity implements Vue {
     private static ArrayList<String> selectionItem = new ArrayList<>();
 
 
-    /*
     private DrawerLayout mrDrawerLayout ;
     private ActionBarDrawerToggle mToggle ;
     private Toolbar mToolbar ;
-     */
+
+
 
 
 
@@ -68,14 +70,17 @@ public class HomeActivity extends AppCompatActivity implements Vue {
         setContentView(R.layout.activity_home);
         Bundle extras = getIntent().getExtras();
 
-        /*Get the value of the ipAddress from the mainActivity*/
+//Get the value of the ipAddress from the mainActivity
+
         serverAdress = extras.getString("url");
         Log.d("SERVEUR", "Adresse du serveur :"+serverAdress);
         socket = null;
         try {
-            /*Si vous utilisez l'emulateur, utilisez la ligne suivante*/
+//Si vous utilisez l'emulateur, utilisez la ligne suivante
+
             socket = IO.socket("http://10.0.2.2:4444");
-            /*Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)*/
+//Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)
+
             //socket = IO.socket("http://192.168.0.23:4444");
             //socket = IO.socket(serverAdress);
             bouton = findViewById(R.id.BoutonSemestre);
@@ -93,20 +98,6 @@ public class HomeActivity extends AppCompatActivity implements Vue {
 
 
 
-
-
-            // Toolbar marche pas encore :
-            /*
-            mToolbar = findViewById(R.id.nav_action);
-            setSupportActionBar(mToolbar);
-            mrDrawerLayout = findViewById(R.id.drawerLayout);
-            mToggle = new ActionBarDrawerToggle(this, mrDrawerLayout, R.string.open , R.string.close);
-
-            mrDrawerLayout.addDrawerListener(mToggle);
-            mToggle.syncState();
-
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-             */
 
 
             ListenerButton listenerButton = new ListenerButton(socket,this);
@@ -134,7 +125,7 @@ public class HomeActivity extends AppCompatActivity implements Vue {
 
 
 
-/*    @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mToggle.onOptionsItemSelected(item)){
             return true;
@@ -142,7 +133,8 @@ public class HomeActivity extends AppCompatActivity implements Vue {
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
+
 
 
 
@@ -194,3 +186,4 @@ public class HomeActivity extends AppCompatActivity implements Vue {
 //    }
 
 }
+*/

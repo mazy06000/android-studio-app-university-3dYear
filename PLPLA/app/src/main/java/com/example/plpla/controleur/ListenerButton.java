@@ -8,10 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plpla.CourseActivity;
-import com.example.plpla.HomeActivity;
+import com.example.plpla.MainNavigation;
 import com.example.plpla.R;
+import com.example.plpla.ui.home.HomeFragment;
 import com.example.plpla.vue.Vue;
 
 import java.io.FileNotFoundException;
@@ -25,11 +27,11 @@ import static android.content.Context.MODE_PRIVATE;
 public class ListenerButton implements View.OnClickListener{
 
     private final Socket socket;
-    private HomeActivity activity;
+    private HomeFragment activity;
     private int compteurTouche = 0;
     private int compteurToucheCHimie = 0;
 
-    public ListenerButton(Socket socket, HomeActivity activity) {
+    public ListenerButton(Socket socket, HomeFragment activity) {
         this.socket = socket;
         this.activity = activity;
     }
@@ -86,14 +88,17 @@ public class ListenerButton implements View.OnClickListener{
                 Log.d("Bouton enregistrer", "Parcours enregistre");
                 String fileName = "mon_parcours";
                 String final_selection = "";
-                for (String selections : HomeActivity.getSelectionItem()){
+                for (String selections : HomeFragment.getSelectionItem()){
+                    Log.d("WRITEFILE", "ecriture de "+HomeFragment.getSelectionItem().toString());
                     final_selection += selections + "\n";
+                    Log.d("WRITEFILE", "Valeur de final_selection "+final_selection);
+
                 }
                 try {
-                    FileOutputStream ecriture = activity.openFileOutput(fileName, MODE_PRIVATE);
+                    FileOutputStream ecriture = activity.getActivity().openFileOutput(fileName, MODE_PRIVATE);
                     ecriture.write(final_selection.getBytes());
                     ecriture.close();
-                    Toast.makeText(activity, "Parcours enregistré", Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity.getActivity(), "Parcours enregistré", Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
