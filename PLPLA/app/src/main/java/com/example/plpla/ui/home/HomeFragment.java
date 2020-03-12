@@ -30,7 +30,7 @@ import io.socket.client.Socket;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    //private HomeViewModel homeViewModel;
     private Button bouton;
     private String serverAdress;
     private CheckBox checkBox1;
