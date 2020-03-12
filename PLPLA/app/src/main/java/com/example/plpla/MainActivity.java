@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ipAddress = "http://"+ipAddressUsr.getText()+":4444";
-                Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
+                Intent homeIntent = new Intent(MainActivity.this, MainNavigation.class);
                 /*Passer la variable ipAddress à l'activity Home*/
                 homeIntent.putExtra("url", ipAddress);
                 startActivity(homeIntent);
