@@ -27,6 +27,7 @@ public class ListenerButton implements View.OnClickListener{
     private final Socket socket;
     private HomeActivity activity;
     private int compteurTouche = 0;
+    private int compteurToucheCHimie = 0;
 
     public ListenerButton(Socket socket, HomeActivity activity) {
         this.socket = socket;
@@ -48,6 +49,10 @@ public class ListenerButton implements View.OnClickListener{
                     activity.getTextView2().setVisibility(View.VISIBLE);
                     activity.getEnregistrer().setVisibility(View.VISIBLE);
                     activity.getAccordeon().setText(R.string.deroulementMoins);
+                    activity.getChimieS1().setVisibility(View.VISIBLE);
+
+
+
                     /*Le serveur ne semble pas recevoir l'event*/
                     socket.emit("touche");
                 }
@@ -58,8 +63,25 @@ public class ListenerButton implements View.OnClickListener{
                     activity.getTextView2().setVisibility(View.INVISIBLE);
                     activity.getEnregistrer().setVisibility(View.INVISIBLE);
                     activity.getAccordeon().setText(R.string.deroulementPlus);
+                    activity.getChimieS1().setVisibility(View.INVISIBLE);
+
                 }
                 break;
+            case R.id.chimieS1:
+                compteurToucheCHimie++;
+                Log.d("Bouton semestre", "Pression sur le bouton ChimieS1");
+                activity.getEnregistrer().setEnabled(false);
+                if (compteurTouche%2 != 0) {
+
+                    activity.getStructMicro().setVisibility(View.VISIBLE);
+                    activity.getCheckBoxStructMicro().setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    activity.getStructMicro().setVisibility(View.INVISIBLE);
+                    activity.getCheckBoxStructMicro().setVisibility(View.INVISIBLE);
+                }
+
             case R.id.Enregistrer:
                 Log.d("Bouton enregistrer", "Parcours enregistre");
                 String fileName = "mon_parcours";

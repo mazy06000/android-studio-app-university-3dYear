@@ -61,8 +61,27 @@ public class ListenerCheckBox implements View.OnClickListener {
                     activity.getEnregistrer().setEnabled(false);
                     activity.getSelectionItem().remove(activity.getTextView1().getText().toString());
                 }
+                break;checked
+            case R.id.checkBoxChimieStructMicro:
+                if (checked){
+                    Log.d("CHECKBOX", "Checkbox structure Chimie cochée : "+activity.getStructMicro().getText());
+                    //activity.getCheckBox1().setClickable(false);
+                    activity.getEnregistrer().setEnabled(true);
+                    activity.getSelectionItem().add(activity.getStructMicro().getText().toString());
+                }
+                else {
+                    Log.d("CHECKBOX", "Checkbox structure Chimie cochée  : "+activity.getStructMicro().getText());
+                    //activity.getCheckBox1().setClickable(true);
+
+                    activity.getEnregistrer().setEnabled(false);
+                    activity.getSelectionItem().remove(activity.getStructMicro().getText().toString());
+                }
                 break;
         }
+
+
+
+        if (R.id.checkBoxChimieStructMicro == v.getId())
 
     }
 }
