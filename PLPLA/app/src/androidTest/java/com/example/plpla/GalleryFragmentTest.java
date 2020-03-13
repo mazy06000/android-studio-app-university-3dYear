@@ -65,9 +65,7 @@ public class GalleryFragmentTest {
         //SECOND ACTION
 
         /*On vérifie que le menu est fermé puis on clique sur le bouton menu*/
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
 
         /*On clique sur Portail*/
         onView(withId(R.id.nav_view))
