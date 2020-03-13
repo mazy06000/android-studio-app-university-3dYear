@@ -1,6 +1,10 @@
 package com.example.plpla;
 import android.content.Intent;
+import android.view.Gravity;
 
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 
@@ -14,10 +18,12 @@ import org.mockito.MockitoAnnotations;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 public class GalleryFragmentTest {
@@ -39,40 +45,64 @@ public class GalleryFragmentTest {
         onView(withId(R.id.button)).perform(click());
 
 
+        ///FIRST ACTION
 
+        /*On vérifie que le menu est fermé puis on clique sur le bouton menu*/
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        /*On clique sur Mon parcours*/
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_gallery));
+
+        /*On verifie qu'on ne peut pas cliquer sur reinitialiser*/
+        onView(withId(R.id.reinitialiser_button)).check(matches(not(isEnabled())));
+
+        /*Le parcours est vide*/
+        onView(withId(R.id.parcours_vide)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+
+        //SECOND ACTION
+
+        /*On vérifie que le menu est fermé puis on clique sur le bouton menu*/
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
+
+        /*On clique sur Portail*/
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_home));
 
         /*On clique sur le bouton semestre 1*/
-        onView(withId(R.id.nav_host_fragment)).perform(click());
+        onView(withId(R.id.BoutonSemestre)).perform(click());
 
-        /*On vérifie que les checkbox sont visible après le click sur le bouton*/
-        onView(withId(R.id.checkBoxEmplacement1)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-        onView(withId(R.id.checkBoxEmplacement2)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-
-        /*Test des checkbox, on ne peut normalement pas cocher les 2 checkbox à la foix*/
         /*Selection de la première checkbox*/
         onView(withId(R.id.checkBoxEmplacement1)).perform(click());
 
-        /*On verifie qu'on ne peut plus selectionner le deuxième choix*/
-        onView(withId(R.id.checkBoxEmplacement2)).check(matches(not(isEnabled())));
+        // On clique sur enregister
+        onView(withId(R.id.Enregistrer)).perform(click());
 
-        /*Deselection de la 1ère checkbox*/
-        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
+        /*On vérifie que le menu est fermé puis on clique sur le bouton menu*/
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
 
-        /*On vérifie qu'on peut sélectionner le 2ème choix maintenant*/
-        onView(withId(R.id.checkBoxEmplacement2)).check(matches(isEnabled()));
+        /*On clique sur Mon parcours*/
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_gallery));
 
-        /*On fait maintenant le test inverse*/
-        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
+        /*On verifie qu'on peut cliquer sur reinitialiser*/
+        onView(withId(R.id.reinitialiser_button)).check(matches(isEnabled()));
 
-        /*On verifie qu'on ne peut plus selectionner le 1er choix*/
-        onView(withId(R.id.checkBoxEmplacement1)).check(matches(not(isEnabled())));
+        /*Le parcours n'est pas vide*/
+        onView(withId(R.id.parcours_vide)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
 
-        /*Deselection de la 2ème checkbox*/
-        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
+        /*On verifie qu'il y a eu écriture*/
+        onView(withId(R.id.parcours_final)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
-        /*On vérifie qu'on peut sélectionner le 1er choix maintenant*/
-        onView(withId(R.id.checkBoxEmplacement1)).check(matches(isEnabled()));
+        // On clique sur reinitialiser
+        onView(withId(R.id.reinitialiser_button)).perform(click());
 
+        /*Le parcours est vide*/
+        onView(withId(R.id.parcours_vide)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
     }
 

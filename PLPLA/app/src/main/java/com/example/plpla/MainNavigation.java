@@ -2,10 +2,13 @@ package com.example.plpla;
 
 import android.os.Bundle;
 
+import com.example.plpla.ui.gallery.GalleryFragment;
 import com.example.plpla.ui.home.HomeFragment;
+import com.example.plpla.ui.slideshow.SlideshowFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -21,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.SearchView;
 
 public class MainNavigation extends AppCompatActivity {
 
@@ -32,7 +36,6 @@ public class MainNavigation extends AppCompatActivity {
         setContentView(R.layout.activity_main_navigation);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         Bundle extras = getIntent().getExtras();
         HomeFragment homeFragment = new HomeFragment();
@@ -56,7 +59,7 @@ public class MainNavigation extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
