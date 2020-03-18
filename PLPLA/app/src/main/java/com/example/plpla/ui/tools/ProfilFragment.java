@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.plpla.R;
 
-public class ToolsFragment extends Fragment {
+public class ProfilFragment extends Fragment {
 
     private ToolsViewModel toolsViewModel;
 
