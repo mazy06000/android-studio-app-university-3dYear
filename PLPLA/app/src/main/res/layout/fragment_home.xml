@@ -1,116 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    <Button
-        android:id="@+id/BoutonSemestre"
-        style="@android:style/Widget.Material.Button"
-        android:layout_width="412dp"
-        android:layout_height="100dp"
-        android:fontFamily="serif"
+    <TextView
+        android:id="@+id/semestre1"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_marginTop="10dp"
         android:text="@string/semestre"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095" />
+        android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/accordeonsPlus"
-        android:layout_width="wrap_content"
+    <com.github.florent37.expansionpanel.ExpansionHeader
         android:layout_height="wrap_content"
-        android:elevation="2in"
-        android:text="@string/deroulementPlus"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/BoutonSemestre"
-        app:layout_constraintEnd_toEndOf="@+id/BoutonSemestre"
-        app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintStart_toStartOf="@+id/BoutonSemestre"
-        app:layout_constraintTop_toTopOf="@+id/BoutonSemestre" />
+        android:layout_width="match_parent"
+        android:id="@+id/sampleHeader"
+        app:expansion_headerIndicator="@id/headerIndicator"
+        app:expansion_layout="@id/expansionLayout"
+        app:expansion_toggleOnClick="true">
 
-    <TextView
-        android:id="@+id/emplacement2S1"
-        android:layout_width="390dp"
-        android:layout_height="48dp"
-        android:background="#D6D7D7"
-        android:text="@string/emplacement2S1"
-        android:textAlignment="textStart"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
+        <RelativeLayout
+            android:background="@android:color/white"
+            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
-    <TextView
-        android:id="@+id/emplacement1S1"
-        android:layout_width="390dp"
-        android:layout_height="46dp"
-        android:background="#D6D7D7"
-        android:text="@string/emplacement1S1"
-        android:textAlignment="textStart"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.272" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/emplacement1S1"
+                android:textColor="#3E3E3E" />
 
-    <CheckBox
-        android:id="@+id/checkBoxEmplacement1"
-        android:layout_width="34dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="52dp"
-        android:buttonTint="#03A9F4"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/emplacement1S1"
-        app:layout_constraintEnd_toEndOf="@+id/emplacement1S1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/emplacement1S1"
-        app:layout_constraintVertical_bias="0.79" />
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
 
-    <CheckBox
-        android:id="@+id/checkBoxEmplacement2"
-        android:layout_width="34dp"
-        android:layout_height="46dp"
-        android:buttonTint="#03A9F4"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/emplacement2S1"
-        app:layout_constraintEnd_toEndOf="@+id/emplacement2S1"
-        app:layout_constraintHorizontal_bias="0.853"
-        app:layout_constraintStart_toStartOf="@+id/emplacement2S1"
-        app:layout_constraintTop_toTopOf="@+id/emplacement2S1"
-        app:layout_constraintVertical_bias="0.0" />
+                />
 
+            <!--<androidx.appcompat.widget.AppCompatImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/headerIndicator"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+        </RelativeLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/expansionLayout"
+        app:expansion_expanded="false"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:background="#EEE"
+                android:gravity="center"
+                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:text="content" />
+
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/sampleHeader2"
+        app:expansion_headerIndicator="@id/headerIndicator"
+        app:expansion_layout="@id/expansionLayout"
+        app:expansion_toggleOnClick="true">
+
+        <RelativeLayout
+            android:background="@android:color/white"
+            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/emplacement2S1"
+                android:textColor="#3E3E3E" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+
+            <!--<androidx.appcompat.widget.AppCompatImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/headerIndicator"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+        </RelativeLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/expansionLayout2"
+        app:expansion_expanded="false"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:id="@+id/container2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:background="#EEE"
+                android:gravity="center"
+                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:text="content" />
+
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
 
     <Button
         android:id="@+id/Enregistrer"
         android:layout_width="195dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="44dp"
         android:text="@string/Enregistrer"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941" />
+        android:visibility="visible"
+        android:layout_marginHorizontal="100dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
+
+    <!--<TextView
+    android:id="@+id/emplacement2S1"
+    android:layout_width="390dp"
+    android:layout_height="48dp"
+    android:background="#D6D7D7"
+    android:text="@string/emplacement2S1"
+    android:textAlignment="textStart"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:visibility="visible"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.37" />
+
+    <TextView
+    android:id="@+id/emplacement1S1"
+    android:layout_width="390dp"
+    android:layout_height="46dp"
+    android:background="#D6D7D7"
+    android:text="@string/emplacement1S1"
+    android:textAlignment="textStart"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:visibility="visible"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.272" />
+
+    <CheckBox
+    android:id="@+id/checkBoxEmplacement1"
+    android:layout_width="34dp"
+    android:layout_height="46dp"
+    android:layout_marginEnd="52dp"
+    android:buttonTint="#03A9F4"
+    android:visibility="visible"
+    app:layout_constraintBottom_toBottomOf="@+id/emplacement1S1"
+    app:layout_constraintEnd_toEndOf="@+id/emplacement1S1"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/emplacement1S1"
+    app:layout_constraintVertical_bias="0.79" />
+
+    <CheckBox
+    android:id="@+id/checkBoxEmplacement2"
+    android:layout_width="34dp"
+    android:layout_height="46dp"
+    android:buttonTint="#03A9F4"
+    android:visibility="visible"
+    app:layout_constraintBottom_toBottomOf="@+id/emplacement2S1"
+    app:layout_constraintEnd_toEndOf="@+id/emplacement2S1"
+    app:layout_constraintHorizontal_bias="0.853"
+    app:layout_constraintStart_toStartOf="@+id/emplacement2S1"
+    app:layout_constraintTop_toTopOf="@+id/emplacement2S1"
+    app:layout_constraintVertical_bias="0.0" />
+
+
+    <Button
+    android:id="@+id/Enregistrer"
+    android:layout_width="195dp"
+    android:layout_height="57dp"
+    android:layout_marginBottom="44dp"
+    android:text="@string/Enregistrer"
+    android:visibility="visible"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.941" />
+
+    <TextView
+    android:id="@+id/semestre1"
+    android:layout_width="397dp"
+    android:layout_height="48dp"
+    android:layout_marginTop="16dp"
+    android:text="@string/semestre"
+    android:textAlignment="center"
+    android:textSize="30sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:visibility="visible" />-->
