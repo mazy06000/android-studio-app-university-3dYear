@@ -30,37 +30,45 @@ public class ListenerCheckBox implements View.OnClickListener {
 
         // vérifie quelle checkbox a été cliquée.
         switch(v.getId()) {
-            case R.id.checkBoxEmplacement1:
+            case R.id.radio_fondement:
                 if (checked) {
-                    Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextView1().getText());
+                    Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextFondement().getText());
                     //activity.getCheckBox2().setClickable(false);
-                    activity.getCheckBox2().setEnabled(false);
+                    activity.getExpansionFondement().expand(true);
+                    activity.getExpansionMethode().setEnabled(false);
+                    activity.getRadioMethode().setEnabled(false);
                     activity.getEnregistrer().setEnabled(true);
-                    activity.getSelectionItem().add(activity.getTextView1().getText().toString());
+                    activity.getSelectionItem().add(activity.getTextFondement().getText().toString());
                 }
                 else {
-                    Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextView1().getText());
+                    Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextFondement().getText());
                     //activity.getCheckBox2().setClickable(true);
-                    activity.getCheckBox2().setEnabled(true);
+                    activity.getExpansionFondement().expand(false);
+                    activity.getExpansionMethode().setEnabled(true);
+                    activity.getRadioMethode().setEnabled(true);
                     activity.getEnregistrer().setEnabled(false);
-                    activity.getSelectionItem().remove(activity.getTextView1().getText().toString());
+                    activity.getSelectionItem().remove(activity.getTextFondement().getText().toString());
                 }
                 break;
 
-            case R.id.checkBoxEmplacement2:
+            case R.id.radio_methode:
                 if (checked){
-                    Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextView2().getText());
+                    Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextMethode().getText());
                     //activity.getCheckBox1().setClickable(false);
-                    activity.getCheckBox1().setEnabled(false);
+                    activity.getExpansionMethode().expand(true);
+                    activity.getExpansionFondement().setEnabled(false);
+                    activity.getRadioMethode().setEnabled(false);
                     activity.getEnregistrer().setEnabled(true);
-                    activity.getSelectionItem().add(activity.getTextView2().getText().toString());
+                    activity.getSelectionItem().add(activity.getTextMethode().getText().toString());
                 }
                 else {
-                    Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextView2().getText());
+                    Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextMethode().getText());
                     //activity.getCheckBox1().setClickable(true);
-                    activity.getCheckBox1().setEnabled(true);
+                    activity.getExpansionMethode().expand(false);
+                    activity.getRadioFondement().setEnabled(true);
+                    activity.getExpansionFondement().setEnabled(true);
                     activity.getEnregistrer().setEnabled(false);
-                    activity.getSelectionItem().remove(activity.getTextView1().getText().toString());
+                    activity.getSelectionItem().remove(activity.getTextMethode().getText().toString());
                 }
                 break;
         }
