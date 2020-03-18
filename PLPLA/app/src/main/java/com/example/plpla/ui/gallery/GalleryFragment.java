@@ -53,7 +53,7 @@ public class GalleryFragment extends Fragment {
         socket = null;
         try {
             /*Si vous utilisez l'emulateur, utilisez la ligne suivante*/
-            socket = IO.socket("http://10.0.2.2:4444");
+            //socket = IO.socket("http://10.0.2.2:4444");
             /*Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)*/
             //socket = IO.socket("http://192.168.0.23:4444");
             //socket = IO.socket(serverAdress);
@@ -103,11 +103,9 @@ public class GalleryFragment extends Fragment {
             });
 
 
-            socket.connect();
+            //socket.connect();
 
 
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

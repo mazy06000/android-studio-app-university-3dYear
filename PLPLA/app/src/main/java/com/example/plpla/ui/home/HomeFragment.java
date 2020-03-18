@@ -56,45 +56,39 @@ public class HomeFragment extends Fragment {
 
         //serverAdress = getArguments().getString("url");
         Log.d("SERVEUR", "Adresse du serveur :"+serverAdress);
-        socket = null;
-        try {
-            //Si vous utilisez l'emulateur, utilisez la ligne suivante
-            socket = IO.socket("http://10.0.2.2:4444");
-            //Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)
+        //socket = null;
+        //Si vous utilisez l'emulateur, utilisez la ligne suivante
+        //socket = IO.socket("http://10.0.2.2:4444");
+        //Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)
 
-            //socket = IO.socket("http://192.168.0.23:4444");
-            //socket = IO.socket(serverAdress);
-            bouton = root.findViewById(R.id.BoutonSemestre);
-            checkBox1 = root.findViewById(R.id.checkBoxEmplacement1);
-            checkBox2 = root.findViewById(R.id.checkBoxEmplacement2);
-            textView1 = root.findViewById(R.id.emplacement1S1);
-            textView2 = root.findViewById(R.id.emplacement2S1);
-            accordeon = root.findViewById(R.id.accordeonsPlus);
-            Enregistrer = root.findViewById(R.id.Enregistrer);
+        //socket = IO.socket("http://192.168.0.23:4444");
+        //socket = IO.socket(serverAdress);
+        bouton = root.findViewById(R.id.BoutonSemestre);
+        checkBox1 = root.findViewById(R.id.checkBoxEmplacement1);
+        checkBox2 = root.findViewById(R.id.checkBoxEmplacement2);
+        textView1 = root.findViewById(R.id.emplacement1S1);
+        textView2 = root.findViewById(R.id.emplacement2S1);
+        accordeon = root.findViewById(R.id.accordeonsPlus);
+        Enregistrer = root.findViewById(R.id.Enregistrer);
 
-            /*On les mets Invisibles ici pour faciliter les design*/
-            textView1.setVisibility(View.INVISIBLE);
-            textView2.setVisibility(View.INVISIBLE);
-            checkBox1.setVisibility(View.INVISIBLE);
-            checkBox2.setVisibility(View.INVISIBLE);
-            Enregistrer.setVisibility(View.VISIBLE);
+        /*On les mets Invisibles ici pour faciliter les design*/
+        textView1.setVisibility(View.INVISIBLE);
+        textView2.setVisibility(View.INVISIBLE);
+        checkBox1.setVisibility(View.INVISIBLE);
+        checkBox2.setVisibility(View.INVISIBLE);
+        Enregistrer.setVisibility(View.VISIBLE);
 
-            /*Par défaut Enregistrer n'est pas cliquable*/
-            Enregistrer.setClickable(false);
+        /*Par défaut Enregistrer n'est pas cliquable*/
+        Enregistrer.setClickable(false);
+        Enregistrer.setEnabled(false);
 
 
-            ListenerButton listenerButton = new ListenerButton(socket,this);
-            ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
-            bouton.setOnClickListener(listenerButton);
-            checkBox1.setOnClickListener(listenerCheckBox);
-            checkBox2.setOnClickListener(listenerCheckBox);
-            Enregistrer.setOnClickListener(listenerButton);
-            socket.connect();
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
+        ListenerButton listenerButton = new ListenerButton(socket,this);
+        ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
+        bouton.setOnClickListener(listenerButton);
+        checkBox1.setOnClickListener(listenerCheckBox);
+        checkBox2.setOnClickListener(listenerCheckBox);
+        Enregistrer.setOnClickListener(listenerButton);
 
         return root;
     }

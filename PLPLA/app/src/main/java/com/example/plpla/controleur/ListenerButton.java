@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.plpla.Client;
 import com.example.plpla.CourseActivity;
 import com.example.plpla.MainNavigation;
 import com.example.plpla.R;
@@ -51,7 +52,8 @@ public class ListenerButton implements View.OnClickListener{
                     activity.getEnregistrer().setVisibility(View.VISIBLE);
                     activity.getAccordeon().setText(R.string.deroulementMoins);
                     /*Le serveur ne semble pas recevoir l'event*/
-                    socket.emit("touche");
+                    ((Client)activity.getActivity().getApplicationContext()).getUniqueConnexion().envoyerEvent("touche");
+                    //socket.emit("touche");
                 }
                 else {
                     activity.getCheckBox1().setVisibility(View.INVISIBLE);
