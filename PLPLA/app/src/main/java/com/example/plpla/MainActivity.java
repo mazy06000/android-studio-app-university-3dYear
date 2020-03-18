@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ipAddress = "http://"+ipAddressUsr.getText()+":4444";
+                ((Client)getApplicationContext()).getUniqueConnexion().setServerAddress(ipAddress);
+                ((Client)getApplicationContext()).getUniqueConnexion().initConnexion();
                 ((Client)getApplicationContext()).getUniqueConnexion().connecte();
                 Intent homeIntent = new Intent(MainActivity.this, MainNavigation.class);
                 /*Passer la variable ipAddress au Fragment Home (L'activity MainNavigation) */

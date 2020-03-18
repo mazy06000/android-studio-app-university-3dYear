@@ -20,7 +20,6 @@ public class Connexion {
 
     public Connexion(String serverAddress){
         this.serverAddress = serverAddress;
-        initConnexion();
     }
 
     public void initConnexion(){
@@ -31,7 +30,7 @@ public class Connexion {
             //serverAddress = "http://192.168.0.23:4444";
             /*Il y des problèmes de connection lorsqu'on utilise pas un émulateur*/
             /*Pour l'instant on redéfinit serverAddress*/
-            serverAddress = "http://10.0.2.2:4444";
+            //serverAddress = "http://10.0.2.2:4444";
             mSocket = IO.socket(serverAddress);
         } catch (URISyntaxException e) {
             e.printStackTrace();
