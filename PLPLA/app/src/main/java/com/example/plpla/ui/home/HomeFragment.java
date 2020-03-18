@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
             textView2.setVisibility(View.INVISIBLE);
             checkBox1.setVisibility(View.INVISIBLE);
             checkBox2.setVisibility(View.INVISIBLE);
-            Enregistrer.setVisibility(View.INVISIBLE);
+            Enregistrer.setVisibility(View.VISIBLE);
 
             /*Par défaut Enregistrer n'est pas cliquable*/
             Enregistrer.setClickable(false);
