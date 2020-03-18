@@ -34,8 +34,6 @@ import io.socket.client.Socket;
 public class SlideshowFragment extends Fragment {
 
     private SlideshowViewModel slideshowViewModel;
-    private String serverAdress;
-    private Socket socket;
     RecyclerView recyclerView;
 
     public static RecyclerAdapter getRecyclerAapter() {
@@ -49,45 +47,32 @@ public class SlideshowFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_recyclerview, container, false);
         setHasOptionsMenu(true);
-        /*Get the value of the ipAddress from the mainActivity*/
-        //serverAdress = getArguments().getString("url");
-        Log.d("SERVEUR", "Adresse du serveur :"+serverAdress);
-        socket = null;
-
 
         //////////////
         ArrayList<Matieres> okokokok=listesdesmatieres();
         ////////////////
-        try {
-            socket = IO.socket("http://10.0.2.2:4444");
-            exemple.add("electonique");
-            exemple.add("maths");
-            exemple.add("anglais");
-            exemple.add("histoire");
-            exemple.add("physique");
-            exemple.add("algo");
+        exemple.add("electonique");
+        exemple.add("maths");
+        exemple.add("anglais");
+        exemple.add("histoire");
+        exemple.add("physique");
+        exemple.add("algo");
 
 
-            recyclerView = root.findViewById(R.id.recyclerView);
-            //recyclerAapter=new RecyclerAdapter(exemple);
+        recyclerView = root.findViewById(R.id.recyclerView);
+        //recyclerAapter=new RecyclerAdapter(exemple);
 
 
-            ///////////////////////////////////////////////
-            recyclerAapter=new RecyclerAdapter(okokokok);
-            ///////////////////////////////////////////////
+        ///////////////////////////////////////////////
+        recyclerAapter=new RecyclerAdapter(okokokok);
+        ///////////////////////////////////////////////
 
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerView.setAdapter(recyclerAapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(recyclerAapter);
 
-            DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL);
-            recyclerView.addItemDecoration(dividerItemDecoration);
-
-
-            socket.connect();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
 
 

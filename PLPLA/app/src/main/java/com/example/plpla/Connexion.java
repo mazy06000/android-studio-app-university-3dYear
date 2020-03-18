@@ -25,6 +25,10 @@ public class Connexion {
 
     public void initConnexion(){
         try {
+            //Si vous utilisez l'emulateur, utilisez la ligne suivante
+            // serverAddress = "http://10.0.2.2:4444";
+            //Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)
+            //serverAddress = "http://192.168.0.23:4444";
             /*Il y des problèmes de connection lorsqu'on utilise pas un émulateur*/
             /*Pour l'instant on redéfinit serverAddress*/
             serverAddress = "http://10.0.2.2:4444";

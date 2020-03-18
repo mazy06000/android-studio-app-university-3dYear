@@ -49,18 +49,15 @@ public class ListenerButton implements View.OnClickListener{
                     activity.getCheckBox2().setVisibility(View.VISIBLE);
                     activity.getTextView1().setVisibility(View.VISIBLE);
                     activity.getTextView2().setVisibility(View.VISIBLE);
-                    activity.getEnregistrer().setVisibility(View.VISIBLE);
                     activity.getAccordeon().setText(R.string.deroulementMoins);
                     /*Le serveur ne semble pas recevoir l'event*/
                     ((Client)activity.getActivity().getApplicationContext()).getUniqueConnexion().envoyerEvent("touche");
-                    //socket.emit("touche");
                 }
                 else {
                     activity.getCheckBox1().setVisibility(View.INVISIBLE);
                     activity.getCheckBox2().setVisibility(View.INVISIBLE);
                     activity.getTextView1().setVisibility(View.INVISIBLE);
                     activity.getTextView2().setVisibility(View.INVISIBLE);
-                    activity.getEnregistrer().setVisibility(View.INVISIBLE);
                     activity.getAccordeon().setText(R.string.deroulementPlus);
                 }
                 break;

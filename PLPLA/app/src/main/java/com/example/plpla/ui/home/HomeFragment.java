@@ -32,10 +32,8 @@ public class HomeFragment extends Fragment {
 
     //private HomeViewModel homeViewModel;
     private Button bouton;
-    private String serverAdress;
     private CheckBox checkBox1;
 
-    private Button parcours;
     private CheckBox checkBox2;
     private TextView textView1;
     private TextView textView2;
@@ -54,15 +52,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //serverAdress = getArguments().getString("url");
-        Log.d("SERVEUR", "Adresse du serveur :"+serverAdress);
-        //socket = null;
-        //Si vous utilisez l'emulateur, utilisez la ligne suivante
-        //socket = IO.socket("http://10.0.2.2:4444");
-        //Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)
 
-        //socket = IO.socket("http://192.168.0.23:4444");
-        //socket = IO.socket(serverAdress);
         bouton = root.findViewById(R.id.BoutonSemestre);
         checkBox1 = root.findViewById(R.id.checkBoxEmplacement1);
         checkBox2 = root.findViewById(R.id.checkBoxEmplacement2);
