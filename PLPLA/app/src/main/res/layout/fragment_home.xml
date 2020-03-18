@@ -18,27 +18,28 @@
     <com.github.florent37.expansionpanel.ExpansionHeader
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:id="@+id/sampleHeader"
-        app:expansion_headerIndicator="@id/headerIndicator"
+        android:id="@+id/bouton_fondement"
         app:expansion_layout="@id/expansionLayout"
         app:expansion_toggleOnClick="true">
 
         <RelativeLayout
-            android:background="@android:color/white"
-            android:layout_height="48dp"
+            android:id="@+id/rrr"
             android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <TextView
-                android:layout_centerVertical="true"
-                android:layout_height="wrap_content"
+                android:id="@+id/text_fondement"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="@string/emplacement1S1"
                 android:textColor="#3E3E3E" />
 
-            <RadioButton
-                android:id="@+id/radioButton"
+            <CheckBox
+                android:id="@+id/radio_fondement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -86,34 +87,33 @@
 
 
     <com.github.florent37.expansionpanel.ExpansionHeader
-        android:layout_height="wrap_content"
+        android:id="@+id/bouton_methode"
         android:layout_width="match_parent"
-        android:id="@+id/sampleHeader2"
-        app:expansion_headerIndicator="@id/headerIndicator"
-        app:expansion_layout="@id/expansionLayout"
+        android:layout_height="wrap_content"
+        app:expansion_layout="@id/expansionLayout2"
         app:expansion_toggleOnClick="true">
 
         <RelativeLayout
-            android:background="@android:color/white"
-            android:layout_height="48dp"
             android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <TextView
-                android:layout_centerVertical="true"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="@string/emplacement2S1"
+                android:id="@+id/text_methode"
                 android:textColor="#3E3E3E" />
 
-            <RadioButton
-                android:id="@+id/radioButton2"
+            <CheckBox
+                android:id="@+id/radio_methode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                />
+                android:layout_centerVertical="true" />
 
             <!--<androidx.appcompat.widget.AppCompatImageView
                 android:adjustViewBounds="true"
@@ -152,6 +152,101 @@
 
     </com.github.florent37.expansionpanel.ExpansionLayout>
 
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/header_enjeux"
+        app:expansion_layout="@id/expansionLayout"
+        app:expansion_toggleOnClick="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/white"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/text_enjeux"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/enjeux"
+                android:textColor="#3E3E3E" />
+
+            <CheckBox
+                android:id="@+id/checkbox_enjeux"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:checked="true"
+                android:enabled="false"
+
+                />
+
+            <!--<androidx.appcompat.widget.AppCompatImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/headerIndicator"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+        </RelativeLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/header_competence"
+        app:expansion_layout="@id/expansionLayout"
+        app:expansion_toggleOnClick="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/white"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/text_competence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/competences"
+                android:textColor="#3E3E3E" />
+
+            <CheckBox
+                android:id="@+id/checkbox_competence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:checked="true"
+                android:enabled="false"
+
+                />
+
+            <!--<androidx.appcompat.widget.AppCompatImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/headerIndicator"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+        </RelativeLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
     <Button
         android:id="@+id/Enregistrer"
         android:layout_width="195dp"
