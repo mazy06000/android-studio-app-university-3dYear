@@ -58,10 +58,9 @@ public class HomeFragment extends Fragment {
         Log.d("SERVEUR", "Adresse du serveur :"+serverAdress);
         socket = null;
         try {
-//Si vous utilisez l'emulateur, utilisez la ligne suivante
-
+            //Si vous utilisez l'emulateur, utilisez la ligne suivante
             socket = IO.socket("http://10.0.2.2:4444");
-//Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)
+            //Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)
 
             //socket = IO.socket("http://192.168.0.23:4444");
             //socket = IO.socket(serverAdress);
@@ -72,10 +71,16 @@ public class HomeFragment extends Fragment {
             textView2 = root.findViewById(R.id.emplacement2S1);
             accordeon = root.findViewById(R.id.accordeonsPlus);
             Enregistrer = root.findViewById(R.id.Enregistrer);
-            parcours = root.findViewById(R.id.parcours_button);
 
+            /*On les mets Invisibles ici pour faciliter les design*/
+            textView1.setVisibility(View.INVISIBLE);
+            textView2.setVisibility(View.INVISIBLE);
+            checkBox1.setVisibility(View.INVISIBLE);
+            checkBox2.setVisibility(View.INVISIBLE);
+            Enregistrer.setVisibility(View.INVISIBLE);
 
-
+            /*Par défaut Enregistrer n'est pas cliquable*/
+            Enregistrer.setClickable(false);
 
 
             ListenerButton listenerButton = new ListenerButton(socket,this);

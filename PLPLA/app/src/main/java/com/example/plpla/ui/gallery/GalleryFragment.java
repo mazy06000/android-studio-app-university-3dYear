@@ -114,8 +114,6 @@ public class GalleryFragment extends Fragment {
             e.printStackTrace();
         }
 
-
-
         return root;
     }
 }
