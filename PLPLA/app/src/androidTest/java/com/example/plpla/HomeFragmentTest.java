@@ -35,7 +35,7 @@ public class HomeFragmentTest {
 
 
     @Test
-    public void afficheCheckBox(){
+    public void afficheCheckBox(){ 
 
         Intent startIntent = new Intent();
         mActivityRule.launchActivity(startIntent);
