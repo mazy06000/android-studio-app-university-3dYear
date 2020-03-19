@@ -34,7 +34,7 @@ public class ListenerCheckBox implements View.OnClickListener {
                 if (checked) {
                     Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextFondement().getText());
                     //activity.getCheckBox2().setClickable(false);
-                    activity.getExpansionFondement().expand(true);
+                    activity.getExpansionFondement().toggle(true);
                     activity.getExpansionMethode().setEnabled(false);
                     activity.getRadioMethode().setEnabled(false);
                     activity.getEnregistrer().setEnabled(true);
@@ -43,7 +43,7 @@ public class ListenerCheckBox implements View.OnClickListener {
                 else {
                     Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextFondement().getText());
                     //activity.getCheckBox2().setClickable(true);
-                    activity.getExpansionFondement().expand(false);
+                    activity.getExpansionFondement().toggle(true);
                     activity.getExpansionMethode().setEnabled(true);
                     activity.getRadioMethode().setEnabled(true);
                     activity.getEnregistrer().setEnabled(false);
@@ -55,16 +55,16 @@ public class ListenerCheckBox implements View.OnClickListener {
                 if (checked){
                     Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextMethode().getText());
                     //activity.getCheckBox1().setClickable(false);
-                    activity.getExpansionMethode().expand(true);
+                    activity.getExpansionMethode().toggle(true);
                     activity.getExpansionFondement().setEnabled(false);
-                    activity.getRadioMethode().setEnabled(false);
+                    activity.getRadioFondement().setEnabled(false);
                     activity.getEnregistrer().setEnabled(true);
                     activity.getSelectionItem().add(activity.getTextMethode().getText().toString());
                 }
                 else {
                     Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextMethode().getText());
                     //activity.getCheckBox1().setClickable(true);
-                    activity.getExpansionMethode().expand(false);
+                    activity.getExpansionMethode().toggle(true);
                     activity.getRadioFondement().setEnabled(true);
                     activity.getExpansionFondement().setEnabled(true);
                     activity.getEnregistrer().setEnabled(false);

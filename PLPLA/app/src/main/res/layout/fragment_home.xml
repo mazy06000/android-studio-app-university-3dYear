@@ -157,7 +157,7 @@
         android:layout_width="match_parent"
         android:id="@+id/header_enjeux"
         app:expansion_layout="@id/expansionLayout"
-        app:expansion_toggleOnClick="true">
+        app:expansion_toggleOnClick="false">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -205,7 +205,7 @@
         android:layout_width="match_parent"
         android:id="@+id/header_competence"
         app:expansion_layout="@id/expansionLayout"
-        app:expansion_toggleOnClick="true">
+        app:expansion_toggleOnClick="false">
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
                 Log.d("Bouton enregistrer", "Parcours enregistre");
-                if (!radioFondement.isChecked()){
+                if ((radioFondement.isChecked() && expansionFondement.isExpanded()) || (!radioFondement.isChecked() && expansionFondement.isExpanded())){
                     radioFondement.setChecked(true);
                     radioMethode.setEnabled(false);
                     expansionMethode.setEnabled(false);
@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
                 Log.d("Bouton enregistrer", "Parcours enregistre");
-                if (!radioMethode.isChecked()){
+                if ((radioMethode.isChecked() && expansionMethode.isExpanded()) || (!radioMethode.isChecked() && expansionMethode.isExpanded())){
                     radioMethode.setChecked(true);
                     radioFondement.setEnabled(false);
                     expansionFondement.setEnabled(false);
