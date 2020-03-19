@@ -22,6 +22,7 @@ import com.example.plpla.CourseActivity;
 import com.example.plpla.R;
 import com.example.plpla.controleur.ListenerButton;
 import com.example.plpla.controleur.ListenerCheckBox;
+import com.github.florent37.expansionpanel.ExpansionHeader;
 import com.github.florent37.expansionpanel.ExpansionLayout;
 
 import java.net.URISyntaxException;
@@ -44,6 +45,8 @@ public class HomeFragment extends Fragment {
     private Button Enregistrer ;
     private ExpansionLayout expansionFondement;
     private ExpansionLayout expansionMethode;
+    private ExpansionHeader boutonMethode;
+    private ExpansionHeader boutonFondement;
 
     public static ArrayList<String> getSelectionItem() {
         return selectionItem;
@@ -67,6 +70,8 @@ public class HomeFragment extends Fragment {
         expansionFondement = root.findViewById(R.id.expansionLayout);
         expansionMethode = root.findViewById(R.id.expansionLayout2);
         Enregistrer = root.findViewById(R.id.Enregistrer);
+        boutonMethode = root.findViewById(R.id.bouton_methode);
+        boutonFondement = root.findViewById(R.id.bouton_fondement);
 
         /*Par défaut Enregistrer n'est pas cliquable*/
         Enregistrer.setClickable(false);
@@ -84,13 +89,15 @@ public class HomeFragment extends Fragment {
                 if ((radioFondement.isChecked() && expansionFondement.isExpanded()) || (!radioFondement.isChecked() && expansionFondement.isExpanded())){
                     radioFondement.setChecked(true);
                     radioMethode.setEnabled(false);
-                    expansionMethode.setEnabled(false);
+                    boutonMethode.setEnabled(false);
+                    Enregistrer.setEnabled(true);
                     selectionItem.add(textFondement.getText().toString());
                     }
                 else {
                     radioFondement.setChecked(false);
                     radioMethode.setEnabled(true);
-                    expansionMethode.setEnabled(true);
+                    boutonMethode.setEnabled(true);
+                    Enregistrer.setEnabled(false);
                     selectionItem.remove(textFondement.getText().toString());
                     }
                 }});
@@ -102,13 +109,15 @@ public class HomeFragment extends Fragment {
                 if ((radioMethode.isChecked() && expansionMethode.isExpanded()) || (!radioMethode.isChecked() && expansionMethode.isExpanded())){
                     radioMethode.setChecked(true);
                     radioFondement.setEnabled(false);
-                    expansionFondement.setEnabled(false);
+                    boutonFondement.setEnabled(false);
+                    Enregistrer.setEnabled(true);
                     selectionItem.add(textMethode.getText().toString());
                     }
                 else {
                     radioMethode.setChecked(false);
                     radioFondement.setEnabled(true);
-                    expansionFondement.setEnabled(true);
+                    boutonFondement.setEnabled(true);
+                    Enregistrer.setEnabled(false);
                     selectionItem.remove(textMethode.getText().toString());
                     }
                 }});
