@@ -14,12 +14,17 @@ public class Connexion {
         return serverAddress;
     }
 
+    public Socket getmSocket() {
+        return mSocket;
+    }
+
+
     public void setServerAddress(String serverAddress) {
         this.serverAddress = serverAddress;
     }
 
-    public Connexion(String serverAddress){
-        this.serverAddress = serverAddress;
+    public Connexion(){
+
     }
 
     public void initConnexion(){
@@ -38,6 +43,7 @@ public class Connexion {
     }
 
     public void connecte(){
+        System.out.println("--Connexion au server--");
         mSocket.connect();
     }
 
@@ -48,4 +54,5 @@ public class Connexion {
     public void deconnecte(){
         if (mSocket != null) mSocket.disconnect();
     }
+
 }

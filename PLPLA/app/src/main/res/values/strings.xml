@@ -32,6 +32,8 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="Portail">Portail</string>
+    <string name="connect">Vous êtes connecté au serveur.</string>
+    <string name="connect_erreur">Erreur lors de la connexion, Vous n\'êtes pas connecté</string>
     <string name="Profil">Mon Profil</string>
     <string name="Nom">Ben Abdelkrim</string>
     <string name="Prenom">Mohamed</string>

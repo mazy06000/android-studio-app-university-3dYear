@@ -25,33 +25,39 @@ public class Serveur {
         this.server = server;
         this.listUE = listUE;
         this.dict_UE = dict_UE;
+        this.listUsers = new ArrayList<User>();
 
         // on accept une connexion
         this.server.addConnectListener(new ConnectListener() {
             public void onConnect(SocketIOClient socketIOClient) {
-                System.out.println("connexion de "+socketIOClient.getRemoteAddress());
-
-
+                System.out.println("Connexion de "+socketIOClient.getRemoteAddress());
+                /* @TODO A faire evoluer*/
+                listUsers.add(0,new User());
+                System.out.println(listUsers);
             }
         });
 
         this.server.addEventListener("Save", String.class, new DataListener<String>() {
             @Override
-            public void onData(SocketIOClient socketIOClient, String s, AckRequest ackRequest) throws Exception {
-                traitement(socketIOClient, s);
+            public void onData(SocketIOClient socketIOClient, String code_choix_matière, AckRequest ackRequest) throws Exception {
+                save_code(socketIOClient, code_choix_matière);
             }
         });
     }
 
-    protected void traitement(SocketIOClient socketIOClient, String choix_matière) {
-        System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre : "+ choix_matière);
+    protected void save_code(SocketIOClient socketIOClient, String code_choix_matière) {
+        System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre : "+ code_choix_matière);
+        UE ue = dict_UE.get(code_choix_matière);
+        listUsers.get(0).getListe_choix().add(ue);
+        System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
+        socketIOClient.sendEvent("Saved");
     }
 
 
     public static final void main(String[] args) {
         Configuration configuration = new Configuration();
         configuration.setHostname("localhost");
-        configuration.setPort(4444);
+        configuration.setPort(4445);
 
         /*Création du serveur*/
         SocketIOServer server = new SocketIOServer(configuration);

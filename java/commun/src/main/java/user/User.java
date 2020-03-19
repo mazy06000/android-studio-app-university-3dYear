@@ -43,7 +43,7 @@ public class User {
         this.address_ip = address_ip;
     }
 
-    /* A faire évoluer*/
+    /* @TODO A faire évoluer*/
     public User(){
         this.Nom = "Nom Par défaut";
         this.prenom = "prenom Par défaut";

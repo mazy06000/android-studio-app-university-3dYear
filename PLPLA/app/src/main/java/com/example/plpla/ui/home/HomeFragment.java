@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
     }
 
     private static ArrayList<String> selectionItem = new ArrayList<>();
+    private ArrayList<String> selectionCode = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
