@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.example.plpla.ui.tools.ToolsFragment"
+        android:name="com.example.plpla.ui.tools.ProfilFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 

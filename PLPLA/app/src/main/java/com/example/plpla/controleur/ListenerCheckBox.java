@@ -34,20 +34,20 @@ public class ListenerCheckBox implements View.OnClickListener {
                 if (checked) {
                     Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextFondement().getText());
                     //activity.getCheckBox2().setClickable(false);
-                    activity.getExpansionFondement().expand(true);
-                    activity.getExpansionMethode().setEnabled(false);
+                    activity.getExpansionFondement().toggle(true);
+                    /*activity.getExpansionMethode().setEnabled(false);
                     activity.getRadioMethode().setEnabled(false);
                     activity.getEnregistrer().setEnabled(true);
-                    activity.getSelectionItem().add(activity.getTextFondement().getText().toString());
+                    activity.getSelectionItem().add(activity.getTextFondement().getText().toString());*/
                 }
                 else {
                     Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextFondement().getText());
                     //activity.getCheckBox2().setClickable(true);
-                    activity.getExpansionFondement().expand(false);
-                    activity.getExpansionMethode().setEnabled(true);
+                    activity.getExpansionFondement().toggle(true);
+                    /*activity.getExpansionMethode().setEnabled(true);
                     activity.getRadioMethode().setEnabled(true);
                     activity.getEnregistrer().setEnabled(false);
-                    activity.getSelectionItem().remove(activity.getTextFondement().getText().toString());
+                    activity.getSelectionItem().remove(activity.getTextFondement().getText().toString());*/
                 }
                 break;
 
@@ -55,20 +55,20 @@ public class ListenerCheckBox implements View.OnClickListener {
                 if (checked){
                     Log.d("CHECKBOX", "Checkbox cochée : "+activity.getTextMethode().getText());
                     //activity.getCheckBox1().setClickable(false);
-                    activity.getExpansionMethode().expand(true);
-                    activity.getExpansionFondement().setEnabled(false);
-                    activity.getRadioMethode().setEnabled(false);
+                    activity.getExpansionMethode().toggle(true);
+               /*     activity.getExpansionFondement().setEnabled(false);
+                    activity.getRadioFondement().setEnabled(false);
                     activity.getEnregistrer().setEnabled(true);
-                    activity.getSelectionItem().add(activity.getTextMethode().getText().toString());
+                    activity.getSelectionItem().add(activity.getTextMethode().getText().toString());*/
                 }
                 else {
                     Log.d("CHECKBOX", "Checkbox décochée : "+activity.getTextMethode().getText());
                     //activity.getCheckBox1().setClickable(true);
-                    activity.getExpansionMethode().expand(false);
-                    activity.getRadioFondement().setEnabled(true);
+                    activity.getExpansionMethode().toggle(true);
+               /*     activity.getRadioFondement().setEnabled(true);
                     activity.getExpansionFondement().setEnabled(true);
                     activity.getEnregistrer().setEnabled(false);
-                    activity.getSelectionItem().remove(activity.getTextMethode().getText().toString());
+                    activity.getSelectionItem().remove(activity.getTextMethode().getText().toString());*/
                 }
                 break;
         }
