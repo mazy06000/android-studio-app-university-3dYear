@@ -39,8 +39,7 @@
     <string name="Prenom">Mohamed</string>
     <string name="Mail">Mail</string>
     <string name="Modifier">Modifier</string>
-
-
+    <string name="saved_on_server">Le serveur a bien enregistré vos choix</string>
 
 
 </resources>

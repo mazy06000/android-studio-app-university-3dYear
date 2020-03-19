@@ -84,7 +84,9 @@ public class ListenerButton implements View.OnClickListener{
                     e.printStackTrace();
                 }
 
-                ((Client)activity.getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("Save", final_selection);
+                for (String code_ue: activity.getSelectionCode()) {
+                    ((Client)activity.getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("Save", code_ue);
+                }
 
 
 
