@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         ipAddressUsr.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
 
 
-        /*Passe à l'activity Home*/
+        /*Passe au Fragment Home (L'activity MainNavigation) */
         passeAHome();
     }
 
@@ -56,8 +56,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ipAddress = "http://"+ipAddressUsr.getText()+":4444";
+                ((Client)getApplicationContext()).getUniqueConnexion().setServerAddress(ipAddress);
+                ((Client)getApplicationContext()).getUniqueConnexion().initConnexion();
+                ((Client)getApplicationContext()).getUniqueConnexion().connecte();
                 Intent homeIntent = new Intent(MainActivity.this, MainNavigation.class);
-                /*Passer la variable ipAddress à l'activity Home*/
+                /*Passer la variable ipAddress au Fragment Home (L'activity MainNavigation) */
                 homeIntent.putExtra("url", ipAddress);
                 startActivity(homeIntent);
                 finish();

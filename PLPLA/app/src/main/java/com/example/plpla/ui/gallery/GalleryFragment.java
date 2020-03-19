@@ -32,10 +32,7 @@ import io.socket.client.Socket;
 public class GalleryFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
-    private String serverAdress;
-
     private TextView monParcours;
-    private Socket socket;
     private Button reinitialiser;
     private static final String FILE_NAME = "parcours.txt";
     private TextView finalText;
@@ -47,27 +44,16 @@ public class GalleryFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_course, container, false);
 
-        /*Get the value of the ipAddress from the mainActivity*/
-        //serverAdress = getArguments().getString("url");
-        Log.d("SERVEUR", "Adresse du serveur :"+serverAdress);
-        socket = null;
+        monParcours = root.findViewById(R.id.monParcours);
+        parcoursVide = root.findViewById(R.id.parcours_vide);
+        finalText = root.findViewById(R.id.parcours_final);
+        reinitialiser = root.findViewById(R.id.reinitialiser_button);
+
+        //VISIBILITE PAR DEFAUT
+        finalText.setVisibility(View.INVISIBLE);
+        parcoursVide.setVisibility(View.VISIBLE);
+        reinitialiser.setEnabled(false);
         try {
-            /*Si vous utilisez l'emulateur, utilisez la ligne suivante*/
-            socket = IO.socket("http://10.0.2.2:4444");
-            /*Sinon remplacez par l'addresse IP de votre serveur (votre pc normalement)*/
-            //socket = IO.socket("http://192.168.0.23:4444");
-            //socket = IO.socket(serverAdress);
-
-            monParcours = root.findViewById(R.id.monParcours);
-            parcoursVide = root.findViewById(R.id.parcours_vide);
-            finalText = root.findViewById(R.id.parcours_final);
-            reinitialiser = root.findViewById(R.id.reinitialiser_button);
-
-            //VISIBILITE PAR DEFAUT
-            finalText.setVisibility(View.INVISIBLE);
-            parcoursVide.setVisibility(View.VISIBLE);
-            reinitialiser.setEnabled(false);
-
             //Afficher le parcours enregistré
             if (!HomeFragment.getSelectionItem().isEmpty()) {
                 reinitialiser.setEnabled(true);
@@ -103,19 +89,12 @@ public class GalleryFragment extends Fragment {
             });
 
 
-            socket.connect();
 
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
         return root;
     }
 }
