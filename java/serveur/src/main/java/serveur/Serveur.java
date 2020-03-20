@@ -30,10 +30,9 @@ public class Serveur {
         // on accept une connexion
         this.server.addConnectListener(new ConnectListener() {
             public void onConnect(SocketIOClient socketIOClient) {
-                System.out.println("Connexion de "+socketIOClient.getRemoteAddress());
                 /* @TODO A faire evoluer*/
-                listUsers.add(0,new User());
-                System.out.println(listUsers);
+                listUsers.add(0,new User(""+socketIOClient.getRemoteAddress()));
+                System.out.println("Connexion de "+listUsers.get(0).getAddress_ip());
             }
         });
 
@@ -43,10 +42,22 @@ public class Serveur {
                 save_code(socketIOClient, code_choix_matière);
             }
         });
+
+        this.server.addEventListener("INIT_PARCOURS", String.class, new DataListener<String>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, String s, AckRequest ackRequest) throws Exception {
+                listUsers.get(0).getListe_choix().clear();
+                System.out.println("Parcours réinitialisé pour "+socketIOClient.getRemoteAddress());
+                socketIOClient.sendEvent("INIT_PARCOURS");
+            }
+        });
+
     }
 
+
+
     protected void save_code(SocketIOClient socketIOClient, String code_choix_matière) {
-        System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre : "+ code_choix_matière);
+        System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre l'UE de code : "+ code_choix_matière);
         UE ue = dict_UE.get(code_choix_matière);
         listUsers.get(0).getListe_choix().add(ue);
         System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
@@ -57,7 +68,7 @@ public class Serveur {
     public static final void main(String[] args) {
         Configuration configuration = new Configuration();
         configuration.setHostname("localhost");
-        configuration.setPort(4445);
+        configuration.setPort(4444);
 
         /*Création du serveur*/
         SocketIOServer server = new SocketIOServer(configuration);
@@ -80,9 +91,11 @@ public class Serveur {
     private static ArrayList<UE> initListeUE(){
         UE ueMath1 = new UE("SPUM13", "MATHS", "Complément 1", 1,6,100);
         UE ueMath2 = new UE("SPUM12", "MATHS", "Méthodes - approche continue", 1,6,280);
+        UE ueMath3 = new UE("SPUM14", "MATHS", "Fondement 1", 1,6,100);
         ArrayList<UE> listUE = new ArrayList<>();
         listUE.add(ueMath1);
         listUE.add(ueMath2);
+        listUE.add(ueMath3);
         return listUE;
     }
 

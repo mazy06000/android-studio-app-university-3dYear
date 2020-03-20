@@ -8,6 +8,7 @@ public class User {
     private String Nom;
     private String prenom;
     private String address_ip;
+    private ArrayList<UE> liste_choix;
 
     public ArrayList<UE> getListe_choix() {
         return liste_choix;
@@ -16,8 +17,6 @@ public class User {
     public void setListe_choix(ArrayList<UE> liste_choix) {
         this.liste_choix = liste_choix;
     }
-
-    private ArrayList<UE> liste_choix;
 
     public String getNom() {
         return Nom;
@@ -43,10 +42,19 @@ public class User {
         this.address_ip = address_ip;
     }
 
-    /* @TODO A faire évoluer*/
     public User(){
         this.Nom = "Nom Par défaut";
         this.prenom = "prenom Par défaut";
+        this.address_ip = "";
+        this.liste_choix = new ArrayList<UE>();
+    }
+
+    /* @TODO A faire évoluer*/
+    public User(String address_ip){
+        this.Nom = "Nom Par défaut";
+        this.prenom = "prenom Par défaut";
+        this.address_ip = address_ip;
+        this.liste_choix = new ArrayList<UE>();
     }
 
 }
