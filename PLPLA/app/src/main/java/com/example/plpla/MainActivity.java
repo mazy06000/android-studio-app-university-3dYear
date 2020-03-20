@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         nextActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ipAddress = "http://"+ipAddressUsr.getText()+":4445";
+                ipAddress = "http://"+ipAddressUsr.getText()+":4444";
                 ((Client)getApplicationContext()).getUniqueConnexion().setServerAddress(ipAddress);
                 ((Client)getApplicationContext()).getUniqueConnexion().initConnexion();
                 ((Client)getApplicationContext()).getUniqueConnexion().connecte();

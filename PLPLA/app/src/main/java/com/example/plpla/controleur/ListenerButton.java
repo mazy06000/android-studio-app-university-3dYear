@@ -85,6 +85,7 @@ public class ListenerButton implements View.OnClickListener{
                 }
 
                 for (String code_ue: activity.getSelectionCode()) {
+                    Log.d("SAVE_SERVER", "Envoie de la matière de code "+code_ue+ " au serveur pour enregistrement");
                     ((Client)activity.getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("Save", code_ue);
                 }
 
