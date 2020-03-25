@@ -12,7 +12,7 @@
     <string name="Enregistrer">Enregistrer</string>
     <string name="close">Close</string>
     <string name="open">Open</string>
-    <string name="reinitialiser">Réinitialiser</string>
+    <string name="reinitialiser">Parcours réinitialiser</string>
     <string name="parcoursvide">Aucun parcours enregistré</string>
     <string name="title_activity_main_navigation">mainNavigation</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
