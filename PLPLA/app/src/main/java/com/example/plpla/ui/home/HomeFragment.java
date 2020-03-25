@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.plpla.Client;
+import com.example.plpla.ComposantPortail;
 import com.example.plpla.CourseActivity;
 import com.example.plpla.R;
 import com.example.plpla.controleur.ListenerButton;
@@ -36,20 +38,29 @@ import io.socket.emitter.Emitter;
 
 public class HomeFragment extends Fragment {
 
-    //private HomeViewModel homeViewModel;
+    //COMPOSANT DU LAYOUT
+
+    private ComposantPortail blocFondement, blocMethode, choixGeo, ueGeo1, ueGeo2, ueDisciplinaire1, choixInfo,
+            ueWeb, ueBase, choixFondementS1,  ueComplement, ueMethode, choixSV, ueGenetique, ueOrganique,
+            ueChimieS1, ueElectroniqueS1, ueMIASH, choixEcueMIASH, uePhysique, ueTerre;
+
+
+
+
+
+
+    //BOUTONS
+    private Button Enregistrer ;
+
+
+    //TEXTS
     private String serverAdress;
-    private CheckBox radioFondement;
-    private CheckBox radioMethode;
-    private TextView textFondement;
-    private TextView textMethode;
+
+    //CONNEXION
+    private Socket socket;
     private TextView textEnjeux;
     private TextView textCompetence;
-    private Socket socket;
-    private Button Enregistrer ;
-    private ExpansionLayout expansionFondement;
-    private ExpansionLayout expansionMethode;
-    private ExpansionHeader boutonMethode;
-    private ExpansionHeader boutonFondement;
+
 
     public static ArrayList<String> getSelectionItem() {
         return selectionItem;
@@ -67,18 +78,42 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
 
+        blocFondement = new ComposantPortail(root.findViewById(R.id.bouton_fondement),root.findViewById(R.id.expansionLayout),
+                root.findViewById(R.id.text_fondement),root.findViewById(R.id.radio_fondement),null);
+        blocMethode = new ComposantPortail(root.findViewById(R.id.bouton_methode),root.findViewById(R.id.expansionLayout2),
+                root.findViewById(R.id.text_methode),root.findViewById(R.id.radio_methode),null);
+        choixGeo = new ComposantPortail(root.findViewById(R.id.bouton_geo1),root.findViewById(R.id.expansionGeo),
+                root.findViewById(R.id.text_geo), null, root.findViewById(R.id.headerIndicator));
+        ueGeo1 = new ComposantPortail(root.findViewById(R.id.bouton_geo1),null,
+                root.findViewById(R.id.text_geo1),root.findViewById(R.id.checkbox_geo1),null);
+        ueGeo2 = new ComposantPortail(root.findViewById(R.id.bouton_geo2),null,
+                root.findViewById(R.id.text_geo2),root.findViewById(R.id.checkbox_geo2),null);
+        ueDisciplinaire1 = new ComposantPortail();
+        choixInfo = new ComposantPortail();
+        ueWeb = new ComposantPortail();
+        ueBase = new ComposantPortail();
+        choixFondementS1 = new ComposantPortail();
+        ueComplement = new ComposantPortail();
+        ueMethode = new ComposantPortail();
+        choixSV = new ComposantPortail();
+        ueGenetique = new ComposantPortail();
+        ueOrganique = new ComposantPortail();
+        ueChimieS1 = new ComposantPortail();
+        ueElectroniqueS1 = new ComposantPortail();
+        ueMIASH = new ComposantPortail();
+        choixEcueMIASH = new ComposantPortail();
+        uePhysique = new ComposantPortail();
+        ueTerre = new ComposantPortail();
 
-        radioFondement = root.findViewById(R.id.radio_fondement);
-        radioMethode = root.findViewById(R.id.radio_methode);
-        textFondement = root.findViewById(R.id.text_fondement);
-        textMethode = root.findViewById(R.id.text_methode);
+
+        //BOUTONS
+        Enregistrer = root.findViewById(R.id.Enregistrer);
+
+
+        //TEXTS
         textEnjeux = root.findViewById(R.id.text_enjeux);
         textCompetence = root.findViewById(R.id.text_competence);
-        expansionFondement = root.findViewById(R.id.expansionLayout);
-        expansionMethode = root.findViewById(R.id.expansionLayout2);
-        Enregistrer = root.findViewById(R.id.Enregistrer);
-        boutonMethode = root.findViewById(R.id.bouton_methode);
-        boutonFondement = root.findViewById(R.id.bouton_fondement);
+
 
         /*Par défaut Enregistrer n'est pas cliquable*/
         Enregistrer.setClickable(false);
@@ -99,8 +134,32 @@ public class HomeFragment extends Fragment {
 
         ListenerButton listenerButton = new ListenerButton(socket,this);
         ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
+
+        //LISTENER
         radioFondement.setOnClickListener(listenerCheckBox);
         radioMethode.setOnClickListener(listenerCheckBox);
+        checkboxGeo1.setOnClickListener(listenerCheckBox);
+
+
+        boutonGeo1.addListener(new ExpansionLayout.Listener() {
+            @Override
+            public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
+                Log.d("Bouton enregistrer", "Parcours enregistre");
+                if (checkboxGeo1.isChecked()){
+                    Enregistrer.setEnabled(true);
+                    selectionItem.add(.getText().toString());
+                    selectionCode.add("SPUM14");
+                }
+                else {
+                    radioFondement.setChecked(false);
+                    radioMethode.setEnabled(true);
+                    boutonMethode.setEnabled(true);
+                    Enregistrer.setEnabled(false);
+                    selectionItem.remove(textFondement.getText().toString());
+                    selectionCode.remove("SPUM14");
+                }
+            }});
+
         expansionFondement.addListener(new ExpansionLayout.Listener() {
             @Override
             public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
@@ -122,6 +181,16 @@ public class HomeFragment extends Fragment {
                     selectionCode.remove("SPUM14");
                 }
                 }});
+
+
+        expansionGeo.addListener(new ExpansionLayout.Listener() {
+            @Override
+            public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
+                Log.d("Bouton enregistrer", "Parcours enregistre");
+                if (expansionGeo.isExpanded()) indicatorHeader.setRotation(90);
+                else indicatorHeader.setRotation(0);
+            }});
+
 
         expansionMethode.addListener(new ExpansionLayout.Listener() {
             @Override

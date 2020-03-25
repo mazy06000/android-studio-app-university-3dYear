@@ -71,6 +71,11 @@ public class ListenerCheckBox implements View.OnClickListener {
                     activity.getSelectionItem().remove(activity.getTextMethode().getText().toString());*/
                 }
                 break;
+
+            case R.id.checkbox_geo1:
+                if (checked){
+                    activity.().performClick();
+                }
         }
 
     }

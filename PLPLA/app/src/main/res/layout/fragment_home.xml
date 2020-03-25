@@ -15,15 +15,16 @@
         android:textAlignment="center"
         android:textSize="30dp" />
 
+    <!-- FONDEMENT HEADER-->
     <com.github.florent37.expansionpanel.ExpansionHeader
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/bouton_fondement"
-        app:expansion_layout="@id/expansionLayout"
+        app:expansion_layout="@id/expansionBlocFondement"
         app:expansion_toggleOnClick="true">
 
         <RelativeLayout
-            android:id="@+id/rrr"
+            android:id="@+id/bloc_fondement"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@android:color/white"
@@ -31,7 +32,7 @@
             android:paddingRight="16dp">
 
             <TextView
-                android:id="@+id/text_fondement"
+                android:id="@+id/text_bloc_fondement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -39,7 +40,7 @@
                 android:textColor="#3E3E3E" />
 
             <CheckBox
-                android:id="@+id/radio_fondement"
+                android:id="@+id/checkbox_bloc_fondement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -62,105 +63,15 @@
 
     </com.github.florent37.expansionpanel.ExpansionHeader>
 
+    <!-- FONDEMENT EXPANSION -->
     <com.github.florent37.expansionpanel.ExpansionLayout
-        android:id="@+id/expansionLayout"
-        app:expansion_expanded="false"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@android:color/white"
-            android:paddingLeft="22dp"
-            android:paddingRight="16dp">
-
-            <TextView
-                android:id="@+id/text_ue_fondement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/ue_fondement"
-                android:textColor="#3E3E3E" />
-
-            <CheckBox
-                android:id="@+id/checkbox_ue_fondement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:checked="true"
-                android:enabled="false"
-
-                />
-
-            <!--<androidx.appcompat.widget.AppCompatImageView
-                android:adjustViewBounds="true"
-                android:id="@+id/headerIndicator"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_width="wrap_content"
-                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
-
-        </RelativeLayout>
-
-    </com.github.florent37.expansionpanel.ExpansionLayout>
-
-
-    <com.github.florent37.expansionpanel.ExpansionHeader
-        android:id="@+id/bouton_methode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:expansion_layout="@id/expansionLayout2"
-        app:expansion_toggleOnClick="true">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@android:color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/emplacement2S1"
-                android:id="@+id/text_methode"
-                android:textColor="#3E3E3E" />
-
-            <CheckBox
-                android:id="@+id/radio_methode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
-
-            <!--<androidx.appcompat.widget.AppCompatImageView
-                android:adjustViewBounds="true"
-                android:id="@+id/headerIndicator"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_width="wrap_content"
-                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
-
-        </RelativeLayout>
-
-    </com.github.florent37.expansionpanel.ExpansionHeader>
-
-    <com.github.florent37.expansionpanel.ExpansionLayout
-        android:id="@+id/expansionLayout2"
+        android:id="@+id/expansionBlocFondement"
         app:expansion_expanded="false"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
         <LinearLayout
-            android:id="@+id/container2"
+            android:id="@+id/containerBlocFondement"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="vertical">
@@ -173,15 +84,15 @@
                 android:paddingRight="16dp">
 
                 <TextView
-                    android:id="@+id/text_ue_methode"
+                    android:id="@+id/textUeBlocFondement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/ue_methode"
+                    android:text="@string/ue_fondement"
                     android:textColor="#3E3E3E" />
 
                 <CheckBox
-                    android:id="@+id/checkbox_ue_methode"
+                    android:id="@+id/checkbox_ue_bloc_fondement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -189,6 +100,1825 @@
                     android:layout_marginLeft="16dp"
                     android:checked="true"
                     android:enabled="false"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+            <!-- GEO HEADER-->
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_choix_geo_BF"
+                app:expansion_layout="@id/expansionGeo_BF"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_geo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/ue_geo"
+                        android:textColor="#3E3E3E" />
+
+              <!--      <CheckBox
+                        android:id="@+id/checkbox_geo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        />-->
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicator"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- GEO EXPANSION -->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionGeo_BF"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerGeo_BF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_geo1_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_geo1_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_geo1"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_geo1_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_geo2_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_geo2_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_geo2"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_geo2_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_discipline1_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_discipline1_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_discipline1"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_discipline1_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            <!-- INFO HEADER-->
+
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_info_s1_BF"
+                app:expansion_layout="@id/expansionInfo_BF"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_info_s1_BF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/ue_info_s1"
+                        android:textColor="#3E3E3E" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicatorInfo"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- INFO EXPANSION-->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionInfo_BF"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerInfo_BF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_base_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_base_info_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_base_info"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_base_info_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_web_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_web_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_web"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_web_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            <!-- FONDEMENT S1 HEADER-->
+
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_fondement_s1_BF"
+                app:expansion_layout="@id/expansionFondement_BF"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_fondement_s1_BF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/ue_info_s1"
+                        android:textColor="#3E3E3E" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicatorFondement"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- FONDEMENT S1 EXPANSION-->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionFondement_BF"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerFondementS1_BF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_complement_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_complement_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_complement"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_complement_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_methode_supp_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_ue_methode_supp_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_methode"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_ue_methode_supp_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            <!-- FONDEMENT S1 HEADER-->
+
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_SV_BF"
+                app:expansion_layout="@id/expansionSV_BF"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_SV_BF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/choix_SV"
+                        android:textColor="#3E3E3E" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicatorSV"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- FONDEMENT S1 EXPANSION-->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionSV_BF"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerSV_BF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_genetique_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_genetique_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_genetique"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_genetique_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_organique_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_ue_organique_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_organique"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_ue_organique_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            <!-- UE CHIMIE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_chimie_BF"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_chimie_BF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_chimie"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_chimie_BF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+            <!-- UE ELECTRONIQUE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_electronique_BF"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_electronique_BF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_electronique"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_electronique_BF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+
+            <!-- MIASH S1 HEADER-->
+
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_miash_BF"
+                app:expansion_layout="@id/expansionMiash_BF"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_miash_BF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/choix_miash"
+                        android:textColor="#3E3E3E" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicatorMiash"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- MIASH S1 EXPANSION-->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionMiash_BF"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerMiash_BF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_culture_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_culture_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ecue_culture"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_culture_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_analyse_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_analyse_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ecue_analyse"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_ecue_analyse_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_macro_BF"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_macro_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ecue_macro"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_ecue_macro_BF"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+                            android:checked="true"
+                            android:enabled="false"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            <!-- UE PHYSIQUE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_physique_BF"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_physique_BF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_physique"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_physique_BF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+            <!-- UE TERRE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_terre_BF"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_terre_BF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_terre"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_terre_BF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+
+
+
+
+    <!-- METHODE HEADER-->
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/bouton_methode"
+        app:expansion_layout="@id/expansionBlocMethode"
+        app:expansion_toggleOnClick="true">
+
+        <RelativeLayout
+            android:id="@+id/bloc_methode"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/white"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/text_bloc_methode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/emplacement2S1"
+                android:textColor="#3E3E3E" />
+
+            <CheckBox
+                android:id="@+id/checkbox_bloc_methode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+
+                />
+
+            <!--<androidx.appcompat.widget.AppCompatImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/headerIndicator"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+        </RelativeLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <!-- FONDEMENT EXPANSION -->
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/expansionBlocMethode"
+        app:expansion_expanded="false"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:id="@+id/containerBlocMethode"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/textUeBlocMethode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_methode"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_bloc_methode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:checked="true"
+                    android:enabled="false"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+            <!-- GEO HEADER-->
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_choix_geo_BM"
+                app:expansion_layout="@id/expansionGeo_BF"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_geo_BM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/ue_geo"
+                        android:textColor="#3E3E3E" />
+
+                    <!--      <CheckBox
+                              android:id="@+id/checkbox_geo"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentRight="true"
+                              android:layout_centerVertical="true"
+                              android:layout_marginLeft="16dp"
+                              />-->
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicator_BM"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- GEO EXPANSION -->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionGeo_BM"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerGeo_BM"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_geo1_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_geo1_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_geo1"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_geo1_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_geo2_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_geo2_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_geo2"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_geo2_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_discipline1_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_discipline1_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_discipline1"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_discipline1_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            <!-- INFO HEADER-->
+
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_info_s1_BM"
+                app:expansion_layout="@id/expansionInfo_BF"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_info_s1_BM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/ue_info_s1"
+                        android:textColor="#3E3E3E" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicatorInfo_BM"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- INFO EXPANSION-->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionInfo_BM"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerInfo_BM"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_base_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_base_info_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_base_info"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_base_info_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_web_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_web_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_web"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_web_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+
+            <!-- SV HEADER-->
+
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_SV_BM"
+                app:expansion_layout="@id/expansionSV_BF"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_SV_BM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/choix_SV"
+                        android:textColor="#3E3E3E" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicatorSV_BM"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- SV EXPANSION-->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionSV_BM"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerSV_BM"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_genetique_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_genetique_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_genetique"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_genetique_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_organique_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_ue_organique_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ue_organique"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_ue_organique_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            <!-- UE CHIMIE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_chimie_BM"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_chimie_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_chimie"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_chimie_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+            <!-- UE ELECTRONIQUE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_electronique_BM"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_electronique_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_electronique"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_electronique_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+            <!-- UE FONDEMENT 1 -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_fondement_BM"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_fondement_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_fondement"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_fondement_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+            <!-- MIASH S1 HEADER-->
+
+            <com.github.florent37.expansionpanel.ExpansionHeader
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/bouton_miash_BM"
+                app:expansion_layout="@id/expansionMiash_BM"
+                app:expansion_toggleOnClick="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/text_miash_BM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/choix_miash"
+                        android:textColor="#3E3E3E" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicatorMiash_BM"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />
+
+                </RelativeLayout>
+            </com.github.florent37.expansionpanel.ExpansionHeader>
+
+            <!-- MIASH S1 EXPANSION-->
+            <com.github.florent37.expansionpanel.ExpansionLayout
+                android:id="@+id/expansionMiash_BM"
+                app:expansion_expanded="false"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/containerMiash_BM"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_culture_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_culture_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ecue_culture"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_culture_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_analyse_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_analyse_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ecue_analyse"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_ecue_analyse_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/bouton_macro_BM"
+                        android:background="@android:color/white"
+                        android:paddingLeft="28dp"
+                        android:paddingRight="16dp">
+
+                        <TextView
+                            android:id="@+id/text_macro_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/ecue_macro"
+                            android:textColor="#3E3E3E" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_ecue_macro_BM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+                            android:checked="true"
+                            android:enabled="false"
+
+                            />
+
+                        <!--<androidx.appcompat.widget.AppCompatImageView
+                            android:adjustViewBounds="true"
+                            android:id="@+id/headerIndicator"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            <!-- UE PHYSIQUE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_physique_BM"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_physique_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_physique"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_physique_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
+
+            <!-- UE TERRE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/bouton_terre_BM"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_terre_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_terre"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_terre_BM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
 
                     />
 
@@ -212,7 +1942,6 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/header_enjeux"
-        app:expansion_layout="@id/expansionLayout"
         app:expansion_toggleOnClick="false">
 
         <RelativeLayout
@@ -260,7 +1989,6 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/header_competence"
-        app:expansion_layout="@id/expansionLayout"
         app:expansion_toggleOnClick="false">
 
         <RelativeLayout
