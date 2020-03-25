@@ -24,6 +24,8 @@
     <string name="recherche">Recherche</string>
     <string name="enjeux">UE amenagements : Math enjeux 1</string>
     <string name="competences">UE Competences transversales</string>
+    <string name="ue_fondement">UE MATHS S1 : Fondements 1</string>
+    <string name="ue_methode">UE MATHS S1 : Methodes - approche continue</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

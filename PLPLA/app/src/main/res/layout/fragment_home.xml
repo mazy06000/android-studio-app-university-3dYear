@@ -68,20 +68,44 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
-        <LinearLayout
-            android:id="@+id/container"
-            android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:orientation="vertical">
+            android:layout_height="48dp"
+            android:background="@android:color/white"
+            android:paddingLeft="22dp"
+            android:paddingRight="16dp">
 
             <TextView
-                android:background="#EEE"
-                android:gravity="center"
-                android:layout_height="100dp"
-                android:layout_width="match_parent"
-                android:text="content" />
+                android:id="@+id/text_ue_fondement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/ue_fondement"
+                android:textColor="#3E3E3E" />
 
-        </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkbox_ue_fondement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:checked="true"
+                android:enabled="false"
+
+                />
+
+            <!--<androidx.appcompat.widget.AppCompatImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/headerIndicator"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+        </RelativeLayout>
 
     </com.github.florent37.expansionpanel.ExpansionLayout>
 
@@ -141,12 +165,44 @@
             android:layout_width="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:background="#EEE"
-                android:gravity="center"
-                android:layout_height="100dp"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:text="content" />
+                android:layout_height="48dp"
+                android:background="@android:color/white"
+                android:paddingLeft="22dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/text_ue_methode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/ue_methode"
+                    android:textColor="#3E3E3E" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_ue_methode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:checked="true"
+                    android:enabled="false"
+
+                    />
+
+                <!--<androidx.appcompat.widget.AppCompatImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/headerIndicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp" />-->
+
+            </RelativeLayout>
 
         </LinearLayout>
 
