@@ -16,6 +16,7 @@
     <string name="parcoursvide">Aucun parcours enregistré</string>
     <string name="chimieS1">Chimie S1</string>
     <string name="StructureMicroscopique">Structure Microscopique de la Matiere</string>
+    <string-array name=" "
 
     <string name="title_activity_main_navigation">mainNavigation</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
