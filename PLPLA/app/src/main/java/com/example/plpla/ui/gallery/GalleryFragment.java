@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.plpla.Client;
 import com.example.plpla.CourseActivity;
 import com.example.plpla.R;
 import com.example.plpla.ui.home.HomeFragment;
@@ -84,6 +85,8 @@ public class GalleryFragment extends Fragment {
                     finalText.setText("");
                     HomeFragment.getSelectionItem().clear();
                     Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
+                    Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
+                    ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
                     reinitialiser.setEnabled(false);
                 }
             });

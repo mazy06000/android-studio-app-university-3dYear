@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class Connexion {
 
@@ -14,12 +15,17 @@ public class Connexion {
         return serverAddress;
     }
 
+    public Socket getmSocket() {
+        return mSocket;
+    }
+
+
     public void setServerAddress(String serverAddress) {
         this.serverAddress = serverAddress;
     }
 
-    public Connexion(String serverAddress){
-        this.serverAddress = serverAddress;
+    public Connexion(){
+
     }
 
     public void initConnexion(){
@@ -32,12 +38,26 @@ public class Connexion {
             /*Pour l'instant on redéfinit serverAddress*/
             //serverAddress = "http://10.0.2.2:4444";
             mSocket = IO.socket(serverAddress);
+            mSocket.on("Saved", new Emitter.Listener() {
+                @Override
+                public void call(Object... args) {
+                    // @TODO faire afficher un message (Toast)
+                }
+            });
+
+            mSocket.on("INIT_PARCOURS", new Emitter.Listener() {
+                @Override
+                public void call(Object... args) {
+                   // @TODO faire afficher un message (Toast)
+                }
+            });
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
     }
 
     public void connecte(){
+        System.out.println("--Connexion au server--");
         mSocket.connect();
     }
 
@@ -48,4 +68,5 @@ public class Connexion {
     public void deconnecte(){
         if (mSocket != null) mSocket.disconnect();
     }
+
 }

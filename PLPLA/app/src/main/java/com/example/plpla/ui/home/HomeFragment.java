@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.plpla.Client;
 import com.example.plpla.CourseActivity;
 import com.example.plpla.R;
 import com.example.plpla.controleur.ListenerButton;
@@ -30,6 +32,7 @@ import java.util.ArrayList;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class HomeFragment extends Fragment {
 
@@ -53,7 +56,11 @@ public class HomeFragment extends Fragment {
     }
 
     private static ArrayList<String> selectionItem = new ArrayList<>();
+    private ArrayList<String> selectionCode = new ArrayList<>();
 
+    public ArrayList<String> getSelectionCode() {
+        return selectionCode;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +84,18 @@ public class HomeFragment extends Fragment {
         Enregistrer.setClickable(false);
         Enregistrer.setEnabled(false);
 
+        ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().on("Saved", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), R.string.saved_on_server, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
 
         ListenerButton listenerButton = new ListenerButton(socket,this);
         ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
@@ -92,6 +111,7 @@ public class HomeFragment extends Fragment {
                     boutonMethode.setEnabled(false);
                     Enregistrer.setEnabled(true);
                     selectionItem.add(textFondement.getText().toString());
+                    selectionCode.add("SPUM14");
                     }
                 else {
                     radioFondement.setChecked(false);
@@ -99,7 +119,8 @@ public class HomeFragment extends Fragment {
                     boutonMethode.setEnabled(true);
                     Enregistrer.setEnabled(false);
                     selectionItem.remove(textFondement.getText().toString());
-                    }
+                    selectionCode.remove("SPUM14");
+                }
                 }});
 
         expansionMethode.addListener(new ExpansionLayout.Listener() {
@@ -112,14 +133,16 @@ public class HomeFragment extends Fragment {
                     boutonFondement.setEnabled(false);
                     Enregistrer.setEnabled(true);
                     selectionItem.add(textMethode.getText().toString());
-                    }
+                    selectionCode.add("SPUM12");
+                }
                 else {
                     radioMethode.setChecked(false);
                     radioFondement.setEnabled(true);
                     boutonFondement.setEnabled(true);
                     Enregistrer.setEnabled(false);
                     selectionItem.remove(textMethode.getText().toString());
-                    }
+                    selectionCode.remove("SPUM12");
+                }
                 }});
         Enregistrer.setOnClickListener(listenerButton);
         return root;
