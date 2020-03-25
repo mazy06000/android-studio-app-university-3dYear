@@ -51,9 +51,14 @@
         android:textAlignment="textStart"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37" />
 
- <TextView
+    <TextView
         android:id="@+id/emplacement1S1"
         android:layout_width="390dp"
         android:layout_height="46dp"
@@ -68,8 +73,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.272"
-        android:visibility="visible"
-
         />
 
     <CheckBox
@@ -78,8 +81,6 @@
         android:layout_height="46dp"
         android:layout_marginEnd="52dp"
         android:buttonTint="#03A9F4"
-        android:visibility="visible"
-
         app:layout_constraintBottom_toBottomOf="@+id/emplacement1S1"
         app:layout_constraintEnd_toEndOf="@+id/emplacement1S1"
         app:layout_constraintHorizontal_bias="1.0"
@@ -98,74 +99,6 @@
         app:layout_constraintStart_toStartOf="@+id/emplacement2S1"
         app:layout_constraintTop_toTopOf="@+id/emplacement2S1"
         app:layout_constraintVertical_bias="0.0"
-        android:visibility="visible"
-
-        />
-
-
-    <Button
-        android:id="@+id/chimieS1"
-        style="@android:style/Widget.Material.Button"
-        android:layout_width="374dp"
-        android:layout_height="67dp"
-        android:fontFamily="serif"
-        android:text="@string/chimieS1"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
-
-    <TextView
-        android:id="@+id/accordeonsPlusChimie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="2in"
-        android:text="@string/deroulementPlus"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/chimieS1"
-        app:layout_constraintEnd_toEndOf="@+id/chimieS1"
-        app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintStart_toStartOf="@+id/chimieS1"
-        app:layout_constraintTop_toTopOf="@+id/chimieS1" />
-
-
-    <TextView
-        android:id="@+id/StructureMicroscopique"
-        android:layout_width="390dp"
-        android:layout_height="46dp"
-        android:background="#D6D7D7"
-        android:text="@string/StructureMicroscopique"
-        android:textAlignment="textStart"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.569" />
-    <CheckBox
-        android:id="@+id/checkBoxChimieStructMicro"
-        android:layout_width="34dp"
-        android:layout_height="46dp"
-        android:buttonTint="#03A9F4"
-        app:layout_constraintBottom_toBottomOf="@+id/StructureMicroscopique"
-        app:layout_constraintEnd_toEndOf="@+id/StructureMicroscopique"
-        app:layout_constraintHorizontal_bias="0.853"
-        app:layout_constraintStart_toStartOf="@+id/StructureMicroscopique"
-        app:layout_constraintTop_toTopOf="@+id/StructureMicroscopique"
-        app:layout_constraintVertical_bias="0.0"
-        android:visibility="visible"
-
         />
 
 
@@ -180,8 +113,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.941"
-        android:visibility="visible"
-
         />
 
     <Button
@@ -194,13 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="65dp"
-        tools:layout_editor_absoluteY="464dp" />
+        tools:visibility="invisible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
