@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.plpla.ui.home.HomeFragment"
+        android:name="com.example.plpla.ui.home.PortailFragment"
         android:label="@string/Portail"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.plpla.ui.gallery.GalleryFragment"
+        android:name="com.example.plpla.ui.gallery.ParcoursFragment"
         android:label="@string/parcours"
         tools:layout="@layout/fragment_gallery" />
 

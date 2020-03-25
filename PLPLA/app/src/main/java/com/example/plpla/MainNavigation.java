@@ -2,14 +2,7 @@ package com.example.plpla;
 
 import android.os.Bundle;
 
-import com.example.plpla.ui.gallery.GalleryFragment;
-import com.example.plpla.ui.home.HomeFragment;
-import com.example.plpla.ui.slideshow.SlideshowFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.MenuItem;
-import android.view.View;
+import com.example.plpla.ui.home.PortailFragment;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,11 +17,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.SearchView;
+import android.widget.Toast;
+
+
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class MainNavigation extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private Socket mSocket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +36,23 @@ public class MainNavigation extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Bundle extras = getIntent().getExtras();
-        HomeFragment homeFragment = new HomeFragment();
-        homeFragment.setArguments(extras);
+        PortailFragment portailFragment = new PortailFragment();
+        portailFragment.setArguments(extras);
 
-
+        Client client = (Client) getApplication();
+        mSocket = client.getUniqueConnexion().getmSocket();
+        mSocket.on("Saved", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                Toast.makeText(getApplicationContext(), R.string.saved_on_server, Toast.LENGTH_LONG);
+            }
+        });
+        mSocket.on("INIT_PARCOURS", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                Toast.makeText(getApplicationContext(), R.string.reinitialiser, Toast.LENGTH_LONG);
+            }
+        });
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

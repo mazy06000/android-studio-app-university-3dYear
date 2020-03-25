@@ -9,28 +9,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.plpla.Client;
-import com.example.plpla.CourseActivity;
 import com.example.plpla.R;
-import com.example.plpla.ui.home.HomeFragment;
+import com.example.plpla.ui.home.PortailFragment;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 
-import io.socket.client.IO;
-import io.socket.client.Socket;
-
-public class GalleryFragment extends Fragment {
+public class ParcoursFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
     private TextView monParcours;
@@ -56,7 +48,7 @@ public class GalleryFragment extends Fragment {
         reinitialiser.setEnabled(false);
         try {
             //Afficher le parcours enregistré
-            if (!HomeFragment.getSelectionItem().isEmpty()) {
+            if (!PortailFragment.getSelectionItem().isEmpty()) {
                 reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
 
@@ -83,8 +75,8 @@ public class GalleryFragment extends Fragment {
                     finalText.setVisibility(View.INVISIBLE);
                     parcoursVide.setVisibility(View.VISIBLE);
                     finalText.setText("");
-                    HomeFragment.getSelectionItem().clear();
-                    Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
+                    PortailFragment.getSelectionItem().clear();
+                    //Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
                     ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
                     reinitialiser.setEnabled(false);

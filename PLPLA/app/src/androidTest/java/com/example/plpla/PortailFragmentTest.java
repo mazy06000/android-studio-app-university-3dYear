@@ -28,7 +28,7 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 
 
-public class HomeFragmentTest {
+public class PortailFragmentTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
