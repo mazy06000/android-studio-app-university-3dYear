@@ -7,6 +7,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
+import events.EVENT;
 import matière.UE;
 import user.User;
 
@@ -36,19 +37,19 @@ public class Serveur {
             }
         });
 
-        this.server.addEventListener("Save", String.class, new DataListener<String>() {
+        this.server.addEventListener(EVENT.SAVE, String.class, new DataListener<String>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String code_choix_matière, AckRequest ackRequest) throws Exception {
                 save_code(socketIOClient, code_choix_matière);
             }
         });
 
-        this.server.addEventListener("INIT_PARCOURS", String.class, new DataListener<String>() {
+        this.server.addEventListener(EVENT.INIT_PARCOURS, String.class, new DataListener<String>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String s, AckRequest ackRequest) throws Exception {
                 listUsers.get(0).getListe_choix().clear();
                 System.out.println("Parcours réinitialisé pour "+socketIOClient.getRemoteAddress());
-                socketIOClient.sendEvent("INIT_PARCOURS");
+                socketIOClient.sendEvent(EVENT.INIT_PARCOURS);
             }
         });
 
@@ -61,7 +62,7 @@ public class Serveur {
         UE ue = dict_UE.get(code_choix_matière);
         listUsers.get(0).getListe_choix().add(ue);
         System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
-        socketIOClient.sendEvent("Saved");
+        socketIOClient.sendEvent(EVENT.SAVE);
     }
 
 
