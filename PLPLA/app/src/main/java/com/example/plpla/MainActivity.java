@@ -8,11 +8,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.text.InputFilter;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+import user.User;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -23,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private String ipAddress;
     private Button nextActivity;
     private EditText ipAddressUsr;
+
+    /*L'objet client qui existe pendant toute l'application*/
 
 
     @Override
@@ -35,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         ipAddressUsr.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
 
-
-        /*Passe à l'activity Home*/
+        /*Passe au Fragment Home (L'activity MainNavigation) */
         passeAHome();
     }
 
@@ -56,8 +63,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ipAddress = "http://"+ipAddressUsr.getText()+":4444";
+                ((Client)getApplicationContext()).getUniqueConnexion().setServerAddress(ipAddress);
+                ((Client)getApplicationContext()).getUniqueConnexion().initConnexion();
+                ((Client)getApplicationContext()).getUniqueConnexion().connecte();
+                ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), R.string.connect, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
                 Intent homeIntent = new Intent(MainActivity.this, MainNavigation.class);
-                /*Passer la variable ipAddress à l'activity Home*/
+                /*Passer la variable ipAddress au Fragment Home (L'activity MainNavigation) */
                 homeIntent.putExtra("url", ipAddress);
                 startActivity(homeIntent);
                 finish();

@@ -57,6 +57,9 @@ ___
 	
 ### *Iteration 6* : 
 
+*En priorité : *
+>*Intégrer les pré-requis pour la L3*
+>*Le client pourra continuer uniquement si les pré-requis sont valides*
 > - Le client pourra modifer ses anciens choix
 > - Le client pourra reprendre les choix deja effectués de son parcours pour une prochaine session (Après avoir quitté l'application).
 > - (Ajout de l'ensemble des matières du semestre 4 + UET.)
@@ -66,7 +69,7 @@ ___
 ___
 
 ### *Iteration 7* :
-
+> - Le client aura accès aux informations réelles et à jour (i.e sans avoir à mettre à jour l'application) à savoir les listes des cours, description des cours, « pré-requis » etc. 
 > - Le server enregistre les choix (prend en compte les modifications)
 > - `/*(Le client pourra choisir ses matières du s5??)*/`
 >

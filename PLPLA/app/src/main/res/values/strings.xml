@@ -22,10 +22,31 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">MohamedBenabdelkrim@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="recherche">Recherche</string>
+    <string name="enjeux">UE amenagements : Math enjeux 1</string>
+    <string name="competences">UE Competences transversales</string>
 
+<<<<<<< HEAD
+=======
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Mon Profil</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="Portail">Portail</string>
+    <string name="connect">Vous êtes connecté au serveur.</string>
+    <string name="connect_erreur">Erreur lors de la connexion, Vous n\'êtes pas connecté</string>
+    <string name="Profil">Mon Profil</string>
+    <string name="Nom">Ben Abdelkrim</string>
+    <string name="Prenom">Mohamed</string>
+    <string name="Mail">Mail</string>
+    <string name="Modifier">Modifier</string>
+    <string name="saved_on_server">Le serveur a bien enregistré vos choix</string>
+>>>>>>> dda17dcfc097a41f2a91ef165cd69eec5b828d83
 
 
 </resources>

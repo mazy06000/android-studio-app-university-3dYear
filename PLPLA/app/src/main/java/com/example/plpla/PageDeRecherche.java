@@ -1,56 +1,39 @@
-package com.example.plpla.ui.slideshow;
+package com.example.plpla;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.SearchView;
-import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.plpla.Matieres;
-import com.example.plpla.R;
-import com.example.plpla.RecyclerAdapter;
 
-import java.net.URISyntaxException;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.SearchView;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.socket.client.IO;
-import io.socket.client.Socket;
+public class PageDeRecherche extends AppCompatActivity  {
 
-public class SlideshowFragment extends Fragment {
-
-    private SlideshowViewModel slideshowViewModel;
     RecyclerView recyclerView;
-
-    public static RecyclerAdapter getRecyclerAapter() {
-        return recyclerAapter;
-    }
-
-    static RecyclerAdapter recyclerAapter;
+    RecyclerAdapter recyclerAapter;
     List<String> exemple = new ArrayList<>();
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.activity_recyclerview, container, false);
-        setHasOptionsMenu(true);
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recyclerview);
         //////////////
         ArrayList<Matieres> okokokok=listesdesmatieres();
         ////////////////
+
         exemple.add("electonique");
         exemple.add("maths");
         exemple.add("anglais");
@@ -59,7 +42,7 @@ public class SlideshowFragment extends Fragment {
         exemple.add("algo");
 
 
-        recyclerView = root.findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         //recyclerAapter=new RecyclerAdapter(exemple);
 
 
@@ -68,18 +51,15 @@ public class SlideshowFragment extends Fragment {
         ///////////////////////////////////////////////
 
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerAapter);
 
-        DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-
-
-        return root;
     }
 
-
+    //////////////////////////////
     private ArrayList<Matieres> listesdesmatieres() {
         ArrayList<Matieres> list = new ArrayList<>();
 
@@ -90,13 +70,12 @@ public class SlideshowFragment extends Fragment {
 
         return list;
     }
-
+    //////////////////////////////////////////////////
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main_navigation, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_navigation, menu);
         MenuItem item  = menu.findItem(R.id.action_search);
-        item.setVisible(true);
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -110,7 +89,6 @@ public class SlideshowFragment extends Fragment {
                 return false;
             }
         });
-        super.onCreateOptionsMenu(menu,inflater);
+        return super.onCreateOptionsMenu(menu);
     }
-
 }
