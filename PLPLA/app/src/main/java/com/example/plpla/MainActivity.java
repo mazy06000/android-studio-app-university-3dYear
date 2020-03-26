@@ -10,12 +10,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import events.EVENT;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import user.User;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         ipAddressUsr.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
 
+
         /*Passe au Fragment Home (L'activity MainNavigation) */
         passeAHome();
     }
@@ -65,7 +68,20 @@ public class MainActivity extends AppCompatActivity {
                 ipAddress = "http://"+ipAddressUsr.getText()+":4444";
                 ((Client)getApplicationContext()).getUniqueConnexion().setServerAddress(ipAddress);
                 ((Client)getApplicationContext()).getUniqueConnexion().initConnexion();
+                //@TODO Ajouter dans le layout des edittext ou autre pour rentrer ses champs :
+                ((Client)getApplicationContext()).getUser().setNom("Baroudi");
+                ((Client)getApplicationContext()).getUser().setPrenom("Ibrahim");
+                //-------------------------------------------------------------------
                 ((Client)getApplicationContext()).getUniqueConnexion().connecte();
+
+                ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(EVENT.ADD_USER, new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        String ip_add = (String) args[0];
+                        ((Client)getApplicationContext()).getUser().setAddress_ip(ip_add);
+                    }
+                });
+
                 ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {

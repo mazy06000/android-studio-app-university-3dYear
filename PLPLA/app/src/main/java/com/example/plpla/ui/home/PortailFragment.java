@@ -30,6 +30,7 @@ import com.github.florent37.expansionpanel.ExpansionLayout;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import events.EVENT;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -44,7 +45,7 @@ public class PortailFragment extends Fragment {
     private TextView textMethode;
     private TextView textEnjeux;
     private TextView textCompetence;
-    private Socket socket;
+    private Socket mSocket;
     private Button Enregistrer ;
     private ExpansionLayout expansionFondement;
     private ExpansionLayout expansionMethode;
@@ -80,25 +81,30 @@ public class PortailFragment extends Fragment {
         boutonMethode = root.findViewById(R.id.bouton_methode);
         boutonFondement = root.findViewById(R.id.bouton_fondement);
 
+        Client client = (Client) getActivity().getApplication();
+        mSocket = client.getUniqueConnexion().getmSocket();
+
         /*Par défaut Enregistrer n'est pas cliquable*/
         Enregistrer.setClickable(false);
         Enregistrer.setEnabled(false);
 
-        ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().on("Saved", new Emitter.Listener() {
+
+        mSocket.on(EVENT.SAVE, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getContext(), R.string.saved_on_server, Toast.LENGTH_LONG).show();
+                        Log.d("EVENT_SOCKET", "Socket event SAVE received");
+                        Toast.makeText(getActivity().getApplicationContext(), R.string.saved_on_server, Toast.LENGTH_LONG).show();
                     }
                 });
             }
         });
 
 
-        ListenerButton listenerButton = new ListenerButton(socket,this);
-        ListenerCheckBox listenerCheckBox = new ListenerCheckBox(socket, this);
+        ListenerButton listenerButton = new ListenerButton(mSocket,this);
+        ListenerCheckBox listenerCheckBox = new ListenerCheckBox(mSocket, this);
         radioFondement.setOnClickListener(listenerCheckBox);
         radioMethode.setOnClickListener(listenerCheckBox);
         expansionFondement.addListener(new ExpansionLayout.Listener() {

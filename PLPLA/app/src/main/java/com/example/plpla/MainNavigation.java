@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.widget.Toast;
 
 
+import events.EVENT;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
@@ -41,18 +42,11 @@ public class MainNavigation extends AppCompatActivity {
 
         Client client = (Client) getApplication();
         mSocket = client.getUniqueConnexion().getmSocket();
-        mSocket.on("Saved", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Toast.makeText(getApplicationContext(), R.string.saved_on_server, Toast.LENGTH_LONG);
-            }
-        });
-        mSocket.on("INIT_PARCOURS", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Toast.makeText(getApplicationContext(), R.string.reinitialiser, Toast.LENGTH_LONG);
-            }
-        });
+
+
+
+
+
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

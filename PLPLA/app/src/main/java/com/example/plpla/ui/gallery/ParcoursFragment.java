@@ -22,6 +22,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import events.EVENT;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+
 public class ParcoursFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
@@ -30,6 +34,7 @@ public class ParcoursFragment extends Fragment {
     private static final String FILE_NAME = "parcours.txt";
     private TextView finalText;
     private TextView parcoursVide;
+    private Socket mSocket;
 
 
 
@@ -46,6 +51,24 @@ public class ParcoursFragment extends Fragment {
         finalText.setVisibility(View.INVISIBLE);
         parcoursVide.setVisibility(View.VISIBLE);
         reinitialiser.setEnabled(false);
+
+        Client client = (Client) getActivity().getApplication();
+        mSocket = client.getUniqueConnexion().getmSocket();
+
+        mSocket.on(EVENT.INIT_PARCOURS, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("EVENT_SOCKET", "Socket event INIT_PARCOURS received");
+                        Toast.makeText(getActivity().getApplicationContext(), R.string.reinitialiser, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
+
         try {
             //Afficher le parcours enregistré
             if (!PortailFragment.getSelectionItem().isEmpty()) {

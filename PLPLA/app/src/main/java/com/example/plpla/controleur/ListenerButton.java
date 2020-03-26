@@ -68,7 +68,7 @@ public class ListenerButton implements View.OnClickListener{
                     FileOutputStream ecriture = activity.getActivity().openFileOutput(fileName, MODE_PRIVATE);
                     ecriture.write(final_selection.getBytes());
                     ecriture.close();
-                    Toast.makeText(activity.getActivity(), "Parcours enregistré", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(activity.getActivity(), "Parcours enregistré", Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
