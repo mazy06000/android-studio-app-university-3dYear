@@ -3,6 +3,7 @@ package user;
 import matière.UE;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class User {
     private String Nom;
@@ -57,4 +58,26 @@ public class User {
         this.liste_choix = new ArrayList<UE>();
     }
 
+    public User(String nom, String prenom, String address_ip, ArrayList<UE> liste_choix) {
+        Nom = nom;
+        this.prenom = prenom;
+        this.address_ip = address_ip;
+        this.liste_choix = liste_choix;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return getNom().equals(user.getNom()) &&
+                getPrenom().equals(user.getPrenom()) &&
+                getAddress_ip().equals(user.getAddress_ip()) &&
+                getListe_choix().equals(user.getListe_choix());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNom(), getPrenom(), getAddress_ip(), getListe_choix());
+    }
 }
