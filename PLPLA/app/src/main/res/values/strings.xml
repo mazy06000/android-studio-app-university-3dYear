@@ -16,8 +16,6 @@
     <string name="parcoursvide">Aucun parcours enregistré</string>
     <string name="chimieS1">Chimie S1</string>
     <string name="StructureMicroscopique">Structure Microscopique de la Matiere</string>
-    <string-array name=" "
-
     <string name="title_activity_main_navigation">mainNavigation</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -29,8 +27,7 @@
     <string name="enjeux">UE amenagements : Math enjeux 1</string>
     <string name="competences">UE Competences transversales</string>
 
-<<<<<<< HEAD
-=======
+
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -46,7 +43,7 @@
     <string name="Mail">Mail</string>
     <string name="Modifier">Modifier</string>
     <string name="saved_on_server">Le serveur a bien enregistré vos choix</string>
->>>>>>> dda17dcfc097a41f2a91ef165cd69eec5b828d83
+
 
 
 </resources>
