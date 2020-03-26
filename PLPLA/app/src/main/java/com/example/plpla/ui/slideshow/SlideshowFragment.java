@@ -1,7 +1,7 @@
 package com.example.plpla.ui.slideshow;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,13 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,15 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.plpla.Matieres;
 import com.example.plpla.R;
 import com.example.plpla.RecyclerAdapter;
+import com.example.plpla.SelectedMatiereActivity;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.socket.client.IO;
-import io.socket.client.Socket;
-
-public class SlideshowFragment extends Fragment {
+public class SlideshowFragment extends Fragment implements RecyclerAdapter.SelectedMatiere {
 
     private SlideshowViewModel slideshowViewModel;
     RecyclerView recyclerView;
@@ -51,20 +44,11 @@ public class SlideshowFragment extends Fragment {
         //////////////
         ArrayList<Matieres> okokokok=listesdesmatieres();
         ////////////////
-        exemple.add("electonique");
-        exemple.add("maths");
-        exemple.add("anglais");
-        exemple.add("histoire");
-        exemple.add("physique");
-        exemple.add("algo");
-
 
         recyclerView = root.findViewById(R.id.recyclerView);
-        //recyclerAapter=new RecyclerAdapter(exemple);
-
 
         ///////////////////////////////////////////////
-        recyclerAapter=new RecyclerAdapter(okokokok);
+        recyclerAapter=new RecyclerAdapter(okokokok,this);
         ///////////////////////////////////////////////
 
 
@@ -80,15 +64,27 @@ public class SlideshowFragment extends Fragment {
     }
 
 
+
+
     private ArrayList<Matieres> listesdesmatieres() {
         ArrayList<Matieres> list = new ArrayList<>();
 
-        list.add(new Matieres("maths"));
-        list.add(new Matieres("histoire"));
-        list.add(new Matieres("anglais"));
-        list.add(new Matieres("electronique"));
+        list.add(new Matieres("maths","Mathematique L1 General"));
+        list.add(new Matieres("histoire","Histoire des epoques anciennes"));
+        list.add(new Matieres("anglais","Langue Vivante generaliser "));
+        list.add(new Matieres("electronique","l'electronique de la vie "));
 
         return list;
+    }
+
+    @Override
+    public void selectedMatiere(Matieres matiere) {
+        Intent intent = new Intent(getActivity(), SelectedMatiereActivity.class).putExtra("data", matiere);
+        startActivity(intent);
+
+
+
+
     }
 
 
@@ -111,6 +107,17 @@ public class SlideshowFragment extends Fragment {
             }
         });
         super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.nav_slideshow){
+            return  true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

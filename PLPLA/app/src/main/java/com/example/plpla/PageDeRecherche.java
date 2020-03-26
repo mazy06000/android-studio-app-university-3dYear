@@ -1,25 +1,22 @@
 package com.example.plpla;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageDeRecherche extends AppCompatActivity  {
+public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapter.SelectedMatiere  {
 
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAapter;
@@ -34,20 +31,9 @@ public class PageDeRecherche extends AppCompatActivity  {
         ArrayList<Matieres> okokokok=listesdesmatieres();
         ////////////////
 
-        exemple.add("electonique");
-        exemple.add("maths");
-        exemple.add("anglais");
-        exemple.add("histoire");
-        exemple.add("physique");
-        exemple.add("algo");
-
-
         recyclerView = findViewById(R.id.recyclerView);
-        //recyclerAapter=new RecyclerAdapter(exemple);
-
-
         ///////////////////////////////////////////////
-        recyclerAapter=new RecyclerAdapter(okokokok);
+        recyclerAapter=new RecyclerAdapter(okokokok,this);
         ///////////////////////////////////////////////
 
 
@@ -63,14 +49,26 @@ public class PageDeRecherche extends AppCompatActivity  {
     private ArrayList<Matieres> listesdesmatieres() {
         ArrayList<Matieres> list = new ArrayList<>();
 
-        list.add(new Matieres("maths"));
-        list.add(new Matieres("histoire"));
-        list.add(new Matieres("anglais"));
-        list.add(new Matieres("electronique"));
+        list.add(new Matieres("maths", "Mathematique L1 General"));
+        list.add(new Matieres("histoire", "Histoire des epoques anciennes"));
+        list.add(new Matieres("anglais", "Langue Vivante generaliser "));
+        list.add(new Matieres("electronique", "l'electronique de la vie "));
 
         return list;
     }
     //////////////////////////////////////////////////
+
+
+    @Override
+    public void selectedMatiere(Matieres matiere) {
+
+        startActivity(new Intent(PageDeRecherche.this, SelectedMatiereActivity.class).putExtra("data", matiere));
+
+
+
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,5 +88,16 @@ public class PageDeRecherche extends AppCompatActivity  {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.nav_slideshow){
+            return  true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

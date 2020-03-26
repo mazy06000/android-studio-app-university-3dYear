@@ -24,13 +24,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     List<Matieres> donnes;
     List<Matieres> toutdonnes;
 
+    private SelectedMatiere selectedMatiere;
+
     ///////////////////////////
     //List<String> toutdonnes;
 
 
-    public RecyclerAdapter(List<Matieres> donnes) {
+    public RecyclerAdapter(List<Matieres> donnes,SelectedMatiere selectedMatiere) {
         this.donnes = donnes;
         this.toutdonnes=new ArrayList<>(donnes);
+        this.selectedMatiere = selectedMatiere;
+
     }
 
     @NonNull
@@ -109,7 +113,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     };
 
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+
+    public interface SelectedMatiere{
+
+        void selectedMatiere(Matieres userModel);
+
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/ {
 
         ////////////////////////////
         View view;
@@ -130,14 +142,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             textView = itemView.findViewById(R.id.textView);
             rowCountTextView = itemView.findViewById(R.id.rowCountTextView);
 
-            itemView.setOnClickListener(this);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectedMatiere.selectedMatiere(donnes.get(getAdapterPosition()));
+                }
+            });
+
+
+
+            //itemView.setOnClickListener(this);
         }
-        @Override
-        public void onClick(View view){
-            //Toast.makeText(view.getContext(),donnes.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
-            /////////////////////////////////////
-            Toast.makeText(view.getContext(), (CharSequence) donnes.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
-            ///////////////////////////////////////
-        }
+//        @Override
+//        public void onClick(View view){
+//            //Toast.makeText(view.getContext(),donnes.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
+//            /////////////////////////////////////
+//            Toast.makeText(view.getContext(), (CharSequence) donnes.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
+//            ///////////////////////////////////////
+//
+//        }
     }
 }
