@@ -41,6 +41,14 @@ public class HomeActivity extends AppCompatActivity implements Vue {
     private Socket socket;
     private Button Enregistrer ;
 
+
+
+    private CheckBox checkBoxStructMicro ;
+    private TextView ChimieS1 ;
+
+
+    private TextView StructMicro;
+
     public static ArrayList<String> getSelectionItem() {
         return selectionItem;
     }
@@ -83,6 +91,10 @@ public class HomeActivity extends AppCompatActivity implements Vue {
             accordeon = findViewById(R.id.accordeonsPlus);
             Enregistrer = findViewById(R.id.Enregistrer);
             parcours = findViewById(R.id.parcours_button);
+            checkBoxStructMicro=findViewById(R.id.checkBoxChimieStructMicro);
+            ChimieS1 =findViewById(R.id.chimieS1);
+            StructMicro=findViewById(R.id.StructureMicroscopique) ;
+
 
 
 
@@ -93,6 +105,7 @@ public class HomeActivity extends AppCompatActivity implements Vue {
             bouton.setOnClickListener(listenerButton);
             checkBox1.setOnClickListener(listenerCheckBox);
             checkBox2.setOnClickListener(listenerCheckBox);
+            checkBoxStructMicro.setOnClickListener(listenerCheckBox);
             Enregistrer.setOnClickListener(listenerButton);
             parcours.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -149,6 +162,17 @@ public class HomeActivity extends AppCompatActivity implements Vue {
 
     public Button getEnregistrer() {
         return Enregistrer;
+    }
+
+    public TextView getChimieS1() {
+        return ChimieS1;
+    }
+
+    public TextView getStructMicro() {
+        return StructMicro;
+    }
+    public CheckBox getCheckBoxStructMicro() {
+        return checkBoxStructMicro;
     }
 
 //    @Override

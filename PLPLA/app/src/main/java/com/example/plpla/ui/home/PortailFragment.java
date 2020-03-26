@@ -34,7 +34,7 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-public class HomeFragment extends Fragment {
+public class PortailFragment extends Fragment {
 
     //private HomeViewModel homeViewModel;
     private String serverAdress;
