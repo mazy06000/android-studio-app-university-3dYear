@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 ((Client)getApplicationContext()).getUser().setPrenom("Ibrahim");
                 //-------------------------------------------------------------------
                 ((Client)getApplicationContext()).getUniqueConnexion().connecte();
-
+                ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().emit(EVENT.ADD_USER, ((Client)getApplicationContext()).getUser());
                 ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(EVENT.ADD_USER, new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {
