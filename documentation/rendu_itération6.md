@@ -12,11 +12,11 @@
 >
   * [x] Le client prendra du plaisir en decouvrant la nouvelle page recherche.
 >
-  * [x]  .
+  * [x] Plus besoins d'internet pour que les tests fonctionnes
 >
-  * [x]  .
+  * [x] Le client aura la possibilité de choisir ses 3 matières au choix. (Pour les autres semestres ça sera rapide à present)
 >
-  * [x]  .
+  * [x] Commencement d'une idée pour l'évolution 1 : la nouvelle conception du portail permet de changer les noms des parcours, matières, leurs nombres facilement en créant, éditant ou supprimant un objet de type UE. Il reste à réfléchir sur les pré-requis. (Je risque de faire du contenu de PortailFragment une classe a part entière afin de réutiliser les memes fonctionnalités sans dupliquer le code)
 >
 
 
@@ -24,9 +24,9 @@
 ---
   ### *les objectifs non atteints de cette itération*
 >
-  * [ ]  .
+  * [ ] Le test de PortailFragment pas à jour
 >
-  * [ ]  .
+  * [ ] Sans doute des manquements d'ajustement dans la conception de PortailFragment car pas de test a jour.
 >
   * [ ]  .
   
@@ -39,4 +39,4 @@
 >
 > le test de Mon Parcours visuel.
 >
-> le test du Portail.
+> le test du Portail (pas à jour)
