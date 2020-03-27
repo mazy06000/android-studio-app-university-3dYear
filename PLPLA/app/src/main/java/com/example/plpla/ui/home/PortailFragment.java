@@ -278,7 +278,6 @@ public class PortailFragment extends Fragment {
                 expansionHeader.getCheckboxHeader().setChecked(true);
                 expansionHeader.getCheckboxHeader().setEnabled(false);
                 expansionHeader.setEnabled(false);
-                
 
             }
         }
