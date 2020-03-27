@@ -14,8 +14,7 @@ import com.example.plpla.Client;
 import com.example.plpla.CourseActivity;
 import com.example.plpla.MainNavigation;
 import com.example.plpla.R;
-import com.example.plpla.ui.home.HomeFragment;
-import com.example.plpla.vue.Vue;
+import com.example.plpla.ui.home.PortailFragment;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,10 +27,10 @@ import static android.content.Context.MODE_PRIVATE;
 public class ListenerButton implements View.OnClickListener{
 
     private final Socket socket;
-    private HomeFragment activity;
+    private PortailFragment activity;
     private int compteurTouche = 0;
 
-    public ListenerButton(Socket socket, HomeFragment activity) {
+    public ListenerButton(Socket socket, PortailFragment activity) {
         this.socket = socket;
         this.activity = activity;
     }

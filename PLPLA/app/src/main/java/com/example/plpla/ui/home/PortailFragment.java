@@ -32,7 +32,7 @@ import matière.UE;
 
 import static com.example.plpla.Utils.dpToPx;
 
-public class HomeFragment extends Fragment {
+public class PortailFragment extends Fragment {
 
     //COMPOSANT DU LAYOUT
 

@@ -12,8 +12,10 @@
     <string name="Enregistrer">Enregistrer</string>
     <string name="close">Close</string>
     <string name="open">Open</string>
-    <string name="reinitialiser">Réinitialiser</string>
+    <string name="reinitialiser">Parcours réinitialiser</string>
     <string name="parcoursvide">Aucun parcours enregistré</string>
+    <string name="chimieS1">Chimie S1</string>
+    <string name="StructureMicroscopique">Structure Microscopique de la Matiere</string>
     <string name="title_activity_main_navigation">mainNavigation</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -26,51 +28,6 @@
     <!-- S1 -->
     <string name="enjeux">UE amenagements : Math enjeux 1</string>
     <string name="competences">UE Competences transversales</string>
-
-
-
-    <!-- CHOIX FONDEMENT 1 -->
-    <string name="ue_fondement">UE MATHS S1 : Fondements 1</string>
-    <string name="ue_geo">Geographie S1</string>
-    <string name="ue_geo1">UE GEOGRAPHIE : Decouverte 1</string>
-    <string name="ue_geo2">UE GEOGRAPHIE : Decouverte 2</string>
-    <string name="ue_discipline1">UE GEOGRAPHIE : Disciplinaire 1</string>
-
-    <string name="ue_info_s1">Informatique S1</string>
-    <string name="ue_base_info">UE INFO S1 : Bases de l\'informatique</string>
-    <string name="ue_web">UE INFO S1 : Introduction a l\'informatique par le web</string>
-
-    <string name="ue_complement">UE MATHS S1 : Complements 1</string>
-
-    <string name="choix_SV">SV - PO1 SITE</string>
-    <string name="ue_organique">UE SV-S1 : Org et mecan.</string>
-    <string name="ue_genetique">UE SV-S1 : Genetique.</string>
-
-    <string name="ue_chimie">UE CHIMIE S1 : Structure microscopique de la matiere</string>
-
-    <string name="ue_electronique">UE ELECTRONIQUE S1 : Electronique numerique - Bases</string>
-
-    <string name="choix_miash">UE MIASHS S1 : Economie-gestion S1</string>
-    <string name="ecue_culture">ECUE MIASHS S1 : Culture economie 1</string>
-    <string name="ecue_analyse">ECUE MIASHS S1 : Introduction a l\'analyse economique</string>
-    <string name="ecue_macro">ECUE MIASHS S1 : Macroeconomie 1</string>
-
-    <string name="ue_physique">UE PHYSIQUE S1 : Mecanique 1</string>
-
-    <string name="ue_terre">UE TERRE S1 : Decouverte des sciences de la terre</string>
-
-
-
-
-
-
-
-
-
-    <!-- CHOIX METHODE -->
-    <string name="ue_methode">UE MATHS S1 : Methodes - approche continue</string>
-
-
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

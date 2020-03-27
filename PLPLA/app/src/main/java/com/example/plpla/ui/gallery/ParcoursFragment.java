@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.plpla.Client;
 import com.example.plpla.CourseActivity;
 import com.example.plpla.R;
-import com.example.plpla.ui.home.HomeFragment;
+import com.example.plpla.ui.home.PortailFragment;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -27,10 +27,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 
-import io.socket.client.IO;
-import io.socket.client.Socket;
-
-public class GalleryFragment extends Fragment {
+public class ParcoursFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
     private TextView monParcours;

@@ -13,9 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.plpla.controleur.ListenerButton;
-import com.example.plpla.controleur.ListenerCheckBox;
-import com.example.plpla.ui.home.HomeFragment;
+import com.example.plpla.ui.home.PortailFragment;
 import com.example.plpla.vue.Vue;
 
 import java.io.BufferedInputStream;
