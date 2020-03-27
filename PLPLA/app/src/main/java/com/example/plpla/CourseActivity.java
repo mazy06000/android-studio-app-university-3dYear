@@ -74,7 +74,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
             reinitialiser.setEnabled(false);
 
             //Afficher le parcours enregistré
-            if (!HomeFragment.getSelectionItem().isEmpty()) {
+            if (!HomeFragment.getSelectionUE().isEmpty()) {
                 reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
 
@@ -101,7 +101,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
                     finalText.setVisibility(View.INVISIBLE);
                     parcoursVide.setVisibility(View.VISIBLE);
                     finalText.setText("");
-                    HomeFragment.getSelectionItem().clear();
+                    HomeFragment.getSelectionUE().clear();
                     Toast.makeText(CourseActivity.this, "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     reinitialiser.setEnabled(false);
                 }

@@ -7,6 +7,7 @@ public class UE {
     private final int ECTS;
     private final String nomUE;
     private final int nbPlaces;
+    private int id=0;
 
     public UE(String code, String discipline, String nomUE, int semestre, int ECTS, int nbPlaces) {
         this.code = code;
@@ -39,5 +40,13 @@ public class UE {
 
     public int getNbPlaces() {
         return nbPlaces;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
