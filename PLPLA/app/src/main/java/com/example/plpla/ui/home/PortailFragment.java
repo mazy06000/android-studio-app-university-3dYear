@@ -2,6 +2,7 @@ package com.example.plpla.ui.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -41,7 +42,7 @@ public class PortailFragment extends Fragment {
     ViewGroup dynamicLayoutContainer;
     private int compteur = 0;
     private Button enregistrer;
-    private Socket msocket;
+    private Socket mSocket;
     private String serverAdress;
     UE blocFondement = new UE(null,"BLOC MATH S1 : Fondements 1",null,1,30,0);
     UE blocMethode = new UE(null,"BLOC MATH S1 : Methodes. approche continue",null,1,30,0);
@@ -94,7 +95,8 @@ public class PortailFragment extends Fragment {
 
 
         final ArrayList<ArrayList> listeHeader = new ArrayList(Arrays.asList(addDynamicLayout(blocFondement, listeUEBlocFondement),addDynamicLayout(blocMethode, listeUEBlocMethode)));
-
+        listeHeaderTotal.add((ExpansionHeader) listeHeader.get(0).get(0));
+        listeHeaderTotal.add((ExpansionHeader) listeHeader.get(1).get(0));
         //example of how to add a listener
         final com.example.plpla.ExpansionLayout fondementLayout = (com.example.plpla.ExpansionLayout) listeHeader.get(0).get(1);
         fondementLayout.addListener(new com.example.plpla.ExpansionLayout.Listener() {
@@ -126,7 +128,7 @@ public class PortailFragment extends Fragment {
         enregistrer.setClickable(false);
         enregistrer.setEnabled(false);
 
-        ListenerButton listenerButton = new ListenerButton(socket,this);
+        ListenerButton listenerButton = new ListenerButton(mSocket,this);
         enregistrer.setOnClickListener(listenerButton);
 
 
@@ -218,6 +220,7 @@ public class PortailFragment extends Fragment {
     @NonNull
     private ExpansionHeader createExpansionHeader(UE bloc) {
         final ExpansionHeader expansionHeader = new ExpansionHeader(getActivity());
+        expansionHeader.setBlock(true);
         expansionHeader.setBackgroundColor(Color.parseColor("#00afd7"));
         expansionHeader.setPadding(dpToPx(getActivity(), 16), dpToPx(getActivity(), 16), dpToPx(getActivity(), 16), dpToPx(getActivity(), 16));
 
@@ -460,11 +463,12 @@ public class PortailFragment extends Fragment {
 
                     }
                 }
+
             }
             else {
                 for (int i = 0; i < header2.size(); i++) {
                     ExpansionHeader headerf = (ExpansionHeader) header2.get(i).get(0);
-                    if (header != headerf) {
+                    if ((header != headerf)) {
                         headerf.getCheckboxHeader().setEnabled(true);
                         headerf.setEnabled(true);
                     }

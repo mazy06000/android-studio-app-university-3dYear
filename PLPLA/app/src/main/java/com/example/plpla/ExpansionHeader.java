@@ -32,6 +32,16 @@ public class ExpansionHeader extends FrameLayout {
     @Nullable
     Animator indicatorAnimator;
 
+    public Boolean getBlock() {
+        return isBlock;
+    }
+
+    public void setBlock(Boolean block) {
+        isBlock = block;
+    }
+
+    Boolean isBlock = false;
+
     public String getText() {
         return text;
     }
