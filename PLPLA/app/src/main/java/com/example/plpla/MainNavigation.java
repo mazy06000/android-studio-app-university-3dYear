@@ -16,13 +16,22 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Map;
+
 import events.EVENT;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import matière.UE;
+import user.User;
 
 public class MainNavigation extends AppCompatActivity {
 
@@ -40,9 +49,25 @@ public class MainNavigation extends AppCompatActivity {
         PortailFragment portailFragment = new PortailFragment();
         portailFragment.setArguments(extras);
 
-        Client client = (Client) getApplication();
-        mSocket = client.getUniqueConnexion().getmSocket();
+        User baroudi = new User();
+        baroudi.setNom("BAR");
+        baroudi.setPrenom("OU");
+        baroudi.setAddress_ip("DI");
+        baroudi.setListe_choix(new ArrayList<UE>());
 
+        Log.d("EVENT_SOCKET", "envoie de l'utilisateur "+ ((Client)getApplicationContext()).getUser().getNom() +" au serveur");
+        Log.d("USER EVENT", "object baroudi : "+baroudi.getNom()+ " "+ baroudi.getPrenom());
+        ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(EVENT.ADD_USER, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                String ip_add = (String) args[0];
+                ((Client)getApplicationContext()).getUser().setAddress_ip(ip_add);
+                Log.d("EVENT_SOCKET", "ADD_USER : Reception du server de l'addresse ip de "+ ((Client)getApplicationContext()).getUser().getNom() +
+                        " --> " + ((Client)getApplicationContext()).getUser().getAddress_ip());
+            }
+        });
+
+        ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().emit(EVENT.ADD_USER, baroudi);
 
 
 

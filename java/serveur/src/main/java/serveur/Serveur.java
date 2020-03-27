@@ -41,22 +41,37 @@ public class Serveur {
         // on accept une connexion
         this.server.addConnectListener(new ConnectListener() {
             public void onConnect(SocketIOClient socketIOClient) {
-                System.out.println("Connexion de "+listUsers.get(0).getAddress_ip());
+                System.out.println("Connexion de "+socketIOClient.getRemoteAddress());
             }
         });
 
         this.server.addEventListener(EVENT.ADD_USER, User.class, new DataListener<User>() {
             @Override
             public void onData(SocketIOClient socketIOClient, User user, AckRequest ackRequest) throws Exception {
-                System.out.println("Ajout d'un nouvel utilisateur");
+                System.out.println("Ajout d'un nouvel utilisateur : "+user.getNom() +" "+ user.getPrenom());
                 if (userExist(listUsers, user)){
                     System.out.println(user.getNom()+" a déja été ajouté");
                 }
                 else {
+                    System.out.println("Ajout de "+user.getNom()+" avec succès !");
                     listUsers.add(new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix()));
+//                    listUsers.add(new User());
+//                    listUsers.get(listUsers.size()).setNom(user.getNom());
+//                    listUsers.get(listUsers.size()).setPrenom(user.getPrenom());
+//                    listUsers.get(listUsers.size()).setAddress_ip(user.getAddress_ip());
+//                    listUsers.get(listUsers.size()).setListe_choix(user.getListe_choix());
+                    System.out.println("Envoi de l'addresse ip à l'utilisateur "+user.getNom());
+                    socketIOClient.sendEvent(EVENT.ADD_USER, socketIOClient.getRemoteAddress());
                 }
             }
         });
+
+//        this.server.addEventListener(EVENT.ADD_USER, String.class, new DataListener<String>() {
+//            @Override
+//            public void onData(SocketIOClient socketIOClient, String user, AckRequest ackRequest) throws Exception {
+//                System.out.println("Ajout de : "+user);
+//            }
+//        });
 
         /**
          * Le client enregistre une matière de code code_choix_matière

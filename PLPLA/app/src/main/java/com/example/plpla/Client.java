@@ -2,6 +2,9 @@ package com.example.plpla;
 
 import android.app.Application;
 
+import java.util.ArrayList;
+
+import matière.UE;
 import user.User;
 
 

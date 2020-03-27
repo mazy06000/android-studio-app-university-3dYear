@@ -5,6 +5,7 @@ import matière.UE;
 import java.util.ArrayList;
 import java.util.Objects;
 
+
 public class User {
     private String Nom;
     private String prenom;
@@ -44,19 +45,13 @@ public class User {
     }
 
     public User(){
-        this.Nom = "Nom Par défaut";
-        this.prenom = "prenom Par défaut";
-        this.address_ip = "";
-        this.liste_choix = new ArrayList<UE>();
+        //TODO BUG SERVEUR ne reçoit pas les objets si on supprimme ces affectations
+        this.setNom("Baroudi");
+        this.setPrenom("Ibrahim");
+        this.setAddress_ip("");
+        this.setListe_choix(new ArrayList<UE>());
     }
 
-    /* @TODO A faire évoluer*/
-    public User(String address_ip){
-        this.Nom = "Nom Par défaut";
-        this.prenom = "prenom Par défaut";
-        this.address_ip = address_ip;
-        this.liste_choix = new ArrayList<UE>();
-    }
 
     public User(String nom, String prenom, String address_ip, ArrayList<UE> liste_choix) {
         Nom = nom;
@@ -79,5 +74,14 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(getNom(), getPrenom(), getAddress_ip(), getListe_choix());
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Nom='" + Nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", address_ip='" + address_ip + '\'' +
+                '}';
     }
 }
