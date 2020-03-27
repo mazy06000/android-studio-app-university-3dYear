@@ -26,6 +26,8 @@ import com.example.plpla.viewgroup.ExpansionLayoutCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import events.EVENT;
+import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import matière.UE;
@@ -39,7 +41,8 @@ public class PortailFragment extends Fragment {
     ViewGroup dynamicLayoutContainer;
     private int compteur = 0;
     private Button enregistrer;
-    private Socket socket;
+    private Socket msocket;
+    private String serverAdress;
     UE blocFondement = new UE(null,"BLOC MATH S1 : Fondements 1",null,1,30,0);
     UE blocMethode = new UE(null,"BLOC MATH S1 : Methodes. approche continue",null,1,30,0);
 
@@ -116,6 +119,9 @@ public class PortailFragment extends Fragment {
         //BOUTON ENREGISTRER
         enregistrer = root.findViewById(R.id.boutonEnregistrer);
 
+        Client client = (Client) getActivity().getApplication();
+        mSocket = client.getUniqueConnexion().getmSocket();
+
         /*Par défaut Enregistrer n'est pas cliquable*/
         enregistrer.setClickable(false);
         enregistrer.setEnabled(false);
@@ -123,13 +129,15 @@ public class PortailFragment extends Fragment {
         ListenerButton listenerButton = new ListenerButton(socket,this);
         enregistrer.setOnClickListener(listenerButton);
 
-        ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().on("Saved", new Emitter.Listener() {
+
+        mSocket.on(EVENT.SAVE, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getContext(), R.string.saved_on_server, Toast.LENGTH_LONG).show();
+                        Log.d("EVENT_SOCKET", "Socket event SAVE received");
+                        Toast.makeText(getActivity().getApplicationContext(), R.string.saved_on_server, Toast.LENGTH_LONG).show();
                     }
                 });
             }

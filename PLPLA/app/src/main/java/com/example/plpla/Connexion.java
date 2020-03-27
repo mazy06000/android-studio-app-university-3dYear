@@ -1,5 +1,7 @@
 package com.example.plpla;
 
+import android.util.Log;
+
 import java.net.URISyntaxException;
 
 import io.socket.client.IO;
@@ -43,7 +45,7 @@ public class Connexion {
     }
 
     public void connecte(){
-        System.out.println("--Connexion au server--");
+        Log.d("CONNECT", "Connexion au serveur d'addresse : "+getServerAddress());
         mSocket.connect();
     }
 
@@ -52,7 +54,10 @@ public class Connexion {
     }
 
     public void deconnecte(){
-        if (mSocket != null) mSocket.disconnect();
+        if (mSocket != null) {
+            Log.d("DISCONNECT", "déconnexion du serveur d'addresse : "+getServerAddress());
+            mSocket.disconnect();
+        }
     }
 
 }
