@@ -53,7 +53,7 @@ public class ParcoursFragment extends Fragment {
         reinitialiser.setEnabled(false);
         try {
             //Afficher le parcours enregistré
-            if (!HomeFragment.getSelectionUE().isEmpty()) {
+            if (!PortailFragment.getSelectionUE().isEmpty()) {
                 reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
 
@@ -80,7 +80,7 @@ public class ParcoursFragment extends Fragment {
                     finalText.setVisibility(View.INVISIBLE);
                     parcoursVide.setVisibility(View.VISIBLE);
                     finalText.setText("");
-                    HomeFragment.getSelectionUE().clear();
+                    PortailFragment.getSelectionUE().clear();
                     Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
                     ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
