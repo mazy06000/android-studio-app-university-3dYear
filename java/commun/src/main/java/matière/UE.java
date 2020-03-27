@@ -1,6 +1,8 @@
 package matière;
 
-public class UE {
+import java.io.Serializable;
+
+public class UE implements Serializable {
     private final String code;
     private final String discipline;
     private final int semestre;
@@ -8,7 +10,7 @@ public class UE {
     private final String nomUE;
     private final int nbPlaces;
 
-    public UE(String code, String discipline, String nomUE, int semestre, int ECTS, int nbPlaces) {
+    public UE(String nomUE, String code, String discipline, int semestre, int ECTS, int nbPlaces) {
         this.code = code;
         this.discipline = discipline;
         this.semestre = semestre;

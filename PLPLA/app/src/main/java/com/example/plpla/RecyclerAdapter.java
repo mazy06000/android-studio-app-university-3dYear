@@ -17,12 +17,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import matière.UE;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
     private static final String TAG = "RecyclerAdapter";
     //List<String> donnes;
     /////////////////////////
-    List<Matieres> donnes;
-    List<Matieres> toutdonnes;
+//    List<Matieres> donnes;
+//    List<Matieres> toutdonnes;
+
+    List<UE> donnes;
+    List<UE> toutdonnes;
 
     private SelectedMatiere selectedMatiere;
 
@@ -30,7 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     //List<String> toutdonnes;
 
 
-    public RecyclerAdapter(List<Matieres> donnes,SelectedMatiere selectedMatiere) {
+    public RecyclerAdapter(List<UE> donnes,SelectedMatiere selectedMatiere) {
         this.donnes = donnes;
         this.toutdonnes=new ArrayList<>(donnes);
         this.selectedMatiere = selectedMatiere;
@@ -53,8 +58,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder,int position) {
 
         /////////////////////////////////////////
-        Matieres matieres= donnes.get(position);
-        holder.name.setText(matieres.getName());
+        UE matieres= donnes.get(position);
+        holder.name.setText(matieres.getNomUE());
 
 
         ///////////////////////////////////////////
@@ -82,7 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             //List<String> filteredList = new ArrayList<>();
 
             //////////////////////////////////////////////
-            List<Matieres> filteredList = new ArrayList<>();
+            List<UE> filteredList = new ArrayList<>();
             ///////////////////////////////////////////////
 
             if (charSaquence.toString().isEmpty())
@@ -91,8 +96,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }
             else
             {
-                for (/*String*/Matieres matiere : toutdonnes) {
-                    if (matiere.getName().toLowerCase().contains(charSaquence.toString().toLowerCase())) {
+                for (/*String*/UE matiere : toutdonnes) {
+                    if (matiere.getNomUE().toLowerCase().contains(charSaquence.toString().toLowerCase())) {
                         filteredList.add(matiere);
                     }
                 }
@@ -107,7 +112,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         @Override
         protected void publishResults(CharSequence constraint, FilterResults filterResults) {
             donnes.clear();
-            donnes.addAll((Collection<? extends /*String*/ Matieres>)filterResults.values);
+            donnes.addAll((Collection<? extends /*String*/ UE>)filterResults.values);
             notifyDataSetChanged();
         }
     };
@@ -117,7 +122,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public interface SelectedMatiere{
 
-        void selectedMatiere(Matieres userModel);
+        void selectedMatiere(UE userModel);
 
     }
 

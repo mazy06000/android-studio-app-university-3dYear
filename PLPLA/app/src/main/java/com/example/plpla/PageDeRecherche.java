@@ -16,11 +16,12 @@ import android.widget.SearchView;
 import java.util.ArrayList;
 import java.util.List;
 
+import matière.UE;
+
 public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapter.SelectedMatiere  {
 
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAapter;
-    List<String> exemple = new ArrayList<>();
 
 
     @Override
@@ -28,7 +29,7 @@ public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclerview);
         //////////////
-        ArrayList<Matieres> okokokok=listesdesmatieres();
+        ArrayList<UE> okokokok=listesdesmatieres();
         ////////////////
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -46,13 +47,19 @@ public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapte
     }
 
     //////////////////////////////
-    private ArrayList<Matieres> listesdesmatieres() {
-        ArrayList<Matieres> list = new ArrayList<>();
+    private ArrayList<UE> listesdesmatieres() {
+        ArrayList<UE> list = new ArrayList<>();
 
-        list.add(new Matieres("maths", "Mathematique L1 General"));
-        list.add(new Matieres("histoire", "Histoire des epoques anciennes"));
-        list.add(new Matieres("anglais", "Langue Vivante generaliser "));
-        list.add(new Matieres("electronique", "l'electronique de la vie "));
+        list.add(new UE("MATHS","MS145","mathematique",1,6,100));
+        list.add(new UE("HISTOIRE","HS085","histoire ancienne",1,6,100));
+        list.add(new UE("SCIENCE","SC065","science de la vie",1,6,100));
+        list.add(new UE("ELECTRONIQUE","EL025","electronique",1,6,100));
+        list.add(new UE("AUTOMATE","AU130","Informatique",2,4,80));
+        list.add(new UE("ANGLAIS","AN478","Langue vivante",1,2,300));
+        list.add(new UE("PROBABILITE","PR116","Mathematique",3,6,150));
+        list.add(new UE("ANALYSE","AN056","Mathematique",1,6,120));
+        list.add(new UE("SYSTEME","SY144","Informatique",1,6,80));
+        list.add(new UE("RESEAU","RE149","Informatique",2,4,150));
 
         return list;
     }
@@ -60,7 +67,7 @@ public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapte
 
 
     @Override
-    public void selectedMatiere(Matieres matiere) {
+    public void selectedMatiere(UE matiere) {
 
         startActivity(new Intent(PageDeRecherche.this, SelectedMatiereActivity.class).putExtra("data", matiere));
 
