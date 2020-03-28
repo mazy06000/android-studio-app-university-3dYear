@@ -28,7 +28,7 @@
 >
   * [ ] Sans doute des manquements d'ajustement dans la conception de PortailFragment car pas de test a jour.
 >
-  * [ ]  .
+  * [ ] Bug #78 pas résolu à temps, donc le serveur n'enregistre pas encore toutes les matières
   
   
 

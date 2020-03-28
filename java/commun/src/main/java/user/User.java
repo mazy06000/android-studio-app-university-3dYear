@@ -45,11 +45,11 @@ public class User {
     }
 
     public User(){
-        //TODO BUG SERVEUR ne reçoit pas les objets si on supprimme ces affectations
-        this.setNom("Baroudi");
-        this.setPrenom("Ibrahim");
-        this.setAddress_ip("");
-        this.setListe_choix(new ArrayList<UE>());
+        //TODO BUG SERVEUR ne reçoit pas les objets si on supprimme ces affectations (on emet pas de ADD_USER pour l'instant dans le mainNavigation)
+        Nom = "Baroudi";
+        prenom ="Ibrahim";
+        address_ip = " ";
+        liste_choix = new ArrayList<UE>();
     }
 
 
