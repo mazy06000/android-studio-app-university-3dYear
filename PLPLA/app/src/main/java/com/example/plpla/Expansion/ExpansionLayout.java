@@ -1,40 +1,41 @@
-package com.example.plpla;
+package com.example.plpla.Expansion;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Bundle;
+import android.os.Parcelable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.HorizontalScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-public class HorizontalExpansionLayout extends HorizontalScrollView {
+public class ExpansionLayout extends NestedScrollView {
 
     private final List<IndicatorListener> indicatorListeners = new ArrayList<>();
     private final List<Listener> listeners = new ArrayList<>();
     private boolean expanded = false;
     private Animator animator;
 
-    public HorizontalExpansionLayout(Context context) {
+    public ExpansionLayout(Context context) {
         super(context);
         init(context, null);
     }
 
-    public HorizontalExpansionLayout(Context context, AttributeSet attrs) {
+    public ExpansionLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public HorizontalExpansionLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ExpansionLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -77,7 +78,7 @@ public class HorizontalExpansionLayout extends HorizontalScrollView {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (!expanded) {
-            setWidth(0f);
+            setHeight(0f);
         }
     }
 
@@ -138,11 +139,11 @@ public class HorizontalExpansionLayout extends HorizontalScrollView {
                         @Override
                         public void onLayoutChange(View view, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                             if (expanded && animator == null) {
-                                final int width = right - left;
+                                final int height = bottom - top;
                                 post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        setWidth(width);
+                                        setHeight(height);
 
                                     }
                                 });
@@ -150,7 +151,7 @@ public class HorizontalExpansionLayout extends HorizontalScrollView {
                         }
                     });
 
-                    return false;
+                    return true;
                 }
             });
         }
@@ -160,14 +161,13 @@ public class HorizontalExpansionLayout extends HorizontalScrollView {
         if (!isEnabled() || !expanded) {
             return;
         }
-
         pingIndicatorListeners(false);
         if (animated) {
-            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(1f * getWidth(), 0f);
+            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(1f * getHeight(), 0f);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    setWidth((Float) valueAnimator.getAnimatedValue());
+                    setHeight((Float) valueAnimator.getAnimatedValue());
                 }
             });
             valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -182,7 +182,7 @@ public class HorizontalExpansionLayout extends HorizontalScrollView {
             animator = valueAnimator;
             valueAnimator.start();
         } else {
-            setWidth(0f);
+            setHeight(0f);
             expanded = false;
             pingListeners();
         }
@@ -211,11 +211,11 @@ public class HorizontalExpansionLayout extends HorizontalScrollView {
 
         pingIndicatorListeners(true);
         if (animated) {
-            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, getChildAt(0).getWidth());
+            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, getChildAt(0).getHeight());
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    setWidth((Float) valueAnimator.getAnimatedValue());
+                    setHeight((Float) valueAnimator.getAnimatedValue());
                 }
             });
             valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -230,16 +230,16 @@ public class HorizontalExpansionLayout extends HorizontalScrollView {
             animator = valueAnimator;
             valueAnimator.start();
         } else {
-            setWidth(getChildAt(0).getWidth());
+            setHeight(getChildAt(0).getHeight());
             expanded = true;
             pingListeners();
         }
     }
 
-    private void setWidth(float width) {
+    private void setHeight(float height) {
         final ViewGroup.LayoutParams layoutParams = getLayoutParams();
         if (layoutParams != null) {
-            layoutParams.width = (int) width;
+            layoutParams.height = (int) height;
             setLayoutParams(layoutParams);
         }
     }
@@ -252,16 +252,39 @@ public class HorizontalExpansionLayout extends HorizontalScrollView {
         }
     }
 
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        final Bundle savedInstance = new Bundle();
+        savedInstance.putParcelable("super", super.onSaveInstanceState());
+        savedInstance.putBoolean("expanded", expanded);
+        return savedInstance;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if(state instanceof Bundle){
+            final Bundle savedInstance = (Bundle) state;
+            boolean expanded = savedInstance.getBoolean("expanded");
+            if(expanded){
+               expand(false);
+            } else {
+                collapse(false);
+            }
+            super.onRestoreInstanceState(savedInstance.getParcelable("super"));
+        } else {
+            super.onRestoreInstanceState(state);
+        }
+    }
 
     public boolean isExpanded() {
         return expanded;
     }
 
     public interface Listener {
-        void onExpansionChanged(HorizontalExpansionLayout expansionLayout, boolean expanded);
+        void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded);
     }
 
     public interface IndicatorListener {
-        void onStartedExpand(HorizontalExpansionLayout expansionLayout, boolean willExpand);
+        void onStartedExpand(ExpansionLayout expansionLayout, boolean willExpand);
     }
 }

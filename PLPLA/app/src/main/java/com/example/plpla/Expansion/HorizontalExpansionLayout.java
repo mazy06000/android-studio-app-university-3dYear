@@ -1,41 +1,40 @@
-package com.example.plpla;
+package com.example.plpla.Expansion;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Bundle;
-import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.HorizontalScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpansionLayout extends NestedScrollView {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+public class HorizontalExpansionLayout extends HorizontalScrollView {
 
     private final List<IndicatorListener> indicatorListeners = new ArrayList<>();
     private final List<Listener> listeners = new ArrayList<>();
     private boolean expanded = false;
     private Animator animator;
 
-    public ExpansionLayout(Context context) {
+    public HorizontalExpansionLayout(Context context) {
         super(context);
         init(context, null);
     }
 
-    public ExpansionLayout(Context context, AttributeSet attrs) {
+    public HorizontalExpansionLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public ExpansionLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HorizontalExpansionLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -78,7 +77,7 @@ public class ExpansionLayout extends NestedScrollView {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (!expanded) {
-            setHeight(0f);
+            setWidth(0f);
         }
     }
 
@@ -139,11 +138,11 @@ public class ExpansionLayout extends NestedScrollView {
                         @Override
                         public void onLayoutChange(View view, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                             if (expanded && animator == null) {
-                                final int height = bottom - top;
+                                final int width = right - left;
                                 post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        setHeight(height);
+                                        setWidth(width);
 
                                     }
                                 });
@@ -151,7 +150,7 @@ public class ExpansionLayout extends NestedScrollView {
                         }
                     });
 
-                    return true;
+                    return false;
                 }
             });
         }
@@ -161,13 +160,14 @@ public class ExpansionLayout extends NestedScrollView {
         if (!isEnabled() || !expanded) {
             return;
         }
+
         pingIndicatorListeners(false);
         if (animated) {
-            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(1f * getHeight(), 0f);
+            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(1f * getWidth(), 0f);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    setHeight((Float) valueAnimator.getAnimatedValue());
+                    setWidth((Float) valueAnimator.getAnimatedValue());
                 }
             });
             valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -182,7 +182,7 @@ public class ExpansionLayout extends NestedScrollView {
             animator = valueAnimator;
             valueAnimator.start();
         } else {
-            setHeight(0f);
+            setWidth(0f);
             expanded = false;
             pingListeners();
         }
@@ -211,11 +211,11 @@ public class ExpansionLayout extends NestedScrollView {
 
         pingIndicatorListeners(true);
         if (animated) {
-            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, getChildAt(0).getHeight());
+            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, getChildAt(0).getWidth());
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    setHeight((Float) valueAnimator.getAnimatedValue());
+                    setWidth((Float) valueAnimator.getAnimatedValue());
                 }
             });
             valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -230,16 +230,16 @@ public class ExpansionLayout extends NestedScrollView {
             animator = valueAnimator;
             valueAnimator.start();
         } else {
-            setHeight(getChildAt(0).getHeight());
+            setWidth(getChildAt(0).getWidth());
             expanded = true;
             pingListeners();
         }
     }
 
-    private void setHeight(float height) {
+    private void setWidth(float width) {
         final ViewGroup.LayoutParams layoutParams = getLayoutParams();
         if (layoutParams != null) {
-            layoutParams.height = (int) height;
+            layoutParams.width = (int) width;
             setLayoutParams(layoutParams);
         }
     }
@@ -252,39 +252,16 @@ public class ExpansionLayout extends NestedScrollView {
         }
     }
 
-    @Override
-    protected Parcelable onSaveInstanceState() {
-        final Bundle savedInstance = new Bundle();
-        savedInstance.putParcelable("super", super.onSaveInstanceState());
-        savedInstance.putBoolean("expanded", expanded);
-        return savedInstance;
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        if(state instanceof Bundle){
-            final Bundle savedInstance = (Bundle) state;
-            boolean expanded = savedInstance.getBoolean("expanded");
-            if(expanded){
-               expand(false);
-            } else {
-                collapse(false);
-            }
-            super.onRestoreInstanceState(savedInstance.getParcelable("super"));
-        } else {
-            super.onRestoreInstanceState(state);
-        }
-    }
 
     public boolean isExpanded() {
         return expanded;
     }
 
     public interface Listener {
-        void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded);
+        void onExpansionChanged(HorizontalExpansionLayout expansionLayout, boolean expanded);
     }
 
     public interface IndicatorListener {
-        void onStartedExpand(ExpansionLayout expansionLayout, boolean willExpand);
+        void onStartedExpand(HorizontalExpansionLayout expansionLayout, boolean willExpand);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.plpla;
+package com.example.plpla.Expansion;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -17,8 +17,6 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.example.plpla.ExpansionLayout;
 
 public class ExpansionHeader extends FrameLayout {
 

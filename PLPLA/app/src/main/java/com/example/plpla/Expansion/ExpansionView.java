@@ -1,4 +1,4 @@
-package com.example.plpla;
+package com.example.plpla.Expansion;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.plpla.R;
 import com.example.plpla.controleur.ListenerButton;
 import com.example.plpla.ui.home.PortailFragment;
 import com.example.plpla.viewgroup.ExpansionLayoutCollection;
@@ -23,7 +24,7 @@ import java.util.Arrays;
 import io.socket.client.Socket;
 import matière.UE;
 
-import static com.example.plpla.Utils.dpToPx;
+import static com.example.plpla.Expansion.Utils.dpToPx;
 
 public class ExpansionView {
 
@@ -66,24 +67,24 @@ public class ExpansionView {
         listeHeaderTotal.add((ExpansionHeader) listeHeader.get(0).get(0));
         listeHeaderTotal.add((ExpansionHeader) listeHeader.get(1).get(0));
         //example of how to add a listener
-        final com.example.plpla.ExpansionLayout fondementLayout = (com.example.plpla.ExpansionLayout) listeHeader.get(0).get(1);
-        fondementLayout.addListener(new com.example.plpla.ExpansionLayout.Listener() {
+        final ExpansionLayout fondementLayout = (ExpansionLayout) listeHeader.get(0).get(1);
+        fondementLayout.addListener(new ExpansionLayout.Listener() {
             @Override
-            public void onExpansionChanged(com.example.plpla.ExpansionLayout expansionLayout, boolean expanded) {
+            public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
                 actionOnSelection((ExpansionHeader) listeHeader.get(0).get(0), listeHeader, blocEtSaMatiere.get(0).get(1));
             }
         });
 
-        final com.example.plpla.ExpansionLayout methodeLayout = (com.example.plpla.ExpansionLayout) listeHeader.get(1).get(1);
-        methodeLayout.addListener(new com.example.plpla.ExpansionLayout.Listener() {
+        final ExpansionLayout methodeLayout = (ExpansionLayout) listeHeader.get(1).get(1);
+        methodeLayout.addListener(new ExpansionLayout.Listener() {
             @Override
-            public void onExpansionChanged(com.example.plpla.ExpansionLayout expansionLayout, boolean expanded) {
+            public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
                 actionOnSelection((ExpansionHeader) listeHeader.get(1).get(0), listeHeader, blocEtSaMatiere.get(1).get(1));
             }
         });
 
         final ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
-        expansionLayoutCollection.add((com.example.plpla.ExpansionLayout) listeHeader.get(0).get(1)).add((com.example.plpla.ExpansionLayout) listeHeader.get(1).get(1));
+        expansionLayoutCollection.add((ExpansionLayout) listeHeader.get(0).get(1)).add((ExpansionLayout) listeHeader.get(1).get(1));
         expansionLayoutCollection.openOnlyOne(true);
 
         //BOUTON ENREGISTRER
@@ -104,7 +105,7 @@ public class ExpansionView {
         final ExpansionHeader expansionHeader = createExpansionHeader(bloc);
         dynamicLayoutContainer.addView(expansionHeader, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        final com.example.plpla.ExpansionLayout expansionLayout = createExpansionLayout(listeBloc);
+        final ExpansionLayout expansionLayout = createExpansionLayout(listeBloc);
         dynamicLayoutContainer.addView(expansionLayout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         expansionHeader.setExpansionLayout(expansionLayout);
@@ -272,8 +273,8 @@ public class ExpansionView {
     }
 
     @NonNull
-    private com.example.plpla.ExpansionLayout choixLayout(UE matiere, final ArrayList<UE> listeBloc) {
-        final com.example.plpla.ExpansionLayout expansionLayout = new com.example.plpla.ExpansionLayout(activity);
+    private ExpansionLayout choixLayout(UE matiere, final ArrayList<UE> listeBloc) {
+        final ExpansionLayout expansionLayout = new ExpansionLayout(activity);
         final ArrayList<ArrayList> listeHeader3emeNiveau = new ArrayList<>();
 
         final LinearLayout layout = new LinearLayout(activity);
@@ -299,7 +300,7 @@ public class ExpansionView {
         for (int i = 0; i < listeBloc.size(); i++) {
             if ((listeBloc.get(i).getDiscipline() == matiere.getDiscipline()) && !(listeBloc.get(i).getDiscipline() == null)) {
                 ExpansionHeader headerue  = matiereHeader(listeBloc.get(i));
-                com.example.plpla.ExpansionLayout layoutue = matiereLayout();
+                ExpansionLayout layoutue = matiereLayout();
                 headerue.setExpansionLayout(layoutue);
                 layout.addView(headerue);
                 layout.addView(layoutue);
@@ -310,12 +311,12 @@ public class ExpansionView {
         }
 
         for (int i = 0; i < listeHeader3emeNiveau.size(); i++) {
-            com.example.plpla.ExpansionLayout layoutDeListe = (com.example.plpla.ExpansionLayout) listeHeader3emeNiveau.get(i).get(1);
+            ExpansionLayout layoutDeListe = (ExpansionLayout) listeHeader3emeNiveau.get(i).get(1);
             final ExpansionHeader headerDeListe = (ExpansionHeader) listeHeader3emeNiveau.get(i).get(0);
             final int finalI = i;
-            layoutDeListe.addListener(new com.example.plpla.ExpansionLayout.Listener() {
+            layoutDeListe.addListener(new ExpansionLayout.Listener() {
                 @Override
-                public void onExpansionChanged(com.example.plpla.ExpansionLayout expansionLayout, boolean expanded) {
+                public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
                     actionOnSelection(headerDeListe,listeHeader3emeNiveau, listeBloc.get(finalI));
                 }
             });
@@ -365,8 +366,8 @@ public class ExpansionView {
     }
 
     @NonNull
-    private com.example.plpla.ExpansionLayout matiereLayout() {
-        final com.example.plpla.ExpansionLayout expansionLayout = new ExpansionLayout(activity);
+    private ExpansionLayout matiereLayout() {
+        final ExpansionLayout expansionLayout = new ExpansionLayout(activity);
 
         final LinearLayout layout = new LinearLayout(activity);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -406,7 +407,7 @@ public class ExpansionView {
         }
         else {
             compteur--;
-            
+
             if (compteur < 4){
                 for (int i = 0; i < listeHeaderTotal.size(); i++) {
                     if ((header != listeHeaderTotal.get(i)) && !(listeHeaderTotal.get(i).getCheckboxHeader().isChecked())) {

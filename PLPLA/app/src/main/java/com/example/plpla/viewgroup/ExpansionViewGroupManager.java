@@ -3,8 +3,7 @@ package com.example.plpla.viewgroup;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.plpla.ExpansionLayout;
-import com.example.plpla.viewgroup.ExpansionLayoutCollection;
+import com.example.plpla.Expansion.ExpansionLayout;
 
 class ExpansionViewGroupManager {
     private final ViewGroup viewGroup;

@@ -1,6 +1,6 @@
 package com.example.plpla.viewgroup;
 
-import com.example.plpla.ExpansionLayout;
+import com.example.plpla.Expansion.ExpansionLayout;
 
 import java.util.Collection;
 import java.util.HashSet;
