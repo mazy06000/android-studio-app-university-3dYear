@@ -9,7 +9,7 @@ public class UE implements Serializable {
     private final int ECTS;
     private final String nomUE;
     private final int nbPlaces;
-    private int id=0;
+    private Boolean preChecked = false;
 
     public UE(String code, String discipline, String nomUE, int semestre, int ECTS, int nbPlaces) {
         this.code = code;
@@ -18,6 +18,16 @@ public class UE implements Serializable {
         this.ECTS = ECTS;
         this.nomUE = nomUE;
         this.nbPlaces = nbPlaces;
+    }
+
+    public UE(String code, String discipline, String nomUE, int semestre, int ECTS, int nbPlaces, boolean preChecked) {
+        this.code = code;
+        this.discipline = discipline;
+        this.semestre = semestre;
+        this.ECTS = ECTS;
+        this.nomUE = nomUE;
+        this.nbPlaces = nbPlaces;
+        this.preChecked = preChecked;
     }
 
     public String getCode() {
@@ -44,11 +54,7 @@ public class UE implements Serializable {
         return nbPlaces;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Boolean getPreChecked() {
+        return preChecked;
     }
 }

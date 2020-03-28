@@ -75,6 +75,15 @@ public class ExpansionHeader extends FrameLayout {
         return checkboxHeader;
     }
 
+    public Boolean getPreChecked() {
+        return preChecked;
+    }
+
+    public void setPreChecked(Boolean preChecked) {
+        this.preChecked = preChecked;
+    }
+
+    private Boolean preChecked = false;
     CheckBox checkboxHeader = new CheckBox(getContext());
     private int headerRotationExpanded = 270;
     private int headerRotationCollapsed = 90;
