@@ -49,6 +49,7 @@ public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapte
     //////////////////////////////
     private ArrayList<UE> listesdesmatieres() {
         ArrayList<UE> list = new ArrayList<>();
+        
 
         list.add(new UE("MATHS","MS145","mathematique",1,6,100));
         list.add(new UE("HISTOIRE","HS085","histoire ancienne",1,6,100));
