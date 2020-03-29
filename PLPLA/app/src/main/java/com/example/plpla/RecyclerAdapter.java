@@ -8,9 +8,10 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,19 +22,11 @@ import matière.UE;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
     private static final String TAG = "RecyclerAdapter";
-    //List<String> donnes;
-    /////////////////////////
-//    List<Matieres> donnes;
-//    List<Matieres> toutdonnes;
 
-    List<UE> donnes;
-    List<UE> toutdonnes;
 
+    private List<UE> donnes;
+    private List<UE> toutdonnes;
     private SelectedMatiere selectedMatiere;
-
-    ///////////////////////////
-    //List<String> toutdonnes;
-
 
     public RecyclerAdapter(List<UE> donnes,SelectedMatiere selectedMatiere) {
         this.donnes = donnes;
@@ -48,9 +41,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         Log.i(TAG,"onCreateViewHolder:");
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.row_item, parent, false);
+
+
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
+
+
 
 
 
@@ -61,10 +58,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         UE matieres= donnes.get(position);
         holder.name.setText(matieres.getNomUE());
 
-
         ///////////////////////////////////////////
 
-        holder.rowCountTextView.setText(String.valueOf(position));
+
+//pour afficher l'index dans la grille des matieres:
+        //holder.rowCountTextView.setText(String.valueOf(position));
+// pour afficher la discipline dans la grille des matieres:
+        holder.rowCountTextView.setText(matieres.getDiscipline());
+
+
         //holder.textView.setText(donnes.get(position));
 
     }
@@ -84,7 +86,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         protected FilterResults performFiltering(CharSequence charSaquence) {
-            //List<String> filteredList = new ArrayList<>();
 
             //////////////////////////////////////////////
             List<UE> filteredList = new ArrayList<>();
@@ -96,8 +97,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }
             else
             {
-                for (/*String*/UE matiere : toutdonnes) {
-                    if (matiere.getNomUE().toLowerCase().contains(charSaquence.toString().toLowerCase())) {
+                for (UE matiere : toutdonnes) {
+                    if (matiere.getNomUE().toLowerCase().contains(charSaquence.toString().toLowerCase()) | (matiere.getDiscipline()!=null && matiere.getDiscipline().toLowerCase().contains(charSaquence.toString().toLowerCase()))) {
                         filteredList.add(matiere);
                     }
                 }
@@ -112,7 +113,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         @Override
         protected void publishResults(CharSequence constraint, FilterResults filterResults) {
             donnes.clear();
-            donnes.addAll((Collection<? extends /*String*/ UE>)filterResults.values);
+            donnes.addAll((Collection<? extends UE>)filterResults.values);
             notifyDataSetChanged();
         }
     };
@@ -128,23 +129,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/ {
 
-        ////////////////////////////
-        View view;
+
         TextView name;
-        ///////////////////////////
         ImageView imageView;
-        TextView textView, rowCountTextView;
+        TextView rowCountTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //view.setVisibility(View.GONE);
 
-            ////////////////////////
+
             name=itemView.findViewById(R.id.textView);
-            ///////////////////////////////////////////
-
             imageView = itemView.findViewById(R.id.imageView);
-            textView = itemView.findViewById(R.id.textView);
             rowCountTextView = itemView.findViewById(R.id.rowCountTextView);
 
 

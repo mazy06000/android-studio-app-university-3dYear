@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plpla.Client;
 import com.example.plpla.R;
 import com.example.plpla.RecyclerAdapter;
 import com.example.plpla.SelectedMatiereActivity;
@@ -28,6 +30,7 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
 
     private SlideshowViewModel slideshowViewModel;
     RecyclerView recyclerView;
+    Client client=new Client();
 
     public static RecyclerAdapter getRecyclerAapter() {
         return recyclerAapter;
@@ -46,6 +49,7 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
 
         recyclerView = root.findViewById(R.id.recyclerView);
 
+
         ///////////////////////////////////////////////
         recyclerAapter=new RecyclerAdapter(okokokok,this);
         ///////////////////////////////////////////////
@@ -56,6 +60,14 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
 
         DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setNestedScrollingEnabled(false);
+
+
+        //recyclerView.setNestedScrollingEnabled(false);
 
 
 
@@ -68,16 +80,10 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
     private ArrayList<UE> listesdesmatieres() {
         ArrayList<UE> list = new ArrayList<>();
 
-        list.add(new UE("MATHS","MS145","mathematique",1,6,100));
-        list.add(new UE("HISTOIRE","HS085","histoire ancienne",1,6,100));
-        list.add(new UE("SCIENCE","SC065","science de la vie",1,6,100));
-        list.add(new UE("ELECTRONIQUE","EL025","electronique",1,6,100));
-        list.add(new UE("AUTOMATE","AU130","Informatique",2,4,80));
-        list.add(new UE("ANGLAIS","AN478","Langue vivante",1,2,300));
-        list.add(new UE("PROBABILITE","PR116","Mathematique",3,6,150));
-        list.add(new UE("ANALYSE","AN056","Mathematique",1,6,120));
-        list.add(new UE("SYSTEME","SY144","Informatique",1,6,80));
-        list.add(new UE("RESEAU","RE149","Informatique",2,4,150));
+        list.addAll(client.getListeUEBlocFondement());
+        list.addAll(client.getListeUEBlocMethode());
+        list.addAll(client.getListeUEBlocFondementS2());
+        list.addAll(client.getListeUEBlocMethodeS2());
 
         return list;
     }
