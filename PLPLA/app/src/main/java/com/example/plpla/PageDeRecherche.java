@@ -7,10 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
@@ -83,6 +87,9 @@ public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapte
         getMenuInflater().inflate(R.menu.main_navigation, menu);
         MenuItem item  = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) item.getActionView();
+        searchView.setIconifiedByDefault(false);
+        implementSearch(menu);
+        
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -97,6 +104,45 @@ public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapte
         });
         return super.onCreateOptionsMenu(menu);
     }
+
+
+    private void implementSearch(final Menu menu) {
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final MenuItem searchMenuItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) searchMenuItem.getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false);
+
+        searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener(){
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item){
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        searchView.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        if (imm != null) {
+                            imm.showSoftInput(searchView.findFocus(), 0);
+                        }
+
+
+                    }
+                });
+                return true;
+            }
+
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item){
+                // the search view is closing. add your logic if you want
+                return true;
+            }
+
+        });
+
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
