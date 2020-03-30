@@ -77,7 +77,7 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
         InputStream is = getResources().openRawResource(R.raw.matieres);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.defaultCharset()));
         String readLine = "";
-        String cvsSplitBy = ";";
+        String cvsSplitBy = ",";
 
         try {
 

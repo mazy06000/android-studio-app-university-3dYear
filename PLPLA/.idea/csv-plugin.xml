@@ -6,7 +6,7 @@
         <entry key="\app\src\main\res\raw\matieres.csv">
           <value>
             <Attribute>
-              <option name="valueSeparator" value="SEMICOLON" />
+              <option name="valueSeparator" value="COMMA" />
             </Attribute>
           </value>
         </entry>
