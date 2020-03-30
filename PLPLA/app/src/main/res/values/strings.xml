@@ -25,6 +25,9 @@
     <string name="action_settings">Settings</string>
     <string name="recherche">Recherche</string>
 
+    <string name="semestre2">Semestre2</string>
+
+
     <!-- S1 -->
     <string name="enjeux">UE amenagements : Math enjeux 1</string>
     <string name="competences">UE Competences transversales</string>

@@ -88,7 +88,7 @@ public class ExpansionView {
         expansionLayoutCollection.openOnlyOne(true);
 
         //BOUTON ENREGISTRER
-        enregistrer = root.findViewById(R.id.boutonEnregistrer);
+        //enregistrer = root.findViewById(R.id.boutonEnregistrer);
 
 
 
@@ -130,10 +130,10 @@ public class ExpansionView {
         ArrayList<String> listeNomDiscipline = new ArrayList<>();
 
         for (int i = 0; i < listeBloc.size(); i++) {
-            if ((listeBloc.get(i).getDiscipline() == null)) {
+            if ((listeBloc.get(i).getSansSousMatieres() == true)) {
                 listeDiscipline.add(listeBloc.get(i));
                 listeNomDiscipline.add(listeBloc.get(i).getDiscipline());
-            } else if (!(listeBloc.get(i).getDiscipline() == null) && !listeNomDiscipline.contains(listeBloc.get(i).getDiscipline())) {
+            } else if (!(listeBloc.get(i).getSansSousMatieres() == true) && !listeNomDiscipline.contains(listeBloc.get(i).getDiscipline())) {
                 listeDiscipline.add(listeBloc.get(i));
                 listeNomDiscipline.add(listeBloc.get(i).getDiscipline());
             }
@@ -217,7 +217,7 @@ public class ExpansionView {
     @NonNull
     private ExpansionHeader choixHeader(UE matiere) {
         final ExpansionHeader expansionHeader = new ExpansionHeader(activity);
-        if (matiere.getDiscipline() == null) {
+        if (matiere.getSansSousMatieres() == true) {
             expansionHeader.setBackgroundColor(Color.WHITE);
         }
         else expansionHeader.setBackgroundColor(Color.parseColor("#B6B8B9"));
@@ -226,7 +226,7 @@ public class ExpansionView {
         final RelativeLayout layout = new RelativeLayout(activity);
         expansionHeader.addView(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT); //equivalent to addView(linearLayout)
 
-        if (matiere.getDiscipline() == null){
+        if (matiere.getSansSousMatieres() == true){
             //checkbox
             //final CheckBox checkboxHeader = new CheckBox(this);
             final RelativeLayout.LayoutParams imageLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -258,7 +258,7 @@ public class ExpansionView {
 
         //label
         final TextView text = new TextView(activity);
-        if (matiere.getDiscipline() == null) {
+        if (matiere.getSansSousMatieres() == true) {
             text.setText(matiere.getNomUE());
         } else text.setText(matiere.getDiscipline());
         text.setTextColor(Color.parseColor("#3E3E3E"));
@@ -298,7 +298,7 @@ public class ExpansionView {
         });*/
 
         for (int i = 0; i < listeBloc.size(); i++) {
-            if ((listeBloc.get(i).getDiscipline() == matiere.getDiscipline()) && !(listeBloc.get(i).getDiscipline() == null)) {
+            if ((listeBloc.get(i).getDiscipline() == matiere.getDiscipline()) && !(listeBloc.get(i).getSansSousMatieres() == true)) {
                 ExpansionHeader headerue  = matiereHeader(listeBloc.get(i));
                 ExpansionLayout layoutue = matiereLayout();
                 headerue.setExpansionLayout(layoutue);

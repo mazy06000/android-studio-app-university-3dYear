@@ -10,6 +10,7 @@ public class UE implements Serializable {
     private final String nomUE;
     private final int nbPlaces;
     private Boolean preChecked = false;
+    private Boolean sansSousMatieres = false;
 
     public UE(String code, String discipline, String nomUE, int semestre, int ECTS, int nbPlaces) {
         this.code = code;
@@ -20,7 +21,7 @@ public class UE implements Serializable {
         this.nbPlaces = nbPlaces;
     }
 
-    public UE(String code, String discipline, String nomUE, int semestre, int ECTS, int nbPlaces, boolean preChecked) {
+    public UE(String code, String discipline, String nomUE, int semestre, int ECTS, int nbPlaces, boolean preChecked, boolean sansSousMatieres) {
         this.code = code;
         this.discipline = discipline;
         this.semestre = semestre;
@@ -28,6 +29,7 @@ public class UE implements Serializable {
         this.nomUE = nomUE;
         this.nbPlaces = nbPlaces;
         this.preChecked = preChecked;
+        this.sansSousMatieres = sansSousMatieres;
     }
 
     public String getCode() {
@@ -56,5 +58,9 @@ public class UE implements Serializable {
 
     public Boolean getPreChecked() {
         return preChecked;
+    }
+
+    public Boolean getSansSousMatieres() {
+        return sansSousMatieres;
     }
 }
