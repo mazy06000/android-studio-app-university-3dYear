@@ -56,6 +56,8 @@ public class PortailFragment extends Fragment {
         listeUEBlocFondement = client.getListeUEBlocFondement();
         listeUEBlocMethode = client.getListeUEBlocMethode();
         blocEtSaMatiere = client.getBlocEtSaMatiere();
+        enregistrer = root.findViewById(R.id.boutonEnregistrer);
+
 
         mSocket.on(EVENT.SAVE, new Emitter.Listener() {
             @Override
