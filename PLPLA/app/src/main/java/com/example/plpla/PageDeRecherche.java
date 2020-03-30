@@ -89,7 +89,7 @@ public class PageDeRecherche extends AppCompatActivity implements RecyclerAdapte
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setIconifiedByDefault(false);
         implementSearch(menu);
-        
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
