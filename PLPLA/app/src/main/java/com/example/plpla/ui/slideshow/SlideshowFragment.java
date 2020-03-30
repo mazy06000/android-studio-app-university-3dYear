@@ -1,6 +1,7 @@
 package com.example.plpla.ui.slideshow;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,10 +23,24 @@ import com.example.plpla.Client;
 import com.example.plpla.R;
 import com.example.plpla.RecyclerAdapter;
 import com.example.plpla.SelectedMatiereActivity;
+import com.opencsv.CSVReader;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import matière.UE;
+
+import static java.nio.file.Paths.*;
 
 public class SlideshowFragment extends Fragment implements RecyclerAdapter.SelectedMatiere {
 
@@ -38,6 +54,7 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
 
     static RecyclerAdapter recyclerAapter;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_recyclerview, container, false);
@@ -73,23 +90,72 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private ArrayList<UE> listesdesmatieres() {
         ArrayList<UE> list = new ArrayList<>();
 
-        list.addAll(client.getListeUEBlocFondement());
-        list.addAll(client.getListeUEBlocMethode());
-        list.addAll(client.getListeUEBlocFondementS2());
-        list.addAll(client.getListeUEBlocMethodeS2());
+//        list.addAll(client.getListeUEBlocFondement());
+//        list.addAll(client.getListeUEBlocMethode());
+//        list.addAll(client.getListeUEBlocFondementS2());
+//        list.addAll(client.getListeUEBlocMethodeS2());
+
+//        String csvFile = "C://Users//saide//Desktop/matieres.csv";
+//        String readLine="";
+//        String cvsSplitBy = ",";
+//            try {
+//                System.out.println("okokokokokok");
+//                BufferedReader bfr = new BufferedReader(new FileReader(csvFile));
+//                while ((readLine = bfr.readLine()) != null) {
+//                    String[] parts = readLine.split(cvsSplitBy);
+//                    if (parts.length == 6)
+//                        list.add(new UE(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5])));
+//                    else
+//                        list.add(new UE(conversion(parts[0]), conversion(parts[1]), conversion(parts[2]), Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), Boolean.parseBoolean(parts[6])));
+//                }
+//            }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        System.out.println(list);
+
+
+        InputStream is = getResources().openRawResource(R.raw.matieres);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.defaultCharset()));
+        String readLine = "";
+        String cvsSplitBy = ";";
+
+        try {
+
+            reader.readLine();
+
+            while ((readLine = reader.readLine()) != null) {
+                String[] parts = readLine.split(cvsSplitBy);
+
+                if (parts.length == 6)
+                {list.add(new UE(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5])));}
+                else
+                {
+                    list.add(new UE(parts[0],parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), Boolean.parseBoolean(parts[6])));}
+            }
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
         return list;
+    }
+
+    public String conversion(String str){
+        if (str == "null") return null;
+        else return str;
     }
 
     @Override
     public void selectedMatiere(UE matiere) {
         Intent intent = new Intent(getActivity(), SelectedMatiereActivity.class).putExtra("data", matiere);
         startActivity(intent);
-
-
 
 
     }

@@ -58,7 +58,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         UE matieres= donnes.get(position);
         holder.name.setText(matieres.getNomUE());
         ///////////////////////////////////////////
-        if (matieres.getDiscipline()!=null) {
+//        if (matieres.getDiscipline()!=null) {
             switch (matieres.getDiscipline()) {
                 case ("Choix informatique S1"):
                 case ("Choix informatique S2"):
@@ -86,7 +86,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     holder.imageView.setImageResource(R.drawable.ic_miash);
                     break;
 
-            }
+
         }
 
 //pour afficher l'index dans la grille des matieres:

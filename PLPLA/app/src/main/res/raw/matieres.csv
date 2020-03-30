@@ -1,0 +1,19 @@
+code;discipline;nomUE;semestre;ETCS;nbplace;chequed
+SPUGDE10;Choix geographie S1;UE GEOGRAPHIE : Decouverte 1;1;6;4
+SPUGDC10;Choix geographie S1;UE GEOGRAPHIE : Decouverte 2;1;6;3
+SPUGDI10;Choix geographie S1;UE GEOGRAPHIE : Disciplinaire 1;1;6;3
+SPUF10;Choix informatique S1;UE INFO S1 : Bases de l'informatique;1;6;164
+SPUF11;Choix informatique S1;UE INFO S1 : Introduction a l'informatique par le web;1;6;134
+SPUM13;Choix Math Fondements 1 S1;UE MATHS S1 : Complements 1;1;6;100
+SPUM12;Choix Math Fondements 1 S1;UE MATHS S1 : Methodes - approche continue;1;6;280
+SPUV101;Choix SV - PO1 SITE;UE SV-S1 : Genetique. evolution. origine vie & biodiversite;1;6;43
+SPUV100;Choix SV - PO1 SITE;UE SV-S1 : Org et mecan. moleculaires - cellules eucaryotes;1;6;26
+SPUC10;null;UE CHIMIE S1 : Structure microscopique de la matiere;1;6;167
+SPUE10;null;UE ELECTRONIQUE S1 : Electronique numerique - Bases;1;6;154
+SPEA11;Choix ECUE MIASHS S1;ECUE MIASHS S1 : Culture economie 1;1;3;49
+SPEA12;Choix ECUE MIASHS S1;ECUE MIASHS S1 : Introduction a l'analyse economique;1;3;61
+SPEA10;Choix ECUE MIASHS S1;ECUE MIASHS S1 : Macroeconomie 1;1;3;111;true
+SPUP10;null;UE PHYSIQUE S1 : Mecanique 1;1;6;203
+SPUT10;null;UE TERRE S1 : Decouverte des sciences de la terre;1;6;56
+SPEA10;null;UE MATHS S1 : Fondements 1;1;6;322;true
+SPUM12;null;UE MATHS S1 : Methodes - approche continue;1;6;280;true
