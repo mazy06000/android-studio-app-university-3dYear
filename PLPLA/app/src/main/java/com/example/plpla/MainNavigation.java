@@ -4,11 +4,15 @@ import android.os.Bundle;
 
 import com.example.plpla.ui.home.PortailFragment;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.plpla.ui.semestre2.Semestre2Fragment;
+import com.example.plpla.vue.Vue;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -33,7 +37,7 @@ import io.socket.emitter.Emitter;
 import matière.UE;
 import user.User;
 
-public class MainNavigation extends AppCompatActivity {
+public class MainNavigation extends AppCompatActivity implements Vue {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Socket mSocket;
@@ -82,7 +86,10 @@ public class MainNavigation extends AppCompatActivity {
         });
 
          */
-
+        /*FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.nav_host_fragment,new PortailFragment());
+        fragmentTransaction.commit();
+*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -95,6 +102,10 @@ public class MainNavigation extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        
+        
+        
+        
     }
 
     @Override
@@ -109,5 +120,19 @@ public class MainNavigation extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void changeFragment(int id) {
+        if (id == 1) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new PortailFragment());
+            ft.commit();
+        }
+        else if (id == 2) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new Semestre2Fragment());
+            ft.commit();
+        }
     }
 }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.Fragment;
 
 import com.example.plpla.R;
 import com.example.plpla.controleur.ListenerButton;
@@ -43,14 +44,12 @@ public class ExpansionView {
     private Socket mSocket;
     private ArrayList<UE> listeUeBloc2;
     private ArrayList<UE> listeUeBloc1;
-    private PortailFragment self;
     private ArrayList<ArrayList<UE>> blocEtSaMatiere;
 
 
-    public ExpansionView(PortailFragment self, View root, Socket mSocket, Context activity,
+    public ExpansionView(View root, Socket mSocket, Context activity,
                          Button enregistrer, ArrayList<String> selectionUE, ArrayList<String> selectionCode,
                          ArrayList<UE> listeUeBloc1, ArrayList<UE> listeUeBloc2, ArrayList<ArrayList<UE>> blocEtSaMatiere){
-        this.self = self;
         this.root = root;
         this.mSocket = mSocket;
         this.activity = activity;
@@ -95,9 +94,6 @@ public class ExpansionView {
         /*Par défaut Enregistrer n'est pas cliquable*/
         enregistrer.setClickable(false);
         enregistrer.setEnabled(false);
-
-        ListenerButton listenerButton = new ListenerButton(mSocket,self);
-        enregistrer.setOnClickListener(listenerButton);
     }
 
     public ArrayList addDynamicLayout(UE bloc, ArrayList<UE> listeBloc) {

@@ -47,6 +47,7 @@
     <string name="Mail">Mail</string>
     <string name="Modifier">Modifier</string>
     <string name="saved_on_server">Le serveur a bien enregistré vos choix</string>
+    <string name="semestre3">Semestre3</string>
 
 
 </resources>
