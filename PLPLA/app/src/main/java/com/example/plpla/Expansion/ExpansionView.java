@@ -167,7 +167,7 @@ public class ExpansionView {
     private ExpansionHeader createExpansionHeader(UE bloc) {
         final ExpansionHeader expansionHeader = new ExpansionHeader(activity);
         expansionHeader.setBlock(true);
-        expansionHeader.setBackgroundColor(Color.parseColor("#00afd7"));
+        expansionHeader.setBackgroundColor(Color.parseColor("#145795"));
         expansionHeader.setPadding(dpToPx(activity, 16), dpToPx(activity, 16), dpToPx(activity, 16), dpToPx(activity, 16));
 
         final RelativeLayout layout = new RelativeLayout(activity);

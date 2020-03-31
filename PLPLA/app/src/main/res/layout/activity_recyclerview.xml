@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="Matieres"
                 android:textColor="@color/colorWhite"
-                android:textSize="16sp"
+                android:textSize="32sp"
                 android:layout_gravity="center"
                 />
         </androidx.appcompat.widget.Toolbar>

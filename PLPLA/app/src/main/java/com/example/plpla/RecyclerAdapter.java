@@ -58,36 +58,39 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         UE matieres= donnes.get(position);
         holder.name.setText(matieres.getNomUE());
         ///////////////////////////////////////////
-        if (matieres.getDiscipline()!=null) {
             switch (matieres.getDiscipline()) {
-                case ("Choix informatique S1"):
-                case ("Choix informatique S2"):
+                case ("Informatique"):
                     holder.imageView.setImageResource(R.drawable.ic_info);
                     break;
 
-                case ("Choix geographie S1"):
-                case ("Choix geographie S2"):
+                case ("Geographie"):
                     holder.imageView.setImageResource(R.drawable.ic_geo);
                     break;
-                case ("Choix Math Fondements 1 S1"):
-                case ("Choix Math Fondements 1 S2"):
+                case ("Mathematique"):
                     holder.imageView.setImageResource(R.drawable.ic_maths);
                     break;
-                case ("Choix SV - PO1 SITE"):
-                case ("Choix SV S2- PO1 SITE"):
+                case ("SV"):
                     holder.imageView.setImageResource(R.drawable.ic_sv);
                     break;
-                case ("UE CHIMIE S1 : Structure microscopique de la matiere"):
-                case ("UE CHIMIE S2 : Thermodynamique chimique / Options"):
+                case ("CHIMIE"):
                     holder.imageView.setImageResource(R.drawable.ic_chimie);
                     break;
-                case ("Choix ECUE MIASHS S1"):
-                case ("Choix ECUE MIASHS S2"):
+                case ("MIASHS"):
                     holder.imageView.setImageResource(R.drawable.ic_miash);
                     break;
-
+                case("Physique"):
+                    holder.imageView.setImageResource(R.drawable.ic_physique);
+                    break;
+                case("Electronique"):
+                    holder.imageView.setImageResource(R.drawable.ic_electro);
+                    break;
+                case("Chimie"):
+                    holder.imageView.setImageResource(R.drawable.ic_chimie);
+                    break;
+                case("Sciences de la terre"):
+                    holder.imageView.setImageResource(R.drawable.ic_sc_terre);
+                    break;
             }
-        }
 
 //pour afficher l'index dans la grille des matieres:
         //holder.rowCountTextView.setText(String.valueOf(position));
@@ -115,9 +118,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         @Override
         protected FilterResults performFiltering(CharSequence charSaquence) {
 
-            //////////////////////////////////////////////
+
             List<UE> filteredList = new ArrayList<>();
-            ///////////////////////////////////////////////
 
             if (charSaquence.toString().isEmpty())
             {
