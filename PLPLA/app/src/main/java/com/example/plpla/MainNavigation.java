@@ -53,14 +53,22 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         PortailFragment portailFragment = new PortailFragment();
         portailFragment.setArguments(extras);
 
-        User baroudi = new User();
-        baroudi.setNom("BAR");
-        baroudi.setPrenom("OU");
-        baroudi.setAddress_ip("DI");
-        baroudi.setListe_choix(new ArrayList<UE>());
+        User baroudi1 = new User("BAR", "OU", "DI", new ArrayList<UE>());
+//        baroudi.setNom("BAR");
+//        baroudi.setPrenom("OU");
+//        baroudi.setAddress_ip("DI");
+//        baroudi.setListe_choix(new ArrayList<UE>());
+        JSONObject baroudi = new JSONObject();
+        try {
+            baroudi.put("nom", "Baroudi");
+            baroudi.put("prenom", "Aymen");
+            baroudi.put("address_ip", "127.0.0.145");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         Log.d("EVENT_SOCKET", "envoie de l'utilisateur "+ ((Client)getApplicationContext()).getUser().getNom() +" au serveur");
-        Log.d("USER EVENT", "object baroudi : "+baroudi.getNom()+ " "+ baroudi.getPrenom());
+        Log.d("USER EVENT", "object baroudi : "+baroudi1.getNom()+ " "+ baroudi1.getPrenom());
         ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(EVENT.ADD_USER, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -71,10 +79,8 @@ public class MainNavigation extends AppCompatActivity implements Vue {
             }
         });
 
+        //@TODO cf le TODO classe USER
         ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().emit(EVENT.ADD_USER, baroudi);
-
-
-
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

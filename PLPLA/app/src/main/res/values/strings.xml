@@ -6,6 +6,8 @@
     <string name="emplacement1S1">Maths Fondement : Semestre 1</string>
     <string name="emplacement2S1">Maths méthode : approche continue</string>
     <string name="ip_address">ip du serveur (10.0.2.2 si vous utilisez l\'émulateur)</string>
+    <string name="nom_hint">Nom</string>
+    <string name="prenom_hint">Prénom</string>
     <string name="deroulementPlus">+</string>
     <string name="deroulementMoins">-</string>
     <string name="parcours">Mon parcours</string>
