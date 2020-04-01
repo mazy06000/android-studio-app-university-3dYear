@@ -5,25 +5,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.content.Intent;
+import android.content.SharedPreferences;
 
-import androidx.annotation.Nullable;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+
+import android.widget.Button;
+
 
 import com.example.plpla.R;
+import com.example.plpla.edit;
 
-public class ProfilFragment extends Fragment {
+import java.util.Objects;
 
-    private ToolsViewModel toolsViewModel;
 
+public class ToolsFragment extends Fragment {
+
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_tools, container, false);
 
-        return root;
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("MY_DATA", getActivity().MODE_PRIVATE);
+
+        String name = prefs.getString("MY_NAME", "no name");
+        int tel = prefs.getInt("MY_TEL", 0);
+        String email = prefs.getString("MY_EMAIL", "no email");
+
+        // Set values
+        ((TextView) root.findViewById(R.id.nameLabel)).setText(name);
+        ((TextView) root.findViewById(R.id.telLabel)).setText(tel + "");
+        ((TextView) root.findViewById(R.id.emailLabel)).setText(email);
+        return root ;
     }
+
+    public void edit(View view) {
+        startActivity(new Intent(getActivity().getApplicationContext(), edit.class));
+   }
 }
