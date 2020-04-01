@@ -84,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
                 ((Client)getApplicationContext()).getUniqueConnexion().setServerAddress(ipAddress);
                 ((Client)getApplicationContext()).getUniqueConnexion().initConnexion();
                 ((Client)getApplicationContext()).getUniqueConnexion().connecte();
+                /**
+                 * Affiche un Toast si on recçoit l'event CONNECT
+                 */
                 ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {
