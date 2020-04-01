@@ -17,7 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.example.plpla.R;
 import com.example.plpla.controleur.ListenerButton;
 import com.example.plpla.ui.home.PortailFragment;
-import com.example.plpla.viewgroup.ExpansionLayoutCollection;
+import com.github.florent37.expansionpanel.ExpansionLayout;
+import com.github.florent37.expansionpanel.viewgroup.ExpansionLayoutCollection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +46,6 @@ public class ExpansionView {
     private ArrayList<UE> listeUeBloc2;
     private ArrayList<UE> listeUeBloc1;
     private ArrayList<ArrayList<UE>> blocEtSaMatiere;
-
 
     public ExpansionView(View root, Socket mSocket, Context activity,
                          Button enregistrer, ArrayList<String> selectionUE, ArrayList<String> selectionCode,
