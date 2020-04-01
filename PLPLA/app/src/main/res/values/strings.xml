@@ -6,6 +6,8 @@
     <string name="emplacement1S1">Maths Fondement : Semestre 1</string>
     <string name="emplacement2S1">Maths méthode : approche continue</string>
     <string name="ip_address">ip du serveur (10.0.2.2 si vous utilisez l\'émulateur)</string>
+    <string name="nom_hint">Nom</string>
+    <string name="prenom_hint">Prénom</string>
     <string name="deroulementPlus">+</string>
     <string name="deroulementMoins">-</string>
     <string name="parcours">Mon parcours</string>
@@ -42,8 +44,8 @@
     <string name="connect">Vous êtes connecté au serveur.</string>
     <string name="connect_erreur">Erreur lors de la connexion, Vous n\'êtes pas connecté</string>
     <string name="Profil">Mon Profil</string>
-    <string name="Nom">Ben Abdelkrim</string>
-    <string name="Prenom">Mohamed</string>
+    <string name="Nom">Baroudi</string>
+    <string name="Prenom">Ibrahim</string>
     <string name="Mail">Mail</string>
     <string name="Modifier">Modifier</string>
     <string name="saved_on_server">Le serveur a bien enregistré vos choix</string>
