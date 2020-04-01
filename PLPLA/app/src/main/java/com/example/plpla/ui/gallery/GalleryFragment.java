@@ -40,7 +40,6 @@ public class GalleryFragment extends Fragment {
     private TextView parcoursVide;
 
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_course, container, false);
@@ -66,7 +65,7 @@ public class GalleryFragment extends Fragment {
                 InputStreamReader lecteur = new InputStreamReader(fichierLecture);
                 BufferedReader bfr = new BufferedReader(lecteur);
                 StringBuffer stringBuffer = new StringBuffer();
-                while ((parcours = bfr.readLine()) != null){
+                while ((parcours = bfr.readLine()) != null) {
                     stringBuffer.append(parcours + "\n");
                 }
 
@@ -86,11 +85,10 @@ public class GalleryFragment extends Fragment {
                     HomeFragment.getSelectionItem().clear();
                     Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
-                    ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
+                    ((Client) getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
                     reinitialiser.setEnabled(false);
                 }
             });
-
 
 
         } catch (FileNotFoundException e) {

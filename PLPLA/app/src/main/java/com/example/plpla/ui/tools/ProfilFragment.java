@@ -21,7 +21,10 @@ import com.example.plpla.edit;
 import java.util.Objects;
 
 
-public class ToolsFragment extends Fragment {
+public class ProfilFragment extends Fragment {
+
+    private Button Edit ;
+
 
 
     @Override
@@ -40,10 +43,20 @@ public class ToolsFragment extends Fragment {
         ((TextView) root.findViewById(R.id.nameLabel)).setText(name);
         ((TextView) root.findViewById(R.id.telLabel)).setText(tel + "");
         ((TextView) root.findViewById(R.id.emailLabel)).setText(email);
+
+//        Edit =   getActivity().findViewById(R.id.Edit );
+//        Edit.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public  void onClick(View v){
+//                edit();
+//            }
+//
+//        });
+
         return root ;
     }
 
-    public void edit(View view) {
+    public void showEdit(View view) {
         startActivity(new Intent(getActivity().getApplicationContext(), edit.class));
    }
 }
