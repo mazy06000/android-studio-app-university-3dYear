@@ -1,6 +1,7 @@
 //noinspection GradleCompatible
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -72,6 +73,8 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.+'
     androidTestImplementation 'org.mockito:mockito-android:2.+'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.opencsv:opencsv:4.6'
     implementation 'com.google.android.material:material:1.1.0'
+
 
 }

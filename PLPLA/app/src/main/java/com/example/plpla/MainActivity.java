@@ -1,23 +1,23 @@
 package com.example.plpla;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import events.EVENT;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import matière.UE;
 import user.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
         ipAddressUsr.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
 
+        //@TODO Ajouter dans le layout des edittext ou autre pour rentrer ses champs :
+        ((Client)getApplicationContext()).getUser().setNom("Baroudi");
+        ((Client)getApplicationContext()).getUser().setPrenom("Ibrahim");
+        ((Client)getApplicationContext()).getUser().setListe_choix(new ArrayList<UE>());
+        //-------------------------------------------------------------------
+
+
         /*Passe au Fragment Home (L'activity MainNavigation) */
         passeAHome();
     }
@@ -58,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 //                finish();
 //            }
 //        }, TEMPS_MESSAGE_ACCEUIL);
+
+
 
         nextActivity.setOnClickListener(new View.OnClickListener() {
             @Override

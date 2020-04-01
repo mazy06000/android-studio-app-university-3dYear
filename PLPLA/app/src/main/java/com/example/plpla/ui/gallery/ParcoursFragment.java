@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.plpla.Client;
 import com.example.plpla.CourseActivity;
 import com.example.plpla.R;
-import com.example.plpla.ui.home.HomeFragment;
+import com.example.plpla.ui.home.PortailFragment;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -27,10 +27,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 
-import io.socket.client.IO;
+import events.EVENT;
 import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
-public class GalleryFragment extends Fragment {
+public class ParcoursFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
     private TextView monParcours;
@@ -38,6 +39,7 @@ public class GalleryFragment extends Fragment {
     private static final String FILE_NAME = "parcours.txt";
     private TextView finalText;
     private TextView parcoursVide;
+    private Socket mSocket;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,9 +55,27 @@ public class GalleryFragment extends Fragment {
         finalText.setVisibility(View.INVISIBLE);
         parcoursVide.setVisibility(View.VISIBLE);
         reinitialiser.setEnabled(false);
+
+        Client client = (Client) getActivity().getApplication();
+        mSocket = client.getUniqueConnexion().getmSocket();
+
+        mSocket.on(EVENT.INIT_PARCOURS, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("EVENT_SOCKET", "Socket event INIT_PARCOURS received");
+                        Toast.makeText(getActivity().getApplicationContext(), R.string.reinitialiser, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
+
         try {
             //Afficher le parcours enregistré
-            if (!HomeFragment.getSelectionItem().isEmpty()) {
+            if (!PortailFragment.getSelectionUE().isEmpty()) {
                 reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
 
@@ -82,7 +102,7 @@ public class GalleryFragment extends Fragment {
                     finalText.setVisibility(View.INVISIBLE);
                     parcoursVide.setVisibility(View.VISIBLE);
                     finalText.setText("");
-                    HomeFragment.getSelectionItem().clear();
+                    PortailFragment.getSelectionUE().clear();
                     Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
                     ((Client) getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");

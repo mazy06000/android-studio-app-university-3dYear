@@ -1,5 +1,6 @@
 package com.example.plpla;
 
+import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ public class edit extends AppCompatActivity {
     private EditText telInput;
     private EditText emailInput;
     private SharedPreferences prefs;
+    private Button Save ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,17 @@ public class edit extends AppCompatActivity {
         telInput.setText(tel+"");
         emailInput.setText(email);
 
+
+//        Save = findViewById(R.id.Save);
+//        Save.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public  void onClick(View v){
+//                startActivity(new Intent(getApplicationContext(), ProfilFragment.class));
+//
+//            }
+//
+//        });
+
     }
 
     public void saveData(View view) {
@@ -51,8 +64,8 @@ public class edit extends AppCompatActivity {
         editor.putString("MY_EMAIL", email);
         editor.apply();
 
-        // Return to main activity.
-        startActivity(new Intent(getApplicationContext(), ProfilFragment.class));
+        // Return to profilfragment activity.
+        startActivity(new Intent(getApplicationContext(), MainNavigation.class));
 
     }
 }

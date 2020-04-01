@@ -8,29 +8,31 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import matière.UE;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
     private static final String TAG = "RecyclerAdapter";
-    //List<String> donnes;
-    /////////////////////////
-    List<Matieres> donnes;
-    List<Matieres> toutdonnes;
-
-    ///////////////////////////
-    //List<String> toutdonnes;
 
 
-    public RecyclerAdapter(List<Matieres> donnes) {
+    private List<UE> donnes;
+    private List<UE> toutdonnes;
+    private SelectedMatiere selectedMatiere;
+
+    public RecyclerAdapter(List<UE> donnes,SelectedMatiere selectedMatiere) {
         this.donnes = donnes;
         this.toutdonnes=new ArrayList<>(donnes);
+        this.selectedMatiere = selectedMatiere;
+
     }
 
     @NonNull
@@ -39,9 +41,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         Log.i(TAG,"onCreateViewHolder:");
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.row_item, parent, false);
+
+
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
+
+
 
 
 
@@ -49,13 +55,49 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder,int position) {
 
         /////////////////////////////////////////
-        Matieres matieres= donnes.get(position);
-        holder.name.setText(matieres.getName());
-
-
+        UE matieres= donnes.get(position);
+        holder.name.setText(matieres.getNomUE());
         ///////////////////////////////////////////
+            switch (matieres.getDiscipline()) {
+                case ("Informatique"):
+                    holder.imageView.setImageResource(R.drawable.ic_info);
+                    break;
 
-        holder.rowCountTextView.setText(String.valueOf(position));
+                case ("Geographie"):
+                    holder.imageView.setImageResource(R.drawable.ic_geo);
+                    break;
+                case ("Mathematique"):
+                    holder.imageView.setImageResource(R.drawable.ic_maths);
+                    break;
+                case ("SV"):
+                    holder.imageView.setImageResource(R.drawable.ic_sv);
+                    break;
+                case ("CHIMIE"):
+                    holder.imageView.setImageResource(R.drawable.ic_chimie);
+                    break;
+                case ("MIASHS"):
+                    holder.imageView.setImageResource(R.drawable.ic_miash);
+                    break;
+                case("Physique"):
+                    holder.imageView.setImageResource(R.drawable.ic_physique);
+                    break;
+                case("Electronique"):
+                    holder.imageView.setImageResource(R.drawable.ic_electro);
+                    break;
+                case("Chimie"):
+                    holder.imageView.setImageResource(R.drawable.ic_chimie);
+                    break;
+                case("Sciences de la terre"):
+                    holder.imageView.setImageResource(R.drawable.ic_sc_terre);
+                    break;
+            }
+
+//pour afficher l'index dans la grille des matieres:
+        //holder.rowCountTextView.setText(String.valueOf(position));
+// pour afficher la discipline dans la grille des matieres:
+        holder.rowCountTextView.setText(matieres.getDiscipline());
+
+
         //holder.textView.setText(donnes.get(position));
 
     }
@@ -75,11 +117,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         protected FilterResults performFiltering(CharSequence charSaquence) {
-            //List<String> filteredList = new ArrayList<>();
 
-            //////////////////////////////////////////////
-            List<Matieres> filteredList = new ArrayList<>();
-            ///////////////////////////////////////////////
+
+            List<UE> filteredList = new ArrayList<>();
 
             if (charSaquence.toString().isEmpty())
             {
@@ -87,8 +127,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }
             else
             {
-                for (/*String*/Matieres matiere : toutdonnes) {
-                    if (matiere.getName().toLowerCase().contains(charSaquence.toString().toLowerCase())) {
+                for (UE matiere : toutdonnes) {
+                    if (matiere.getNomUE().toLowerCase().contains(charSaquence.toString().toLowerCase()) | (matiere.getDiscipline()!=null && matiere.getDiscipline().toLowerCase().contains(charSaquence.toString().toLowerCase()))) {
                         filteredList.add(matiere);
                     }
                 }
@@ -103,41 +143,54 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         @Override
         protected void publishResults(CharSequence constraint, FilterResults filterResults) {
             donnes.clear();
-            donnes.addAll((Collection<? extends /*String*/ Matieres>)filterResults.values);
+            donnes.addAll((Collection<? extends UE>)filterResults.values);
             notifyDataSetChanged();
         }
     };
 
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ////////////////////////////
-        View view;
+
+    public interface SelectedMatiere{
+
+        void selectedMatiere(UE userModel);
+
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/ {
+
+
         TextView name;
-        ///////////////////////////
         ImageView imageView;
-        TextView textView, rowCountTextView;
+        TextView rowCountTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //view.setVisibility(View.GONE);
 
-            ////////////////////////
+
             name=itemView.findViewById(R.id.textView);
-            ///////////////////////////////////////////
-
             imageView = itemView.findViewById(R.id.imageView);
-            textView = itemView.findViewById(R.id.textView);
             rowCountTextView = itemView.findViewById(R.id.rowCountTextView);
 
-            itemView.setOnClickListener(this);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectedMatiere.selectedMatiere(donnes.get(getAdapterPosition()));
+                }
+            });
+
+
+
+            //itemView.setOnClickListener(this);
         }
-        @Override
-        public void onClick(View view){
-            //Toast.makeText(view.getContext(),donnes.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
-            /////////////////////////////////////
-            Toast.makeText(view.getContext(), (CharSequence) donnes.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
-            ///////////////////////////////////////
-        }
+//        @Override
+//        public void onClick(View view){
+//            //Toast.makeText(view.getContext(),donnes.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
+//            /////////////////////////////////////
+//            Toast.makeText(view.getContext(), (CharSequence) donnes.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
+//            ///////////////////////////////////////
+//
+//        }
     }
 }

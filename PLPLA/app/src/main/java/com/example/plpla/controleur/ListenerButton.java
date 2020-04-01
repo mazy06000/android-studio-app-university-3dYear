@@ -1,21 +1,12 @@
 package com.example.plpla.controleur;
 
-import android.app.Activity;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.plpla.Client;
-import com.example.plpla.CourseActivity;
-import com.example.plpla.MainNavigation;
 import com.example.plpla.R;
-import com.example.plpla.ui.home.HomeFragment;
-import com.example.plpla.vue.Vue;
+import com.example.plpla.ui.home.PortailFragment;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,10 +19,10 @@ import static android.content.Context.MODE_PRIVATE;
 public class ListenerButton implements View.OnClickListener{
 
     private final Socket socket;
-    private HomeFragment activity;
+    private PortailFragment activity;
     private int compteurTouche = 0;
 
-    public ListenerButton(Socket socket, HomeFragment activity) {
+    public ListenerButton(Socket socket, PortailFragment activity) {
         this.socket = socket;
         this.activity = activity;
     }
@@ -40,35 +31,15 @@ public class ListenerButton implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-//            case R.id.BoutonSemestre:
-//                compteurTouche++;
-//                Log.d("Bouton semestre", "Pression sur le bouton semestre");
-//                activity.getEnregistrer().setEnabled(false);
-//                if (compteurTouche%2 != 0) {
-//                    activity.getCheckBox1().setVisibility(View.VISIBLE);
-//                    activity.getCheckBox2().setVisibility(View.VISIBLE);
-//                    activity.getTextView1().setVisibility(View.VISIBLE);
-//                    activity.getTextView2().setVisibility(View.VISIBLE);
-//                    activity.getAccordeon().setText(R.string.deroulementMoins);
-//                    ((Client)activity.getActivity().getApplicationContext()).getUniqueConnexion().envoyerEvent("touche");
-//                }
-//                else {
-//                    activity.getCheckBox1().setVisibility(View.INVISIBLE);
-//                    activity.getCheckBox2().setVisibility(View.INVISIBLE);
-//                    activity.getTextView1().setVisibility(View.INVISIBLE);
-//                    activity.getTextView2().setVisibility(View.INVISIBLE);
-//                    activity.getAccordeon().setText(R.string.deroulementPlus);
-//                }
-//                break;
 
-            case R.id.Enregistrer:
+            case R.id.boutonEnregistrer:
                 Log.d("Bouton enregistrer", "Parcours enregistre");
-                activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
-                activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
+                //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
+                //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
                 String fileName = "mon_parcours";
                 String final_selection = "";
-                for (String selections : activity.getSelectionItem()){
-                    Log.d("WRITEFILE", "ecriture de "+activity.getSelectionItem().toString());
+                for (String selections : activity.getSelectionUE()){
+                    Log.d("WRITEFILE", "ecriture de "+activity.getSelectionUE().toString());
                     final_selection += selections + "\n";
                     Log.d("WRITEFILE", "Valeur de final_selection "+final_selection);
 
@@ -88,6 +59,7 @@ public class ListenerButton implements View.OnClickListener{
                     Log.d("SAVE_SERVER", "Envoie de la matière de code "+code_ue+ " au serveur pour enregistrement");
                     ((Client)activity.getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("Save", code_ue);
                 }
+                break;
 
 
 

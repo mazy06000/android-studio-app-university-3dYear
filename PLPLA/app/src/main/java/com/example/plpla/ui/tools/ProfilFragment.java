@@ -43,15 +43,17 @@ public class ProfilFragment extends Fragment {
         ((TextView) root.findViewById(R.id.nameLabel)).setText(name);
         ((TextView) root.findViewById(R.id.telLabel)).setText(tel + "");
         ((TextView) root.findViewById(R.id.emailLabel)).setText(email);
+        //showEdit();
 
-//        Edit =   getActivity().findViewById(R.id.Edit );
-//        Edit.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public  void onClick(View v){
-//                edit();
-//            }
-//
-//        });
+        Edit =  root.findViewById(R.id.Edit );
+        Edit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                startActivity(new Intent(getActivity().getApplicationContext(), edit.class));
+                ;
+            }
+
+        });
 
         return root ;
     }

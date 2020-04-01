@@ -13,9 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.plpla.controleur.ListenerButton;
-import com.example.plpla.controleur.ListenerCheckBox;
-import com.example.plpla.ui.home.HomeFragment;
+import com.example.plpla.ui.home.PortailFragment;
 import com.example.plpla.vue.Vue;
 
 import java.io.BufferedInputStream;
@@ -31,7 +29,7 @@ import java.util.HashMap;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
-public class CourseActivity extends AppCompatActivity implements Vue {
+public class CourseActivity extends AppCompatActivity {
 
 
     private String serverAdress;
@@ -74,7 +72,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
             reinitialiser.setEnabled(false);
 
             //Afficher le parcours enregistré
-            if (!HomeFragment.getSelectionItem().isEmpty()) {
+            if (!PortailFragment.getSelectionUE().isEmpty()) {
                 reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
 
@@ -101,7 +99,7 @@ public class CourseActivity extends AppCompatActivity implements Vue {
                     finalText.setVisibility(View.INVISIBLE);
                     parcoursVide.setVisibility(View.VISIBLE);
                     finalText.setText("");
-                    HomeFragment.getSelectionItem().clear();
+                    PortailFragment.getSelectionUE().clear();
                     Toast.makeText(CourseActivity.this, "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     reinitialiser.setEnabled(false);
                 }
