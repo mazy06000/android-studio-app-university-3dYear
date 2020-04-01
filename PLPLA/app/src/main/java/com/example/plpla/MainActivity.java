@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private static int TEMPS_MESSAGE_ACCEUIL = 600;
     private String ipAddress;
     private Button nextActivity;
-    private EditText ipAddressUsr;
+    private EditText nomUser;
+    private EditText prenomUser;
 
     /*L'objet client qui existe pendant toute l'application*/
 
@@ -39,14 +40,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         nextActivity = findViewById(R.id.button);
-        ipAddressUsr = findViewById(R.id.editText);
+        nomUser = findViewById(R.id.editTextNom);
+        prenomUser = findViewById(R.id.editTextPrenom);
 
-        ipAddressUsr.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
+        /**
+         * Le nom et le prénom ont un maximum de 20 caractères
+         */
+        nomUser.setFilters(new InputFilter[] {new InputFilter.LengthFilter(20)});
+        prenomUser.setFilters(new InputFilter[] {new InputFilter.LengthFilter(20)});
 
-        //@TODO Ajouter dans le layout des edittext ou autre pour rentrer ses champs :
-        ((Client)getApplicationContext()).getUser().setNom("Baroudi");
-        ((Client)getApplicationContext()).getUser().setPrenom("Ibrahim");
-        ((Client)getApplicationContext()).getUser().setListe_choix(new ArrayList<UE>());
         //-------------------------------------------------------------------
 
 
@@ -71,7 +73,14 @@ public class MainActivity extends AppCompatActivity {
         nextActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ipAddress = "http://"+ipAddressUsr.getText()+":4444";
+                ipAddress = "http://10.0.2.2:4444";
+                /**
+                 * Initialisation des identifiants, Nom et prénom, dans l'objet User créé dans la classe Client
+                 */
+                ((Client)getApplicationContext()).getUser().setNom(nomUser.getText().toString());
+                ((Client)getApplicationContext()).getUser().setPrenom(prenomUser.getText().toString());
+                ((Client)getApplicationContext()).getUser().setListe_choix(new ArrayList<UE>());
+
                 ((Client)getApplicationContext()).getUniqueConnexion().setServerAddress(ipAddress);
                 ((Client)getApplicationContext()).getUniqueConnexion().initConnexion();
                 ((Client)getApplicationContext()).getUniqueConnexion().connecte();
