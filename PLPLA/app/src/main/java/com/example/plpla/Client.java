@@ -118,8 +118,8 @@ public class Client extends Application {
 
 
     //LA LISTE DES 2 BLOCS AVEC LEUR MATIERE PRE-CHECKED
-    ArrayList<ArrayList<UE>> blocEtSaMatiereS2 = new ArrayList<>(Arrays.asList(new ArrayList<UE>(Arrays.asList(blocFondement,fondement1)),
-            new ArrayList<UE>(Arrays.asList(blocFondementS2,blocMethodeS2))));
+    ArrayList<ArrayList<UE>> blocEtSaMatiereS2 = new ArrayList<>(Arrays.asList(new ArrayList<UE>(Arrays.asList(blocFondementS2,fondementS2BlocF)),
+            new ArrayList<UE>(Arrays.asList(blocMethodeS2,methodesS2BlocM))));
     //LA LISTE DES UE DANS LE BLOC FONDEMENT
     ArrayList<UE> listeUEBlocFondementS2 = new ArrayList<>(Arrays.asList(geo3, geo4, disciplinaire2, diversite, physiologie, chimieS2Reaction, chimieS2Thermo,
             chimieS2Pollution, chimieS2Complement, chimieS2TChimique, electroniqueSansFil, electroniqueAnalogique, infoImperative, infoShell, mathComplement2,
@@ -130,15 +130,15 @@ public class Client extends Application {
             mathMethodeDiscrete, entreprise1, information, macro1S2, physiqueS2Mecanique, physiqueS2Optique, terreS2Atmosphere, terreS2Structure, methodesS2BlocM));
 
     public ArrayList<ArrayList<UE>> getBlocEtSaMatiereS2() {
-        return blocEtSaMatiere;
+        return blocEtSaMatiereS2;
     }
 
     public ArrayList<UE> getListeUEBlocFondementS2() {
-        return listeUEBlocFondement;
+        return listeUEBlocFondementS2;
     }
 
     public ArrayList<UE> getListeUEBlocMethodeS2() {
-        return listeUEBlocMethode;
+        return listeUEBlocMethodeS2;
     }
 
 

@@ -6,12 +6,22 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.navigation.NavigationView;
 
 import matière.UE;
 
 public class SelectedMatiereActivity extends AppCompatActivity {
 
     TextView tvMatiere,tvCode,tvSemestre,tvDiscipline,tvECTS,tvNbPlace;
+    private AppBarConfiguration mAppBarConfiguration;
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -38,6 +48,7 @@ public class SelectedMatiereActivity extends AppCompatActivity {
             tvECTS.setText("ECTS : " + laMatiere.getECTS());
             tvNbPlace.setText("Nombre de place : " + laMatiere.getNbPlaces());
         }
+
 
     }
 }

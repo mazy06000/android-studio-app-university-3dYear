@@ -29,7 +29,7 @@ import java.util.HashMap;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
-public class CourseActivity extends AppCompatActivity implements Vue {
+public class CourseActivity extends AppCompatActivity {
 
 
     private String serverAdress;

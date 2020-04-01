@@ -1,18 +1,10 @@
 package com.example.plpla.controleur;
 
-import android.app.Activity;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.plpla.Client;
-import com.example.plpla.CourseActivity;
-import com.example.plpla.MainNavigation;
 import com.example.plpla.R;
 import com.example.plpla.ui.home.PortailFragment;
 
