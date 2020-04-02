@@ -144,6 +144,12 @@ public class MainNavigation extends AppCompatActivity implements Vue {
             ft.replace(R.id.nav_host_fragment, new Semestre3Fragment());
             ft.commit();
         }
+        else if (id == 4) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
+            ft.replace(R.id.nav_host_fragment, new Semestre3Fragment());
+            ft.commit();
+        }
     }
 
     @Override

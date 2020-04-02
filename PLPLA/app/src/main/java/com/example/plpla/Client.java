@@ -192,7 +192,7 @@ public class Client extends Application {
     //LA LISTE DES 2 BLOCS AVEC LEUR MATIERE PRE-CHECKED
     ArrayList<UE> blocEtSaMatiereS3 = new ArrayList<>(Arrays.asList(blocSciencesEtTech));
     //LA LISTE DES UE DANS LE BLOC
-    ArrayList<UE> listeUEBlocS = new ArrayList<>(Arrays.asList(geoApprofondissement,disciplinaire3,disciplinaire4,disciplinaire5,
+    ArrayList<UE> listeUEBlocS3 = new ArrayList<>(Arrays.asList(geoApprofondissement,disciplinaire3,disciplinaire4,disciplinaire5,
             geo1,geo2,disciplinaire1, chimie,chimieS3Solutions,chimieS3Medicinale,chimieS3Cosmetique,
             electronique,base,web,
             chimieS3Biomolecules,chimieS3Organique,chimieS3Materiaux,ContinuumEnseign,electroniqueAutomatique,electroniquePhysique,electroniqueSysteme,infoBaseD,infoOFI,infoC,mathAlgebre
@@ -200,11 +200,12 @@ public class Client extends Application {
             ,terreMateriaux,terrePhysique
     ));
 
-    public ArrayList<ArrayList<UE>> getBlocEtSaMatiereS3() {
-        return blocEtSaMatiere;
+    public ArrayList<UE> getBlocEtSaMatiereS3() {
+        return blocEtSaMatiereS3;
     }
 
     public ArrayList<UE> getListeUEBlocS3() {
-        return listeUEBlocFondement;
+        return listeUEBlocS3;
     }
+
 }

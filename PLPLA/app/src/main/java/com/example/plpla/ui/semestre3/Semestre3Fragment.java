@@ -33,7 +33,7 @@ public class Semestre3Fragment extends Fragment {
     private Button enregistrer;
     private Socket mSocket;
     private String serverAdress;
-    private ArrayList<ArrayList<UE>> blocEtSaMatiere;
+    private ArrayList<UE> blocEtSaMatiere;
     private ArrayList<UE> listeUEBloc;
     private Vue mListener;
     private Button semestre4;
@@ -78,17 +78,17 @@ public class Semestre3Fragment extends Fragment {
         });
 
         expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,selectionUE, selectionCode,
-                listeUEBloc, blocEtSaMatiere);
+                listeUEBloc, blocEtSaMatiere, 1);
         this.expansionView.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
 
         expansionView.createExpansion();
 
-        semestre4.setOnClickListener(new View.OnClickListener() {
+        /*semestre4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.changeFragment(4);
             }
-        });
+        });*/
 
         return root;
     }

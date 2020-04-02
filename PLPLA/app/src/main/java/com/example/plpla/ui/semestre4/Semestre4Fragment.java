@@ -57,8 +57,8 @@ public class Semestre4Fragment extends Fragment {
         Client client = (Client) getActivity().getApplication();
         mSocket = client.getUniqueConnexion().getmSocket();
         listeUEBloc = client.getListeUEBlocS3();
-        blocEtSaMatiere = client.getBlocEtSaMatiereS3();
-        enregistrer = root.findViewById(R.id.boutonEnregistrer2);
+        //blocEtSaMatiere = client.getBlocEtSaMatiereS3();
+        enregistrer = root.findViewById(R.id.boutonEnregistrer4);
 
 
         mSocket.on(EVENT.SAVE, new Emitter.Listener() {
@@ -74,8 +74,8 @@ public class Semestre4Fragment extends Fragment {
             }
         });
 
-        expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,selectionUE, selectionCode,
-                listeUEBlocFondement, listeUEBlocMethode, blocEtSaMatiere);
+        /*expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,selectionUE, selectionCode,
+                listeUEBlocFondement, listeUEBlocMethode, blocEtSaMatiere);*/
         this.expansionView.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
 
         expansionView.createExpansion();
