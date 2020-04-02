@@ -1,6 +1,7 @@
 package com.example.plpla;
 
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.plpla.ui.home.PortailFragment;
@@ -23,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.Menu;
+import android.widget.TextView;
 
 
 import org.json.JSONException;
@@ -104,10 +106,16 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        
-        
-        
-        
+//
+//        SharedPreferences prefs = getSharedPreferences("MY_DATA",MODE_PRIVATE);
+//        String name = prefs.getString("MY_NAME", "no name");
+//        String username = prefs.getString("MY_USERNAME", "no username");
+//        ((TextView) findViewById(R.id.Profilside)).setText(name+ "  "+username);
+
+
+
+
+
     }
 
     @Override

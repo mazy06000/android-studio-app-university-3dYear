@@ -7,66 +7,78 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+
     android:gravity="center_horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
-        android:layout_marginTop="50dp">
+        tools:ignore="MissingConstraints">
 
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TableRow>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nom"/>
+                    android:text="Nom" />
+
                 <EditText
                     android:id="@+id/nameInput"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:inputType="text"/>
+                    android:inputType="text" />
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Prenom"/>
+                    android:text="Prenom" />
 
                 <EditText
                     android:id="@+id/usernameInput"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:inputType="text"/>
+                    android:inputType="text" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tel"/>
+                    android:text="Tel" />
+
                 <EditText
                     android:id="@+id/telInput"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:inputType="number"/>
+                    android:inputType="number" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email"/>
+                    android:text="Email" />
+
                 <EditText
                     android:id="@+id/emailInput"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress" />
             </TableRow>
         </TableLayout>
 
