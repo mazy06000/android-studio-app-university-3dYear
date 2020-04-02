@@ -54,7 +54,7 @@
 
     <LinearLayout
         android:layout_width="317dp"
-        android:layout_height="113dp"
+        android:layout_height="140dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Name" />
+                    android:text="Nom" />
+
 
                 <TextView
                     android:id="@+id/nameLabel"
@@ -83,6 +84,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:text="MOHAMED" />
+            </TableRow>
+
+
+            <TableRow android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Prenom" />
+
+
+                <TextView
+                    android:id="@+id/usernameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="BENABDELKRIM" />
             </TableRow>
 
             <TableRow android:layout_marginTop="20dp">

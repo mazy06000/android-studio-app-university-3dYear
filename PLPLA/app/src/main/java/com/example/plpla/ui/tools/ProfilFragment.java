@@ -36,11 +36,13 @@ public class ProfilFragment extends Fragment {
         SharedPreferences prefs = getActivity().getSharedPreferences("MY_DATA", getActivity().MODE_PRIVATE);
 
         String name = prefs.getString("MY_NAME", "no name");
+        String username = prefs.getString("MY_USERNAME", "no username");
         int tel = prefs.getInt("MY_TEL", 0);
         String email = prefs.getString("MY_EMAIL", "no email");
 
         // Set values
         ((TextView) root.findViewById(R.id.nameLabel)).setText(name);
+        ((TextView) root.findViewById(R.id.usernameLabel)).setText(username);
         ((TextView) root.findViewById(R.id.telLabel)).setText(tel + "");
         ((TextView) root.findViewById(R.id.emailLabel)).setText(email);
         //showEdit();
