@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TextView;
 
 
 import org.json.JSONException;
@@ -48,7 +49,6 @@ public class MainNavigation extends AppCompatActivity implements Vue {
     private Socket mSocket;
 
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -43,6 +43,12 @@ public class ProfilFragment extends Fragment {
         // Set values
         ((TextView) root.findViewById(R.id.nameLabel)).setText(name);
         ((TextView) root.findViewById(R.id.usernameLabel)).setText(username);
+        ((TextView) root.findViewById(R.id.Profil)).setText(name+ "  "+username);
+        ((TextView) root.findViewById(R.id.Email)).setText(email);
+
+        //((TextView) root.findViewById(R.id.Profil)).setText(username);
+
+
         ((TextView) root.findViewById(R.id.telLabel)).setText(tel + "");
         ((TextView) root.findViewById(R.id.emailLabel)).setText(email);
         //showEdit();
