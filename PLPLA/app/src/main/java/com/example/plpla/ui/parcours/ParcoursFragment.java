@@ -9,8 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.plpla.Client;
 import com.example.plpla.Expansion.ExpansionParcours;
@@ -38,7 +41,6 @@ public class ParcoursFragment extends Fragment {
     private TextView parcoursVide;
     private Socket mSocket;
     private ExpansionParcours expansionParcours;
-
 
 
 
@@ -118,7 +120,6 @@ public class ParcoursFragment extends Fragment {
                     reinitialiser.setEnabled(false);
                 }
             });
-
 
 
         } catch (FileNotFoundException e) {

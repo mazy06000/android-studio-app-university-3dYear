@@ -47,12 +47,13 @@
     <string name="Mail">Mail</string>
     <string name="Modifier">Modifier</string>
     <string name="saved_on_server">Le serveur a bien enregistré vos choix</string>
+    <string name="Edit">Edit</string>
+    <string name="Save">Save</string>
 
     <string name="semestre">Semestre 1</string>
     <string name="semestre2">Semestre 2</string>
     <string name="semestre3">Semestre 3</string>
     <string name="semestre4">Semestre 4</string>
-
 
 
 </resources>
