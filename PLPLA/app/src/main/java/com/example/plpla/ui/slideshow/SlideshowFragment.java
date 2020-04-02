@@ -84,13 +84,10 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
             reader.readLine();
 
             while ((readLine = reader.readLine()) != null) {
-                String[] parts = readLine.split(cvsSplitBy);
 
-                if (parts.length == 6) {
-                    list.add(new UE(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5])));
-                } else {
-                    list.add(new UE(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), Boolean.parseBoolean(parts[6]), Boolean.parseBoolean(parts[7])));
-                }
+                String[] parts = readLine.split(cvsSplitBy);
+                list.add(new UE(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5])));
+
             }
         } catch (IOException ex) {
             ex.printStackTrace();
