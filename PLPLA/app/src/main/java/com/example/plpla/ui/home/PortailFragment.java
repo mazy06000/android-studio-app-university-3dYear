@@ -113,7 +113,9 @@ public class PortailFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        getActivity().finish();
 
     }
+
 
 }

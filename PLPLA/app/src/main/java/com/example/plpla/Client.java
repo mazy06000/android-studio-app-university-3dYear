@@ -22,6 +22,8 @@ public class Client extends Application {
         user = new User();
     }
 
+
+
     public Connexion getUniqueConnexion() {
         return uniqueConnexion;
     }

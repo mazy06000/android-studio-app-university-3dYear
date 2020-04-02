@@ -1,4 +1,4 @@
-package com.example.plpla.ui.tools;
+package com.example.plpla.ui.profil;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

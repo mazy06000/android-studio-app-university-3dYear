@@ -1,4 +1,4 @@
-package com.example.plpla.ui.gallery;
+package com.example.plpla.ui.parcours;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,14 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.plpla.Client;
-import com.example.plpla.CourseActivity;
 import com.example.plpla.R;
 import com.example.plpla.ui.home.PortailFragment;
 
@@ -25,7 +21,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 
 import events.EVENT;
 import io.socket.client.Socket;
