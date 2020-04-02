@@ -1,4 +1,4 @@
-package com.example.plpla.ui.semestre2;
+package com.example.plpla.ui.semestre3;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +24,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import matière.UE;
 
-public class Semestre2Fragment extends Fragment {
+public class Semestre3Fragment extends Fragment {
 
     //COMPOSANT DU LAYOUT
 
@@ -34,12 +33,10 @@ public class Semestre2Fragment extends Fragment {
     private Button enregistrer;
     private Socket mSocket;
     private String serverAdress;
-    private ArrayList<ArrayList<UE>> blocEtSaMatiere;
-    private ArrayList<UE> listeUEBlocFondement;
-    private ArrayList<UE> listeUEBlocMethode;
+    private ArrayList<UE> blocEtSaMatiere;
+    private ArrayList<UE> listeUEBloc;
     private Vue mListener;
-    private Button semestre3;
-
+    private Button semestre4;
 
 
 
@@ -56,16 +53,14 @@ public class Semestre2Fragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_semestre2, container, false);
-
+        View root = inflater.inflate(R.layout.fragment_semestre3, container, false);
 
         Client client = (Client) getActivity().getApplication();
         mSocket = client.getUniqueConnexion().getmSocket();
-        listeUEBlocFondement = client.getListeUEBlocFondementS2();
-        listeUEBlocMethode = client.getListeUEBlocMethodeS2();
-        blocEtSaMatiere = client.getBlocEtSaMatiereS2();
-        enregistrer = root.findViewById(R.id.boutonEnregistrer2);
-        semestre3 = root.findViewById(R.id.boutonSemestre3);
+        listeUEBloc = client.getListeUEBlocS3();
+        blocEtSaMatiere = client.getBlocEtSaMatiereS3();
+        enregistrer = root.findViewById(R.id.boutonEnregistrer3);
+        semestre4 = root.findViewById(R.id.boutonSemestre4);
 
 
 
@@ -83,19 +78,17 @@ public class Semestre2Fragment extends Fragment {
         });
 
         expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,selectionUE, selectionCode,
-                listeUEBlocFondement, listeUEBlocMethode, blocEtSaMatiere);
+                listeUEBloc, blocEtSaMatiere, 1);
         this.expansionView.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
 
         expansionView.createExpansion();
 
-        semestre3.setOnClickListener(new View.OnClickListener() {
+        /*semestre4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.changeFragment(3);
+                mListener.changeFragment(4);
             }
-        });
-
-
+        });*/
 
         return root;
     }

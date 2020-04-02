@@ -12,8 +12,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/semestre"
-            android:id="@+id/textDuSemestre"
+            android:text="@string/semestre4"
             android:textSize="32dp"
             android:textAlignment="center"
             android:paddingTop="10dp"/>
@@ -40,18 +39,18 @@
             <Button android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/boutonEnregistrer"
+                android:id="@+id/boutonEnregistrer4"
                 android:text="@string/Enregistrer"/>
 
             <TextView android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <Button
+            <!--<Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/boutonSemestre2"
-                android:text="@string/semestre2"/>
+                android:id="@+id/boutonSemestre4"
+                android:text="@string/semestre4"/>-->
 
         </LinearLayout>
 

@@ -1,10 +1,10 @@
 package com.example.plpla;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 
 import com.example.plpla.ui.home.PortailFragment;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.plpla.ui.semestre2.Semestre2Fragment;
+import com.example.plpla.ui.semestre3.Semestre3Fragment;
 import com.example.plpla.vue.Vue;
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,14 +23,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import events.EVENT;
 import io.socket.client.Socket;
@@ -42,6 +41,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
     private AppBarConfiguration mAppBarConfiguration;
     private Socket mSocket;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,14 +53,21 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         PortailFragment portailFragment = new PortailFragment();
         portailFragment.setArguments(extras);
 
-        User baroudi = new User();
-        baroudi.setNom("BAR");
-        baroudi.setPrenom("OU");
-        baroudi.setAddress_ip("DI");
-        baroudi.setListe_choix(new ArrayList<UE>());
 
-        Log.d("EVENT_SOCKET", "envoie de l'utilisateur "+ ((Client)getApplicationContext()).getUser().getNom() +" au serveur");
-        Log.d("USER EVENT", "object baroudi : "+baroudi.getNom()+ " "+ baroudi.getPrenom());
+        JSONObject user = new JSONObject();
+        try {
+            user.put("nom", ((Client)getApplicationContext()).getUser().getNom());
+            user.put("prenom", ((Client)getApplicationContext()).getUser().getPrenom());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("EVENT_SOCKET", "Envoie de l'utilisateur "+ ((Client)getApplicationContext()).getUser().getNom() +" au serveur");
+        ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().emit(EVENT.ADD_USER, user);
+
+        /**
+         * Réception de l'adresse ip du client dans le serveur
+         */
         ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(EVENT.ADD_USER, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -70,9 +77,6 @@ public class MainNavigation extends AppCompatActivity implements Vue {
                         " --> " + ((Client)getApplicationContext()).getUser().getAddress_ip());
             }
         });
-
-        ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().emit(EVENT.ADD_USER, baroudi);
-
 
 
 
@@ -86,10 +90,8 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         });
 
          */
-        /*FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.nav_host_fragment,new PortailFragment());
-        fragmentTransaction.commit();
-*/
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -125,14 +127,38 @@ public class MainNavigation extends AppCompatActivity implements Vue {
     @Override
     public void changeFragment(int id) {
         if (id == 1) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
             ft.replace(R.id.nav_host_fragment, new PortailFragment());
             ft.commit();
         }
         else if (id == 2) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
             ft.replace(R.id.nav_host_fragment, new Semestre2Fragment());
             ft.commit();
         }
+        else if (id == 3) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
+            ft.replace(R.id.nav_host_fragment, new Semestre3Fragment());
+            ft.commit();
+        }
+        else if (id == 4) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
+            ft.replace(R.id.nav_host_fragment, new Semestre3Fragment());
+            ft.commit();
+        }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }

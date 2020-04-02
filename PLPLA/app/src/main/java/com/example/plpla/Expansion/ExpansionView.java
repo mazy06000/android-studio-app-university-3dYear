@@ -17,7 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.example.plpla.R;
 import com.example.plpla.controleur.ListenerButton;
 import com.example.plpla.ui.home.PortailFragment;
-import com.example.plpla.viewgroup.ExpansionLayoutCollection;
+import com.github.florent37.expansionpanel.ExpansionLayout;
+import com.github.florent37.expansionpanel.viewgroup.ExpansionLayoutCollection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +46,8 @@ public class ExpansionView {
     private ArrayList<UE> listeUeBloc2;
     private ArrayList<UE> listeUeBloc1;
     private ArrayList<ArrayList<UE>> blocEtSaMatiere;
-
+    private ArrayList<UE> blocSeul;
+    private int nbBloc = 0;
 
     public ExpansionView(View root, Socket mSocket, Context activity,
                          Button enregistrer, ArrayList<String> selectionUE, ArrayList<String> selectionCode,
@@ -61,30 +63,66 @@ public class ExpansionView {
         this.blocEtSaMatiere = blocEtSaMatiere;
     }
 
+    public ExpansionView(View root, Socket mSocket, Context activity,
+                         Button enregistrer, ArrayList<String> selectionUE, ArrayList<String> selectionCode,
+                         ArrayList<UE> listeUeBloc1, ArrayList<UE> blocSeul, int nbBloc){
+        this.root = root;
+        this.mSocket = mSocket;
+        this.activity = activity;
+        this.enregistrer = enregistrer;
+        this.selectionUE = selectionUE;
+        this.selectionCode = selectionCode;
+        this.listeUeBloc1 = listeUeBloc1;
+        this.blocSeul = blocSeul;
+        this.nbBloc = nbBloc;
+    }
+
     public void createExpansion(){
-        final ArrayList<ArrayList> listeHeader = new ArrayList(Arrays.asList(addDynamicLayout(blocEtSaMatiere.get(0).get(0), listeUeBloc1),addDynamicLayout(blocEtSaMatiere.get(1).get(0), listeUeBloc2)));
-        listeHeaderTotal.add((ExpansionHeader) listeHeader.get(0).get(0));
-        listeHeaderTotal.add((ExpansionHeader) listeHeader.get(1).get(0));
-        //example of how to add a listener
-        final ExpansionLayout fondementLayout = (ExpansionLayout) listeHeader.get(0).get(1);
-        fondementLayout.addListener(new ExpansionLayout.Listener() {
-            @Override
-            public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
-                actionOnSelection((ExpansionHeader) listeHeader.get(0).get(0), listeHeader, blocEtSaMatiere.get(0).get(1));
-            }
-        });
 
-        final ExpansionLayout methodeLayout = (ExpansionLayout) listeHeader.get(1).get(1);
-        methodeLayout.addListener(new ExpansionLayout.Listener() {
-            @Override
-            public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
-                actionOnSelection((ExpansionHeader) listeHeader.get(1).get(0), listeHeader, blocEtSaMatiere.get(1).get(1));
-            }
-        });
+        if (nbBloc == 1) {
+            final ArrayList<ArrayList> listeHeader = new ArrayList(Arrays.asList(addDynamicLayout(blocSeul.get(0), listeUeBloc1)));
+            listeHeaderTotal.add((ExpansionHeader) listeHeader.get(0).get(0));
 
-        final ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
-        expansionLayoutCollection.add((ExpansionLayout) listeHeader.get(0).get(1)).add((ExpansionLayout) listeHeader.get(1).get(1));
-        expansionLayoutCollection.openOnlyOne(true);
+            final ExpansionLayout blocLayout = (ExpansionLayout) listeHeader.get(0).get(1);
+            blocLayout.addListener(new ExpansionLayout.Listener() {
+                @Override
+                public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
+                    actionOnSelection((ExpansionHeader) listeHeader.get(0).get(0), listeHeader, blocSeul.get(0));
+                }
+            });
+
+            final ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
+            expansionLayoutCollection.add((ExpansionLayout) listeHeader.get(0).get(1));
+            expansionLayoutCollection.openOnlyOne(true);
+
+        }
+        else {
+            final ArrayList<ArrayList> listeHeader = new ArrayList(Arrays.asList(addDynamicLayout(blocEtSaMatiere.get(0).get(0), listeUeBloc1),addDynamicLayout(blocEtSaMatiere.get(1).get(0), listeUeBloc2)));
+            listeHeaderTotal.add((ExpansionHeader) listeHeader.get(0).get(0));
+            listeHeaderTotal.add((ExpansionHeader) listeHeader.get(1).get(0));
+            //example of how to add a listener
+            final ExpansionLayout fondementLayout = (ExpansionLayout) listeHeader.get(0).get(1);
+            fondementLayout.addListener(new ExpansionLayout.Listener() {
+                @Override
+                public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
+                    actionOnSelection((ExpansionHeader) listeHeader.get(0).get(0), listeHeader, blocEtSaMatiere.get(0).get(1));
+                }
+            });
+
+            final ExpansionLayout methodeLayout = (ExpansionLayout) listeHeader.get(1).get(1);
+            methodeLayout.addListener(new ExpansionLayout.Listener() {
+                @Override
+                public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
+                    actionOnSelection((ExpansionHeader) listeHeader.get(1).get(0), listeHeader, blocEtSaMatiere.get(1).get(1));
+                }
+            });
+
+            final ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
+            expansionLayoutCollection.add((ExpansionLayout) listeHeader.get(0).get(1)).add((ExpansionLayout) listeHeader.get(1).get(1));
+            expansionLayoutCollection.openOnlyOne(true);
+        }
+
+
 
         //BOUTON ENREGISTRER
         //enregistrer = root.findViewById(R.id.boutonEnregistrer);
@@ -376,7 +414,7 @@ public class ExpansionView {
     public void actionOnSelection(ExpansionHeader header, ArrayList<ArrayList> header2, UE matiere){
         if ((header.getCheckboxHeader().isChecked())){
             compteur++;
-            if (compteur >= 4){
+            if (compteur >= getNbMatiere()){
                 for (int i = 0; i < listeHeaderTotal.size(); i++) {
                     if ((header != listeHeaderTotal.get(i)) && !(listeHeaderTotal.get(i).getCheckboxHeader().isChecked())) {
                         listeHeaderTotal.get(i).getCheckboxHeader().setEnabled(false);
@@ -428,5 +466,10 @@ public class ExpansionView {
             selectionUE.remove(header.getText());
             selectionCode.remove(matiere.getCode());
         }
+    }
+
+    public int getNbMatiere() {
+        if (nbBloc==1) return 5;
+        else return 4;
     }
 }
