@@ -145,7 +145,6 @@ public class Client extends Application {
     //UE SEMESTRE 3
 
     UE blocSciencesEtTech = new UE(null,"S3 Sciences et technologies",null,3,30,0);
-    //UE blocMethodeS2 = new UE(null,"BLOC MATH S2 : Methodes. approche discrete",null,3,30,0);
 
     UE geoApprofondissement = new UE("SPUGDE33","Choix geographie","UE GEO S3 : Approfondissement hors geographie 1",3,6,0);
     UE disciplinaire3 = new UE("SPUGDI30","Choix geographie","UE GEO S3 : Disciplinaire 3",3,6,2);
@@ -191,12 +190,15 @@ public class Client extends Application {
 
 
     //LA LISTE DES 2 BLOCS AVEC LEUR MATIERE PRE-CHECKED
-    ArrayList<ArrayList<UE>> blocEtSaMatiereS3 = new ArrayList<>(Arrays.asList(new ArrayList<UE>(Arrays.asList(blocFondement,fondement1)),
-            new ArrayList<UE>(Arrays.asList(blocFondementS2,blocMethodeS2))));
+    ArrayList<UE> blocEtSaMatiereS3 = new ArrayList<>(Arrays.asList(blocSciencesEtTech));
     //LA LISTE DES UE DANS LE BLOC
-    ArrayList<UE> listeUEBlocS3 = new ArrayList<>(Arrays.asList(geo3, geo4, disciplinaire2, diversite, physiologie, chimieS2Reaction, chimieS2Thermo,
-            chimieS2Pollution, chimieS2Complement, chimieS2TChimique, electroniqueSansFil, electroniqueAnalogique, infoImperative, infoShell, mathComplement2,
-            mathMethodeDiscrete, entreprise1, information, macro1S2, physiqueS2Mecanique, physiqueS2Optique, terreS2Atmosphere, terreS2Structure, fondementS2BlocF));
+    ArrayList<UE> listeUEBlocS = new ArrayList<>(Arrays.asList(geoApprofondissement,disciplinaire3,disciplinaire4,disciplinaire5,
+            geo1,geo2,disciplinaire1, chimie,chimieS3Solutions,chimieS3Medicinale,chimieS3Cosmetique,
+            electronique,base,web,
+            chimieS3Biomolecules,chimieS3Organique,chimieS3Materiaux,ContinuumEnseign,electroniqueAutomatique,electroniquePhysique,electroniqueSysteme,infoBaseD,infoOFI,infoC,mathAlgebre
+            ,mathAnalyse,mathFondement3,mathMethodesGeo,mathMethodeInge,miashBancaire,miashAssurance,miashMacro2,miashR,physiqueEclectro,physiqueOutils,physiqueThermo,terreClimats,terreGeosciences
+            ,terreMateriaux,terrePhysique
+    ));
 
     public ArrayList<ArrayList<UE>> getBlocEtSaMatiereS3() {
         return blocEtSaMatiere;

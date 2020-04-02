@@ -61,7 +61,21 @@ public class ExpansionView {
         this.blocEtSaMatiere = blocEtSaMatiere;
     }
 
+    public ExpansionView(View root, Socket mSocket, Context activity,
+                         Button enregistrer, ArrayList<String> selectionUE, ArrayList<String> selectionCode,
+                         ArrayList<UE> listeUeBloc1, ArrayList<ArrayList<UE>> blocEtSaMatiere){
+        this.root = root;
+        this.mSocket = mSocket;
+        this.activity = activity;
+        this.enregistrer = enregistrer;
+        this.selectionUE = selectionUE;
+        this.selectionCode = selectionCode;
+        this.listeUeBloc1 = listeUeBloc1;
+        this.blocEtSaMatiere = blocEtSaMatiere;
+    }
+
     public void createExpansion(){
+
         final ArrayList<ArrayList> listeHeader = new ArrayList(Arrays.asList(addDynamicLayout(blocEtSaMatiere.get(0).get(0), listeUeBloc1),addDynamicLayout(blocEtSaMatiere.get(1).get(0), listeUeBloc2)));
         listeHeaderTotal.add((ExpansionHeader) listeHeader.get(0).get(0));
         listeHeaderTotal.add((ExpansionHeader) listeHeader.get(1).get(0));

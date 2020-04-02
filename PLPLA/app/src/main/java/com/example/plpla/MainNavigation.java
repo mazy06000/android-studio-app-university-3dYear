@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.plpla.ui.semestre2.Semestre2Fragment;
+import com.example.plpla.ui.semestre3.Semestre3Fragment;
 import com.example.plpla.vue.Vue;
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,6 +24,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -132,6 +136,12 @@ public class MainNavigation extends AppCompatActivity implements Vue {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
                     .addToBackStack("tag");
             ft.replace(R.id.nav_host_fragment, new Semestre2Fragment());
+            ft.commit();
+        }
+        else if (id == 3) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
+            ft.replace(R.id.nav_host_fragment, new Semestre3Fragment());
             ft.commit();
         }
     }

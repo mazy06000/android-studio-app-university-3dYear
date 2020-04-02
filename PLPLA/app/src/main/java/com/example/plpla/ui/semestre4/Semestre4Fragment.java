@@ -1,4 +1,4 @@
-package com.example.plpla.ui.home;
+package com.example.plpla.ui.semestre4;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import com.example.plpla.Client;
 import com.example.plpla.Expansion.ExpansionView;
 import com.example.plpla.R;
-import com.example.plpla.controleur.ListenerButton;
 import com.example.plpla.vue.Vue;
 
 import java.util.ArrayList;
@@ -25,20 +24,19 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import matière.UE;
 
-public class PortailFragment extends Fragment {
+public class Semestre4Fragment extends Fragment {
 
     //COMPOSANT DU LAYOUT
 
 
     private ExpansionView expansionView;
     private Button enregistrer;
-    private Button semestre2;
     private Socket mSocket;
     private String serverAdress;
     private ArrayList<ArrayList<UE>> blocEtSaMatiere;
-    private ArrayList<UE> listeUEBlocFondement;
-    private ArrayList<UE> listeUEBlocMethode;
+    private ArrayList<UE> listeUEBloc;
     private Vue mListener;
+
 
 
     public static ArrayList<String> getSelectionUE() {
@@ -54,15 +52,13 @@ public class PortailFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_semestre1, container, false);
+        View root = inflater.inflate(R.layout.fragment_semestre4, container, false);
 
         Client client = (Client) getActivity().getApplication();
         mSocket = client.getUniqueConnexion().getmSocket();
-        listeUEBlocFondement = client.getListeUEBlocFondement();
-        listeUEBlocMethode = client.getListeUEBlocMethode();
-        blocEtSaMatiere = client.getBlocEtSaMatiere();
-        enregistrer = root.findViewById(R.id.boutonEnregistrer);
-        semestre2 = root.findViewById(R.id.boutonSemestre2);
+        listeUEBloc = client.getListeUEBlocS3();
+        blocEtSaMatiere = client.getBlocEtSaMatiereS3();
+        enregistrer = root.findViewById(R.id.boutonEnregistrer2);
 
 
         mSocket.on(EVENT.SAVE, new Emitter.Listener() {
@@ -83,16 +79,6 @@ public class PortailFragment extends Fragment {
         this.expansionView.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
 
         expansionView.createExpansion();
-
-        ListenerButton listenerButton = new ListenerButton(mSocket, this);
-        enregistrer.setOnClickListener(listenerButton);
-
-        semestre2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.changeFragment(2);
-            }
-        });
 
 
         return root;
@@ -115,6 +101,5 @@ public class PortailFragment extends Fragment {
         mListener = null;
 
     }
-
 
 }

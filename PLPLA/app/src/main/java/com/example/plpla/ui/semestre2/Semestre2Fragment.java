@@ -37,6 +37,8 @@ public class Semestre2Fragment extends Fragment {
     private ArrayList<UE> listeUEBlocFondement;
     private ArrayList<UE> listeUEBlocMethode;
     private Vue mListener;
+    private Button semestre3;
+
 
 
 
@@ -61,6 +63,8 @@ public class Semestre2Fragment extends Fragment {
         listeUEBlocMethode = client.getListeUEBlocMethodeS2();
         blocEtSaMatiere = client.getBlocEtSaMatiereS2();
         enregistrer = root.findViewById(R.id.boutonEnregistrer2);
+        semestre3 = root.findViewById(R.id.boutonSemestre3);
+
 
 
         mSocket.on(EVENT.SAVE, new Emitter.Listener() {
@@ -81,6 +85,14 @@ public class Semestre2Fragment extends Fragment {
         this.expansionView.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
 
         expansionView.createExpansion();
+
+        semestre3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.changeFragment(3);
+            }
+        });
+
 
 
         return root;
