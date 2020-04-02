@@ -44,6 +44,12 @@ public class Serveur {
             }
         });
 
+
+        /**
+         * Listener de l'event ADD_USER :
+         * Créé un nouvel user (objet User) avec l'objet user envoyé par le client.
+         * (Ou pas s'il existe deja dans la base de données (La liste des users connectés au moins une fois))
+         */
         this.server.addEventListener(EVENT.ADD_USER, User.class, new DataListener<User>() {
             @Override
             public void onData(SocketIOClient socketIOClient, User user, AckRequest ackRequest) throws Exception {
@@ -53,12 +59,10 @@ public class Serveur {
                 }
                 else {
                     System.out.println("Ajout de "+user.getNom()+" avec succès !");
-                    listUsers.add(new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix()));
-//                    listUsers.add(new User());
-//                    listUsers.get(listUsers.size()).setNom(user.getNom());
-//                    listUsers.get(listUsers.size()).setPrenom(user.getPrenom());
-//                    listUsers.get(listUsers.size()).setAddress_ip(user.getAddress_ip());
-//                    listUsers.get(listUsers.size()).setListe_choix(user.getListe_choix());
+                    User new_user = new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix());
+                    user.setAddress_ip(socketIOClient.getRemoteAddress().toString());
+                    listUsers.add(new_user);
+                    System.out.println("user.getAddress_ip => "+ user.getAddress_ip());
                     System.out.println("Envoi de l'addresse ip à l'utilisateur "+user.getNom());
                     socketIOClient.sendEvent(EVENT.ADD_USER, socketIOClient.getRemoteAddress());
                 }
