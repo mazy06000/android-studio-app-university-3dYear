@@ -1,4 +1,4 @@
-package com.example.plpla.ui.gallery;
+package com.example.plpla.ui.parcours;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
