@@ -1,4 +1,4 @@
-package com.example.plpla.ui.gallery;
+package com.example.plpla.ui.parcours;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,14 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.plpla.Client;
-import com.example.plpla.CourseActivity;
+import com.example.plpla.Expansion.ExpansionParcours;
 import com.example.plpla.R;
 import com.example.plpla.ui.home.PortailFragment;
 
@@ -25,7 +22,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import events.EVENT;
 import io.socket.client.Socket;
@@ -40,20 +37,22 @@ public class ParcoursFragment extends Fragment {
     private TextView finalText;
     private TextView parcoursVide;
     private Socket mSocket;
+    private ExpansionParcours expansionParcours;
+
 
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.activity_course, container, false);
+        final View root = inflater.inflate(R.layout.activity_course, container, false);
 
-        monParcours = root.findViewById(R.id.monParcours);
+        monParcours = root.findViewById(R.id.textParcours);
         parcoursVide = root.findViewById(R.id.parcours_vide);
-        finalText = root.findViewById(R.id.parcours_final);
+        //finalText = root.findViewById(R.id.parcours_final);
         reinitialiser = root.findViewById(R.id.reinitialiser_button);
 
         //VISIBILITE PAR DEFAUT
-        finalText.setVisibility(View.INVISIBLE);
+        //finalText.setVisibility(View.INVISIBLE);
         parcoursVide.setVisibility(View.VISIBLE);
         reinitialiser.setEnabled(false);
 
@@ -79,20 +78,25 @@ public class ParcoursFragment extends Fragment {
             if (!PortailFragment.getSelectionUE().isEmpty()) {
                 reinitialiser.setEnabled(true);
                 parcoursVide.setVisibility(View.INVISIBLE);
+                ArrayList<String> listeUE = new ArrayList<>();
 
                 //Lecture du fichier enregistré
                 String parcours;
-                FileInputStream fichierLecture = getActivity().openFileInput("mon_parcours");
+                FileInputStream fichierLecture = getActivity().openFileInput("mon_parcours_S1");
                 InputStreamReader lecteur = new InputStreamReader(fichierLecture);
                 BufferedReader bfr = new BufferedReader(lecteur);
                 StringBuffer stringBuffer = new StringBuffer();
                 while ((parcours = bfr.readLine()) != null){
+                    listeUE.add(parcours);
                     stringBuffer.append(parcours + "\n");
                 }
 
                 //On affiche la lecture
-                finalText.setText(stringBuffer.toString());
-                finalText.setVisibility(View.VISIBLE);
+                //finalText.setText(stringBuffer.toString());
+                //finalText.setVisibility(View.VISIBLE);
+                expansionParcours = new ExpansionParcours(root, mSocket, getActivity(),listeUE);
+                this.expansionParcours.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
+                expansionParcours.createExpansion();
             }
 
             //LORSQUE JE CLIQUE SUR REINITIALISER
@@ -100,9 +104,13 @@ public class ParcoursFragment extends Fragment {
 
                 @Override
                 public void onClick(View v) {
-                    finalText.setVisibility(View.INVISIBLE);
+                    //finalText.setVisibility(View.INVISIBLE);
+
+                    View namebar =root.findViewById(R.id.dynamicLayoutContainer);
+                    ((ViewGroup) namebar.getParent()).removeView(namebar);
+
                     parcoursVide.setVisibility(View.VISIBLE);
-                    finalText.setText("");
+                    //finalText.setText("");
                     PortailFragment.getSelectionUE().clear();
                     Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                     Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");

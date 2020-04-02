@@ -18,12 +18,17 @@ import com.example.plpla.Expansion.ExpansionView;
 import com.example.plpla.R;
 import com.example.plpla.vue.Vue;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import events.EVENT;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import matière.UE;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Semestre2Fragment extends Fragment {
 
@@ -94,6 +99,12 @@ public class Semestre2Fragment extends Fragment {
                 mListener.changeFragment(3);
             }
         });
+        enregistrer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enregistrement();
+            }
+        });
 
 
 
@@ -118,4 +129,32 @@ public class Semestre2Fragment extends Fragment {
 
     }
 
+    public void enregistrement(){
+        Log.d("Bouton enregistrer", "Parcours enregistre");
+        //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
+        //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
+        String fileName = "mon_parcours_S2";
+        String final_selection = "";
+        for (String selections : getSelectionUE()){
+            Log.d("WRITEFILE", "ecriture de "+getSelectionUE().toString());
+            final_selection += selections + "\n";
+            Log.d("WRITEFILE", "Valeur de final_selection "+final_selection);
+
+        }
+        try {
+            FileOutputStream ecriture = getActivity().openFileOutput(fileName, MODE_PRIVATE);
+            ecriture.write(final_selection.getBytes());
+            ecriture.close();
+            Toast.makeText(getActivity(), "Parcours enregistré", Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (String code_ue: getSelectionCode()) {
+            Log.d("SAVE_SERVER", "Envoie de la matière de code "+code_ue+ " au serveur pour enregistrement");
+            ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("Save", code_ue);
+        }
+    }
 }

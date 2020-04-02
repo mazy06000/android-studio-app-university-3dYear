@@ -36,8 +36,8 @@ public class ListenerButton implements View.OnClickListener{
                 Log.d("Bouton enregistrer", "Parcours enregistre");
                 //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
                 //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
-                String fileName = "mon_parcours";
-                String final_selection = "";
+                String fileName = "mon_parcours_S1";
+                String final_selection = "SEMESTRE 1\n";
                 for (String selections : activity.getSelectionUE()){
                     Log.d("WRITEFILE", "ecriture de "+activity.getSelectionUE().toString());
                     final_selection += selections + "\n";
