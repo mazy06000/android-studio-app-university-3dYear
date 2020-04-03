@@ -1,3 +1,4 @@
+/*
 package com.example.plpla;
 
 import android.content.Intent;
@@ -44,17 +45,23 @@ public class PortailFragmentTest {
         //On clique sur le bouton pour le serveur
         onView(withId(R.id.button)).perform(click());
 
-        /**
+        */
+/**
          * INITIALISATION
-         */
+         *//*
 
-        /*Les checkbox fondement et methode sont visibles et cliquable*/
+
+        */
+/*Les checkbox fondement et methode sont visibles et cliquable*//*
+
         onView(withId(R.id.radio_fondement)).check(matches(isDisplayed()));
         onView(withId(R.id.radio_methode)).check(matches(isDisplayed()));
         onView(withId(R.id.radio_fondement)).check(matches(isEnabled()));
         onView(withId(R.id.radio_methode)).check(matches(isEnabled()));
 
-        /*Les checkbox enjeux et competence sont visibles et incliquable*/
+        */
+/*Les checkbox enjeux et competence sont visibles et incliquable*//*
+
         onView(withId(R.id.checkbox_competence)).check(matches(isDisplayed()));
         onView(withId(R.id.checkbox_enjeux)).check(matches(isDisplayed()));
         onView(withId(R.id.checkbox_competence)).check(matches(not(isEnabled())));
@@ -69,9 +76,11 @@ public class PortailFragmentTest {
         onView(withId(R.id.Enregistrer)).check(matches(isDisplayed()));
 
 
-        /**
+        */
+/**
          * lORSQU'ON COCHE LA CHECKBOX FONDEMENT
-         */
+         *//*
+
 
         //On clique sur checkbox fondement
         onView(withId(R.id.radio_fondement)).perform(click());
@@ -88,9 +97,11 @@ public class PortailFragmentTest {
         //Enregistrer est cliquable
         onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
-        /**
+        */
+/**
          * lORSQU'ON DECOCHE LA CHECKBOX FONDEMENT
-         */
+         *//*
+
 
         //On clique sur checkbox fondement
         onView(withId(R.id.radio_fondement)).perform(click());
@@ -109,9 +120,11 @@ public class PortailFragmentTest {
 
 
 
-        /**
+        */
+/**
          * lORSQU'ON CLIQUE LA BOUTON FONDEMENT
-         */
+         *//*
+
 
         //On clique sur fondement
         onView(withId(R.id.bouton_fondement)).perform(click());
@@ -132,9 +145,11 @@ public class PortailFragmentTest {
         onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
 
-        /**
+        */
+/**
          * lORSQU'ON RECLIQUE LA BOUTON FONDEMENT
-         */
+         *//*
+
 
         //On clique sur fondement
         onView(withId(R.id.bouton_fondement)).perform(click());
@@ -159,9 +174,11 @@ public class PortailFragmentTest {
 
         //--------------------------------------------------------------------
 
-        /**
+        */
+/**
          * lORSQU'ON COCHE LA CHECKBOX METHODE
-         */
+         *//*
+
 
         //On clique sur checkbox methode
         onView(withId(R.id.radio_methode)).perform(click());
@@ -178,9 +195,11 @@ public class PortailFragmentTest {
         //Enregistrer est cliquable
         onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
-        /**
+        */
+/**
          * lORSQU'ON DECOCHE LA CHECKBOX FONDEMENT
-         */
+         *//*
+
 
         //On clique sur checkbox methode
         onView(withId(R.id.radio_methode)).perform(click());
@@ -199,9 +218,11 @@ public class PortailFragmentTest {
 
 
 
-        /**
+        */
+/**
          * lORSQU'ON CLIQUE LA BOUTON METHODE
-         */
+         *//*
+
 
         //On clique sur methode
         onView(withId(R.id.bouton_methode)).perform(click());
@@ -222,9 +243,11 @@ public class PortailFragmentTest {
         onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
 
-        /**
+        */
+/**
          * lORSQU'ON RECLIQUE LA BOUTON METHODE
-         */
+         *//*
+
 
         //On clique sur METHODE
         onView(withId(R.id.bouton_methode)).perform(click());
@@ -248,9 +271,11 @@ public class PortailFragmentTest {
         //------------------------------------------------------
 
 
-        /**
+        */
+/**
          * lORSQU'ON COCHE LA CHECKBOX FONDEMENT
-         */
+         *//*
+
 
         //On clique sur checkbox fondement
         onView(withId(R.id.radio_fondement)).perform(click());
@@ -267,9 +292,11 @@ public class PortailFragmentTest {
         //Enregistrer est cliquable
         onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
-        /**
+        */
+/**
          * lORSQU'ON CLIQUE SUR BOUTON FONDEMENT
-         */
+         *//*
+
 
         //On clique sur fondement
         onView(withId(R.id.bouton_fondement)).perform(click());
@@ -291,9 +318,11 @@ public class PortailFragmentTest {
 
 
 
-        /**
+        */
+/**
          * lORSQU'ON CLIQUE LA BOUTON FONDEMENT
-         */
+         *//*
+
 
         //On clique sur fondement
         onView(withId(R.id.bouton_fondement)).perform(click());
@@ -314,9 +343,11 @@ public class PortailFragmentTest {
         onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
 
-        /**
+        */
+/**
          * lORSQU'ON DECOCHE LA CHECKBOX FONDEMENT
-         */
+         *//*
+
 
         //On clique sur checkbox fondement
         onView(withId(R.id.radio_fondement)).perform(click());
@@ -338,9 +369,11 @@ public class PortailFragmentTest {
         //------------------------------------------------------------------------------
 
 
-        /**
+        */
+/**
          * lORSQU'ON COCHE LA CHECKBOX METHODE
-         */
+         *//*
+
 
         //On clique sur checkbox methode
         onView(withId(R.id.radio_methode)).perform(click());
@@ -358,9 +391,11 @@ public class PortailFragmentTest {
         onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
 
-        /**
+        */
+/**
          * lORSQU'ON RECLIQUE LA BOUTON METHODE
-         */
+         *//*
+
 
         //On clique sur METHODE
         onView(withId(R.id.bouton_methode)).perform(click());
@@ -382,9 +417,11 @@ public class PortailFragmentTest {
 
 
 
-        /**
+        */
+/**
          * lORSQU'ON CLIQUE LA BOUTON METHODE
-         */
+         *//*
+
 
         //On clique sur methode
         onView(withId(R.id.bouton_methode)).perform(click());
@@ -405,9 +442,11 @@ public class PortailFragmentTest {
         onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
 
 
-        /**
+        */
+/**
          * lORSQU'ON DECOCHE LA CHECKBOX FONDEMENT
-         */
+         *//*
+
 
         //On clique sur checkbox methode
         onView(withId(R.id.radio_methode)).perform(click());
@@ -426,7 +465,8 @@ public class PortailFragmentTest {
 
 
     }
- /*   @Test
+ */
+/*   @Test
     public void testToucheEnregistrer() {
         Intent startIntent = new Intent();
         mActivityRule.launchActivity(startIntent);
@@ -436,12 +476,20 @@ public class PortailFragmentTest {
         onView(withId(R.id.button)).perform(click());
 
 
-        *//*Le Bouton est normalent invisible avant le clique sur une checkbox
+        *//*
+*/
+/*Le Bouton est normalent invisible avant le clique sur une checkbox
          *//*
+*/
+/*
         onView(withId(R.id.Enregistrer)).check(matches((isDisplayed())));
 
-        *//*On clique sur le bouton semestre 1
+        *//*
+*/
+/*On clique sur le bouton semestre 1
          *//*
+*/
+/*
 
         onView(withId(R.id.BoutonSemestre)).perform(click());
 
@@ -450,8 +498,12 @@ public class PortailFragmentTest {
         onView(withId(R.id.Enregistrer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
         onView(withId(R.id.Enregistrer)).check(matches(not(isEnabled())));
 
-        *//*Selection de la première checkbox
+        *//*
+*/
+/*Selection de la première checkbox
          *//*
+*/
+/*
         onView(withId(R.id.checkBoxEmplacement1)).perform(click());
 
 
@@ -484,5 +536,7 @@ public class PortailFragmentTest {
         onView(withId(R.id.Enregistrer)).check(matches(not(isEnabled())));
 
 
-    }*/
+    }*//*
+
 }
+*/

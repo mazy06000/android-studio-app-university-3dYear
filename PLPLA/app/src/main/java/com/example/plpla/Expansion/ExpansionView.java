@@ -1,5 +1,6 @@
 package com.example.plpla.Expansion;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
@@ -201,9 +202,11 @@ public class ExpansionView {
         return expansionLayout;
     }
 
+    @SuppressLint("ResourceType")
     @NonNull
     private ExpansionHeader createExpansionHeader(UE bloc) {
         final ExpansionHeader expansionHeader = new ExpansionHeader(activity);
+        expansionHeader.setId(1);
         expansionHeader.setBlock(true);
         expansionHeader.setBackgroundColor(Color.parseColor("#145795"));
         expansionHeader.setPadding(dpToPx(activity, 16), dpToPx(activity, 16), dpToPx(activity, 16), dpToPx(activity, 16));
