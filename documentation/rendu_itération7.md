@@ -14,7 +14,7 @@
 >
   * [x] L'utilisateur peut rentrer s'identifier (Nom et prénom).
 > 
-
+  * [x] Séparation partie réseau et gestion UE serveur
 >
 
 
