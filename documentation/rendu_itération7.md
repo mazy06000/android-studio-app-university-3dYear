@@ -35,7 +35,8 @@
   
 
 ### *TEST :*
-> PortailFragmentTest et ParcoursFragmentTest non effectué. PROBLEME : Je n'arrive pas à faire un perform(click()) sur les UEs car je créé l'expansion en java dans la classe ExpansionView, je n'ai donc pas accès à un Id comme je le faisais pour un layout (Ex. : onView(withId(R.id.Enregistrer)).perform(click());). Si une aide peut être proposée de votre part, merci.
+>
+ * PortailFragmentTest et ParcoursFragmentTest non effectué. PROBLEME : Je n'arrive pas à faire un perform(click()) sur les UEs car je créé l'expansion en java dans la classe ExpansionView, je n'ai donc pas accès à un Id comme je le faisais pour un layout (Ex. : onView(withId(R.id.Enregistrer)).perform(click());). Si une aide peut être proposée de votre part, merci.
 >
 > 
 >
