@@ -3,6 +3,7 @@ package com.example.plpla;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.util.Log;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private Button nextActivity;
     private EditText nomUser;
     private EditText prenomUser;
+    private SharedPreferences prefs;
+
 
     /*L'objet client qui existe pendant toute l'application*/
 
@@ -49,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
         nomUser.setFilters(new InputFilter[] {new InputFilter.LengthFilter(20)});
         prenomUser.setFilters(new InputFilter[] {new InputFilter.LengthFilter(20)});
 
+
+        prefs = getSharedPreferences("MY_DATA", MODE_PRIVATE);
+        String name = prefs.getString("MY_NAME", "");
+        String username = prefs.getString("MY_USERNAME", "");
+
+        nomUser.setText(name);
+        prenomUser.setText(username);
         //-------------------------------------------------------------------
 
 
@@ -98,15 +108,34 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 });
+                String name = nomUser.getText().toString();
+                String username = prenomUser.getText().toString();
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("MY_NAME", name);
+                editor.putString("MY_USERNAME", username);
+                editor.apply();
                 Intent homeIntent = new Intent(MainActivity.this, MainNavigation.class);
                 /*Passer la variable ipAddress au Fragment Home (L'activity MainNavigation) */
                 homeIntent.putExtra("url", ipAddress);
                 startActivity(homeIntent);
                 finish();
+
             }
         });
 
     }
+
+//    public void saveData(View view) {
+//        String name = nomUser.getText().toString();
+//        String username = prenomUser.getText().toString();
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putString("MY_NAME", name);
+//        editor.putString("MY_USERNAME", username);
+//        editor.apply();
+//        startActivity(new Intent(getApplicationContext(), MainNavigation.class));
+//
+//
+//    }
 
 
 

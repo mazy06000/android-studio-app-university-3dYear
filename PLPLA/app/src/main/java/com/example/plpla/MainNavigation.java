@@ -1,6 +1,8 @@
 package com.example.plpla;
 
+import android.annotation.SuppressLint;
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.plpla.ui.home.PortailFragment;
@@ -23,10 +25,15 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TextView;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -52,6 +59,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         Bundle extras = getIntent().getExtras();
         PortailFragment portailFragment = new PortailFragment();
         portailFragment.setArguments(extras);
+
 
 
         JSONObject user = new JSONObject();
@@ -91,10 +99,20 @@ public class MainNavigation extends AppCompatActivity implements Vue {
 
          */
 
-
+        // Pour afficher le nom et prenom de l'utilisateur dans le menu //
+        SharedPreferences prefs;
+        prefs = getSharedPreferences("MY_DATA", MODE_PRIVATE);
+        String nameU = prefs.getString("MY_NAME", "");
+        String username = prefs.getString("MY_USERNAME", "");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.nom_utilisateur_menu);
+        navUsername.setText(nameU +"  "+ username);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
