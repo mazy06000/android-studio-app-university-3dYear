@@ -18,6 +18,8 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.github.florent37.expansionpanel.ExpansionLayout;
+
 public class ExpansionHeader extends FrameLayout {
 
     int headerIndicatorId = 0;

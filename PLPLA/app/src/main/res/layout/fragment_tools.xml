@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <TextView
         android:id="@+id/text_tools"
@@ -12,7 +13,8 @@
         android:textAlignment="center"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="72dp" />
+        tools:layout_editor_absoluteY="72dp"
+        tools:ignore="MissingConstraints" />
 
 
     <LinearLayout
@@ -28,7 +30,8 @@
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         tools:layout_editor_absoluteX="-5dp"
-        tools:layout_editor_absoluteY="99dp">
+        tools:layout_editor_absoluteY="99dp"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/imageView"
@@ -36,7 +39,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/nav_header_desc"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@drawable/ic_person_black_24dp" />
 
         <TextView
             android:id="@+id/Profil"
@@ -45,84 +48,113 @@
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="@string/Profil"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nav_header_subtitle" />
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:text="@string/Profil"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
 
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NOM :"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <LinearLayout
+        android:layout_width="317dp"
+        android:layout_height="140dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.668"
+        tools:ignore="MissingConstraints"><![CDATA[>
+        ]]>
 
-    <TextView
-        android:id="@+id/Nomview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Prenom"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.589" />
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Prenom :"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546" />
+            <TableRow>
 
-    <TextView
-        android:id="@+id/PrenomView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Nom"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Nom" />
+
+
+                <TextView
+                    android:id="@+id/nameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="MOHAMED" />
+            </TableRow>
+
+
+            <TableRow android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Prenom" />
+
+
+                <TextView
+                    android:id="@+id/usernameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="BENABDELKRIM" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tel" />
+
+                <TextView
+                    android:id="@+id/telLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="12345678" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email" />
+
+                <TextView
+                    android:id="@+id/emailLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="MohamedBenAbdelkrim1@gmail.com" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/Enregistrer"
-        android:layout_width="195dp"
-        android:layout_height="57dp"
-        android:layout_marginBottom="44dp"
-        android:text="@string/Modifier"
+        android:id="@+id/Edit"
+        android:layout_width="181dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center"
+        android:onClick="showEdit"
+        android:text="@string/Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.926" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

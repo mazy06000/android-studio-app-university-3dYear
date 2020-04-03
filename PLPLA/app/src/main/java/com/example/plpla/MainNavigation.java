@@ -1,11 +1,13 @@
 package com.example.plpla;
 
 import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.plpla.ui.home.PortailFragment;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -13,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.plpla.ui.semestre2.Semestre2Fragment;
+import com.example.plpla.ui.semestre3.Semestre3Fragment;
 import com.example.plpla.vue.Vue;
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,14 +26,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TextView;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import events.EVENT;
 import io.socket.client.Socket;
@@ -42,6 +48,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Socket mSocket;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,13 +103,21 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         });
 
          */
-        /*FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.nav_host_fragment,new PortailFragment());
-        fragmentTransaction.commit();
-*/
+
+        // Pour afficher le nom et prenom de l'utilisateur dans le menu //
+        SharedPreferences prefs;
+        prefs = getSharedPreferences("MY_DATA", MODE_PRIVATE);
+        String nameU = prefs.getString("MY_NAME", "");
+        String username = prefs.getString("MY_USERNAME", "");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.nom_utilisateur_menu);
+        navUsername.setText(nameU +"  "+ username);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -136,14 +151,38 @@ public class MainNavigation extends AppCompatActivity implements Vue {
     @Override
     public void changeFragment(int id) {
         if (id == 1) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
             ft.replace(R.id.nav_host_fragment, new PortailFragment());
             ft.commit();
         }
         else if (id == 2) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
             ft.replace(R.id.nav_host_fragment, new Semestre2Fragment());
             ft.commit();
         }
+        else if (id == 3) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
+            ft.replace(R.id.nav_host_fragment, new Semestre3Fragment());
+            ft.commit();
+        }
+        else if (id == 4) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("tag");
+            ft.replace(R.id.nav_host_fragment, new Semestre3Fragment());
+            ft.commit();
+        }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }
