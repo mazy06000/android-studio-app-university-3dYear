@@ -48,94 +48,94 @@ public class HomeActivityTest {
 
 
 
-        /*Les checkbox sont normalent invisible avant le clique sur le bouton semestre*/
-        onView(withId(R.id.checkBoxEmplacement1)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.checkBoxEmplacement2)).check(matches(not(isDisplayed())));
-
-        /*On clique sur le bouton semestre 1*/
-        onView(withId(R.id.BoutonSemestre)).perform(click());
-
-        /*On vérifie que les checkbox sont visible après le click sur le bouton*/
-        onView(withId(R.id.checkBoxEmplacement1)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-        onView(withId(R.id.checkBoxEmplacement2)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-
-        /*Test des checkbox, on ne peut normalement pas cocher les 2 checkbox à la foix*/
-        /*Selection de la première checkbox*/
-        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
-
-        /*On verifie qu'on ne peut plus selectionner le deuxième choix*/
-        onView(withId(R.id.checkBoxEmplacement2)).check(matches(not(isClickable())));
-
-        /*Deselection de la 1ère checkbox*/
-        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
-
-        /*On vérifie qu'on peut sélectionner le 2ème choix maintenant*/
-        onView(withId(R.id.checkBoxEmplacement2)).check(matches(isClickable()));
-
-        /*On fait maintenant le test inverse*/
-        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
-
-        /*On verifie qu'on ne peut plus selectionner le 1er choix*/
-        onView(withId(R.id.checkBoxEmplacement1)).check(matches(not(isClickable())));
-
-        /*Deselection de la 2ème checkbox*/
-        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
-
-        /*On vérifie qu'on peut sélectionner le 1er choix maintenant*/
-        onView(withId(R.id.checkBoxEmplacement1)).check(matches(isClickable()));
-
-
-    }
-    @Test
-    public void testToucheEnregistrer(){
-        Intent startIntent = new Intent();
-        mActivityRule.launchActivity(startIntent);
-        MockitoAnnotations.initMocks(this);
-
-
-        /*Le Bouton est normalent invisible avant le clique sur une checkbox
-         */
-        onView(withId(R.id.Enregistrer)).check(matches(not(isDisplayed())));
-
-        /*On clique sur le bouton semestre 1
-         */
-
-        onView(withId(R.id.BoutonSemestre)).perform(click());
-
-
-        // on Vérifie que le bouton enregistrer visible et non clickable
-        onView(withId(R.id.Enregistrer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-        onView(withId(R.id.Enregistrer)).check(matches(not(isClickable())));
-        onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
-
-
-        /*Selection de la première checkbox
-         */
-        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
-
-
-        onView(withId(R.id.Enregistrer)).check(matches(not(isEnabled())));
-        onView(withId(R.id.Enregistrer)).check(matches(isClickable()));
-
-
-        // On déselectionne la première checkbox
-        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
-
-
-
-        // on revérifie si le bouton enregistrer et non cliclable :
-        onView(withId(R.id.Enregistrer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-        onView(withId(R.id.Enregistrer)).check(matches(not(isClickable())));
-        //onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
-
-
-        // on sélectionne la deuxième checkbox :
-        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
-
-
-       // on vérifie que c'est clickable et not enabled :
-        onView(withId(R.id.Enregistrer)).check(matches(not(isEnabled())));
-        onView(withId(R.id.Enregistrer)).check(matches(isClickable()));
+//        /*Les checkbox sont normalent invisible avant le clique sur le bouton semestre*/
+//        onView(withId(R.id.checkBoxEmplacement1)).check(matches(not(isDisplayed())));
+//        onView(withId(R.id.checkBoxEmplacement2)).check(matches(not(isDisplayed())));
+//
+//        /*On clique sur le bouton semestre 1*/
+//        onView(withId(R.id.BoutonSemestre)).perform(click());
+//
+//        /*On vérifie que les checkbox sont visible après le click sur le bouton*/
+//        onView(withId(R.id.checkBoxEmplacement1)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+//        onView(withId(R.id.checkBoxEmplacement2)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+//
+//        /*Test des checkbox, on ne peut normalement pas cocher les 2 checkbox à la foix*/
+//        /*Selection de la première checkbox*/
+//        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
+//
+//        /*On verifie qu'on ne peut plus selectionner le deuxième choix*/
+//        onView(withId(R.id.checkBoxEmplacement2)).check(matches(not(isClickable())));
+//
+//        /*Deselection de la 1ère checkbox*/
+//        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
+//
+//        /*On vérifie qu'on peut sélectionner le 2ème choix maintenant*/
+//        onView(withId(R.id.checkBoxEmplacement2)).check(matches(isClickable()));
+//
+//        /*On fait maintenant le test inverse*/
+//        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
+//
+//        /*On verifie qu'on ne peut plus selectionner le 1er choix*/
+//        onView(withId(R.id.checkBoxEmplacement1)).check(matches(not(isClickable())));
+//
+//        /*Deselection de la 2ème checkbox*/
+//        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
+//
+//        /*On vérifie qu'on peut sélectionner le 1er choix maintenant*/
+//        onView(withId(R.id.checkBoxEmplacement1)).check(matches(isClickable()));
+//
+//
+//    }
+//    @Test
+//    public void testToucheEnregistrer(){
+//        Intent startIntent = new Intent();
+//        mActivityRule.launchActivity(startIntent);
+//        MockitoAnnotations.initMocks(this);
+//
+//
+//        /*Le Bouton est normalent invisible avant le clique sur une checkbox
+//         */
+//        onView(withId(R.id.Enregistrer)).check(matches(not(isDisplayed())));
+//
+//        /*On clique sur le bouton semestre 1
+//         */
+//
+//        onView(withId(R.id.BoutonSemestre)).perform(click());
+//
+//
+//        // on Vérifie que le bouton enregistrer visible et non clickable
+//        onView(withId(R.id.Enregistrer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+//        onView(withId(R.id.Enregistrer)).check(matches(not(isClickable())));
+//        onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
+//
+//
+//        /*Selection de la première checkbox
+//         */
+//        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
+//
+//
+//        onView(withId(R.id.Enregistrer)).check(matches(not(isEnabled())));
+//        onView(withId(R.id.Enregistrer)).check(matches(isClickable()));
+//
+//
+//        // On déselectionne la première checkbox
+//        onView(withId(R.id.checkBoxEmplacement1)).perform(click());
+//
+//
+//
+//        // on revérifie si le bouton enregistrer et non cliclable :
+//        onView(withId(R.id.Enregistrer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+//        onView(withId(R.id.Enregistrer)).check(matches(not(isClickable())));
+//        //onView(withId(R.id.Enregistrer)).check(matches(isEnabled()));
+//
+//
+//        // on sélectionne la deuxième checkbox :
+//        onView(withId(R.id.checkBoxEmplacement2)).perform(click());
+//
+//
+//       // on vérifie que c'est clickable et not enabled :
+//        onView(withId(R.id.Enregistrer)).check(matches(not(isEnabled())));
+//        onView(withId(R.id.Enregistrer)).check(matches(isClickable()));
 
 
 

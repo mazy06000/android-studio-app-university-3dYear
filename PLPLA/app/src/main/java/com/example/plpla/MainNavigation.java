@@ -113,6 +113,9 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         TextView navUsername = (TextView) headerView.findViewById(R.id.nom_utilisateur_menu);
         navUsername.setText(nameU +"  "+ username);
 
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
