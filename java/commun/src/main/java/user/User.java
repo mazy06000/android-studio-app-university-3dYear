@@ -1,12 +1,14 @@
 package user;
 
 import matière.UE;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class User {
+public class User implements ToJSON {
     private String Nom;
     private String prenom;
     private String address_ip;
@@ -45,11 +47,11 @@ public class User {
     }
 
     public User(){
-        //TODO BUG SERVEUR ne reçoit pas les objets si on supprimme ces affectations (on emet pas de ADD_USER pour l'instant dans le mainNavigation)
-        Nom = "Baroudi";
-        prenom ="Ibrahim";
-        address_ip = " ";
-        liste_choix = new ArrayList<UE>();
+//        Nom = "Baroudi";
+//        prenom ="Ibrahim";
+//        address_ip = "none";
+//        liste_choix = new ArrayList<UE>();
+        this("defaultName", "defaultSurname", "none", new ArrayList<UE>());
     }
 
 
@@ -83,5 +85,19 @@ public class User {
                 ", prenom='" + prenom + '\'' +
                 ", address_ip='" + address_ip + '\'' +
                 '}';
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject user = new JSONObject();
+        try {
+            user.put("nom", getNom());
+            user.put("prenom", getPrenom());
+            user.put("address_ip", getAddress_ip());
+            //user.put("liste_choix", getListe_choix());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }

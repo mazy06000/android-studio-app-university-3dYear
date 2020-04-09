@@ -30,6 +30,10 @@ public class PortailFragment extends Fragment {
     //COMPOSANT DU LAYOUT
 
 
+    public ExpansionView getExpansionView() {
+        return expansionView;
+    }
+
     private ExpansionView expansionView;
     private Button enregistrer;
     private Button semestre2;
@@ -113,6 +117,7 @@ public class PortailFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        getActivity().finish();
 
     }
 
