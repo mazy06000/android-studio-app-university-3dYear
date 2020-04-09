@@ -1,8 +1,14 @@
 package serveur;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import matière.UE;
 import user.User;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,7 +21,7 @@ public class UtilServeur {
      * @param listUE La liste des UE
      * @return HashMap de type <"CodeUE", UE>
      */
-    public static HashMap<String, UE> initDictUE(ArrayList<UE> listUE) {
+    public static final HashMap<String, UE> initDictUE(ArrayList<UE> listUE) {
         HashMap<String, UE> dicoUE = new HashMap<>();
         for (UE ue : listUE) {
             dicoUE.put(ue.getCode(), ue);
@@ -24,13 +30,11 @@ public class UtilServeur {
     }
 
     /**initialisation de la liste de toutes les matières*/
-    public static ArrayList<UE> initListeUE(){
+    public static final ArrayList<UE> initListeUE(Object... list){
         ArrayList<UE> listUE = new ArrayList<>();
-        listUE.addAll(listeUEBlocFondement);
-        listUE.addAll(listeUEBlocMethode);
-        listUE.addAll(listeUEBlocFondementS2);
-        listUE.addAll(listeUEBlocMethodeS2);
-        listUE.addAll(listeUEBlocS3);
+        for (Object l: list){
+            listUE.addAll((ArrayList<UE>) l);
+        }
         return listUE;
     }
 
@@ -41,7 +45,7 @@ public class UtilServeur {
      * @param user Un User
      * @return Un booléen vrai si l'user est dans la liste, faux dans le cas contraire
      */
-    public static boolean userExist(ArrayList<User> listUsers, User user) {
+    public static final boolean userExist(ArrayList<User> listUsers, User user) {
         for (User utilisateur: listUsers) {
             if (utilisateur.equals(user)){
                 return true;
@@ -50,5 +54,40 @@ public class UtilServeur {
         return false;
     }
 
+
+    /**
+     * crée un fichier nomDefichier.json (dans serveur/target/generated-sources/ ), convertit l'objet en json dans le fichier et le renvoie .
+     * @param nomDeFichier nom du ficher json (Ajouter l'extension .json !!)
+     * @param object l'objet à convertir
+     * @return Le fichier json créé
+     */
+    public static final  File writeToJSON(String nomDeFichier, Object object){
+        File file = new File("./serveur/target/generated-sources/"+nomDeFichier);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            System.out.println("Le fichier "+nomDeFichier+" a été créé avec succès !");
+//            else {
+//                System.out.println(nomDeFichier+".json existe et sera écrasé");
+//            }
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, object);
+        } catch (JsonGenerationException | JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+
+    public static final ArrayList<UE> JSONFileToListUE(File fileName){
+        ArrayList<UE> ueArrayList = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            ueArrayList = mapper.readValue(fileName, new TypeReference<ArrayList<UE>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ueArrayList;
+    }
 
 }

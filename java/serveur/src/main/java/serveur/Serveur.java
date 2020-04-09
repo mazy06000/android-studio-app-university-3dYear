@@ -11,31 +11,36 @@ import events.EVENT;
 import matière.UE;
 import user.User;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Serveur {
 
     private final SocketIOServer server;
+    /**
+     * Liste des UE
+     */
     private final ArrayList<UE> listUE;
+    /**
+     * HashMap des UE avec leur code comme clé
+     */
     private final HashMap<String, UE> dict_UE;
+    /**
+     * Liste des utilisateurs qui se sont connectés au serveur
+     */
     private ArrayList<User> listUsers;
+
 
     public Serveur(SocketIOServer server, ArrayList<UE> listUE, HashMap<String, UE> dict_UE) {
         this.server = server;
-        /**
-         * Liste des UE
-         */
+
         this.listUE = listUE;
 
-        /**
-         * HashMap des UE avec leur code comme clé
-         */
         this.dict_UE = dict_UE;
 
-        /**
-         * Liste des utilisateurs qui se sont connectés au serveur
-         */
         this.listUsers = new ArrayList<User>();
 
         // on accept une connexion
@@ -115,14 +120,38 @@ public class Serveur {
         Configuration configuration = new Configuration();
         configuration.setHostname("localhost");
         configuration.setPort(4444);
+        ArrayList<UE> listeUE = null;
+
+        //Initialisation de la base de donnée
+        BaseDonnee baseDonnee = new BaseDonnee();
+        File s1 = new File("./serveur/target/generated-sources/semestre1.json");
+        File s2 = new File("./serveur/target/generated-sources/semestre2.json");
+        File s3 = new File("./serveur/target/generated-sources/semestre3.json");
+        try {
+            if (s1.createNewFile()){ //Chargement des fichiers
+                //Création des fichiers
+                UtilServeur.writeToJSON("semestre1.json", baseDonnee.getListeUES1());
+                UtilServeur.writeToJSON("semestre2.json", baseDonnee.getListeUES2());
+                UtilServeur.writeToJSON("semestre3.json", baseDonnee.getListeUES3());
+                listeUE = UtilServeur.initListeUE(baseDonnee.getListeUES1(), baseDonnee.getListeUES2(), baseDonnee.getListeUES3());
+            }
+            else{
+                System.out.println("Chargement des UE ...");
+                ArrayList<UE> listeUES1 = UtilServeur.JSONFileToListUE(s1);
+                ArrayList<UE> listeUES2 = UtilServeur.JSONFileToListUE(s2);
+                ArrayList<UE> listeUES3 = UtilServeur.JSONFileToListUE(s3);
+                listeUE = UtilServeur.initListeUE(listeUES1, listeUES2, listeUES3);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         /*Création du serveur*/
         SocketIOServer server = new SocketIOServer(configuration);
-        ArrayList<UE> listeUE = UtilServeur.initListeUE();
         HashMap<String, UE> dict_UE = UtilServeur.initDictUE(listeUE);
 
-        Serveur serveur = new Serveur(server, listeUE, dict_UE);
-        server.start();
+        //Serveur serveur = new Serveur(server, listeUE, dict_UE);
+        //server.start();
     }
 
 
