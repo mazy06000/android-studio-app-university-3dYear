@@ -470,6 +470,14 @@ public class ExpansionView {
                 }
 
             }
+            else if (header.getBlock()==true) {
+                for (int i = 0; i < listeHeaderTotal.size(); i++) {
+                    if ((header != listeHeaderTotal.get(i)) && !(listeHeaderTotal.get(i).getCheckboxHeader().isChecked())) {
+                        listeHeaderTotal.get(i).getCheckboxHeader().setEnabled(true);
+                        listeHeaderTotal.get(i).setEnabled(true);
+                    }
+                }
+            }
             else {
                 for (int i = 0; i < listeHeaderTotal.size(); i++) {
                     if ((header != listeHeaderTotal.get(i)) && !(listeHeaderTotal.get(i).getCheckboxHeader().isChecked()) && listeHeaderTotal.get(i).getProcheChecked()==false) {
