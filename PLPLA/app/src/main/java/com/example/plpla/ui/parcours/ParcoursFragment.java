@@ -1,4 +1,4 @@
-package com.example.plpla.ui.gallery;
+package com.example.plpla.ui.parcours;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +16,7 @@ import com.example.plpla.Client;
 import com.example.plpla.Expansion.ExpansionParcours;
 import com.example.plpla.R;
 import com.example.plpla.ui.home.PortailFragment;
+import com.example.plpla.ui.parcours.GalleryViewModel;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
