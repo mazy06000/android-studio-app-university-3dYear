@@ -1,7 +1,14 @@
 package serveur;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import matière.UE;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -150,6 +157,42 @@ public class BaseDonnee {
 
 
 
+    public static void main(String[] args) {
+
+        // Chargement et création de fichiers
+        UE testUe = new UE("TEST32","Sciences TEST S3","UE TEST",3,6,17, false, true);
+        UE testUe2 = new UE("TEst12","Sciences test 2","UE TEST",2,2,2, false, true);
+        BaseDonnee bd = new BaseDonnee();
+        ArrayList<UE> testList = new ArrayList<>(Arrays.asList(testUe,testUe2));
+        File s1 = bd.writeToJSON("test.json",testList);
+        File s2 = bd.writeToJSON("semestre1.json",listeUEBlocFondement);
+
+    }
 
 
+    /**
+     * crée un fichier nomDefichier.json (dans serveur/target/generated-sources/ ), convertit la liste listeUe en json dans le fichier et le renvoie .
+     * @param nomDeFichier nom du ficher json (Ajouter l'extension .json !!)
+     * @param listeUe liste des UE
+     * @return Le fichier json créé
+     */
+    private File writeToJSON(String nomDeFichier, ArrayList<UE> listeUe){
+        File file = new File("./serveur/target/generated-sources/"+nomDeFichier);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            if (file.createNewFile()){
+                System.out.println(nomDeFichier+" crée");
+            }
+//            else {
+//                System.out.println(nomDeFichier+".json existe et sera écrasé");
+//            }
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, listeUe);
+        } catch (JsonGenerationException | JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
 }
