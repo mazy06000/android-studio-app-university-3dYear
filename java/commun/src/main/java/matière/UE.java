@@ -1,6 +1,7 @@
 package matière;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class UE implements Serializable {
     private String code;
@@ -66,5 +67,28 @@ public class UE implements Serializable {
 
     public Boolean getSansSousMatieres() {
         return sansSousMatieres;
+    }
+
+    @Override
+    public String toString() {
+        return "UE{" +
+                "discipline='" + discipline + '\'' +
+                ", semestre=" + semestre +
+                ", ects=" + ects +
+                ", nomUE='" + nomUE + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UE ue = (UE) o;
+        return getCode().equals(ue.getCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCode());
     }
 }

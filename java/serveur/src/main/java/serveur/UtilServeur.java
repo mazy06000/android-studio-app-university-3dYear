@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static serveur.BaseDonnee.*;
 
 public class UtilServeur {
 
@@ -23,17 +22,26 @@ public class UtilServeur {
      */
     public static final HashMap<String, UE> initDictUE(ArrayList<UE> listUE) {
         HashMap<String, UE> dicoUE = new HashMap<>();
-        for (UE ue : listUE) {
-            dicoUE.put(ue.getCode(), ue);
+        if (listUE != null) {
+            for (UE ue : listUE) {
+                dicoUE.put(ue.getCode(), ue);
+            }
+            return dicoUE;
         }
         return dicoUE;
     }
 
-    /**initialisation de la liste de toutes les matières*/
+    /**initialisation de la liste de toutes les matières
+     * @param list Liste de Arraylist d'UE*/
     public static final ArrayList<UE> initListeUE(Object... list){
         ArrayList<UE> listUE = new ArrayList<>();
-        for (Object l: list){
-            listUE.addAll((ArrayList<UE>) l);
+        if (list != null) {
+            for (Object l: list){
+                if (l != null) {
+                    listUE.addAll((ArrayList<UE>) l);
+                }
+            }
+            return listUE;
         }
         return listUE;
     }
