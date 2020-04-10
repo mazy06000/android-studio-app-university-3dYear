@@ -430,6 +430,17 @@ public class ExpansionView {
                         enregistrer.setEnabled(true);
                     }
                 }
+
+                for (int i = 0; i < header2.size(); i++) {
+                    ExpansionHeader headerf = (ExpansionHeader) header2.get(i).get(0);
+                    if ((header != headerf) && !(headerf.getCheckboxHeader().isChecked()) && (header.getNoChoix() == false)) {
+                        headerf.getCheckboxHeader().setEnabled(false);
+                        headerf.setEnabled(false);
+                        headerf.setProcheChecked(true);
+
+                    }
+
+                }
             }
             else {
                 for (int i = 0; i < header2.size(); i++) {

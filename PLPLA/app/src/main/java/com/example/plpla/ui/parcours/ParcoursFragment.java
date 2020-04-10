@@ -19,15 +19,20 @@ import com.example.plpla.ui.home.PortailFragment;
 import com.example.plpla.ui.parcours.GalleryViewModel;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import events.EVENT;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ParcoursFragment extends Fragment {
 
@@ -39,6 +44,7 @@ public class ParcoursFragment extends Fragment {
     private TextView parcoursVide;
     private Socket mSocket;
     private ExpansionParcours expansionParcours;
+    private ArrayList<String> nomFichier = new ArrayList<>(Arrays.asList("mon_parcours_S1", "mon_parcours_S2", "mon_parcours_S3", "mon_parcours_S4"));
 
 
 
@@ -56,7 +62,7 @@ public class ParcoursFragment extends Fragment {
         parcoursVide.setVisibility(View.VISIBLE);
         reinitialiser.setEnabled(false);
 
-        Client client = (Client) getActivity().getApplication();
+        final Client client = (Client) getActivity().getApplication();
         mSocket = client.getUniqueConnexion().getmSocket();
 
         mSocket.on(EVENT.INIT_PARCOURS, new Emitter.Listener() {
@@ -75,49 +81,71 @@ public class ParcoursFragment extends Fragment {
 
         try {
             //Afficher le parcours enregistré
-            if (!PortailFragment.getSelectionUE().isEmpty()) {
-                reinitialiser.setEnabled(true);
-                parcoursVide.setVisibility(View.INVISIBLE);
-                ArrayList<String> listeUE = new ArrayList<>();
 
-                //Lecture du fichier enregistré
-                String parcours;
-                FileInputStream fichierLecture = getActivity().openFileInput("mon_parcours_S1");
-                InputStreamReader lecteur = new InputStreamReader(fichierLecture);
-                BufferedReader bfr = new BufferedReader(lecteur);
-                StringBuffer stringBuffer = new StringBuffer();
-                while ((parcours = bfr.readLine()) != null){
-                    listeUE.add(parcours);
-                    stringBuffer.append(parcours + "\n");
+            for (int i = 0; i < nomFichier.size(); i++) {
+                FileInputStream fichierLecture = getActivity().openFileInput(nomFichier.get(i));
+
+                int b = fichierLecture.read();
+
+                if (b != -1) {
+                    reinitialiser.setEnabled(true);
+                    parcoursVide.setVisibility(View.INVISIBLE);
+                    ArrayList<String> listeUE = new ArrayList<>();
+
+                    //Lecture du fichier enregistré
+                    String parcours;
+                    /*FileInputStream fichierLecture = getActivity().openFileInput(nomFichier.get(i));
+                    InputStreamReader lecteur = new InputStreamReader(fichierLecture);*/
+                    final InputStreamReader lecteur = new InputStreamReader(fichierLecture);
+                    BufferedReader bfr = new BufferedReader(lecteur);
+                    StringBuffer stringBuffer = new StringBuffer();
+                    while ((parcours = bfr.readLine()) != null) {
+                        listeUE.add(parcours);
+                        stringBuffer.append(parcours + "\n");
+                    }
+
+                    //On affiche la lecture
+                    //finalText.setText(stringBuffer.toString());
+                    //finalText.setVisibility(View.VISIBLE);
+                    expansionParcours = new ExpansionParcours(root, mSocket, getActivity(), listeUE);
+                    this.expansionParcours.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
+                    expansionParcours.createExpansion();
                 }
 
-                //On affiche la lecture
-                //finalText.setText(stringBuffer.toString());
-                //finalText.setVisibility(View.VISIBLE);
-                expansionParcours = new ExpansionParcours(root, mSocket, getActivity(),listeUE);
-                this.expansionParcours.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
-                expansionParcours.createExpansion();
+                //LORSQUE JE CLIQUE SUR REINITIALISER
+                reinitialiser.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        //finalText.setVisibility(View.INVISIBLE);
+
+                        View namebar = root.findViewById(R.id.dynamicLayoutContainer);
+                        ((ViewGroup) namebar.getParent()).removeView(namebar);
+
+                        parcoursVide.setVisibility(View.VISIBLE);
+                        //finalText.setText("");
+                        for (int j = 0; j < nomFichier.size(); j++) {
+                            FileOutputStream ecriture = null;
+                            try {
+                                String vide = "";
+                                ecriture = getActivity().openFileOutput(nomFichier.get(j), MODE_PRIVATE);
+                                ecriture.write(vide.getBytes());
+                                ecriture.close();
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        client.getSelectionUE().clear();
+                        Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
+                        Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
+                        ((Client) getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
+                        reinitialiser.setEnabled(false);
+                    }
+                });
             }
-
-            //LORSQUE JE CLIQUE SUR REINITIALISER
-            reinitialiser.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    //finalText.setVisibility(View.INVISIBLE);
-
-                    View namebar =root.findViewById(R.id.dynamicLayoutContainer);
-                    ((ViewGroup) namebar.getParent()).removeView(namebar);
-
-                    parcoursVide.setVisibility(View.VISIBLE);
-                    //finalText.setText("");
-                    PortailFragment.getSelectionUE().clear();
-                    Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
-                    Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
-                    ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
-                    reinitialiser.setEnabled(false);
-                }
-            });
 
 
         } catch (FileNotFoundException e) {

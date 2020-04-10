@@ -44,18 +44,6 @@ public class PortailFragment extends Fragment {
     private ArrayList<UE> listeUEBlocMethode;
     private Vue mListener;
 
-
-    public static ArrayList<String> getSelectionUE() {
-        return selectionUE;
-    }
-
-    private static ArrayList<String> selectionUE = new ArrayList<>();
-    private ArrayList<String> selectionCode = new ArrayList<>();
-
-    public ArrayList<String> getSelectionCode() {
-        return selectionCode;
-    }
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_semestre1, container, false);
@@ -82,13 +70,13 @@ public class PortailFragment extends Fragment {
             }
         });
 
-        expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,selectionUE, selectionCode,
+        expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,client.getSelectionUE(), client.getSelectionCode(),
                 listeUEBlocFondement, listeUEBlocMethode, blocEtSaMatiere);
         this.expansionView.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
 
         expansionView.createExpansion();
 
-        ListenerButton listenerButton = new ListenerButton(mSocket, this);
+        ListenerButton listenerButton = new ListenerButton(mSocket, getActivity(), client);
         enregistrer.setOnClickListener(listenerButton);
 
         semestre2.setOnClickListener(new View.OnClickListener() {
@@ -113,13 +101,13 @@ public class PortailFragment extends Fragment {
         }
     }
 
-    @Override
+    /*@Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
         getActivity().finish();
 
-    }
+    }*/
 
 
 }

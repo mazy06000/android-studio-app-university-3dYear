@@ -13,6 +13,16 @@ public class Client extends Application {
 
     private Connexion uniqueConnexion;
     private User user;
+    public ArrayList<String> getSelectionUE() {
+        return selectionUE;
+    }
+    private ArrayList<String> selectionUE = new ArrayList<>();
+
+    public ArrayList<String> getSelectionCode() {
+        return selectionCode;
+    }
+
+    private ArrayList<String> selectionCode = new ArrayList<>();
 
     @Override
     public void onCreate() {
