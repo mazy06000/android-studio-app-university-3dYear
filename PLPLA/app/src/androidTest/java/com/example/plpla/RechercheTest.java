@@ -169,7 +169,7 @@ public class RechercheTest {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatImageButton2.perform(click()); 
+        appCompatImageButton2.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

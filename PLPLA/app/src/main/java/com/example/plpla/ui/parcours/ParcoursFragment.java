@@ -139,7 +139,7 @@ public class ParcoursFragment extends Fragment {
                             client.getNomFichier().clear();
                             Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
                             Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
-                            ((Client) getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
+                            ((Client) getActivity().getApplicationContext()).getUniqueConnexion().envoyerEvent("INIT_PARCOURS");
                             reinitialiser.setEnabled(false);
                         }
                     });
