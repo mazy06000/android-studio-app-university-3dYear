@@ -1,5 +1,6 @@
 package com.example.plpla;
 
+import android.content.Intent;
 import android.annotation.SuppressLint;
 import android.app.FragmentManager;
 import android.content.SharedPreferences;
@@ -29,6 +30,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.json.JSONException;
@@ -49,6 +51,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
     private Socket mSocket;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,14 +64,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         portailFragment.setArguments(extras);
 
 
-
-        JSONObject user = new JSONObject();
-        try {
-            user.put("nom", ((Client)getApplicationContext()).getUser().getNom());
-            user.put("prenom", ((Client)getApplicationContext()).getUser().getPrenom());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        JSONObject user = ((Client)getApplicationContext()).getUser().toJSON();
 
         Log.d("EVENT_SOCKET", "Envoie de l'utilisateur "+ ((Client)getApplicationContext()).getUser().getNom() +" au serveur");
         ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().emit(EVENT.ADD_USER, user);
@@ -83,6 +79,17 @@ public class MainNavigation extends AppCompatActivity implements Vue {
                 ((Client)getApplicationContext()).getUser().setAddress_ip(ip_add);
                 Log.d("EVENT_SOCKET", "ADD_USER : Reception du server de l'addresse ip de "+ ((Client)getApplicationContext()).getUser().getNom() +
                         " --> " + ((Client)getApplicationContext()).getUser().getAddress_ip());
+            }
+        });
+
+        /**
+         * Réception de la déconnexion
+         */
+        ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                Log.d("EVENT_SOCKET", "DISCONNECT :" + ((Client)getApplicationContext()).getUser().getNom() + " a été déconnecté du serveur");
+                Toast.makeText(getApplicationContext(), R.string.disconnect, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -130,6 +137,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         
         
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

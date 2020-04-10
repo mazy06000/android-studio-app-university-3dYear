@@ -9,16 +9,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.plpla.Client;
 import com.example.plpla.Expansion.ExpansionParcours;
 import com.example.plpla.R;
 import com.example.plpla.ui.home.PortailFragment;
+import com.example.plpla.ui.parcours.GalleryViewModel;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

@@ -39,7 +39,8 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="Portail">Portail</string>
-    <string name="connect">Vous êtes connecté au serveur.</string>
+    <string name="connect">Vous êtes connecté au serveur</string>
+    <string name="disconnect">Vous avez été déconnecté du serveur</string>
     <string name="connect_erreur">Erreur lors de la connexion, Vous n\'êtes pas connecté</string>
     <string name="Profil">Mon Profil</string>
     <string name="Nom">Baroudi</string>
@@ -54,6 +55,7 @@
     <string name="semestre2">Semestre 2</string>
     <string name="semestre3">Semestre 3</string>
     <string name="semestre4">Semestre 4</string>
+
 
 
 </resources>

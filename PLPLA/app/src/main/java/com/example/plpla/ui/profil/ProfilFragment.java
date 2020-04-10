@@ -1,4 +1,4 @@
-package com.example.plpla.ui.tools;
+package com.example.plpla.ui.profil;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import android.widget.Button;
 
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.plpla.R;
 import com.example.plpla.edit;
