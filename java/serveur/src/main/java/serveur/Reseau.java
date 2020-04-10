@@ -33,19 +33,7 @@ public class Reseau {
         this.socket.addEventListener(EVENT.ADD_USER, User.class, new DataListener<User>() {
             @Override
             public void onData(SocketIOClient socketIOClient, User user, AckRequest ackRequest) throws Exception {
-                System.out.println("Ajout d'un nouvel utilisateur : "+user.getNom() +" "+ user.getPrenom());
-                if (UtilServeur.userExist(serveur.getListUsers(), user)){
-                    System.out.println(user.getNom()+" a déja été ajouté");
-                }
-                else {
-                    System.out.println("Ajout de "+user.getNom()+" avec succès !");
-                    User new_user = new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix());
-                    user.setAddress_ip(socketIOClient.getRemoteAddress().toString());
-                    serveur.getListUsers().add(new_user);
-                    System.out.println("user.getAddress_ip => "+ user.getAddress_ip());
-                    System.out.println("Envoi de l'addresse ip à l'utilisateur "+user.getNom());
-                    socketIOClient.sendEvent(EVENT.ADD_USER, socketIOClient.getRemoteAddress());
-                }
+                serveur.ajouteUser(user, socketIOClient);
             }
         });
 

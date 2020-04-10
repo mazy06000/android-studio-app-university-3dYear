@@ -18,6 +18,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Serveur {
+    public static final String PATH_JSON_FILES= "./serveur/target/generated-sources/";
+    public static final String USER_FILENAME = "utilisateurs.json";
+    public static final String SEMESTRE1_FILENAME = "semestre1.json";
+    public static final String SEMESTRE2_FILENAME = "semestre2.json";
+    public static final String SEMESTRE3_FILENAME = "semestre3.json";
 
     private SocketIOServer socketIOServer;
     /**
@@ -54,15 +59,15 @@ public class Serveur {
     public Serveur(Configuration configuration) {
         //Initialisation de la base de donnée
         BaseDonnee baseDonnee = new BaseDonnee();
-        File s1 = new File("./serveur/target/generated-sources/semestre1.json");
-        File s2 = new File("./serveur/target/generated-sources/semestre2.json");
-        File s3 = new File("./serveur/target/generated-sources/semestre3.json");
+        File s1 = new File(PATH_JSON_FILES+SEMESTRE1_FILENAME);
+        File s2 = new File(PATH_JSON_FILES+SEMESTRE2_FILENAME);
+        File s3 = new File(PATH_JSON_FILES+SEMESTRE3_FILENAME);
         this.listUE = loadingUE(s1,s2,s3,baseDonnee);
 
         /**
          * Initialisation des Users
          */
-        File utilisateurs = new File("./serveur/target/generated-sources/utilisateurs.json");
+        File utilisateurs = new File(PATH_JSON_FILES+USER_FILENAME);
         this.listUsers = loadingUsers(utilisateurs);
 
         dict_UE = UtilServeur.initDictUE(this.listUE);
@@ -120,9 +125,10 @@ public class Serveur {
      * @param code_choix_matière Le code de la matière envoyée par le client
      */
     protected void save_code(SocketIOClient socketIOClient, String code_choix_matière) {
+        int index_user = UtilServeur.getIndexUser(socketIOClient.getRemoteAddress().toString(), this.listUsers);
         System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre l'UE de code : "+ code_choix_matière);
         UE ue = dict_UE.get(code_choix_matière);
-        listUsers.get(0).getListe_choix().add(ue);
+        listUsers.get(index_user).getListe_choix().add(ue);
         System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
         socketIOClient.sendEvent(EVENT.SAVE);
     }
@@ -130,6 +136,11 @@ public class Serveur {
     private void démarre() {
         this.socketIOServer.start();
     }
+
+
+
+
+
 
     public static final void main(String[] args) {
         Configuration configuration = new Configuration();
@@ -143,6 +154,34 @@ public class Serveur {
     }
 
 
+    /**
+     * Ajoute un nouvel user (objet User) avec l'objet user envoyé par le client.
+     * (Ou pas s'il existe deja dans la base de données (La liste des users connectés au moins une fois))
+     */
+    public void ajouteUser(User user, SocketIOClient socketIOClient) {
+        System.out.println("Ajout d'un nouvel utilisateur : "+user.getNom() +" "+ user.getPrenom());
+        if (UtilServeur.userExist(this.getListUsers(), user)){
+            System.out.println(user.getNom()+" a déja été ajouté");
+        }
+        else {
+            System.out.println("Ajout de "+user.getNom()+" avec succès !");
+            User new_user = new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix());
+            user.setAddress_ip(socketIOClient.getRemoteAddress().toString());
+            this.getListUsers().add(new_user);
+            UtilServeur.writeToJSON("utilisateurs.json", listUsers);
+            System.out.println("user.getAddress_ip => "+ user.getAddress_ip());
+            System.out.println("Envoi de l'addresse ip à l'utilisateur "+user.getNom());
+            sendRemoteAddressUser(socketIOClient);
+        }
+    }
+
+    /**
+     * Envoie l'adresse ip à l'utilisateur.
+     * @param socketIOClient L'utilisateur
+     */
+    private void sendRemoteAddressUser(SocketIOClient socketIOClient) {
+        socketIOClient.sendEvent(EVENT.ADD_USER, socketIOClient.getRemoteAddress());
+    }
 
 
 }
