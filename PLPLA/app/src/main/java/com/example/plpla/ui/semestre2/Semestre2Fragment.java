@@ -154,7 +154,7 @@ public class Semestre2Fragment extends Fragment {
 
         for (String code_ue: getSelectionCode()) {
             Log.d("SAVE_SERVER", "Envoie de la matière de code "+code_ue+ " au serveur pour enregistrement");
-            ((Client)getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("Save", code_ue);
+            ((Client)getActivity().getApplicationContext()).getUniqueConnexion().envoyerEvent("Save", code_ue);
         }
     }
 }
