@@ -48,7 +48,7 @@ import user.User;
 public class MainNavigation extends AppCompatActivity implements Vue {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private Socket mSocket;
+
 
 
     @SuppressLint("SetTextI18n")
@@ -67,7 +67,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         JSONObject user = ((Client)getApplicationContext()).getUser().toJSON();
 
         Log.d("EVENT_SOCKET", "Envoie de l'utilisateur "+ ((Client)getApplicationContext()).getUser().getNom() +" au serveur");
-        ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().emit(EVENT.ADD_USER, user);
+        ((Client)getApplicationContext()).getUniqueConnexion().envoyerEvent(EVENT.ADD_USER, user);
 
         /**
          * Réception de l'adresse ip du client dans le serveur

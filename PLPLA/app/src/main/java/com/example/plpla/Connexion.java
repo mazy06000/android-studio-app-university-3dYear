@@ -52,6 +52,9 @@ public class Connexion {
     public void envoyerEvent(String evenement){
         mSocket.emit(evenement);
     }
+    public void envoyerEvent(String evenement, Object object){
+        mSocket.emit(evenement,object);
+    }
 
     public void deconnecte(){
         if (mSocket != null) {
