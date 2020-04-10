@@ -40,7 +40,8 @@ public class ListenerButton implements View.OnClickListener{
                 //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
                 //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
                 String fileName = "mon_parcours_S1";
-                String final_selection = " SEMESTRE 1\n";
+                client.getNomFichier().add(fileName);
+                String final_selection = "SEMESTRE 1\n";
                 for (String selections : client.getSelectionUE()){
                     Log.d("WRITEFILE", "ecriture de "+client.getSelectionUE().toString());
                     final_selection += selections + "\n";

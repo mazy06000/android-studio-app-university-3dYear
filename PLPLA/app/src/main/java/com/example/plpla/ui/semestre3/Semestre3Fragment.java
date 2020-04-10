@@ -116,7 +116,8 @@ public class Semestre3Fragment extends Fragment {
         //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
         //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
         String fileName = "mon_parcours_S3";
-        String final_selection = " SEMESTRE 3\n";
+        client.getNomFichier().add(fileName);
+        String final_selection = "SEMESTRE 3\n";
         for (String selections : client.getSelectionUE()){
             Log.d("WRITEFILE", "ecriture de "+ client.getSelectionUE().toString());
             final_selection += selections + "\n";

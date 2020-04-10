@@ -44,7 +44,7 @@ public class ParcoursFragment extends Fragment {
     private TextView parcoursVide;
     private Socket mSocket;
     private ExpansionParcours expansionParcours;
-    private ArrayList<String> nomFichier = new ArrayList<>(Arrays.asList("mon_parcours_S1", "mon_parcours_S2", "mon_parcours_S3", "mon_parcours_S4"));
+
 
 
 
@@ -78,24 +78,22 @@ public class ParcoursFragment extends Fragment {
             }
         });
 
+        if (!(client.getNomFichier().isEmpty())){
+            try {
+                //Afficher le parcours enregistré
 
-        try {
-            //Afficher le parcours enregistré
 
-            for (int i = 0; i < nomFichier.size(); i++) {
-                FileInputStream fichierLecture = getActivity().openFileInput(nomFichier.get(i));
+                for (int i = 0; i < client.getNomFichier().size(); i++) {
 
-                int b = fichierLecture.read();
-
-                if (b != -1) {
                     reinitialiser.setEnabled(true);
                     parcoursVide.setVisibility(View.INVISIBLE);
                     ArrayList<String> listeUE = new ArrayList<>();
 
                     //Lecture du fichier enregistré
                     String parcours;
-                    /*FileInputStream fichierLecture = getActivity().openFileInput(nomFichier.get(i));
-                    InputStreamReader lecteur = new InputStreamReader(fichierLecture);*/
+                /*FileInputStream fichierLecture = getActivity().openFileInput(nomFichier.get(i));
+                InputStreamReader lecteur = new InputStreamReader(fichierLecture);*/
+                    FileInputStream fichierLecture = getActivity().openFileInput(client.getNomFichier().get(i));
                     final InputStreamReader lecteur = new InputStreamReader(fichierLecture);
                     BufferedReader bfr = new BufferedReader(lecteur);
                     StringBuffer stringBuffer = new StringBuffer();
@@ -110,49 +108,52 @@ public class ParcoursFragment extends Fragment {
                     expansionParcours = new ExpansionParcours(root, mSocket, getActivity(), listeUE);
                     this.expansionParcours.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
                     expansionParcours.createExpansion();
+
+                    //LORSQUE JE CLIQUE SUR REINITIALISER
+                    reinitialiser.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            //finalText.setVisibility(View.INVISIBLE);
+
+                            View namebar = root.findViewById(R.id.dynamicLayoutContainer);
+                            ((ViewGroup) namebar.getParent()).removeView(namebar);
+
+                            parcoursVide.setVisibility(View.VISIBLE);
+                            //finalText.setText("");
+                            for (int j = 0; j < client.getNomFichier().size(); j++) {
+                                FileOutputStream ecriture = null;
+                                try {
+                                    String vide = "";
+                                    ecriture = getActivity().openFileOutput(client.getNomFichier().get(j), MODE_PRIVATE);
+                                    ecriture.write(vide.getBytes());
+                                    ecriture.close();
+                                } catch (FileNotFoundException e) {
+                                    e.printStackTrace();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                            client.getSelectionUE().clear();
+                            client.getNomFichier().clear();
+                            Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
+                            Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
+                            ((Client) getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
+                            reinitialiser.setEnabled(false);
+                        }
+                    });
                 }
 
-                //LORSQUE JE CLIQUE SUR REINITIALISER
-                reinitialiser.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        //finalText.setVisibility(View.INVISIBLE);
-
-                        View namebar = root.findViewById(R.id.dynamicLayoutContainer);
-                        ((ViewGroup) namebar.getParent()).removeView(namebar);
-
-                        parcoursVide.setVisibility(View.VISIBLE);
-                        //finalText.setText("");
-                        for (int j = 0; j < nomFichier.size(); j++) {
-                            FileOutputStream ecriture = null;
-                            try {
-                                String vide = "";
-                                ecriture = getActivity().openFileOutput(nomFichier.get(j), MODE_PRIVATE);
-                                ecriture.write(vide.getBytes());
-                                ecriture.close();
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                        client.getSelectionUE().clear();
-                        Toast.makeText(getActivity(), "Parcours réinitialisé", Toast.LENGTH_LONG).show();
-                        Log.d("DELETE_PARCOURS_SERVER", "Envoie du message de Réinitialisation au serveur");
-                        ((Client) getActivity().getApplicationContext()).getUniqueConnexion().getmSocket().emit("INIT_PARCOURS");
-                        reinitialiser.setEnabled(false);
-                    }
-                });
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+
         return root;
     }
 }

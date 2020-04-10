@@ -121,7 +121,8 @@ public class Semestre2Fragment extends Fragment {
         //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
         //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
         String fileName = "mon_parcours_S2";
-        String final_selection = " SEMESTRE 2\n";
+        client.getNomFichier().add(fileName);
+        String final_selection = "SEMESTRE 2\n";
         for (String selections : client.getSelectionUE()){
             Log.d("WRITEFILE", "ecriture de "+ client.getSelectionUE().toString());
             final_selection += selections + "\n";

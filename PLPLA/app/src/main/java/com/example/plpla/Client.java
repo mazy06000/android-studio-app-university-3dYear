@@ -24,6 +24,12 @@ public class Client extends Application {
 
     private ArrayList<String> selectionCode = new ArrayList<>();
 
+    public ArrayList<String> getNomFichier() {
+        return nomFichier;
+    }
+
+    private ArrayList<String> nomFichier = new ArrayList<>();
+
     @Override
     public void onCreate() {
         super.onCreate();
