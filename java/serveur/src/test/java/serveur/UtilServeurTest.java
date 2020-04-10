@@ -245,5 +245,35 @@ class UtilServeurTest {
 
     @Test
     void getIndexUser() {
+        String ip_user1 = user1.getAddress_ip();
+        String ip_user2 = user2.getAddress_ip();
+        String ip_user3 = user3.getAddress_ip();
+        int index;
+
+        /**
+         * 1er cas : l'ip (passée en paramètre) est bien dans la liste d'user
+         * user1 est d'index 0, user2 -> 1 et user3 -> 2
+         */
+        index = UtilServeur.getIndexUser(ip_user1,listUsers);
+        assertEquals(0,index);
+        index = UtilServeur.getIndexUser(ip_user2,listUsers);
+        assertEquals(1,index);
+        index = UtilServeur.getIndexUser(ip_user3,listUsers);
+        assertEquals(2,index);
+
+        /**
+         * 2ème cas : l'ip (passée en paramètre) n'est pas dans la liste des users
+         * la fonction renvoie -1 si l'ip n'est pas dans la liste (ou si l'ip ou la liste passée en paramètre est null)
+         */
+        index = UtilServeur.getIndexUser(ip_user1+"lol", listUsers);
+        assertEquals(-1,index);
+
+        /**
+         * 3ème cas : l'ip est null, la list est null
+         */
+        index = UtilServeur.getIndexUser(ip_user1+"lol", null);
+        assertEquals(-1,index);
+        index = UtilServeur.getIndexUser(null, listUsers);
+        assertEquals(-1,index);
     }
 }

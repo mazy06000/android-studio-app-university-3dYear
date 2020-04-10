@@ -130,6 +130,12 @@ public class UtilServeur {
      */
     public static final int getIndexUser(String ip, ArrayList<User> userArrayList){
         int index = 0;
+        if (userArrayList == null) {
+            return -1;
+        }
+        if (ip == null) {
+            return -1;
+        }
         for (User user: userArrayList) {
             if (user.getAddress_ip().equals(ip)){
                 return index;
