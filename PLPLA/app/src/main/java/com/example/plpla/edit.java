@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.plpla.ui.tools.ProfilFragment;
 
 public class edit extends AppCompatActivity {
     private EditText nameInput;

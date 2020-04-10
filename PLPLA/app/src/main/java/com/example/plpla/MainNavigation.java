@@ -30,6 +30,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.json.JSONException;
@@ -50,6 +51,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
     private Socket mSocket;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +119,9 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.nom_utilisateur_menu);
         navUsername.setText(nameU +"  "+ username);
+
+
+
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

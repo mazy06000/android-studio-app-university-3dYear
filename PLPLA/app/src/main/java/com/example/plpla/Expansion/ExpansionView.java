@@ -49,6 +49,9 @@ public class ExpansionView {
     private ArrayList<ArrayList<UE>> blocEtSaMatiere;
     private ArrayList<UE> blocSeul;
     private int nbBloc = 0;
+    private ArrayList<ArrayList<ExpansionHeader>> UeAvecCategories = new ArrayList<>();
+    private ArrayList<ExpansionHeader> UeSansCategories = new ArrayList<>();
+    private ArrayList<ExpansionHeader> UeConfondus = new ArrayList<>();
 
     public ExpansionView(View root, Socket mSocket, Context activity,
                          Button enregistrer, ArrayList<String> selectionUE, ArrayList<String> selectionCode,
@@ -183,6 +186,8 @@ public class ExpansionView {
             if (!(headerchoix.getWithoutCheck()) && !(headerchoix.getCheckboxHeader().isChecked())) {
                 listeHeader2emeNiveau.add(new ArrayList<>(Arrays.asList(headerchoix, layoutchoix, listeDiscipline.get(i))));
                 listeHeaderTotal.add(headerchoix);
+                UeConfondus.add(headerchoix);
+                UeSansCategories.add(headerchoix);
             }
         }
 
@@ -432,6 +437,7 @@ public class ExpansionView {
                     if ((header != headerf) && !(headerf.getCheckboxHeader().isChecked()) && (header.getNoChoix() == false)) {
                         headerf.getCheckboxHeader().setEnabled(false);
                         headerf.setEnabled(false);
+                        headerf.setProcheChecked(true);
 
                     }
 
@@ -445,22 +451,38 @@ public class ExpansionView {
         else {
             compteur--;
 
-            if (compteur < 4){
+            if (header.getNoChoix()==false){
+                for (int i = 0; i < listeHeaderTotal.size(); i++) {
+                    if ((header != listeHeaderTotal.get(i)) && !(listeHeaderTotal.get(i).getCheckboxHeader().isChecked()) && listeHeaderTotal.get(i).getProcheChecked()==false) {
+                        listeHeaderTotal.get(i).getCheckboxHeader().setEnabled(true);
+                        listeHeaderTotal.get(i).setEnabled(true);
+                    }
+                }
+                for (int i = 0; i < header2.size(); i++) {
+                    ExpansionHeader headerf = (ExpansionHeader) header2.get(i).get(0);
+                    if ((header != headerf) && !(headerf.getCheckboxHeader().isChecked()) && (header.getNoChoix() == false)) {
+                        headerf.getCheckboxHeader().setEnabled(true);
+                        headerf.setEnabled(true);
+                        headerf.setProcheChecked(false);
+
+                    }
+
+                }
+
+            }
+            else if (header.getBlock()==true) {
                 for (int i = 0; i < listeHeaderTotal.size(); i++) {
                     if ((header != listeHeaderTotal.get(i)) && !(listeHeaderTotal.get(i).getCheckboxHeader().isChecked())) {
                         listeHeaderTotal.get(i).getCheckboxHeader().setEnabled(true);
                         listeHeaderTotal.get(i).setEnabled(true);
-
                     }
                 }
-
             }
             else {
-                for (int i = 0; i < header2.size(); i++) {
-                    ExpansionHeader headerf = (ExpansionHeader) header2.get(i).get(0);
-                    if ((header != headerf)) {
-                        headerf.getCheckboxHeader().setEnabled(true);
-                        headerf.setEnabled(true);
+                for (int i = 0; i < listeHeaderTotal.size(); i++) {
+                    if ((header != listeHeaderTotal.get(i)) && !(listeHeaderTotal.get(i).getCheckboxHeader().isChecked()) && listeHeaderTotal.get(i).getProcheChecked()==false) {
+                        listeHeaderTotal.get(i).getCheckboxHeader().setEnabled(true);
+                        listeHeaderTotal.get(i).setEnabled(true);
                     }
                 }
             }

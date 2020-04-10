@@ -79,6 +79,16 @@ public class ExpansionHeader extends FrameLayout {
         return preChecked;
     }
 
+    public Boolean getProcheChecked() {
+        return procheChecked;
+    }
+
+    public void setProcheChecked(Boolean procheChecked) {
+        this.procheChecked = procheChecked;
+    }
+
+    public Boolean procheChecked = false;
+
     public void setPreChecked(Boolean preChecked) {
         this.preChecked = preChecked;
     }
