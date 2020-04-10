@@ -126,31 +126,18 @@ public class Serveur {
      */
     protected void save_code(SocketIOClient socketIOClient, String code_choix_matière) {
         int index_user = UtilServeur.getIndexUser(socketIOClient.getRemoteAddress().toString(), this.listUsers);
-        System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre l'UE de code : "+ code_choix_matière);
-        UE ue = dict_UE.get(code_choix_matière);
-        listUsers.get(index_user).getListe_choix().add(ue);
-        System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
-        socketIOClient.sendEvent(EVENT.SAVE);
-    }
+        if (index_user<0){
+            System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre l'UE de code : "+ code_choix_matière);
+            UE ue = dict_UE.get(code_choix_matière);
+            listUsers.get(index_user).getListe_choix().add(ue);
+            System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
+            socketIOClient.sendEvent(EVENT.SAVE);
+        }
+        else {
+            System.out.println("Erreur lors l'enregistrement de la matière, l'utilisateur " +
+                    "d'adresse ip "+socketIOClient.getRemoteAddress().toString() +" n'a pas été trouvé dans le Serveur");
+        }
 
-    private void démarre() {
-        this.socketIOServer.start();
-    }
-
-
-
-
-
-
-    public static final void main(String[] args) {
-        Configuration configuration = new Configuration();
-        configuration.setHostname("localhost");
-        configuration.setPort(4444);
-
-
-        /*Création du serveur*/
-        Serveur server = new Serveur(configuration);
-        server.démarre();
     }
 
 
@@ -171,17 +158,44 @@ public class Serveur {
             UtilServeur.writeToJSON("utilisateurs.json", listUsers);
             System.out.println("user.getAddress_ip => "+ user.getAddress_ip());
             System.out.println("Envoi de l'addresse ip à l'utilisateur "+user.getNom());
-            sendRemoteAddressUser(socketIOClient);
+            reseau.sendRemoteAddressUser(socketIOClient);
         }
     }
 
-    /**
-     * Envoie l'adresse ip à l'utilisateur.
-     * @param socketIOClient L'utilisateur
-     */
-    private void sendRemoteAddressUser(SocketIOClient socketIOClient) {
-        socketIOClient.sendEvent(EVENT.ADD_USER, socketIOClient.getRemoteAddress());
+
+
+    public void initParcoursUser(SocketIOClient socketIOClient) {
+        int index_user = UtilServeur.getIndexUser(socketIOClient.getRemoteAddress().toString(), this.listUsers);
+        if (index_user < 0){
+            this.getListUsers().get(index_user).getListe_choix().clear();
+            System.out.println("Parcours réinitialisé pour "+socketIOClient.getRemoteAddress());
+            reseau.sendInitParcours(socketIOClient);
+        }
+        else {
+            System.out.println("Erreur lors de la réinitialisation de parcours, l'utilisateur " +
+                    "d'adresse ip "+socketIOClient.getRemoteAddress().toString() +" n'a pas été trouvé dans le Serveur");
+        }
+
     }
+
+    private void démarre() {
+        this.reseau.start();
+    }
+
+
+
+    public static final void main(String[] args) {
+        Configuration configuration = new Configuration();
+        configuration.setHostname("localhost");
+        configuration.setPort(4444);
+
+
+        /*Création du serveur*/
+        Serveur server = new Serveur(configuration);
+        server.démarre();
+    }
+
+
 
 
 }

@@ -54,12 +54,33 @@ public class Reseau {
         this.socket.addEventListener(EVENT.INIT_PARCOURS, String.class, new DataListener<String>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String s, AckRequest ackRequest) throws Exception {
-                serveur.getListUsers().get(0).getListe_choix().clear();
-                System.out.println("Parcours réinitialisé pour "+socketIOClient.getRemoteAddress());
-                socketIOClient.sendEvent(EVENT.INIT_PARCOURS);
+                serveur.initParcoursUser(socketIOClient);
             }
         });
 
 
+    }
+
+
+
+    /**
+     * Envoie l'event INIT_PARCOURS au client
+     * @param socketIOClient
+     */
+    public void sendInitParcours(SocketIOClient socketIOClient) {
+        socketIOClient.sendEvent(EVENT.INIT_PARCOURS);
+    }
+
+
+    /**
+     * Envoie l'adresse ip à l'utilisateur.
+     * @param socketIOClient L'utilisateur
+     */
+    public void sendRemoteAddressUser(SocketIOClient socketIOClient) {
+        socketIOClient.sendEvent(EVENT.ADD_USER, socketIOClient.getRemoteAddress());
+    }
+
+    public void start() {
+        socket.start();
     }
 }
