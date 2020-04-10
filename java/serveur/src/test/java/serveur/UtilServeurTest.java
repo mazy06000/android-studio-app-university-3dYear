@@ -131,6 +131,35 @@ class UtilServeurTest {
 
     @Test
     void userExist() {
+        /**
+         * 1er cas : On donne 3 user user1 2 et 3 (du setUp)
+         * on donne une liste listUsers (du setUp)
+         * ici : user1 appartient à la liste.
+         * On vérifie que la méthode renvoie vrai
+         */
+        boolean exists1 = UtilServeur.userExist(listUsers, user1);
+        boolean exists2 = UtilServeur.userExist(listUsers, user2);
+        boolean exists3 = UtilServeur.userExist(listUsers, user3);
+        assertTrue(exists1);
+        assertTrue(exists2);
+        assertTrue(exists3);
+
+        /**
+         * 2eme cas : On donne 1 user null
+         * on donne la liste listUsers (du setUp)
+         * ici : user est null
+         * On vérifie que la méthode renvoie false
+         */
+        exists1 = UtilServeur.userExist(listUsers, null);
+        assertFalse(exists1);
+
+        /**
+         * 3eme cas : On donne 1 user user1
+         * on donne une liste d'users null (du setUp)
+         * On vérifie que la méthode renvoie false
+         */
+        exists1 = UtilServeur.userExist(null, user1);
+        assertFalse(exists1);
     }
 
     @Test

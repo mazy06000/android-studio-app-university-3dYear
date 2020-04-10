@@ -49,11 +49,17 @@ public class UtilServeur {
 
     /**
      * Cherche si un utilisateur s'est deja connecté une fois
-     * @param listUsers Une liste d'UE
+     * @param listUsers Une liste d'Users
      * @param user Un User
      * @return Un booléen vrai si l'user est dans la liste, faux dans le cas contraire
      */
     public static final boolean userExist(ArrayList<User> listUsers, User user) {
+        if (listUsers == null) {
+            return false;
+        }
+        if (user == null) {
+            return false;
+        }
         for (User utilisateur: listUsers) {
             if (utilisateur.equals(user)){
                 return true;
