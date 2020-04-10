@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import user.User;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UtilServeurTest {
 
+    String PATH = "./target/generated-test-sources/";
     UE geo1;
     UE geo2;
     UE base;
@@ -27,6 +29,7 @@ class UtilServeurTest {
     User user2;
     User user3 ;
     ArrayList<User> listUsers;
+
 
     @BeforeEach
     void setUp() {
@@ -164,14 +167,80 @@ class UtilServeurTest {
 
     @Test
     void writeToJSON() {
+        File fileUsers = new File(PATH+"utilisateurs.json");
+        File fileUE = new File(PATH+"UEs.json");
+
+
+        assertFalse(fileUsers.exists());
+        assertFalse(fileUE.exists());
+
+        /**
+         * 1èr cas les fichiers n'existe pas :
+         * On vérifie que les fichier existent .json
+         * Et qu'on a bien écrit les données
+         */
+        fileUsers = UtilServeur.writeToJSON(PATH+"utilisateurs.json", listUsers);
+        fileUE = UtilServeur.writeToJSON(PATH+"UEs.json", listUE);
+
+        assertTrue(fileUsers.exists());
+        assertTrue(fileUE.exists());
+        assertTrue(fileUsers.length()>0);
+        assertTrue(fileUE.length()>0);
+
+        /**
+         * On supprime les fichiers
+         */
+        fileUE.delete();
+        fileUsers.delete();
+
+
     }
 
     @Test
     void JSONFileToListUE() {
+        File fileUE = UtilServeur.writeToJSON(PATH+"UEs.json", listUE);
+        ArrayList<UE> list_attendu;
+        ArrayList<UE> listdesUE;
+
+        /**
+         * On vérifie que la liste d'UEs écrit dans UEs.json
+         * correspond à la liste listUE après sa conversion en objet java
+         */
+        listdesUE = UtilServeur.JSONFileToListUE(fileUE);
+        list_attendu = listUE;
+        assertEquals(list_attendu,listdesUE);
+
+        /**
+         * On vérifie que la liste est vide si le fichier n'existe pas ou est vide
+         */
+        fileUE.delete();
+        listdesUE = UtilServeur.JSONFileToListUE(fileUE);
+        list_attendu = new ArrayList<>();
+        assertEquals(list_attendu,listdesUE);
     }
 
     @Test
     void JSONFileToListUsers() {
+        File fileUser = UtilServeur.writeToJSON(PATH+"utilisateurs.json", listUsers);
+        ArrayList<User> list_attendu;
+        ArrayList<User> listdesUser;
+
+        /**
+         * On vérifie que la liste des utilisateurs écrit dans utilisateurs.json
+         * correspond à la liste listUsers après sa conversion en objet java
+         */
+        listdesUser = UtilServeur.JSONFileToListUsers(fileUser);
+        list_attendu = listUsers;
+        assertEquals(list_attendu,listdesUser);
+
+        /**
+         * On vérifie que la liste est vide si le fichier n'existe pas ou est vide
+         * correspond à la liste listUE après sa conversion en objet java
+         */
+        fileUser.delete();
+        listdesUser = UtilServeur.JSONFileToListUsers(fileUser);
+        list_attendu = new ArrayList<>();
+        assertEquals(list_attendu,listdesUser);
     }
 
     @Test

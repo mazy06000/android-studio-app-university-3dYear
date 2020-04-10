@@ -76,17 +76,22 @@ public class UtilServeur {
      * @return Le fichier json créé
      */
     public static final  File writeToJSON(String nomDeFichier, Object object){
-        File file = new File(Serveur.PATH_JSON_FILES+nomDeFichier);
+        File file = new File(nomDeFichier);
         ObjectMapper mapper = new ObjectMapper();
         try {
-            System.out.println("Le fichier "+nomDeFichier+" a été créé avec succès !");
+//            if (file.createNewFile()){
+//
+//            }
 //            else {
 //                System.out.println(nomDeFichier+".json existe et sera écrasé");
 //            }
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, object);
+            System.out.println("Le fichier "+nomDeFichier+" a été créé avec succès !");
+
         } catch (JsonGenerationException | JsonMappingException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            System.out.println("Erreur lors de l'écriture du ficher");
             e.printStackTrace();
         }
 
@@ -99,7 +104,8 @@ public class UtilServeur {
         try {
             ueArrayList = mapper.readValue(fileName, new TypeReference<ArrayList<UE>>(){});
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Erreur lors de la lecture du fichier "+fileName.getName());
+            //e.printStackTrace();
         }
         return ueArrayList;
     }

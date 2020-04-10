@@ -98,9 +98,9 @@ public class Serveur {
             if (s1.createNewFile()){
                 //Création des fichiers
                 System.out.println("Création de la base de donnée.");
-                UtilServeur.writeToJSON("semestre1.json", baseDonnee.getListeUES1());
-                UtilServeur.writeToJSON("semestre2.json", baseDonnee.getListeUES2());
-                UtilServeur.writeToJSON("semestre3.json", baseDonnee.getListeUES3());
+                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE1_FILENAME, baseDonnee.getListeUES1());
+                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE2_FILENAME, baseDonnee.getListeUES2());
+                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE3_FILENAME, baseDonnee.getListeUES3());
                 return UtilServeur.initListeUE(baseDonnee.getListeUES1(), baseDonnee.getListeUES2(), baseDonnee.getListeUES3());
             }
             else{
@@ -155,7 +155,7 @@ public class Serveur {
             User new_user = new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix());
             user.setAddress_ip(socketIOClient.getRemoteAddress().toString());
             this.getListUsers().add(new_user);
-            UtilServeur.writeToJSON("utilisateurs.json", listUsers);
+            UtilServeur.writeToJSON(PATH_JSON_FILES+USER_FILENAME, listUsers);
             System.out.println("user.getAddress_ip => "+ user.getAddress_ip());
             System.out.println("Envoi de l'addresse ip à l'utilisateur "+user.getNom());
             reseau.sendRemoteAddressUser(socketIOClient);
