@@ -29,15 +29,17 @@
   * [ ] L'utilisateur pourra renseigner quelle licence il souhaite obtenir
 >
   * [ ] Semestre 4 pas accesible
+  >
+  * [ ] Evolution 2
   
   
 
 ### *TEST :*
 > Android :
->  * [ ] Test PortailFragment fait.
->  * [ ] Test PacoursFragment fait.
->  * [ ] Test ProfilFragment fait.
->  * [ ] Test RechercheFragment fait.
+>  * [x] Test PortailFragment.
+>  * [x] Test PacoursFragment.
+>  * [x] Test ProfilFragment.
+>  * [x] Test RechercheFragment.
 > 
 > Serveur : 
 > * [x] Test de toutes les fonctions utilitaires, les fonctions d'initialisations du serveur, 
