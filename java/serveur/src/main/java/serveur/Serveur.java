@@ -25,10 +25,10 @@ public class Serveur {
     public static final String SEMESTRE3_FILENAME = "semestre3.json";
 
     private SocketIOServer socketIOServer;
+    private Reseau reseau;
     /**
      * Liste des UE
      */
-    private Reseau reseau;
     private ArrayList<UE> listUE;
     /**
      * HashMap des UE avec leur code comme clé
@@ -40,21 +40,6 @@ public class Serveur {
     private ArrayList<User> listUsers;
 
 
-    public SocketIOServer getServer() {
-        return socketIOServer;
-    }
-
-    public ArrayList<UE> getListUE() {
-        return listUE;
-    }
-
-    public HashMap<String, UE> getDict_UE() {
-        return dict_UE;
-    }
-
-    public ArrayList<User> getListUsers() {
-        return listUsers;
-    }
 
     public Serveur(Configuration configuration) {
         //Initialisation de la base de donnée
@@ -180,6 +165,22 @@ public class Serveur {
 
     private void démarre() {
         this.reseau.start();
+    }
+
+    public SocketIOServer getServer() {
+        return socketIOServer;
+    }
+
+    public ArrayList<UE> getListUE() {
+        return listUE;
+    }
+
+    public HashMap<String, UE> getDict_UE() {
+        return dict_UE;
+    }
+
+    public ArrayList<User> getListUsers() {
+        return listUsers;
     }
 
 

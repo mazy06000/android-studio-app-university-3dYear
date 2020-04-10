@@ -6,7 +6,6 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import events.EVENT;
-import io.netty.channel.unix.Socket;
 import user.User;
 
 public class Reseau {
