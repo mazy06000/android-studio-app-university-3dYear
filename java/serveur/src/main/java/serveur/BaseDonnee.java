@@ -14,11 +14,17 @@ import java.util.Arrays;
 
 public class BaseDonnee {
 
-    public static final String PATH_JSON_FILES= "./serveur/donnees/";
+    private static final String PATH_FILES_SEMESTRE = "./serveur/donnees/semestre/";
+    private static final String PATH_FILES_USER = "./serveur/donnees/users/";
     public static final String USER_FILENAME = "utilisateurs.json";
     public static final String SEMESTRE1_FILENAME = "semestre1.json";
     public static final String SEMESTRE2_FILENAME = "semestre2.json";
     public static final String SEMESTRE3_FILENAME = "semestre3.json";
+
+    File dirSemestre = new File(PATH_FILES_SEMESTRE);
+    File s1 = new File(PATH_FILES_SEMESTRE+SEMESTRE1_FILENAME);
+    File s2 = new File(PATH_FILES_SEMESTRE+SEMESTRE2_FILENAME);
+    File s3 = new File(PATH_FILES_SEMESTRE+SEMESTRE3_FILENAME);
 
 
 
@@ -191,6 +197,22 @@ public class BaseDonnee {
 
     public ArrayList<UE> getListeUES3() {
         return listeUES3;
+    }
+
+    public ArrayList<UE> loadingUE(){
+        ArrayList<UE> listUE = new ArrayList<>();
+        if (dirSemestre.exists()){
+            System.out.println("Chargement des UE de la base de donnée...");
+            for (File f : dirSemestre.listFiles()) {
+                listUE.addAll(UtilServeur.JSONFileToListUE(f));
+            }
+            return listUE;
+        }
+        else{
+            System.out.println("Erreur lors du chargement :\n" +
+                    " Le dossier "+PATH_FILES_SEMESTRE+" n'existe pas !");
+        }
+        return null;
     }
 
 }

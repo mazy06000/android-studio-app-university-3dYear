@@ -60,8 +60,6 @@ class UtilServeurTest {
     }
 
 
-
-
     @Test
     void initDictUE() {
 
@@ -119,8 +117,8 @@ class UtilServeurTest {
         ArrayList<UE> list1 = new ArrayList<>(Arrays.asList(geo1,base));
         ArrayList<UE> list2 = new ArrayList<>(Arrays.asList(geo2));
         ArrayList<UE> list3 = new ArrayList<>(Arrays.asList(geo1));
-        listeUE_attendu = UtilServeur.initListeUE(list1,list2);
-        listdesUE = new ArrayList<>(Arrays.asList(geo1,base,geo2));
+        listeUE_attendu = new ArrayList<>(Arrays.asList(geo1,base,geo2));
+        listdesUE = UtilServeur.initListeUE(list1,list2);
 
         assertEquals(listeUE_attendu, listdesUE);
 

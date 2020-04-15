@@ -22,6 +22,7 @@ public class InitBD {
     public static void main(String[] args) {
         InitBD initBD = new InitBD();
         BaseDonnee baseDonnee = new BaseDonnee();
+        System.out.println("Initialisation des données.");
         initBD.initAll();
         initBD.init_semestre(baseDonnee.getListeUES1(), SEMESTRE1_FILENAME);
         initBD.init_semestre(baseDonnee.getListeUES1(), SEMESTRE2_FILENAME);
@@ -31,10 +32,6 @@ public class InitBD {
     void init_semestre(ArrayList<UE> list, String nomFichierSemestre){
         UtilServeur.writeToJSON(PATH_FILES_SEMESTRE+nomFichierSemestre, list);
     }
-
-
-        /*Rien à écrire juste créer les dossier/reinitialiser les données */
-
 
     void deleteAll(File dir){
         if (dir != null) {
@@ -54,8 +51,14 @@ public class InitBD {
         }
     }
 
+    /**
+     * Ecrase tout pour les données du semestre, créer si nécessaire les dossier où seront les fichiers
+     */
     void initAll(){
         initDir(semestre);
-        initDir(users);
+        if (!users.exists()){
+            users.mkdirs();
+        }
+        //initDir(users);
     }
 }

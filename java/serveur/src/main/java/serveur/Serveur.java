@@ -42,10 +42,8 @@ public class Serveur {
     public Serveur(Configuration configuration) {
         //Initialisation de la base de donnée
         BaseDonnee baseDonnee = new BaseDonnee();
-        File s1 = new File(PATH_JSON_FILES+SEMESTRE1_FILENAME);
-        File s2 = new File(PATH_JSON_FILES+SEMESTRE2_FILENAME);
-        File s3 = new File(PATH_JSON_FILES+SEMESTRE3_FILENAME);
-        this.listUE = loadingUE(s1,s2,s3,baseDonnee);
+
+        this.listUE = baseDonnee.loadingUE();
 
         /**
          * Initialisation des Users
@@ -76,29 +74,29 @@ public class Serveur {
         return null;
     }
 
-    private ArrayList<UE> loadingUE(File s1, File s2, File s3, BaseDonnee baseDonnee){
-        try {
-            if (s1.createNewFile()){
-                //Création des fichiers
-                System.out.println("Création de la base de donnée.");
-                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE1_FILENAME, baseDonnee.getListeUES1());
-                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE2_FILENAME, baseDonnee.getListeUES2());
-                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE3_FILENAME, baseDonnee.getListeUES3());
-                return UtilServeur.initListeUE(baseDonnee.getListeUES1(), baseDonnee.getListeUES2(), baseDonnee.getListeUES3());
-            }
-            else{
-                System.out.println("Chargement des UE de la base de donnée...");
-                ArrayList<UE> listeUES1 = UtilServeur.JSONFileToListUE(s1);
-                ArrayList<UE> listeUES2 = UtilServeur.JSONFileToListUE(s2);
-                ArrayList<UE> listeUES3 = UtilServeur.JSONFileToListUE(s3);
-                return UtilServeur.initListeUE(listeUES1, listeUES2, listeUES3);
-            }
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement des UE");
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    private ArrayList<UE> loadingUE(File s1, File s2, File s3, BaseDonnee baseDonnee){
+//        try {
+//            if (s1.createNewFile()){
+//                //Création des fichiers
+//                System.out.println("Création de la base de donnée.");
+//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE1_FILENAME, baseDonnee.getListeUES1());
+//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE2_FILENAME, baseDonnee.getListeUES2());
+//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE3_FILENAME, baseDonnee.getListeUES3());
+//                return UtilServeur.initListeUE(baseDonnee.getListeUES1(), baseDonnee.getListeUES2(), baseDonnee.getListeUES3());
+//            }
+//            else{
+//                System.out.println("Chargement des UE de la base de donnée...");
+//                ArrayList<UE> listeUES1 = UtilServeur.JSONFileToListUE(s1);
+//                ArrayList<UE> listeUES2 = UtilServeur.JSONFileToListUE(s2);
+//                ArrayList<UE> listeUES3 = UtilServeur.JSONFileToListUE(s3);
+//                return UtilServeur.initListeUE(listeUES1, listeUES2, listeUES3);
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Erreur lors du chargement des UE");
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 
 
