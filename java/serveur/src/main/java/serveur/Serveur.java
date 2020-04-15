@@ -48,8 +48,7 @@ public class Serveur {
         /**
          * Initialisation des Users
          */
-        File utilisateurs = new File(PATH_JSON_FILES+USER_FILENAME);
-        this.listUsers = loadingUsers(utilisateurs);
+        this.listUsers = baseDonnee.loadingUsers();
 
         dict_UE = UtilServeur.initDictUE(this.listUE);
 
@@ -57,22 +56,22 @@ public class Serveur {
         this.reseau = new Reseau(socketIOServer, this);
 
     }
-
-    private ArrayList<User> loadingUsers(File utilisateurs) {
-        try {
-            if (utilisateurs.createNewFile()){
-                System.out.println("utilisateurs.json a été créé");
-            }
-            else{
-                System.out.println("Chargement de la liste des utilisateurs");
-                return UtilServeur.JSONFileToListUsers(utilisateurs);
-            }
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement des utilisateurs");
-            e.printStackTrace();
-        }
-        return null;
-    }
+//
+//    private ArrayList<User> loadingUsers(File utilisateurs) {
+//        try {
+//            if (utilisateurs.createNewFile()){
+//                System.out.println("utilisateurs.json a été créé");
+//            }
+//            else{
+//                System.out.println("Chargement de la liste des utilisateurs");
+//                return UtilServeur.JSONFileToListUsers(utilisateurs);
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Erreur lors du chargement des utilisateurs");
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 //    private ArrayList<UE> loadingUE(File s1, File s2, File s3, BaseDonnee baseDonnee){
 //        try {

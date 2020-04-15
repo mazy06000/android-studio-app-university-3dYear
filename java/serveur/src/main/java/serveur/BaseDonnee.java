@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import matière.UE;
+import user.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class BaseDonnee {
     public static final String SEMESTRE3_FILENAME = "semestre3.json";
 
     File dirSemestre = new File(PATH_FILES_SEMESTRE);
+    File dirUsers = new File(PATH_FILES_USER);
     File s1 = new File(PATH_FILES_SEMESTRE+SEMESTRE1_FILENAME);
     File s2 = new File(PATH_FILES_SEMESTRE+SEMESTRE2_FILENAME);
     File s3 = new File(PATH_FILES_SEMESTRE+SEMESTRE3_FILENAME);
@@ -211,6 +213,39 @@ public class BaseDonnee {
         else{
             System.out.println("Erreur lors du chargement :\n" +
                     " Le dossier "+PATH_FILES_SEMESTRE+" n'existe pas !");
+        }
+        return null;
+    }
+
+
+    public ArrayList<User> loadingUsers(File utilisateurs) {
+        try {
+            if (utilisateurs.createNewFile()){
+                System.out.println("utilisateurs.json a été créé");
+            }
+            else{
+                System.out.println("Chargement de la liste des utilisateurs");
+                return UtilServeur.JSONFileToListUsers(utilisateurs);
+            }
+        } catch (IOException e) {
+            System.out.println("Erreur lors du chargement des utilisateurs");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<User> loadingUsers(){
+        ArrayList<User> listUsers = new ArrayList<>();
+        if (dirSemestre.exists()){
+            System.out.println("Chargement des UE de la base de donnée...");
+            for (File f : dirSemestre.listFiles()) {
+                listUsers.addAll(UtilServeur.JSONFileToListUsers(f));
+            }
+            return listUsers;
+        }
+        else{
+            System.out.println("Erreur lors du chargement : " +
+                    " Le dossier "+PATH_FILES_USER+" n'existe pas !");
         }
         return null;
     }
