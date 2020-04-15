@@ -14,7 +14,11 @@ import java.util.Arrays;
 
 public class BaseDonnee {
 
-
+    public static final String PATH_JSON_FILES= "./serveur/donnees/";
+    public static final String USER_FILENAME = "utilisateurs.json";
+    public static final String SEMESTRE1_FILENAME = "semestre1.json";
+    public static final String SEMESTRE2_FILENAME = "semestre2.json";
+    public static final String SEMESTRE3_FILENAME = "semestre3.json";
 
 
 

@@ -1,6 +1,7 @@
 package serveur;
 
 import matière.UE;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import user.User;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UtilServeurTest {
 
-    String PATH = "./target/generated-test-sources/";
+    String PATH = "./donneesTest/";
     UE geo1;
     UE geo2;
     UE base;
@@ -47,7 +48,18 @@ class UtilServeurTest {
         user3 = new User("Name3", "prenom3", "/192.168.0.-99", choixVide);
 
         listUsers = new ArrayList<>(Arrays.asList(user1,user2,user3));
+
+        File file = new File(PATH);
+        file.mkdir();
     }
+
+    @AfterEach
+    void tearsDown(){
+        File file = new File(PATH);
+        file.delete();
+    }
+
+
 
 
     @Test
