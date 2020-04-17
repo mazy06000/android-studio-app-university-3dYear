@@ -283,7 +283,7 @@ class UtilServeurTest {
          */
         index = UtilServeur.getIndexUser(ip_user1+"lol", null);
         assertEquals(-1,index);
-        index = UtilServeur.getIndexUser(null, listUsers);
+        index = UtilServeur.getIndexUser((String) null, listUsers);
         assertEquals(-1,index);
     }
 }

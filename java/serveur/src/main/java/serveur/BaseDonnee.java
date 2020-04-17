@@ -236,9 +236,9 @@ public class BaseDonnee {
 
     public ArrayList<User> loadingUsers(){
         ArrayList<User> listUsers = new ArrayList<>();
-        if (dirSemestre.exists()){
-            System.out.println("Chargement des UE de la base de donnée...");
-            for (File f : dirSemestre.listFiles()) {
+        if (dirUsers.exists()){
+            System.out.println("Chargement des Users de la base de donnée...");
+            for (File f : dirUsers.listFiles()) {
                 listUsers.addAll(UtilServeur.JSONFileToListUsers(f));
             }
             return listUsers;
@@ -250,4 +250,8 @@ public class BaseDonnee {
         return null;
     }
 
+
+    public void saveUser(User user) {
+        UtilServeur.writeToJSON(PATH_FILES_USER+user.getNom()+".json", user);
+    }
 }

@@ -18,7 +18,8 @@ class ServeurTest {
     void setUp() {
         configuration.setHostname("localhost");
         configuration.setPort(4444);
-        serveur = new Serveur(configuration);
+        SocketIOServer socketIOServer = new SocketIOServer(configuration);
+        serveur = new Serveur(socketIOServer);
         /*@TODO Doit-t-on faire unsocket client de cette manière pour tester le serveur
             Etant donné que les méthode prennent en paramètre un socketioclient
             En plus de ça le serveur une fois lancé le reste du code est en attente ...*/

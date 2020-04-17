@@ -36,12 +36,18 @@ public class Serveur {
      * Liste des utilisateurs qui se sont connectés au serveur
      */
     private ArrayList<User> listUsers;
+    /**
+     * La base de donnée : écrit et lit les fichiers
+     */
+    private BaseDonnee baseDonnee;
 
-
+    public BaseDonnee getBaseDonnee() {
+        return baseDonnee;
+    }
 
     public Serveur(SocketIOServer socketIOServer) {
         //Initialisation de la base de donnée
-        BaseDonnee baseDonnee = new BaseDonnee();
+        baseDonnee = new BaseDonnee();
 
         this.listUE = baseDonnee.loadingUE();
 
@@ -111,7 +117,7 @@ public class Serveur {
             UE ue = dict_UE.get(code_choix_matière);
             listUsers.get(index_user).getListe_choix().add(ue);
             System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
-            reseau.sendEvent(EVENT.SAVE, user);
+            reseau.sendSave(user);
         }
         else {
             System.out.println("Erreur lors l'enregistrement de la matière, l'utilisateur " +
@@ -139,16 +145,16 @@ public class Serveur {
 
 
 
-    public void initParcoursUser(SocketIOClient socketIOClient) {
-        int index_user = UtilServeur.getIndexUser(socketIOClient.getRemoteAddress().toString(), this.listUsers);
+    public void initParcoursUser(User user) {
+        int index_user = listUsers.indexOf(user);
         if (index_user < 0){
             this.getListUsers().get(index_user).getListe_choix().clear();
-            System.out.println("Parcours réinitialisé pour "+socketIOClient.getRemoteAddress());
-            reseau.sendInitParcours(socketIOClient);
+            System.out.println("Parcours réinitialisé pour "+user.getNom());
+            reseau.sendInitParcours(user);
         }
         else {
             System.out.println("Erreur lors de la réinitialisation de parcours, l'utilisateur " +
-                    "d'adresse ip "+socketIOClient.getRemoteAddress().toString() +" n'a pas été trouvé dans le Serveur");
+                    user.getNom() +" n'a pas été trouvé dans le Serveur");
         }
 
     }
@@ -187,7 +193,7 @@ public class Serveur {
     }
 
 
-    public void enregistreSession() {
-
+    public void enregistreSession(User user) {
+        getBaseDonnee().saveUser(user);
     }
 }

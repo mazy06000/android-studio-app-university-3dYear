@@ -8,7 +8,6 @@ import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 import events.EVENT;
-import org.graalvm.compiler.lir.LIRInstruction;
 import user.User;
 
 import java.util.HashMap;
@@ -79,14 +78,16 @@ public class Reseau {
         this.socket.addEventListener(EVENT.INIT_PARCOURS, String.class, new DataListener<String>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String s, AckRequest ackRequest) throws Exception {
-                serveur.initParcoursUser(socketIOClient);
+                User client = leClient(socketIOClient);
+                serveur.initParcoursUser(client);
             }
         });
 
         this.socket.addDisconnectListener(new DisconnectListener() {
             @Override
             public void onDisconnect(SocketIOClient socketIOClient) {
-                serveur.enregistreSession();
+                User user = leClient(socketIOClient);
+                serveur.enregistreSession(user);
             }
         });
 
@@ -104,9 +105,10 @@ public class Reseau {
 
     /**
      * Envoie l'event INIT_PARCOURS au client
-     * @param socketIOClient
+     * @param user
      */
-    public void sendInitParcours(SocketIOClient socketIOClient) {
+    public void sendInitParcours(User user) {
+        SocketIOClient socketIOClient = dict_client.get(user);
         socketIOClient.sendEvent(EVENT.INIT_PARCOURS);
     }
 
@@ -128,8 +130,8 @@ public class Reseau {
     }
 
 
-    public void sendEvent(String event, User user) {
+    public void sendSave(User user) {
         SocketIOClient socketIOClient = dict_client.get(user);
-        socketIOClient.sendEvent(event);
+        socketIOClient.sendEvent(EVENT.SAVE);
     }
 }
