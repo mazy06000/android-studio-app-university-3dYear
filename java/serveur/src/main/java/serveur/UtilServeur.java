@@ -147,5 +147,30 @@ public class UtilServeur {
         }
         return index;
     }
-
+    /**
+     * Renvoie l'index de l'User dans userArrayList avec son champs adresse ip égale à ip
+     * Renvoie -1 si l'user n'est pas dans l'ArrayList
+     * @param leClient l'user dont on cherche l'index
+     * @param userArrayList ArrayList des users où on cherche l'index
+     * @return
+     */
+    public static final int getIndexUser(User leClient, ArrayList<User> userArrayList){
+        int index = 0;
+        if (userArrayList == null) {
+            return -1;
+        }
+        if (leClient == null) {
+            return -1;
+        }
+        for (User user: userArrayList) {
+            if (user.equals(leClient)){
+                return index;
+            }
+            else if (index == userArrayList.size()-1){
+                return -1;
+            }
+            index++;
+        }
+        return index;
+    }
 }

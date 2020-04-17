@@ -39,7 +39,7 @@ public class Serveur {
 
 
 
-    public Serveur(Configuration configuration) {
+    public Serveur(SocketIOServer socketIOServer) {
         //Initialisation de la base de donnée
         BaseDonnee baseDonnee = new BaseDonnee();
 
@@ -52,8 +52,8 @@ public class Serveur {
 
         dict_UE = UtilServeur.initDictUE(this.listUE);
 
-        this.socketIOServer = new SocketIOServer(configuration);
-        this.reseau = new Reseau(socketIOServer, this);
+        this.socketIOServer = socketIOServer;
+        this.reseau = new Reseau(this);
 
     }
 //
@@ -101,21 +101,21 @@ public class Serveur {
 
     /**
      * On Ajoute le choix de la matière du client socketIOClient dans la liste (stockée in dans le serveur1) de ses choix
-     * @param socketIOClient Le client qui envoie son choix
+     * @param user Le client qui envoie son choix
      * @param code_choix_matière Le code de la matière envoyée par le client
      */
-    protected void save_code(SocketIOClient socketIOClient, String code_choix_matière) {
-        int index_user = UtilServeur.getIndexUser(socketIOClient.getRemoteAddress().toString(), this.listUsers);
+    protected void save_code(User user, String code_choix_matière) {
+        int index_user = UtilServeur.getIndexUser(user, this.listUsers);
         if (index_user<0){
-            System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre l'UE de code : "+ code_choix_matière);
+            System.out.println("Le client "+""+user.getNom()+" Enregistre l'UE de code : "+ code_choix_matière);
             UE ue = dict_UE.get(code_choix_matière);
             listUsers.get(index_user).getListe_choix().add(ue);
             System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
-            socketIOClient.sendEvent(EVENT.SAVE);
+            reseau.sendEvent(EVENT.SAVE, user);
         }
         else {
             System.out.println("Erreur lors l'enregistrement de la matière, l'utilisateur " +
-                    "d'adresse ip "+socketIOClient.getRemoteAddress().toString() +" n'a pas été trouvé dans le Serveur");
+                    user.getNom() +" n'a pas été trouvé dans le Serveur");
         }
 
     }
@@ -125,7 +125,7 @@ public class Serveur {
      * Ajoute un nouvel user (objet User) avec l'objet user envoyé par le client.
      * (Ou pas s'il existe deja dans la base de données (La liste des users connectés au moins une fois))
      */
-    public void ajouteUser(User user, SocketIOClient socketIOClient) {
+    public void ajouteUser(User user) {
         System.out.println("Ajout d'un nouvel utilisateur : "+user.getNom() +" "+ user.getPrenom());
         if (UtilServeur.userExist(this.getListUsers(), user)){
             System.out.println(user.getNom()+" a déja été ajouté");
@@ -133,12 +133,7 @@ public class Serveur {
         else {
             System.out.println("Ajout de "+user.getNom()+" avec succès !");
             User new_user = new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix());
-            user.setAddress_ip(socketIOClient.getRemoteAddress().toString());
             this.getListUsers().add(new_user);
-            UtilServeur.writeToJSON(PATH_JSON_FILES+USER_FILENAME, listUsers);
-            System.out.println("user.getAddress_ip => "+ user.getAddress_ip());
-            System.out.println("Envoi de l'addresse ip à l'utilisateur "+user.getNom());
-            reseau.sendRemoteAddressUser(socketIOClient);
         }
     }
 
@@ -187,11 +182,12 @@ public class Serveur {
 
 
         /*Création du serveur*/
-        Serveur server = new Serveur(configuration);
+        Serveur server = new Serveur(new SocketIOServer(configuration));
         server.démarre();
     }
 
 
+    public void enregistreSession() {
 
-
+    }
 }

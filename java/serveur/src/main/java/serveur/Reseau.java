@@ -1,20 +1,45 @@
 package serveur;
 
 import com.corundumstudio.socketio.AckRequest;
+import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
+import com.corundumstudio.socketio.listener.DisconnectListener;
 import events.EVENT;
+import org.graalvm.compiler.lir.LIRInstruction;
 import user.User;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Reseau {
     private SocketIOServer socket;
     private Serveur serveur;
+    private HashMap<User, SocketIOClient> dict_client;
 
-    public Reseau(SocketIOServer socket, Serveur serveur){
+    public SocketIOServer getSocket() {
+        return socket;
+    }
+
+    public void setSocket(SocketIOServer socket) {
         this.socket = socket;
+    }
+
+    public Serveur getServeur() {
+        return serveur;
+    }
+
+    public void setServeur(Serveur serveur) {
         this.serveur = serveur;
+    }
+
+    public Reseau(Serveur serveur){
+        dict_client = new HashMap<>();
+        this.serveur = serveur;
+        this.socket = serveur.getServer();
+
 
         // on accept une connexion
         this.socket.addConnectListener(new ConnectListener() {
@@ -32,7 +57,7 @@ public class Reseau {
         this.socket.addEventListener(EVENT.ADD_USER, User.class, new DataListener<User>() {
             @Override
             public void onData(SocketIOClient socketIOClient, User user, AckRequest ackRequest) throws Exception {
-                serveur.ajouteUser(user, socketIOClient);
+                serveur.ajouteUser(user);
             }
         });
 
@@ -42,7 +67,8 @@ public class Reseau {
         this.socket.addEventListener(EVENT.SAVE, String.class, new DataListener<String>() {
             @Override
             public void onData(SocketIOClient socketIOClient, String code_choix_matière, AckRequest ackRequest) throws Exception {
-                serveur.save_code(socketIOClient, code_choix_matière);
+                User client = leClient(socketIOClient);
+                serveur.save_code(client, code_choix_matière);
             }
         });
 
@@ -57,9 +83,23 @@ public class Reseau {
             }
         });
 
+        this.socket.addDisconnectListener(new DisconnectListener() {
+            @Override
+            public void onDisconnect(SocketIOClient socketIOClient) {
+                serveur.enregistreSession();
+            }
+        });
 
     }
 
+    private User leClient(SocketIOClient socketIOClient) {
+        for (Map.Entry<User, SocketIOClient> pair : dict_client.entrySet()) {
+            if (socketIOClient.equals(pair.getValue())){
+                return pair.getKey();
+            }
+        }
+        return null;
+    }
 
 
     /**
@@ -79,7 +119,17 @@ public class Reseau {
         socketIOClient.sendEvent(EVENT.ADD_USER, socketIOClient.getRemoteAddress());
     }
 
+    public void associe(User user, SocketIOClient socketIOClient){
+        dict_client.put(user, socketIOClient);
+    }
+
     public void start() {
         socket.start();
+    }
+
+
+    public void sendEvent(String event, User user) {
+        SocketIOClient socketIOClient = dict_client.get(user);
+        socketIOClient.sendEvent(event);
     }
 }
