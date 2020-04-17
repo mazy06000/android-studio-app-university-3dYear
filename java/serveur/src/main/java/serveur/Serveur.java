@@ -17,12 +17,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static serveur.BaseDonnee.*;
+
 public class Serveur {
-    public static final String PATH_JSON_FILES= "./serveur/target/generated-sources/";
-    public static final String USER_FILENAME = "utilisateurs.json";
-    public static final String SEMESTRE1_FILENAME = "semestre1.json";
-    public static final String SEMESTRE2_FILENAME = "semestre2.json";
-    public static final String SEMESTRE3_FILENAME = "semestre3.json";
+
 
     private SocketIOServer socketIOServer;
     private Reseau reseau;
@@ -38,89 +36,92 @@ public class Serveur {
      * Liste des utilisateurs qui se sont connectés au serveur
      */
     private ArrayList<User> listUsers;
+    /**
+     * La base de donnée : écrit et lit les fichiers
+     */
+    private BaseDonnee baseDonnee;
 
+    public BaseDonnee getBaseDonnee() {
+        return baseDonnee;
+    }
 
-
-    public Serveur(Configuration configuration) {
+    public Serveur(SocketIOServer socketIOServer) {
         //Initialisation de la base de donnée
-        BaseDonnee baseDonnee = new BaseDonnee();
-        File s1 = new File(PATH_JSON_FILES+SEMESTRE1_FILENAME);
-        File s2 = new File(PATH_JSON_FILES+SEMESTRE2_FILENAME);
-        File s3 = new File(PATH_JSON_FILES+SEMESTRE3_FILENAME);
-        this.listUE = loadingUE(s1,s2,s3,baseDonnee);
+        baseDonnee = new BaseDonnee();
+
+        this.listUE = baseDonnee.loadingUE();
 
         /**
          * Initialisation des Users
          */
-        File utilisateurs = new File(PATH_JSON_FILES+USER_FILENAME);
-        this.listUsers = loadingUsers(utilisateurs);
+        this.listUsers = baseDonnee.loadingUsers();
 
         dict_UE = UtilServeur.initDictUE(this.listUE);
 
-        this.socketIOServer = new SocketIOServer(configuration);
-        this.reseau = new Reseau(socketIOServer, this);
+        this.socketIOServer = socketIOServer;
+        this.reseau = new Reseau(this);
 
     }
+//
+//    private ArrayList<User> loadingUsers(File utilisateurs) {
+//        try {
+//            if (utilisateurs.createNewFile()){
+//                System.out.println("utilisateurs.json a été créé");
+//            }
+//            else{
+//                System.out.println("Chargement de la liste des utilisateurs");
+//                return UtilServeur.JSONFileToListUsers(utilisateurs);
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Erreur lors du chargement des utilisateurs");
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    private ArrayList<User> loadingUsers(File utilisateurs) {
-        try {
-            if (utilisateurs.createNewFile()){
-                System.out.println("utilisateurs.json a été créé");
-            }
-            else{
-                System.out.println("Chargement de la liste des utilisateurs");
-                return UtilServeur.JSONFileToListUsers(utilisateurs);
-            }
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement des utilisateurs");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private ArrayList<UE> loadingUE(File s1, File s2, File s3, BaseDonnee baseDonnee){
-        try {
-            if (s1.createNewFile()){
-                //Création des fichiers
-                System.out.println("Création de la base de donnée.");
-                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE1_FILENAME, baseDonnee.getListeUES1());
-                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE2_FILENAME, baseDonnee.getListeUES2());
-                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE3_FILENAME, baseDonnee.getListeUES3());
-                return UtilServeur.initListeUE(baseDonnee.getListeUES1(), baseDonnee.getListeUES2(), baseDonnee.getListeUES3());
-            }
-            else{
-                System.out.println("Chargement des UE de la base de donnée...");
-                ArrayList<UE> listeUES1 = UtilServeur.JSONFileToListUE(s1);
-                ArrayList<UE> listeUES2 = UtilServeur.JSONFileToListUE(s2);
-                ArrayList<UE> listeUES3 = UtilServeur.JSONFileToListUE(s3);
-                return UtilServeur.initListeUE(listeUES1, listeUES2, listeUES3);
-            }
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement des UE");
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    private ArrayList<UE> loadingUE(File s1, File s2, File s3, BaseDonnee baseDonnee){
+//        try {
+//            if (s1.createNewFile()){
+//                //Création des fichiers
+//                System.out.println("Création de la base de donnée.");
+//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE1_FILENAME, baseDonnee.getListeUES1());
+//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE2_FILENAME, baseDonnee.getListeUES2());
+//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE3_FILENAME, baseDonnee.getListeUES3());
+//                return UtilServeur.initListeUE(baseDonnee.getListeUES1(), baseDonnee.getListeUES2(), baseDonnee.getListeUES3());
+//            }
+//            else{
+//                System.out.println("Chargement des UE de la base de donnée...");
+//                ArrayList<UE> listeUES1 = UtilServeur.JSONFileToListUE(s1);
+//                ArrayList<UE> listeUES2 = UtilServeur.JSONFileToListUE(s2);
+//                ArrayList<UE> listeUES3 = UtilServeur.JSONFileToListUE(s3);
+//                return UtilServeur.initListeUE(listeUES1, listeUES2, listeUES3);
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Erreur lors du chargement des UE");
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 
 
     /**
      * On Ajoute le choix de la matière du client socketIOClient dans la liste (stockée in dans le serveur1) de ses choix
-     * @param socketIOClient Le client qui envoie son choix
+     * @param user Le client qui envoie son choix
      * @param code_choix_matière Le code de la matière envoyée par le client
      */
-    protected void save_code(SocketIOClient socketIOClient, String code_choix_matière) {
-        int index_user = UtilServeur.getIndexUser(socketIOClient.getRemoteAddress().toString(), this.listUsers);
+    protected void save_code(User user, String code_choix_matière) {
+        int index_user = UtilServeur.getIndexUser(user, this.listUsers);
         if (index_user<0){
-            System.out.println("Le client "+""+socketIOClient.getRemoteAddress()+" Enregistre l'UE de code : "+ code_choix_matière);
+            System.out.println("Le client "+""+user.getNom()+" Enregistre l'UE de code : "+ code_choix_matière);
             UE ue = dict_UE.get(code_choix_matière);
             listUsers.get(index_user).getListe_choix().add(ue);
             System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
-            socketIOClient.sendEvent(EVENT.SAVE);
+            reseau.sendSave(user);
         }
         else {
             System.out.println("Erreur lors l'enregistrement de la matière, l'utilisateur " +
-                    "d'adresse ip "+socketIOClient.getRemoteAddress().toString() +" n'a pas été trouvé dans le Serveur");
+                    user.getNom() +" n'a pas été trouvé dans le Serveur");
         }
 
     }
@@ -130,7 +131,7 @@ public class Serveur {
      * Ajoute un nouvel user (objet User) avec l'objet user envoyé par le client.
      * (Ou pas s'il existe deja dans la base de données (La liste des users connectés au moins une fois))
      */
-    public void ajouteUser(User user, SocketIOClient socketIOClient) {
+    public void ajouteUser(User user) {
         System.out.println("Ajout d'un nouvel utilisateur : "+user.getNom() +" "+ user.getPrenom());
         if (UtilServeur.userExist(this.getListUsers(), user)){
             System.out.println(user.getNom()+" a déja été ajouté");
@@ -138,27 +139,22 @@ public class Serveur {
         else {
             System.out.println("Ajout de "+user.getNom()+" avec succès !");
             User new_user = new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix());
-            user.setAddress_ip(socketIOClient.getRemoteAddress().toString());
             this.getListUsers().add(new_user);
-            UtilServeur.writeToJSON(PATH_JSON_FILES+USER_FILENAME, listUsers);
-            System.out.println("user.getAddress_ip => "+ user.getAddress_ip());
-            System.out.println("Envoi de l'addresse ip à l'utilisateur "+user.getNom());
-            reseau.sendRemoteAddressUser(socketIOClient);
         }
     }
 
 
 
-    public void initParcoursUser(SocketIOClient socketIOClient) {
-        int index_user = UtilServeur.getIndexUser(socketIOClient.getRemoteAddress().toString(), this.listUsers);
+    public void initParcoursUser(User user) {
+        int index_user = listUsers.indexOf(user);
         if (index_user < 0){
             this.getListUsers().get(index_user).getListe_choix().clear();
-            System.out.println("Parcours réinitialisé pour "+socketIOClient.getRemoteAddress());
-            reseau.sendInitParcours(socketIOClient);
+            System.out.println("Parcours réinitialisé pour "+user.getNom());
+            reseau.sendInitParcours(user);
         }
         else {
             System.out.println("Erreur lors de la réinitialisation de parcours, l'utilisateur " +
-                    "d'adresse ip "+socketIOClient.getRemoteAddress().toString() +" n'a pas été trouvé dans le Serveur");
+                    user.getNom() +" n'a pas été trouvé dans le Serveur");
         }
 
     }
@@ -192,11 +188,12 @@ public class Serveur {
 
 
         /*Création du serveur*/
-        Serveur server = new Serveur(configuration);
+        Serveur server = new Serveur(new SocketIOServer(configuration));
         server.démarre();
     }
 
 
-
-
+    public void enregistreSession(User user) {
+        getBaseDonnee().saveUser(user);
+    }
 }

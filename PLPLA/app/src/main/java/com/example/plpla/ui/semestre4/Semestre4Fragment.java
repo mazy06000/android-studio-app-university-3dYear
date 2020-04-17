@@ -17,12 +17,17 @@ import com.example.plpla.Expansion.ExpansionView;
 import com.example.plpla.R;
 import com.example.plpla.vue.Vue;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import events.EVENT;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import matière.UE;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Semestre4Fragment extends Fragment {
 
@@ -54,10 +59,10 @@ public class Semestre4Fragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_semestre4, container, false);
 
-        Client client = (Client) getActivity().getApplication();
+        final Client client = (Client) getActivity().getApplication();
         mSocket = client.getUniqueConnexion().getmSocket();
-        listeUEBloc = client.getListeUEBlocS3();
-        //blocEtSaMatiere = client.getBlocEtSaMatiereS3();
+        listeUEBloc = client.getListeUEBlocS4();
+        //blocEtSaMatiere = client.getBlocEtSaMatiereS4();
         enregistrer = root.findViewById(R.id.boutonEnregistrer4);
 
 
@@ -74,12 +79,18 @@ public class Semestre4Fragment extends Fragment {
             }
         });
 
-        /*expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,selectionUE, selectionCode,
-                listeUEBlocFondement, listeUEBlocMethode, blocEtSaMatiere);*/
+        expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,selectionUE, selectionCode,
+                listeUEBloc,3);
         this.expansionView.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
 
         expansionView.createExpansion();
 
+        enregistrer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enregistrement(client);
+            }
+        });
 
         return root;
     }
@@ -100,6 +111,37 @@ public class Semestre4Fragment extends Fragment {
         super.onDetach();
         mListener = null;
 
+    }
+
+    public void enregistrement(Client client){
+        Log.d("Bouton enregistrer", "Parcours enregistre");
+        //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
+        //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
+        String fileName = "mon_parcours_S4";
+        client.getNomFichier().add(fileName);
+        String final_selection = "SEMESTRE 4\n";
+        for (String selections : client.getSelectionUE()){
+            Log.d("WRITEFILE", "ecriture de "+ client.getSelectionUE().toString());
+            final_selection += selections + "\n";
+            Log.d("WRITEFILE", "Valeur de final_selection "+final_selection);
+
+        }
+        try {
+            FileOutputStream ecriture = getActivity().openFileOutput(fileName, MODE_PRIVATE);
+            ecriture.write(final_selection.getBytes());
+            ecriture.close();
+            client.getSelectionUE().clear();
+            Toast.makeText(getActivity(), "Parcours enregistré", Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (String code_ue: client.getSelectionCode()) {
+            Log.d("SAVE_SERVER", "Envoie de la matière de code "+code_ue+ " au serveur pour enregistrement");
+            ((Client)getActivity().getApplicationContext()).getUniqueConnexion().envoyerEvent("Save", code_ue);
+        }
     }
 
 }

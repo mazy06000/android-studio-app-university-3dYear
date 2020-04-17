@@ -47,7 +47,7 @@ public class ExpansionView {
     private ArrayList<UE> listeUeBloc2;
     private ArrayList<UE> listeUeBloc1;
     private ArrayList<ArrayList<UE>> blocEtSaMatiere;
-    private ArrayList<UE> blocSeul;
+    private ArrayList<UE> blocSeul = new ArrayList<>();;
     private int nbBloc = 0;
     private ArrayList<ArrayList<ExpansionHeader>> UeAvecCategories = new ArrayList<>();
     private ArrayList<ExpansionHeader> UeSansCategories = new ArrayList<>();
@@ -81,6 +81,19 @@ public class ExpansionView {
         this.nbBloc = nbBloc;
     }
 
+    public ExpansionView(View root, Socket mSocket, Context activity,
+                         Button enregistrer, ArrayList<String> selectionUE, ArrayList<String> selectionCode,
+                         ArrayList<UE> listeUeBloc1, int nbBloc){
+        this.root = root;
+        this.mSocket = mSocket;
+        this.activity = activity;
+        this.enregistrer = enregistrer;
+        this.selectionUE = selectionUE;
+        this.selectionCode = selectionCode;
+        this.listeUeBloc1 = listeUeBloc1;
+        this.nbBloc = nbBloc;
+    }
+
     public void createExpansion(){
 
         if (nbBloc == 1) {
@@ -98,6 +111,40 @@ public class ExpansionView {
             final ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
             expansionLayoutCollection.add((ExpansionLayout) listeHeader.get(0).get(1));
             expansionLayoutCollection.openOnlyOne(true);
+
+        }
+        else if (nbBloc>1){
+
+            final ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
+            final ArrayList<ExpansionLayout> listLayout = new ArrayList<>();
+            final ArrayList<ArrayList> listeHeader = new ArrayList<>();
+
+            for (int i = 0; i < listeUeBloc1.size(); i++) {
+
+                if (listeUeBloc1.get(i).getTeteGroupe()==true){
+                    listeHeader.add(addDynamicLayout(listeUeBloc1.get(i), listeUeBloc1));
+                    listeHeaderTotal.add((ExpansionHeader) listeHeader.get(0).get(0));
+
+                    final ExpansionLayout blocLayout = (ExpansionLayout) listeHeader.get(0).get(1);
+                    listLayout.add(blocLayout);
+
+
+                    expansionLayoutCollection.add((ExpansionLayout) listeHeader.get(0).get(1));
+
+                }
+
+            }
+            for (int i = 0; i < listLayout.size(); i++) {
+                final int finalI = i;
+                listLayout.get(i).addListener(new ExpansionLayout.Listener() {
+                    @Override
+                    public void onExpansionChanged(ExpansionLayout expansionLayout, boolean expanded) {
+                        actionOnSelection((ExpansionHeader) listeHeader.get(0).get(0), listeHeader, listeUeBloc1.get(finalI));
+                    }
+                });
+            }
+            expansionLayoutCollection.openOnlyOne(true);
+
 
         }
         else {
@@ -143,7 +190,7 @@ public class ExpansionView {
         final ExpansionHeader expansionHeader = createExpansionHeader(bloc);
         dynamicLayoutContainer.addView(expansionHeader, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        final ExpansionLayout expansionLayout = createExpansionLayout(listeBloc);
+        final ExpansionLayout expansionLayout = createExpansionLayout(bloc, listeBloc);
         dynamicLayoutContainer.addView(expansionLayout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         expansionHeader.setExpansionLayout(expansionLayout);
@@ -155,7 +202,7 @@ public class ExpansionView {
 
 
     @NonNull
-    private ExpansionLayout createExpansionLayout(ArrayList<UE> listeBloc) {
+    private ExpansionLayout createExpansionLayout(UE bloc, ArrayList<UE> listeBloc) {
         final ExpansionLayout expansionLayout = new ExpansionLayout(activity);
         final ArrayList<ArrayList> listeHeader2emeNiveau = new ArrayList<>();
 
@@ -168,10 +215,16 @@ public class ExpansionView {
         ArrayList<String> listeNomDiscipline = new ArrayList<>();
 
         for (int i = 0; i < listeBloc.size(); i++) {
-            if ((listeBloc.get(i).getSansSousMatieres() == true)) {
+            if (nbBloc>1) {
+                if (bloc.getDiscipline() == listeBloc.get(i).getDiscipline()){
+                    listeDiscipline.add(listeBloc.get(i));
+                    listeNomDiscipline.add(listeBloc.get(i).getDiscipline());
+                }
+            }
+            if ((listeBloc.get(i).getSansSousMatieres() == true)&& (nbBloc<=1)) {
                 listeDiscipline.add(listeBloc.get(i));
                 listeNomDiscipline.add(listeBloc.get(i).getDiscipline());
-            } else if (!(listeBloc.get(i).getSansSousMatieres() == true) && !listeNomDiscipline.contains(listeBloc.get(i).getDiscipline())) {
+            } else if (!(listeBloc.get(i).getSansSousMatieres() == true) && !listeNomDiscipline.contains(listeBloc.get(i).getDiscipline()) && (nbBloc<=1) ) {
                 listeDiscipline.add(listeBloc.get(i));
                 listeNomDiscipline.add(listeBloc.get(i).getDiscipline());
             }
@@ -302,7 +355,11 @@ public class ExpansionView {
         final TextView text = new TextView(activity);
         if (matiere.getSansSousMatieres() == true) {
             text.setText(matiere.getNomUE());
-        } else text.setText(matiere.getDiscipline());
+        } else {
+            if (nbBloc>1) text.setText(matiere.getSousDiscipline());
+            else text.setText(matiere.getDiscipline());
+
+        }
         text.setTextColor(Color.parseColor("#3E3E3E"));
 
         final RelativeLayout.LayoutParams textLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -506,6 +563,7 @@ public class ExpansionView {
 
     public int getNbMatiere() {
         if (nbBloc==1) return 5;
+        else if (nbBloc>1) return 1;
         else return 4;
     }
 }

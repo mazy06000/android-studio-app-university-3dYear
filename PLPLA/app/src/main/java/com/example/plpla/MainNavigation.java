@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.plpla.ui.semestre2.Semestre2Fragment;
 import com.example.plpla.ui.semestre3.Semestre3Fragment;
+import com.example.plpla.ui.semestre4.Semestre4Fragment;
 import com.example.plpla.vue.Vue;
 import com.google.android.material.navigation.NavigationView;
 
@@ -176,7 +177,7 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         else if (id == 4) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
                     .addToBackStack("tag");
-            ft.replace(R.id.nav_host_fragment, new Semestre3Fragment());
+            ft.replace(R.id.nav_host_fragment, new Semestre4Fragment());
             ft.commit();
         }
     }

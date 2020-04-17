@@ -11,7 +11,9 @@ import java.util.Objects;
 public class User implements ToJSON {
     private String Nom;
     private String prenom;
+    private static int id = 0;
     private String address_ip;
+
     private ArrayList<UE> liste_choix;
 
     public ArrayList<UE> getListe_choix() {
@@ -46,6 +48,11 @@ public class User implements ToJSON {
         this.address_ip = address_ip;
     }
 
+    public static int getId() {
+        return id;
+    }
+
+
     public User(){
 //        Nom = "Baroudi";
 //        prenom ="Ibrahim";
@@ -60,6 +67,7 @@ public class User implements ToJSON {
         this.prenom = prenom;
         this.address_ip = address_ip;
         this.liste_choix = liste_choix;
+        this.id+=1;
     }
 
     @Override
@@ -100,4 +108,5 @@ public class User implements ToJSON {
         }
         return user;
     }
+
 }

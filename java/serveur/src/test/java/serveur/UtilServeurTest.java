@@ -1,6 +1,7 @@
 package serveur;
 
 import matière.UE;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import user.User;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UtilServeurTest {
 
-    String PATH = "./target/generated-test-sources/";
+    String PATH = "./donneesTest/";
     UE geo1;
     UE geo2;
     UE base;
@@ -47,6 +48,15 @@ class UtilServeurTest {
         user3 = new User("Name3", "prenom3", "/192.168.0.-99", choixVide);
 
         listUsers = new ArrayList<>(Arrays.asList(user1,user2,user3));
+
+        File file = new File(PATH);
+        file.mkdir();
+    }
+
+    @AfterEach
+    void tearsDown(){
+        File file = new File(PATH);
+        file.delete();
     }
 
 
@@ -107,8 +117,8 @@ class UtilServeurTest {
         ArrayList<UE> list1 = new ArrayList<>(Arrays.asList(geo1,base));
         ArrayList<UE> list2 = new ArrayList<>(Arrays.asList(geo2));
         ArrayList<UE> list3 = new ArrayList<>(Arrays.asList(geo1));
-        listeUE_attendu = UtilServeur.initListeUE(list1,list2);
-        listdesUE = new ArrayList<>(Arrays.asList(geo1,base,geo2));
+        listeUE_attendu = new ArrayList<>(Arrays.asList(geo1,base,geo2));
+        listdesUE = UtilServeur.initListeUE(list1,list2);
 
         assertEquals(listeUE_attendu, listdesUE);
 
@@ -273,7 +283,7 @@ class UtilServeurTest {
          */
         index = UtilServeur.getIndexUser(ip_user1+"lol", null);
         assertEquals(-1,index);
-        index = UtilServeur.getIndexUser(null, listUsers);
+        index = UtilServeur.getIndexUser((String) null, listUsers);
         assertEquals(-1,index);
     }
 }
