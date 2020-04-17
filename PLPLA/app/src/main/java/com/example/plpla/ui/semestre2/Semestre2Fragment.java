@@ -46,25 +46,12 @@ public class Semestre2Fragment extends Fragment {
     private Button semestre3;
 
 
-
-
-    public static ArrayList<String> getSelectionUE() {
-        return selectionUE;
-    }
-
-    private static ArrayList<String> selectionUE = new ArrayList<>();
-    private ArrayList<String> selectionCode = new ArrayList<>();
-
-    public ArrayList<String> getSelectionCode() {
-        return selectionCode;
-    }
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_semestre2, container, false);
 
 
-        Client client = (Client) getActivity().getApplication();
+        final Client client = (Client) getActivity().getApplication();
         mSocket = client.getUniqueConnexion().getmSocket();
         listeUEBlocFondement = client.getListeUEBlocFondementS2();
         listeUEBlocMethode = client.getListeUEBlocMethodeS2();
@@ -87,7 +74,7 @@ public class Semestre2Fragment extends Fragment {
             }
         });
 
-        expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,selectionUE, selectionCode,
+        expansionView = new ExpansionView(root, mSocket, getActivity(), enregistrer,client.getSelectionUE(), client.getSelectionCode(),
                 listeUEBlocFondement, listeUEBlocMethode, blocEtSaMatiere);
         this.expansionView.setDynamicLayoutContainer((ViewGroup) root.findViewById(R.id.dynamicLayoutContainer));
 
@@ -102,7 +89,7 @@ public class Semestre2Fragment extends Fragment {
         enregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enregistrement();
+                enregistrement(client);
             }
         });
 
@@ -129,14 +116,15 @@ public class Semestre2Fragment extends Fragment {
 
     }
 
-    public void enregistrement(){
+    public void enregistrement(Client client){
         Log.d("Bouton enregistrer", "Parcours enregistre");
         //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
         //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
         String fileName = "mon_parcours_S2";
-        String final_selection = "";
-        for (String selections : getSelectionUE()){
-            Log.d("WRITEFILE", "ecriture de "+getSelectionUE().toString());
+        client.getNomFichier().add(fileName);
+        String final_selection = "SEMESTRE 2\n";
+        for (String selections : client.getSelectionUE()){
+            Log.d("WRITEFILE", "ecriture de "+ client.getSelectionUE().toString());
             final_selection += selections + "\n";
             Log.d("WRITEFILE", "Valeur de final_selection "+final_selection);
 
@@ -145,6 +133,7 @@ public class Semestre2Fragment extends Fragment {
             FileOutputStream ecriture = getActivity().openFileOutput(fileName, MODE_PRIVATE);
             ecriture.write(final_selection.getBytes());
             ecriture.close();
+            client.getSelectionUE().clear();
             Toast.makeText(getActivity(), "Parcours enregistré", Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -152,7 +141,7 @@ public class Semestre2Fragment extends Fragment {
             e.printStackTrace();
         }
 
-        for (String code_ue: getSelectionCode()) {
+        for (String code_ue: client.getSelectionCode()) {
             Log.d("SAVE_SERVER", "Envoie de la matière de code "+code_ue+ " au serveur pour enregistrement");
             ((Client)getActivity().getApplicationContext()).getUniqueConnexion().envoyerEvent("Save", code_ue);
         }

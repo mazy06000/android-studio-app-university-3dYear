@@ -13,6 +13,22 @@ public class Client extends Application {
 
     private Connexion uniqueConnexion;
     private User user;
+    public ArrayList<String> getSelectionUE() {
+        return selectionUE;
+    }
+    private ArrayList<String> selectionUE = new ArrayList<>();
+
+    public ArrayList<String> getSelectionCode() {
+        return selectionCode;
+    }
+
+    private ArrayList<String> selectionCode = new ArrayList<>();
+
+    public ArrayList<String> getNomFichier() {
+        return nomFichier;
+    }
+
+    private ArrayList<String> nomFichier = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -208,6 +224,42 @@ public class Client extends Application {
 
     public ArrayList<UE> getListeUEBlocS3() {
         return listeUEBlocS3;
+    }
+
+
+
+    UE chimie1 = new UE("SPUC43","Parcours Chimie S4","UE CHIMIE S4 : Bloc de chimie experimentale",4,6,60,true,true,true);
+    UE chimie2 = new UE("SPUC42","Parcours Chimie S4","UE CHIMIE S4 : Chimie organique fonctionnelle II",4,6,62, true,true);
+    UE chimie3 = new UE("SPUC41","Parcours Chimie S4","UE CHIMIE S4 : Materiaux 2",4,6,62,true,true);
+    UE chimie4 = new UE("SPUC40","Parcours Chimie S4","UE CHIMIE S4 : Vision macroscopique des molecules",4,6,62,true,true);
+
+    UE electronique1 = new UE("SPUM44","Parcours Electronique S4", "Choix option", "UE MATH S4 : Methodes - approche aleatoire",4,6,79);
+    UE electronique2 = new UE("SPUM41","Parcours Electronique S4","Choix option","UE MATH S4 : Probabilites et introduction aux statistiques",4,6,63);
+    UE electronique3 = new UE("SPUE42","Parcours Electronique S4","UE ELECTRONIQUE S4 : Architecture des processeurs",4,6,18,true,true);
+    UE electronique4 = new UE("SPUE41","Parcours Electronique S4","UE ELECTRONIQUE S4 : Electronique analogique avancee",4,6,18,true,true);
+    UE electronique5 = new UE("SPUE40","Parcours Electronique S4","UE ELECTRONIQUE S4 : Systeme optimise en energie",4,6,23,true,true,true);
+
+    UE info1 = new UE("SPUF43","Parcours Informatique S4","Choix option","UE INFO S4 : Introduction aux systemes intelligents",4,6,18);
+    UE info2 = new UE("SPUF44","Parcours Informatique S4","Choix option","UE INFO S4 : Technologies du web",4,6,77);
+    UE info3 = new UE("SPUF40","Parcours Informatique S4","UE INFO S4 : Algorithmique 1",4,6,89,true,true);
+    UE info4 = new UE("SPUF41","Parcours Informatique S4","UE INFO S4 : Reseaux et telecommunication",4,6,74,true,true);
+    UE info5 = new UE("SPUF42","Parcours Informatique S4","UE INFO S4 : Systemes 2 - mecanismes internes syst. d'expl",4,6,72,true,true,true);
+
+    UE majeur1 = new UE("SPUC43","Parcours Majeure Math S4", "Choix option 2","UE CHIMIE S4 : Bloc de chimie experimentale",4,6,60);
+    UE majeur2 = new UE("SPUC42","Parcours Majeure Math S4", "Choix option 2","UE CHIMIE S4 : Chimie organique fonctionnelle II",4,6,62);
+    UE majeur3 = new UE("SPUC41","Parcours Majeure Math S4", "Choix option 2","UE CHIMIE S4 : Materiaux 2",4,6,62);
+    UE majeur4 = new UE("SPUC40","Parcours Majeure Math S4", "Choix option 2","UE CHIMIE S4 : Vision macroscopique des molecules",4,6,62);
+    UE majeur5 = new UE("VPUG2D4","Parcours Majeure Math S4", "Choix option 2","UE CLE2D Methodologie et didactique - Geometrie",4,6,9);
+    UE majeur = new UE("SPUM40","Parcours Majeure Math S4","UE MATH S4 : Analyse",4,6,67,true,true,true);
+
+
+
+
+    ArrayList<UE> listeUEBlocS4 = new ArrayList<>(Arrays.asList(chimie1, chimie2, chimie3, chimie4, electronique1, electronique2, electronique3, electronique4, electronique5,
+            info1, info2, info3, info4, info5, majeur, majeur1, majeur2, majeur3, majeur4, majeur5
+    ));
+    public ArrayList<UE> getListeUEBlocS4() {
+        return listeUEBlocS4;
     }
 
 }

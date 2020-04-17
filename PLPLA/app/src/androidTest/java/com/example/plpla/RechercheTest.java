@@ -39,38 +39,9 @@ public class RechercheTest {
 
     @Test
     public void rechercheTest() {
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editTextNom),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText.perform(click());
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.editTextNom),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText2.perform(replaceText("E"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editTextNom), withText("E"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText3.perform(click());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.editTextNom), withText("E"),
+                allOf(withId(R.id.editTextNom),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -78,16 +49,6 @@ public class RechercheTest {
                                 1),
                         isDisplayed()));
         appCompatEditText4.perform(replaceText("Elarays"));
-
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.editTextNom), withText("Elarays"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText5.perform(closeSoftKeyboard());
 
         ViewInteraction appCompatEditText6 = onView(
                 allOf(withId(R.id.editTextPrenom),
@@ -119,8 +80,7 @@ public class RechercheTest {
         }
 
         ViewInteraction appCompatImageButton = onView(
-                allOf(withContentDescription("Ouvrir le panneau de navigation"),
-                        childAtPosition(
+                allOf(childAtPosition(
                                 allOf(withId(R.id.toolbar),
                                         childAtPosition(
                                                 withClassName(is("com.google.android.material.appbar.AppBarLayout")),
@@ -191,7 +151,7 @@ public class RechercheTest {
         }
 
         ViewInteraction appCompatImageView = onView(
-                allOf(withClassName(is("androidx.appcompat.widget.AppCompatImageView")), withContentDescription("Effacer la requête"),
+                allOf(withClassName(is("androidx.appcompat.widget.AppCompatImageView")),
                         childAtPosition(
                                 allOf(withClassName(is("android.widget.LinearLayout")),
                                         childAtPosition(
@@ -202,8 +162,7 @@ public class RechercheTest {
         appCompatImageView.perform(click());
 
         ViewInteraction appCompatImageButton2 = onView(
-                allOf(withContentDescription("Réduire"),
-                        childAtPosition(
+                allOf(childAtPosition(
                                 allOf(withId(R.id.toolbar),
                                         childAtPosition(
                                                 withClassName(is("com.google.android.material.appbar.AppBarLayout")),

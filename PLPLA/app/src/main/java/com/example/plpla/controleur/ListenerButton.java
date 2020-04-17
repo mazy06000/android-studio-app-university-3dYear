@@ -1,5 +1,6 @@
 package com.example.plpla.controleur;
 
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -19,12 +20,14 @@ import static android.content.Context.MODE_PRIVATE;
 public class ListenerButton implements View.OnClickListener{
 
     private final Socket socket;
-    private PortailFragment activity;
+    private Activity activity;
+    private Client client;
     private int compteurTouche = 0;
 
-    public ListenerButton(Socket socket, PortailFragment activity) {
+    public ListenerButton(Socket socket, Activity activity, Client client) {
         this.socket = socket;
         this.activity = activity;
+        this.client = client;
     }
 
 
@@ -37,27 +40,29 @@ public class ListenerButton implements View.OnClickListener{
                 //activity.getSelectionItem().add(activity.getTextEnjeux().getText().toString());
                 //activity.getSelectionItem().add(activity.getTextCompetence().getText().toString());
                 String fileName = "mon_parcours_S1";
+                client.getNomFichier().add(fileName);
                 String final_selection = "SEMESTRE 1\n";
-                for (String selections : activity.getSelectionUE()){
-                    Log.d("WRITEFILE", "ecriture de "+activity.getSelectionUE().toString());
+                for (String selections : client.getSelectionUE()){
+                    Log.d("WRITEFILE", "ecriture de "+client.getSelectionUE().toString());
                     final_selection += selections + "\n";
                     Log.d("WRITEFILE", "Valeur de final_selection "+final_selection);
 
                 }
                 try {
-                    FileOutputStream ecriture = activity.getActivity().openFileOutput(fileName, MODE_PRIVATE);
+                    FileOutputStream ecriture = activity.openFileOutput(fileName, MODE_PRIVATE);
                     ecriture.write(final_selection.getBytes());
                     ecriture.close();
-                    Toast.makeText(activity.getActivity(), "Parcours enregistré", Toast.LENGTH_LONG).show();
+                    client.getSelectionUE().clear();
+                    Toast.makeText(activity, "Parcours enregistré", Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                for (String code_ue: activity.getSelectionCode()) {
+                for (String code_ue: client.getSelectionCode()) {
                     Log.d("SAVE_SERVER", "Envoie de la matière de code "+code_ue+ " au serveur pour enregistrement");
-                    ((Client)activity.getActivity().getApplicationContext()).getUniqueConnexion().envoyerEvent("Save", code_ue);
+                    ((Client)activity.getApplicationContext()).getUniqueConnexion().envoyerEvent("Save", code_ue);
                 }
                 break;
 
