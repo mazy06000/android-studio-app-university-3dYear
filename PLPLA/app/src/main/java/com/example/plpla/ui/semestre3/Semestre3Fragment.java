@@ -76,12 +76,12 @@ public class Semestre3Fragment extends Fragment {
 
         expansionView.createExpansion();
 
-        /*semestre4.setOnClickListener(new View.OnClickListener() {
+        semestre4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.changeFragment(4);
             }
-        });*/
+        });
 
         enregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
