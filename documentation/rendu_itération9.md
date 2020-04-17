@@ -12,7 +12,7 @@
 >
   * [x] Rectification des bus liés à la récupération du parcours dans ParcoursFragment
 >
-
+  * [x] Le client pourra acceder aux parcours partagés (pour l'instant vide avec un msg soulignant ceci)
 > 
   * [x] Semestre 4 pas accesible
 
@@ -39,6 +39,7 @@
 >  * [x] Test PacoursFragment.
 >  * [x] Test ProfilFragment.
 >  * [x] Test RechercheFragment.
+>  * [x] Test parcoursPartager.
 > 
 > Serveur : 
 > * [x] Rectification/amélioration des tests
