@@ -132,6 +132,11 @@ public class Reseau {
 
     public void sendSave(User user) {
         SocketIOClient socketIOClient = dict_client.get(user);
-        socketIOClient.sendEvent(EVENT.SAVE);
+        if (socketIOClient != null) {
+            socketIOClient.sendEvent(EVENT.SAVE);
+        }
+        else {
+            System.out.println("Erreur lors de l'envoie de l'event SAVE: socketioclient est null");
+        }
     }
 }

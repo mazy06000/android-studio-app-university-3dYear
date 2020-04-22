@@ -1,10 +1,15 @@
 package serveur;
 
 import com.corundumstudio.socketio.*;
-import io.netty.channel.unix.Socket;
+import matière.UE;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import user.User;
 
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +17,10 @@ class ServeurTest {
 
     Serveur serveur;
     Configuration configuration = new Configuration();
-    Socket client;
+    User user1, user2;
+    String code_ue1, code_ue2;
+    UE infoShell;
+    UE geo3;
 
     @BeforeEach
     void setUp() {
@@ -20,19 +28,49 @@ class ServeurTest {
         configuration.setPort(4444);
         SocketIOServer socketIOServer = new SocketIOServer(configuration);
         serveur = new Serveur(socketIOServer);
-        /*@TODO Doit-t-on faire unsocket client de cette manière pour tester le serveur
-            Etant donné que les méthode prennent en paramètre un socketioclient
-            En plus de ça le serveur une fois lancé le reste du code est en attente ...*/
-        //client = IO.socket("http://127.0.0.1:4444");
+        user1 = new User("USER1", "TEST1", new ArrayList<>());
+        user2 = new User("USER2", "TEST2", new ArrayList<>());
+        code_ue1 = "SPUGDE20";
+        code_ue2 = "SPUF20";
+        infoShell = new UE("SPUF20","Informatique S2","UE INFO S2 : Systeme 1 unix et programmation shell",2,6,111,false,true);
+        geo3 = new UE("SPUGDE20","Geographie S2","UE GEOGRAPHIE : Decouverte 3",2,6,3);
+        serveur.setListUsers(new ArrayList<>(Arrays.asList(user1,user2)));
+        serveur.setDict_UE(UtilServeur.initDictUE(new ArrayList<>(Arrays.asList(geo3,infoShell))));
     }
 
     @Test
     void save_code() {
+        /**
+         * 1er cas : On vérifie que la matière avec le code passé en paramètre a été ajouté dans
+         * la liste des choix de l'user, assé en paramètre dans la liste des Users du serveur
+         */
+        ArrayList<UE> listeChoixAttendu = new ArrayList<>(Arrays.asList(geo3));
+        System.out.println(serveur.getDict_UE());
+        serveur.save_code(user1, code_ue1);
+        System.out.println(serveur.getListUsers());
+        assertEquals(listeChoixAttendu, serveur.getListUsers().get(0).getListe_choix());
+
+        listeChoixAttendu.add(infoShell);
+        serveur.save_code(user1, code_ue2);
+        assertEquals(listeChoixAttendu, serveur.getListUsers().get(0).getListe_choix());
+
 
     }
 
     @Test
     void ajouteUser() {
+
+        User user3 = new User();
+        ArrayList<User> listeattendu = new ArrayList<>();
+        listeattendu.addAll(serveur.getListUsers());
+        listeattendu.add(user3);
+        serveur.ajouteUser(user3);
+        assertEquals(listeattendu, serveur.getListUsers());
+
+        serveur.ajouteUser(user3);
+        assertEquals(listeattendu, serveur.getListUsers());
+
+
     }
 
     @Test

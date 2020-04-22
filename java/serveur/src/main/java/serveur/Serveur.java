@@ -42,6 +42,14 @@ public class Serveur {
      */
     private BaseDonnee baseDonnee;
 
+    public void setListUsers(ArrayList<User> listUsers) {
+        this.listUsers = listUsers;
+    }
+    public void setDict_UE(HashMap<String, UE> dict_UE) {
+        this.dict_UE = dict_UE;
+    }
+
+
     public BaseDonnee getBaseDonnee() {
         return baseDonnee;
     }
@@ -63,47 +71,6 @@ public class Serveur {
         this.reseau = new Reseau(this);
 
     }
-//
-//    private ArrayList<User> loadingUsers(File utilisateurs) {
-//        try {
-//            if (utilisateurs.createNewFile()){
-//                System.out.println("utilisateurs.json a été créé");
-//            }
-//            else{
-//                System.out.println("Chargement de la liste des utilisateurs");
-//                return UtilServeur.JSONFileToListUsers(utilisateurs);
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Erreur lors du chargement des utilisateurs");
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
-//    private ArrayList<UE> loadingUE(File s1, File s2, File s3, BaseDonnee baseDonnee){
-//        try {
-//            if (s1.createNewFile()){
-//                //Création des fichiers
-//                System.out.println("Création de la base de donnée.");
-//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE1_FILENAME, baseDonnee.getListeUES1());
-//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE2_FILENAME, baseDonnee.getListeUES2());
-//                UtilServeur.writeToJSON(PATH_JSON_FILES+SEMESTRE3_FILENAME, baseDonnee.getListeUES3());
-//                return UtilServeur.initListeUE(baseDonnee.getListeUES1(), baseDonnee.getListeUES2(), baseDonnee.getListeUES3());
-//            }
-//            else{
-//                System.out.println("Chargement des UE de la base de donnée...");
-//                ArrayList<UE> listeUES1 = UtilServeur.JSONFileToListUE(s1);
-//                ArrayList<UE> listeUES2 = UtilServeur.JSONFileToListUE(s2);
-//                ArrayList<UE> listeUES3 = UtilServeur.JSONFileToListUE(s3);
-//                return UtilServeur.initListeUE(listeUES1, listeUES2, listeUES3);
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Erreur lors du chargement des UE");
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
 
 
     /**
@@ -113,7 +80,10 @@ public class Serveur {
      */
     protected void save_code(User user, String code_choix_matière) {
         int index_user = UtilServeur.getIndexUser(user, this.listUsers);
-        if (index_user<0){
+        int index2 = listUsers.indexOf(user);
+        System.out.println("Avec indexOf : "+index2);
+        System.out.println("Avec Util : "+index_user);
+        if (index_user>=0){
             System.out.println("Le client "+""+user.getNom()+" Enregistre l'UE de code : "+ code_choix_matière);
             UE ue = dict_UE.get(code_choix_matière);
             listUsers.get(index_user).getListe_choix().add(ue);
@@ -139,12 +109,10 @@ public class Serveur {
         }
         else {
             System.out.println("Ajout de "+user.getNom()+" avec succès !");
-            User new_user = new User(user.getNom(), user.getPrenom(), user.getAddress_ip(), user.getListe_choix());
+            User new_user = new User(user.getNom(), user.getPrenom(), user.getListe_choix());
             this.getListUsers().add(new_user);
         }
     }
-
-
 
     public void initParcoursUser(User user) {
         int index_user = listUsers.indexOf(user);

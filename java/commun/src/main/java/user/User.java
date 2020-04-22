@@ -12,7 +12,7 @@ public class User implements ToJSON {
     private String Nom;
     private String prenom;
     private static int id = 0;
-    private String address_ip;
+
 
     private ArrayList<UE> liste_choix;
 
@@ -40,13 +40,6 @@ public class User implements ToJSON {
         this.prenom = prenom;
     }
 
-    public String getAddress_ip() {
-        return address_ip;
-    }
-
-    public void setAddress_ip(String address_ip) {
-        this.address_ip = address_ip;
-    }
 
     public static int getId() {
         return id;
@@ -58,14 +51,13 @@ public class User implements ToJSON {
 //        prenom ="Ibrahim";
 //        address_ip = "none";
 //        liste_choix = new ArrayList<UE>();
-        this("defaultName", "defaultSurname", "none", new ArrayList<UE>());
+        this("defaultName", "defaultSurname", new ArrayList<UE>());
     }
 
 
-    public User(String nom, String prenom, String address_ip, ArrayList<UE> liste_choix) {
+    public User(String nom, String prenom, ArrayList<UE> liste_choix) {
         Nom = nom;
         this.prenom = prenom;
-        this.address_ip = address_ip;
         this.liste_choix = liste_choix;
         this.id+=1;
     }
@@ -77,13 +69,12 @@ public class User implements ToJSON {
         User user = (User) o;
         return getNom().equals(user.getNom()) &&
                 getPrenom().equals(user.getPrenom()) &&
-                getAddress_ip().equals(user.getAddress_ip()) &&
                 getListe_choix().equals(user.getListe_choix());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNom(), getPrenom(), getAddress_ip(), getListe_choix());
+        return Objects.hash(getNom(), getPrenom(), getListe_choix());
     }
 
     @Override
@@ -91,7 +82,7 @@ public class User implements ToJSON {
         return "User{" +
                 "Nom='" + Nom + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", address_ip='" + address_ip + '\'' +
+                ", Id= " + id +'\''+
                 '}';
     }
 
@@ -101,7 +92,7 @@ public class User implements ToJSON {
         try {
             user.put("nom", getNom());
             user.put("prenom", getPrenom());
-            user.put("address_ip", getAddress_ip());
+            user.put("Id", getId());
             //user.put("liste_choix", getListe_choix());
         } catch (JSONException e) {
             e.printStackTrace();

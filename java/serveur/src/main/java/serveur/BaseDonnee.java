@@ -36,7 +36,7 @@ public class BaseDonnee {
             return listUE;
         }
         else{
-            System.out.println("Erreur lors du chargement :\n" +
+            System.out.println("Erreur lors du chargement :" +
                     " Le dossier "+PATH_FILES_SEMESTRE+" n'existe pas !");
         }
         return null;

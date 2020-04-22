@@ -121,32 +121,7 @@ public class UtilServeur {
         return userArrayList;
     }
 
-    /**
-     * Renvoie l'index de l'User dans userArrayList avec son champs adresse ip égale à ip
-     * Renvoie -1 si l'user n'est pas dans l'ArrayList
-     * @param ip String address ip, l'adresse ip de l'user dont on cherche l'index
-     * @param userArrayList ArrayList des users où on cherche l'index
-     * @return
-     */
-    public static final int getIndexUser(String ip, ArrayList<User> userArrayList){
-        int index = 0;
-        if (userArrayList == null) {
-            return -1;
-        }
-        if (ip == null) {
-            return -1;
-        }
-        for (User user: userArrayList) {
-            if (user.getAddress_ip().equals(ip)){
-                return index;
-            }
-            else if (index == userArrayList.size()-1){
-                return -1;
-            }
-            index++;
-        }
-        return index;
-    }
+
     /**
      * Renvoie l'index de l'User dans userArrayList avec son champs adresse ip égale à ip
      * Renvoie -1 si l'user n'est pas dans l'ArrayList
