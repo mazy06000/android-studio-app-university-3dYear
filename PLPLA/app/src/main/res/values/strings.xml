@@ -36,6 +36,8 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Mon Profil</string>
+    <string name="parcours_partage"> parcours partage </string>
+    <string name="aucun_partage" > <i>aucun parcours partagé ! </i> </string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="Portail">Portail</string>
