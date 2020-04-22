@@ -8,6 +8,7 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import events.EVENT;
+import init.InitBD;
 import matière.UE;
 import user.User;
 
@@ -182,6 +183,8 @@ public class Serveur {
 
 
     public static final void main(String[] args) {
+        InitBD initBD = new InitBD();
+        initBD.main(null);
         Configuration configuration = new Configuration();
         configuration.setHostname("localhost");
         configuration.setPort(4444);
