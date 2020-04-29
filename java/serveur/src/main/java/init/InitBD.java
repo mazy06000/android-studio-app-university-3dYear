@@ -18,7 +18,6 @@ public class InitBD {
     private File semestre = new File(PATH_FILES_SEMESTRE);;
     private File users = new File(PATH_FILES_USER);;
 
-
     //UE SEMESTRE 1
 
     private UE blocFondement = new UE(null,"BLOC MATH S1 : Fondements 1",null,1,30,0);
@@ -183,7 +182,6 @@ public class InitBD {
 
     public static void main(String[] args) {
         InitBD initBD = new InitBD();
-        BaseDonnee baseDonnee = new BaseDonnee();
         System.out.println("Initialisation des données.");
         initBD.initAll();
         initBD.init_semestre(initBD.listeUES1, SEMESTRE1_FILENAME);

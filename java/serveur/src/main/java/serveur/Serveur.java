@@ -116,7 +116,7 @@ public class Serveur {
 
     public void initParcoursUser(User user) {
         int index_user = listUsers.indexOf(user);
-        if (index_user < 0){
+        if (index_user >= 0){
             this.getListUsers().get(index_user).getListe_choix().clear();
             System.out.println("Parcours réinitialisé pour "+user.getNom());
             reseau.sendInitParcours(user);

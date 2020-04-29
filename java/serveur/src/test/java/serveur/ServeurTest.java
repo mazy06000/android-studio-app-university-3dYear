@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import user.User;
 
 
-import java.lang.reflect.Array;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,6 +21,7 @@ class ServeurTest {
     String code_ue1, code_ue2;
     UE infoShell;
     UE geo3;
+
 
     @BeforeEach
     void setUp() {
@@ -36,6 +37,7 @@ class ServeurTest {
         geo3 = new UE("SPUGDE20","Geographie S2","UE GEOGRAPHIE : Decouverte 3",2,6,3);
         serveur.setListUsers(new ArrayList<>(Arrays.asList(user1,user2)));
         serveur.setDict_UE(UtilServeur.initDictUE(new ArrayList<>(Arrays.asList(geo3,infoShell))));
+
     }
 
     @Test
@@ -75,5 +77,19 @@ class ServeurTest {
 
     @Test
     void initParcoursUser() {
+
+        ArrayList<UE> listeattendu = new ArrayList<>();
+        /** On verifie que la liste des choix du client est bien cleared
+         * Pour une liste non-vide et une liste deja vide
+         **/
+        serveur.getListUsers().get(0).setListe_choix(new ArrayList<>(Arrays.asList(infoShell,geo3)));
+        serveur.getListUsers().get(1).setListe_choix(new ArrayList<>());
+
+        serveur.initParcoursUser(user1);
+        serveur.initParcoursUser(user2);
+
+        assertEquals(listeattendu, user1.getListe_choix());
+        assertEquals(listeattendu, user2.getListe_choix());
+
     }
 }

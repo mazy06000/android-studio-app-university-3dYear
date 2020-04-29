@@ -109,7 +109,12 @@ public class Reseau {
      */
     public void sendInitParcours(User user) {
         SocketIOClient socketIOClient = dict_client.get(user);
-        socketIOClient.sendEvent(EVENT.INIT_PARCOURS);
+        if (socketIOClient != null) {
+            socketIOClient.sendEvent(EVENT.INIT_PARCOURS);
+        }
+        else{
+            System.out.println("Erreur lors de l'envoie de l'event INIT_PARCOURS: socketioclient est null");
+        }
     }
 
 
