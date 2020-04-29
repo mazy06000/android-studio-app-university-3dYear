@@ -231,26 +231,23 @@ class UtilServeurTest {
 
     @Test
     void JSONFileToListUsers() {
-        File fileUser = UtilServeur.writeToJSON(PATH+"utilisateurs.json", listUsers);
-        ArrayList<User> list_attendu;
-        ArrayList<User> listdesUser;
+        File fileUser = UtilServeur.writeToJSON(PATH+"utilisateurs.json", user1);
+        User userJson;
 
         /**
-         * On vérifie que la liste des utilisateurs écrit dans utilisateurs.json
-         * correspond à la liste listUsers après sa conversion en objet java
+         * On vérifie que l'user user1 écrit dans utilisateurs.json
+         * correspond à l'user user1 après sa conversion en objet java
          */
-        listdesUser = UtilServeur.JSONFileToListUsers(fileUser);
-        list_attendu = listUsers;
-        assertEquals(list_attendu,listdesUser);
+        userJson = UtilServeur.JSONFileToUsers(fileUser);
+        assertEquals(user1,userJson);
 
         /**
          * On vérifie que la liste est vide si le fichier n'existe pas ou est vide
          * correspond à la liste listUE après sa conversion en objet java
          */
         fileUser.delete();
-        listdesUser = UtilServeur.JSONFileToListUsers(fileUser);
-        list_attendu = new ArrayList<>();
-        assertEquals(list_attendu,listdesUser);
+        userJson = UtilServeur.JSONFileToUsers(fileUser);
+        assertEquals(null,userJson);
     }
 
     @Test

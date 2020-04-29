@@ -109,16 +109,16 @@ public class UtilServeur {
         }
         return ueArrayList;
     }
-    public static final ArrayList<User> JSONFileToListUsers(File fileName){
-        ArrayList<User> userArrayList = new ArrayList<>();
+    public static final User JSONFileToUsers(File fileName){
+        User user = null;
         ObjectMapper mapper = new ObjectMapper();
         try {
-            userArrayList = mapper.readValue(fileName, new TypeReference<ArrayList<User>>(){});
+            user = mapper.readValue(fileName, new TypeReference<User>(){});
         } catch (IOException e) {
-            System.out.println(fileName+" existe mais est vide !");
+            System.out.println(e.getMessage());
             //e.printStackTrace();
         }
-        return userArrayList;
+        return user;
     }
 
 

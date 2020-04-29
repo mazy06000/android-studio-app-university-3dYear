@@ -75,6 +75,12 @@ class BaseDonneeTest {
 
     @Test
     void loadingUsers() {
+
+        ArrayList<User> listeattendu = new ArrayList<>(Arrays.asList(user2,user1));
+        ArrayList<User> list = baseDonnee.loadingUsers(fileU);
+
+        assertEquals(listeattendu,list);
+
     }
 
     @Test

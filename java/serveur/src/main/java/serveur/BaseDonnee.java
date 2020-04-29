@@ -60,17 +60,17 @@ public class BaseDonnee {
 
 
     public ArrayList<User> loadingUsers(File utilisateurs) {
-        try {
-            if (utilisateurs.createNewFile()){
-                System.out.println("utilisateurs.json a été créé");
+        ArrayList<User> listUsers = new ArrayList<>();
+        if (utilisateurs.exists()){
+            System.out.println("Chargement des Users de la base de donnée...");
+            for (File f : utilisateurs.listFiles()) {
+                listUsers.add(UtilServeur.JSONFileToUsers(f));
             }
-            else{
-                System.out.println("Chargement de la liste des utilisateurs");
-                return UtilServeur.JSONFileToListUsers(utilisateurs);
-            }
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement des utilisateurs");
-            e.printStackTrace();
+            return listUsers;
+        }
+        else{
+            System.out.println("Erreur lors du chargement : " +
+                    " Le dossier "+PATH_FILES_USER+" n'existe pas !");
         }
         return null;
     }
@@ -80,7 +80,7 @@ public class BaseDonnee {
         if (dirUsers.exists()){
             System.out.println("Chargement des Users de la base de donnée...");
             for (File f : dirUsers.listFiles()) {
-                listUsers.addAll(UtilServeur.JSONFileToListUsers(f));
+                listUsers.add(UtilServeur.JSONFileToUsers(f));
             }
             return listUsers;
         }
