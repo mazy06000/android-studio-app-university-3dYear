@@ -10,11 +10,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textDuSemestre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:text="@string/semestre"
+            android:text="@string/semestre3"
             android:textAlignment="center"
             android:textSize="32dp" />
 
@@ -40,9 +39,10 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/boutonEnregistrer"
+                android:id="@+id/boutonEnregistrer3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                
                 android:text="@string/Enregistrer" />
 
             <TextView
@@ -51,10 +51,10 @@
                 android:layout_weight="2" />
 
             <Button
-                android:id="@+id/boutonSemestre2"
+                android:id="@+id/boutonSemestre4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/semestre2" />
+                android:text="@string/semestre4" />
 
         </LinearLayout>
 
