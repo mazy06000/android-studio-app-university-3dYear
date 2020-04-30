@@ -81,10 +81,9 @@ public class Serveur {
     protected void save_code(User user, String code_choix_matière) {
         int index_user = listUsers.indexOf(user);
         if (index_user>=0){
-            System.out.println("Le client "+""+user.getNom()+" Enregistre l'UE de code : "+ code_choix_matière);
             UE ue = dict_UE.get(code_choix_matière);
             listUsers.get(index_user).getListe_choix().add(ue);
-            System.out.println("Le serveur a enregistré "+ ue.getDiscipline() + " " + ue.getNomUE());
+            System.out.println("Le serveur a enregistré le choix "+ ue.getDiscipline() + " " + ue.getNomUE()+" du client "+user.getNom() + " listUE"+ listUsers.get(index_user).getListe_choix());
             reseau.sendSave(user);
         }
         else {
@@ -109,6 +108,7 @@ public class Serveur {
             System.out.println("Ajout de "+user.getNom()+" avec succès !");
             User new_user = new User(user.getNom(), user.getPrenom(), user.getListe_choix());
             this.getListUsers().add(new_user);
+            reseau.sendListUE(user);
         }
     }
 
