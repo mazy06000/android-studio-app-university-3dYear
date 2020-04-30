@@ -8,8 +8,10 @@ import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 import events.EVENT;
+import matière.UE;
 import user.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +58,7 @@ public class Reseau {
         this.socket.addEventListener(EVENT.ADD_USER, User.class, new DataListener<User>() {
             @Override
             public void onData(SocketIOClient socketIOClient, User user, AckRequest ackRequest) throws Exception {
+                dict_client.put(user,socketIOClient);
                 serveur.ajouteUser(user);
             }
         });
@@ -137,8 +140,19 @@ public class Reseau {
 
     public void sendSave(User user) {
         SocketIOClient socketIOClient = dict_client.get(user);
+        System.out.println("HSHMAP DES CLIENT : "+dict_client.get(user));
         if (socketIOClient != null) {
             socketIOClient.sendEvent(EVENT.SAVE);
+        }
+        else {
+            System.out.println("Erreur lors de l'envoie de l'event SAVE: socketioclient est null");
+        }
+    }
+
+    public void sendListUE(User user) {
+        SocketIOClient socketIOClient = dict_client.get(user);
+        if (socketIOClient != null) {
+            socketIOClient.sendEvent(EVENT.ADD_USER, new ArrayList<UE>());
         }
         else {
             System.out.println("Erreur lors de l'envoie de l'event SAVE: socketioclient est null");

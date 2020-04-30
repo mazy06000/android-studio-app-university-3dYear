@@ -79,10 +79,7 @@ public class Serveur {
      * @param code_choix_matière Le code de la matière envoyée par le client
      */
     protected void save_code(User user, String code_choix_matière) {
-        int index_user = UtilServeur.getIndexUser(user, this.listUsers);
-        int index2 = listUsers.indexOf(user);
-        System.out.println("Avec indexOf : "+index2);
-        System.out.println("Avec Util : "+index_user);
+        int index_user = listUsers.indexOf(user);
         if (index_user>=0){
             System.out.println("Le client "+""+user.getNom()+" Enregistre l'UE de code : "+ code_choix_matière);
             UE ue = dict_UE.get(code_choix_matière);
@@ -106,6 +103,7 @@ public class Serveur {
         System.out.println("Ajout d'un nouvel utilisateur : "+user.getNom() +" "+ user.getPrenom());
         if (UtilServeur.userExist(this.getListUsers(), user)){
             System.out.println(user.getNom()+" a déja été ajouté");
+            reseau.sendListUE(user);
         }
         else {
             System.out.println("Ajout de "+user.getNom()+" avec succès !");
