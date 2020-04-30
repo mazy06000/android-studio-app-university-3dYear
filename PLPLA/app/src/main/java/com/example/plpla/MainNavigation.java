@@ -76,10 +76,9 @@ public class MainNavigation extends AppCompatActivity implements Vue {
         ((Client)getApplicationContext()).getUniqueConnexion().getmSocket().on(EVENT.ADD_USER, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                String ip_add = (String) args[0];
-                ((Client)getApplicationContext()).getUser().setAddress_ip(ip_add);
-                Log.d("EVENT_SOCKET", "ADD_USER : Reception du server de l'addresse ip de "+ ((Client)getApplicationContext()).getUser().getNom() +
-                        " --> " + ((Client)getApplicationContext()).getUser().getAddress_ip());
+                //TODO la réception de la liste UE et set la liste choix du client avec liste reçu
+                Log.d("EVENT_SOCKET", "ADD_USER : Reception du server de la liste des choix sauvegardés "+ ((Client)getApplicationContext()).getUser().getNom() +
+                        " --> " + ((Client)getApplicationContext()).getUser().getListe_choix());
             }
         });
 
