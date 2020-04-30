@@ -140,7 +140,7 @@ public class Reseau {
 
     public void sendSave(User user) {
         SocketIOClient socketIOClient = dict_client.get(user);
-        System.out.println("HSHMAP DES CLIENT : "+dict_client.get(user));
+        System.out.println("HSHMAP DES CLIENT : "+dict_client + " user cherché : "+user);
         if (socketIOClient != null) {
             socketIOClient.sendEvent(EVENT.SAVE);
         }
@@ -152,6 +152,7 @@ public class Reseau {
     public void sendListUE(User user) {
         SocketIOClient socketIOClient = dict_client.get(user);
         if (socketIOClient != null) {
+            //TODO envoyer la liste des UEs au client
             socketIOClient.sendEvent(EVENT.ADD_USER, new ArrayList<UE>());
         }
         else {

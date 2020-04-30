@@ -11,7 +11,7 @@ import java.util.Objects;
 public class User implements ToJSON {
     private String Nom;
     private String prenom;
-    private static int id = 0;
+    private int id = 0;
 
 
     private ArrayList<UE> liste_choix;
@@ -41,7 +41,7 @@ public class User implements ToJSON {
     }
 
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -67,14 +67,12 @@ public class User implements ToJSON {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getNom().equals(user.getNom()) &&
-                getPrenom().equals(user.getPrenom()) &&
-                getListe_choix().equals(user.getListe_choix());
+        return getId() == user.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNom(), getPrenom(), getListe_choix());
+        return Objects.hash(getId());
     }
 
     @Override
