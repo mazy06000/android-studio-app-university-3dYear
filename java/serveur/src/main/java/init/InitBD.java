@@ -173,9 +173,10 @@ public class InitBD {
     /**
      * Liste de toutes les matières du S3
      */
-    private ArrayList<UE> listeUES3 = new ArrayList<>(Arrays.asList(geo3, geo4, disciplinaire2, diversite, physiologie, chimieS2Reaction, chimieS2Thermo,
-            chimieS2Pollution, chimieS2Complement, chimieS2TChimique, electroniqueSansFil, electroniqueAnalogique, infoImperative, infoShell, mathComplement2,
-            mathMethodeDiscrete, entreprise1, information, macro1S2, physiqueS2Mecanique, physiqueS2Optique, terreS2Atmosphere, terreS2Structure, fondementS2BlocF));
+    private ArrayList<UE> listeUES3 = new ArrayList<>(Arrays.asList(geoApprofondissement, disciplinaire3, disciplinaire4, disciplinaire5, chimieS3Solutions, chimieS3Medicinale, chimieS3Cosmetique,
+            chimieS3Biomolecules, chimieS3Organique, chimieS3Materiaux, ContinuumEnseign, electroniqueAutomatique, electroniquePhysique, electroniqueSysteme, infoBaseD, infoOFI, infoC, mathAlgebre,
+            mathAnalyse, mathFondement3, mathMethodesGeo, mathMethodeInge, miashBancaire, miashAssurance, miashMacro2, miashR, physiqueEclectro, physiqueOutils, physiqueThermo,
+            terreClimats, terreGeosciences, terreMateriaux, terrePhysique));
 
 
 
