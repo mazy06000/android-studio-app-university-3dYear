@@ -36,6 +36,9 @@ import java.util.ArrayList;
 
 import matière.UE;
 
+/**
+ * classe representant la recherche dans l'app
+ */
 public class SlideshowFragment extends Fragment implements RecyclerAdapter.SelectedMatiere {
 
     private RecyclerView recyclerView;
@@ -46,6 +49,13 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
 
     static RecyclerAdapter recyclerAapter;
 
+    /**
+     * onCreateView est appelé ,on assigne notre vue, c'est la vue principale.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return une vue view root
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,6 +81,10 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
     }
 
 
+    /**
+     * fonction de creation de matiere dans la liste de recherche
+     * @return list , la liste des matieres de tout les semestres
+     */
     private ArrayList<UE> listesdesmatieres() {
         ArrayList<UE> list = new ArrayList<>();
 
@@ -101,11 +115,13 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
     public void selectedMatiere(UE matiere) {
         Intent intent = new Intent(getActivity(), SelectedMatiereActivity.class).putExtra("data", matiere);
         startActivity(intent);
-
-
     }
 
-
+    /**
+     * fonction qui gere la barre de recherche
+     * @param menu un menu
+     * @param inflater transformer un objet qui n'est décrit qu'en XML en véritable objet qu'on peut manipuler.
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.main_navigation, menu);
@@ -134,7 +150,12 @@ public class SlideshowFragment extends Fragment implements RecyclerAdapter.Selec
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    //                          fonction pour le bug                                    //
+
+
+    /**
+     * fonction pour gerer le bug
+     * @param menu un menu
+     */
     private void implementSearch(final Menu menu) {
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
 

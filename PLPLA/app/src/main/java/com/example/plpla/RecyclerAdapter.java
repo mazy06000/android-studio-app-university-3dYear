@@ -48,9 +48,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
 
-
-
-
+    /**
+     * fonction d'initialiqtaion de l'interface graphique des matieres lors de leur creation dans la recherche
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,int position) {
 
@@ -108,6 +110,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return donnes.size();
     }
 
+    /**
+     * fonction de filtrage lors de recherche d'une matiere dans la barre de recherche
+     * la recherche se fait par nom de matiere ou par discipline
+     * @return les resultats apres filtrages
+     */
     @Override
     public Filter getFilter(){
         return filter;
@@ -157,6 +164,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     }
 
+    /**
+     * fonction d'affichage des infos de la matieres une fois on clique dessus
+     */
     class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/ {
 
 
