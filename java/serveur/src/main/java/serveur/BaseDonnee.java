@@ -9,7 +9,9 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 
-
+/**
+ * Classe qui s'occupe du chargements et de l'écritures des données
+ */
 public class BaseDonnee {
 
     private static final String PATH_FILES_SEMESTRE = "./serveur/donnees/semestre/";
@@ -26,6 +28,10 @@ public class BaseDonnee {
         return PATH_FILES_USER;
     }
 
+    /**
+     * Charge les UE des fichiers semestreN.json, les met dans une ArrayList
+     * @return ArrayList des UEs
+     */
     public ArrayList<UE> loadingUE(){
         ArrayList<UE> listUE = new ArrayList<>();
         if (dirSemestre.exists()){
@@ -42,6 +48,11 @@ public class BaseDonnee {
         return null;
     }
 
+    /**
+     * Effectue le chargement avec comme dossier source des UEs dir
+     * @param dir Répartoire source pour le chargement des UE
+     * @return ArrayList des UEs
+     */
     public ArrayList<UE> loadingUE(File dir){
         ArrayList<UE> listUE = new ArrayList<>();
         if (dir.exists()){
@@ -58,7 +69,11 @@ public class BaseDonnee {
         return null;
     }
 
-
+    /**
+     * Effectue le chargement avec comme dossier source des UEs dir
+     * @param utilisateurs Répartoire source pour le chargement des UE
+     * @return ArrayList des Users
+     */
     public ArrayList<User> loadingUsers(File utilisateurs) {
         ArrayList<User> listUsers = new ArrayList<>();
         if (utilisateurs.exists()){
@@ -75,6 +90,10 @@ public class BaseDonnee {
         return null;
     }
 
+    /**
+     * Charge les infos des clients, précédemment connectés, des fichiers [NOM CLIENT].json, les met dans une ArrayList
+     * @return ArrayList des clients (User)
+     */
     public ArrayList<User> loadingUsers(){
         ArrayList<User> listUsers = new ArrayList<>();
         if (dirUsers.exists()){

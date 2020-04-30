@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Parite Réseau : accepte, attend, envoie les envents aux clients
+ */
 public class Reseau {
     private SocketIOServer socket;
     private Serveur serveur;
@@ -42,7 +45,7 @@ public class Reseau {
         this.socket = serveur.getServer();
 
 
-        // on accept une connexion
+        // on accepte une connexion
         this.socket.addConnectListener(new ConnectListener() {
             public void onConnect(SocketIOClient socketIOClient) {
                 System.out.println("Connexion de "+socketIOClient.getRemoteAddress());
@@ -50,7 +53,7 @@ public class Reseau {
         });
 
 
-        /**
+        /*
          * Listener de l'event ADD_USER :
          * Créé un nouvel user (objet User) avec l'objet user envoyé par le client.
          * (Ou pas s'il existe deja dans la base de données (La liste des users connectés au moins une fois))
@@ -63,7 +66,7 @@ public class Reseau {
             }
         });
 
-        /**
+        /*
          * Le client enregistre une matière de code code_choix_matière
          */
         this.socket.addEventListener(EVENT.SAVE, String.class, new DataListener<String>() {
@@ -74,7 +77,7 @@ public class Reseau {
             }
         });
 
-        /**
+        /*
          * Le client reinitialise son parcours :
          * on clear la liste de ses choix
          */

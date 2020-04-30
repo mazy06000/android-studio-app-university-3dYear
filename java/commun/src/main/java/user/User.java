@@ -7,7 +7,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+/**
+ *
+ */
 public class User implements ToJSON {
     private String Nom;
     private String prenom;

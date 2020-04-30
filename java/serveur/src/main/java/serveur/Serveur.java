@@ -1,25 +1,18 @@
 package serveur;
 
 
-import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
-import com.corundumstudio.socketio.listener.ConnectListener;
-import com.corundumstudio.socketio.listener.DataListener;
-import events.EVENT;
 import init.InitBD;
 import matière.UE;
 import user.User;
 
-import java.io.File;
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static serveur.BaseDonnee.*;
-
+/**
+ * Le "Moteur" du serveur, classe qui fait les traitements
+ */
 public class Serveur {
 
 
@@ -40,7 +33,27 @@ public class Serveur {
     /**
      * La base de donnée : écrit et lit les fichiers
      */
+
     private BaseDonnee baseDonnee;
+
+    public SocketIOServer getServer() {
+        return socketIOServer;
+    }
+
+    public ArrayList<UE> getListUE() {
+        return listUE;
+    }
+
+    public HashMap<String, UE> getDict_UE() {
+        return dict_UE;
+    }
+
+    public ArrayList<User> getListUsers() {
+        return listUsers;
+    }
+
+
+
 
     public void setListUsers(ArrayList<User> listUsers) {
         this.listUsers = listUsers;
@@ -54,6 +67,10 @@ public class Serveur {
         return baseDonnee;
     }
 
+    /**
+     * Constructeur du Serveur
+     * @param socketIOServer la SocketIOServer
+     */
     public Serveur(SocketIOServer socketIOServer) {
         //Initialisation de la base de donnée
         baseDonnee = new BaseDonnee();
@@ -66,7 +83,6 @@ public class Serveur {
         this.listUsers = baseDonnee.loadingUsers();
 
         dict_UE = UtilServeur.initDictUE(this.listUE);
-
         this.socketIOServer = socketIOServer;
         this.reseau = new Reseau(this);
 
@@ -83,7 +99,7 @@ public class Serveur {
         if (index_user>=0){
             UE ue = dict_UE.get(code_choix_matière);
             listUsers.get(index_user).getListe_choix().add(ue);
-            System.out.println("Le serveur a enregistré le choix "+ ue.getDiscipline() + " " + ue.getNomUE()+" du client "+user.getNom() + " listUE"+ listUsers.get(index_user).getListe_choix());
+            System.out.println("Le serveur a enregistré le choix "+ ue.getDiscipline() + " " + ue.getNomUE()+" du client "+user.getNom());
             reseau.sendSave(user);
         }
         else {
@@ -112,6 +128,10 @@ public class Serveur {
         }
     }
 
+    /**
+     * Réinitialise le parcours : met sa liste de choix vide
+     * @param user le client
+     */
     public void initParcoursUser(User user) {
         int index_user = listUsers.indexOf(user);
         if (index_user >= 0){
@@ -126,27 +146,12 @@ public class Serveur {
 
     }
 
+    /**
+     * Démarre le serveur (se met sur écoute)
+     */
     private void démarre() {
         this.reseau.start();
     }
-
-    public SocketIOServer getServer() {
-        return socketIOServer;
-    }
-
-    public ArrayList<UE> getListUE() {
-        return listUE;
-    }
-
-    public HashMap<String, UE> getDict_UE() {
-        return dict_UE;
-    }
-
-    public ArrayList<User> getListUsers() {
-        return listUsers;
-    }
-
-
 
     public static final void main(String[] args) {
         InitBD initBD = new InitBD();
@@ -162,6 +167,10 @@ public class Serveur {
     }
 
 
+    /**
+     * Enregistre les infos de l'user dans un fichier
+     * @param user Le user
+     */
     public void enregistreSession(User user) {
         getBaseDonnee().saveUser(user);
     }
